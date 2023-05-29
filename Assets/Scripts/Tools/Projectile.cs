@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour {
     public int damage = 60;
     public GameObject launcher; 
 
+    // Define the radius of the splash damage
+    public float splashRadius = 5f;
+
     private void OnCollisionEnter (Collision c) {
         GameObject impfl = Instantiate(impactFlash, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
         Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
@@ -20,8 +23,13 @@ public class Projectile : MonoBehaviour {
         GameObject e1 = Instantiate(explosion, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
         Destroy(e1, 1f);
         
+        // Splash damage
+        Collider[] colliders = Physics.OverlapSphere(c.contacts[0].point, splashRadius);
+        foreach (Collider hit in colliders) {
+            TryHit(hit.gameObject);
+        }
+        
         Destroy(gameObject);
-        TryHit(c.gameObject);
     }
 
     void Start() {
@@ -42,5 +50,11 @@ public class Projectile : MonoBehaviour {
         if (d != null) {
             d.Hit(damage);
         }
+    }
+
+    // Display splash damage area in editor
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, splashRadius);
     }
 }

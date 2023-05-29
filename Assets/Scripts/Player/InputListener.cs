@@ -15,6 +15,7 @@ public class InputListener : MonoBehaviour
     bool isJumping = false;
     bool isWalking = false;
     bool isFiring = false;
+    bool isCrouching = false;
     List<bool> isTool; // Array to store the tool states
 
     public float GetInputHorizontal()
@@ -47,6 +48,10 @@ public class InputListener : MonoBehaviour
         return isWalking;
     }
 
+    public bool GetIsCrouching() {
+        return isCrouching;
+    }
+
     public bool GetIsFiring()
     {
         return isFiring;
@@ -63,6 +68,7 @@ public class InputListener : MonoBehaviour
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
         isWalking = Input.GetAxisRaw("Walk") != 0f;
+        isCrouching = Input.GetAxisRaw("Crouch") != 0f;
         isJumping = Input.GetAxisRaw("Jump") != 0f;
         isFiring = Input.GetAxis("Fire1") != 0f;
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
