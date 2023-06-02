@@ -150,7 +150,7 @@ public class MovementController : MonoBehaviour {
     {
         // Interpolate positions between original and offset values.
         cameraHolder.localPosition = Vector3.Lerp(originalCameraHolderPosition, new Vector3(originalCameraHolderPosition.x, originalCameraHolderPosition.y + targetYOffset, originalCameraHolderPosition.z), t);
-        toolHolder.localPosition = Vector3.Lerp(originalToolHolderPosition, new Vector3(originalToolHolderPosition.x, originalToolHolderPosition.y + targetYOffset, originalToolHolderPosition.z), t);
+        // toolHolder.localPosition = Vector3.Lerp(originalToolHolderPosition, new Vector3(originalToolHolderPosition.x, originalToolHolderPosition.y + targetYOffset, originalToolHolderPosition.z), t);
         model.localPosition = Vector3.Lerp(originalModelPosition, new Vector3(originalModelPosition.x, originalModelPosition.y + targetYOffset, originalModelPosition.z), t);
     }
 

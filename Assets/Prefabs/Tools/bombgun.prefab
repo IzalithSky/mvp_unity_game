@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6810150581989678284}
   - component: {fileID: 5694734176836382189}
   - component: {fileID: 2183419925735142307}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1911051683394447754}
   - component: {fileID: 4702627504778822838}
   - component: {fileID: 8952417320136423722}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3669200934430006099}
   - component: {fileID: 3389016430431554465}
   - component: {fileID: 4009940562527330262}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5455370826462973950}
   - component: {fileID: 753556795154919464}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: bombgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6630506062696389014}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 6800781079743901813}
   - component: {fileID: 3223688347972452332}
   - component: {fileID: 2887591882626990699}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

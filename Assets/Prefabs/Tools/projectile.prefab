@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8760286434069314943}
   - component: {fileID: 1178287605930515641}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 8221210005243139819}
   - component: {fileID: 8507298886905743430}
   - component: {fileID: 6204000575765814593}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1327119620471240321}
   - component: {fileID: 4122390688533107531}
   - component: {fileID: 2506621652770747002}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
