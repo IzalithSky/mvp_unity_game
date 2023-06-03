@@ -17,6 +17,7 @@ public class MovementController : MonoBehaviour {
     public Transform cameraHolder;
     public Transform toolHolder;
     public Transform model;
+    public float maxStepHeight = 0.3f;
 
 
     Rigidbody rb;
@@ -50,7 +51,6 @@ public class MovementController : MonoBehaviour {
         targetYOffset = 0f;
 
         originalCameraHolderPosition = cameraHolder.localPosition;
-        originalToolHolderPosition = toolHolder.localPosition;
         originalModelPosition = model.localPosition;
 
         il = GetComponent<InputListener>();
@@ -115,6 +115,24 @@ public class MovementController : MonoBehaviour {
             if (moveDir != Vector3.zero && rb.velocity.magnitude < maxspd) 
             {
                 rb.drag = defaultDrag;
+
+                RaycastHit hit;
+                if (Physics.SphereCast(
+                    rb.position - new Vector3(0f, (cc.height / 2f) - cc.radius, 0f), 
+                    cc.radius, moveDir, 
+                    out hit, 
+                    moveDir.magnitude * Time.deltaTime, 
+                    ~0, 
+                    QueryTriggerInteraction.Ignore))
+                {
+                    // If the hit point is lower than the max step height, move the character upwards.
+                    if (hit.point.y - rb.position.y <= maxStepHeight) 
+                    {
+                        // rb.position = new Vector3(rb.position.x, hit.point.y, rb.position.z);
+                        rb.AddForce(Vector3.up * mfrc, ForceMode.Force);
+                    }
+                }
+
                 rb.AddForce(moveDir, ForceMode.Force);
             }
         }
@@ -150,7 +168,6 @@ public class MovementController : MonoBehaviour {
     {
         // Interpolate positions between original and offset values.
         cameraHolder.localPosition = Vector3.Lerp(originalCameraHolderPosition, new Vector3(originalCameraHolderPosition.x, originalCameraHolderPosition.y + targetYOffset, originalCameraHolderPosition.z), t);
-        // toolHolder.localPosition = Vector3.Lerp(originalToolHolderPosition, new Vector3(originalToolHolderPosition.x, originalToolHolderPosition.y + targetYOffset, originalToolHolderPosition.z), t);
         model.localPosition = Vector3.Lerp(originalModelPosition, new Vector3(originalModelPosition.x, originalModelPosition.y + targetYOffset, originalModelPosition.z), t);
     }
 
