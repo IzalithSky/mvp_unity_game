@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour {
     public Transform toolHolder;
     public Transform model;
     public float maxStepHeight = 0.3f;
+    public float airsteerSpeed = 5f;
 
 
     Rigidbody rb;
@@ -110,46 +111,54 @@ public class MovementController : MonoBehaviour {
 
     void ApplyHorizontalMovement(Vector3 moveDir) 
     {
-        // Vector3 force = Vector3.zero;
-        
         bool hasAirCountrol = (Time.time - totime) <= aircdelay;
         if (grounded || hasAirCountrol) 
         {
             if (moveDir != Vector3.zero && rb.velocity.magnitude < maxspd) 
             {
                 rb.drag = defaultDrag;
-
-                RaycastHit hit;
-                if (Physics.SphereCast(
-                    rb.position - new Vector3(0f, (cc.height / 2f) - cc.radius, 0f), 
-                    cc.radius, 
-                    moveDir.normalized, 
-                    out hit, 
-                    moveDir.magnitude * Time.deltaTime, 
-                    ~0, 
-                    QueryTriggerInteraction.Ignore))
-                {
-                    if (hit.point.y - rb.position.y <= maxStepHeight) 
-                    {
-                        rb.AddForce(Vector3.up * slopeForce, ForceMode.Force);
-                    }
-                } else { 
-                    if (Physics.Raycast(
-                        rb.position - new Vector3(0f, (cc.height / 2f), 0f), 
-                        -moveDir.normalized, 
-                        cc.height, 
-                        ~0, 
-                        QueryTriggerInteraction.Ignore))
-                    {
-                        rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
-                    }
-                }
-
                 rb.AddForce(moveDir, ForceMode.Force);
             }
         }
 
-        // rb.AddForce(moveDir, ForceMode.Force);
+        bool applyingSlopeForce = false;
+        Vector3 feetPosition = rb.position - new Vector3(0f, (cc.height / 2f), 0f);
+        RaycastHit hit;
+        if (Physics.SphereCast(
+            feetPosition + new Vector3(0f, cc.radius, 0f), 
+            cc.radius, 
+            moveDir.normalized, 
+            out hit, 
+            moveDir.magnitude * Time.deltaTime, 
+            ~0, 
+            QueryTriggerInteraction.Ignore))
+        {
+            if (hit.point.y - feetPosition.y <= maxStepHeight )
+            {
+                rb.AddForce(Vector3.up * slopeForce, ForceMode.Force);
+                applyingSlopeForce = true;
+            }
+        } else { 
+            if (!applyingSlopeForce && 
+                Physics.Raycast(
+                feetPosition, 
+                -moveDir.normalized, 
+                cc.height, 
+                ~0, 
+                QueryTriggerInteraction.Ignore))
+            {
+                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
+                applyingSlopeForce = true;
+            }
+        }
+
+        if (!grounded && !applyingSlopeForce) {
+            Vector3 horizontalVelocity = rb.velocity;
+            horizontalVelocity.y = 0;
+
+            Vector3 newHorizontalVelocity = horizontalVelocity.magnitude * transform.forward;
+            rb.velocity = new Vector3(newHorizontalVelocity.x, rb.velocity.y, newHorizontalVelocity.z);
+        }
     }
 
     private void OnDrawGizmos() {
