@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour {
     public float bfactor = 15f;
     public float jfrc = 5f;
     public float mfrc = 50f; 
+    public float slopeForce = 20f;
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float crouchHeight = 0.9f;
@@ -109,6 +110,8 @@ public class MovementController : MonoBehaviour {
 
     void ApplyHorizontalMovement(Vector3 moveDir) 
     {
+        // Vector3 force = Vector3.zero;
+        
         bool hasAirCountrol = (Time.time - totime) <= aircdelay;
         if (grounded || hasAirCountrol) 
         {
@@ -119,22 +122,40 @@ public class MovementController : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.SphereCast(
                     rb.position - new Vector3(0f, (cc.height / 2f) - cc.radius, 0f), 
-                    cc.radius, moveDir, 
+                    cc.radius, 
+                    moveDir.normalized, 
                     out hit, 
                     moveDir.magnitude * Time.deltaTime, 
                     ~0, 
                     QueryTriggerInteraction.Ignore))
                 {
-                    // If the hit point is lower than the max step height, move the character upwards.
                     if (hit.point.y - rb.position.y <= maxStepHeight) 
                     {
-                        // rb.position = new Vector3(rb.position.x, hit.point.y, rb.position.z);
-                        rb.AddForce(Vector3.up * mfrc, ForceMode.Force);
+                        rb.AddForce(Vector3.up * slopeForce, ForceMode.Force);
+                    }
+                } else { 
+                    if (Physics.Raycast(
+                        rb.position - new Vector3(0f, (cc.height / 2f), 0f), 
+                        -moveDir.normalized, 
+                        cc.height, 
+                        ~0, 
+                        QueryTriggerInteraction.Ignore))
+                    {
+                        rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
                     }
                 }
 
                 rb.AddForce(moveDir, ForceMode.Force);
             }
+        }
+
+        // rb.AddForce(moveDir, ForceMode.Force);
+    }
+
+    private void OnDrawGizmos() {
+        if (null != rb && null != cc) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(rb.position - new Vector3(0f, (cc.height / 2f) - cc.radius, 0f), cc.radius);
         }
     }
 
