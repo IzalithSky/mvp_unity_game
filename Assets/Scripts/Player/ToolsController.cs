@@ -8,6 +8,7 @@ public class ToolsController : MonoBehaviour
     public ToolHolder toolHolder;
     public GameObject owner;
     public Transform lookPoint;
+    public Transform firePoint;
     public List<GameObject> toolExamples;
 
     void Update() {
@@ -29,6 +30,7 @@ public class ToolsController : MonoBehaviour
         Tool tool = toolObject.GetComponent<Tool>();
 
         tool.lookPoint = lookPoint;
+        tool.firePoint = firePoint;
         tool.owner = owner;
         toolHolder.currentTool = tool;
     }

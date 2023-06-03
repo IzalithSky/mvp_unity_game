@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun1 : DamageSource {
+public class Hitscan : DamageSource {
     public GameObject tracer;
     public ParticleSystem muzzleFlash;
     public GameObject impactFlash;
     public GameObject bmark;
+    public Transform tracerSource;
     public float bmarkTtl = 20f;
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
@@ -16,7 +17,7 @@ public class Gun1 : DamageSource {
 
         RaycastHit hit;
         if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit)) {
-            DrawTracer(firePoint.position, hit.point);
+            DrawTracer(tracerSource.position, hit.point);
 
             GameObject impfl = Instantiate(impactFlash, hit.point + (hit.normal * .001f), Quaternion.LookRotation(hit.normal));
             Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
@@ -27,12 +28,12 @@ public class Gun1 : DamageSource {
 
             TryHit(hit.collider.gameObject);
         } else {
-            DrawTracer(firePoint.position, lookPoint.forward * tracerDistance);
+            DrawTracer(tracerSource.position, lookPoint.forward * tracerDistance);
         }
     }
 
     void DrawTracer(Vector3 from, Vector3 to) {
-        GameObject t = Instantiate(tracer, firePoint.position, Quaternion.identity);
+        GameObject t = Instantiate(tracer, tracerSource.position, Quaternion.identity);
         t.GetComponent<LineRenderer>().SetPosition(0, from);
         t.GetComponent<LineRenderer>().SetPosition(1, to);
         Destroy(t, tracerTtl);
