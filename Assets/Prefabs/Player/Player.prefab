@@ -333,13 +333,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe016451fa02d38b8596e0201786a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxrspd: 10
+  maxrspd: 8
   maxwspd: 4
-  aircdelay: 1
-  jdelay: 0.2
-  bfactor: 15
+  aircdelay: 0.1
+  jdelay: 0.1
+  bfactor: 16
   jfrc: 5
   mfrc: 50
+  slopeForce: 20
   groundColliderMultiplier: 0.75
   groundProbeDistance: 0.05
   crouchHeight: 0.9
@@ -347,6 +348,8 @@ MonoBehaviour:
   cameraHolder: {fileID: 9091077048793198211}
   toolHolder: {fileID: 9091077047680840880}
   model: {fileID: 2817340426604334257}
+  maxStepHeight: 0.3
+  airsteerSpeed: 5
 --- !u!114 &1615095148690019602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +397,7 @@ MonoBehaviour:
   toolHolder: {fileID: 9091077047680840883}
   owner: {fileID: 9091077048443410405}
   lookPoint: {fileID: 9091077048793198211}
+  firePoint: {fileID: 0}
   toolExamples: []
 --- !u!114 &1947881702082532639
 MonoBehaviour:

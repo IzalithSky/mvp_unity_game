@@ -21,26 +21,21 @@ public class MovementController : MonoBehaviour {
     public float maxStepHeight = 0.3f;
     public float airsteerSpeed = 5f;
 
-
     Rigidbody rb;
     CapsuleCollider cc;
     InputListener il;
-
     bool grounded = false;
     bool isCrouching = false;
     float totime = 0f;
     float jtime = 0f;
-
     float defaultDrag = 0f;
     float maxspd = 0;
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
     float targetYOffset; // The target y-offset for the current state.
-
-    // Add fields to store original positions.
     Vector3 originalCameraHolderPosition;
-    Vector3 originalToolHolderPosition;
     Vector3 originalModelPosition;
+    bool applyingSlopeForce = false;
 
 
     void Start() {
@@ -62,8 +57,7 @@ public class MovementController : MonoBehaviour {
         transform.Rotate(Vector3.up * il.GetCameraHorizontal());
     }
 
-    void FixedUpdate() 
-    {
+    void FixedUpdate() {
         ProcessCrouching();
         Vector3 moveDir = CalculateMoveDirection();
         UpdateGroundedStatus();
@@ -72,19 +66,17 @@ public class MovementController : MonoBehaviour {
         AttemptJump();
     }
 
-    Vector3 CalculateMoveDirection() 
-    {
+    Vector3 CalculateMoveDirection() {
         Vector3 moveDir = 
             (rb.transform.right * il.GetInputHorizontal() 
             + rb.transform.forward * il.GetInputVertical())
             .normalized * mfrc;
-        maxspd = il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd; // walk/run
+        maxspd = il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd;
 
         return moveDir;
     }
 
-    void UpdateGroundedStatus() 
-    {
+    void UpdateGroundedStatus() {
         bool wasGrounded = grounded;
         float radius = cc.radius * groundColliderMultiplier;
         float distance = cc.bounds.extents.y - radius + groundProbeDistance;
@@ -97,20 +89,21 @@ public class MovementController : MonoBehaviour {
         }
     }
 
-    void ApplyDragBasedOnGroundStatus() 
-    {
-        if (grounded) 
-        {
+    void ApplyDragBasedOnGroundStatus() {
+        if (grounded) {
             rb.drag = bfactor;
-        } 
-        else 
-        {
+        } else {
             rb.drag = defaultDrag;
         }
     }
 
-    void ApplyHorizontalMovement(Vector3 moveDir) 
-    {
+    void ApplyHorizontalMovement(Vector3 moveDir) {
+        RegularMovement(moveDir);
+        SlopeMovement(moveDir);
+        AirSteering();
+    }
+
+    void RegularMovement(Vector3 moveDir) {
         bool hasAirCountrol = (Time.time - totime) <= aircdelay;
         if (grounded || hasAirCountrol) 
         {
@@ -120,8 +113,10 @@ public class MovementController : MonoBehaviour {
                 rb.AddForce(moveDir, ForceMode.Force);
             }
         }
+    }
 
-        bool applyingSlopeForce = false;
+    void SlopeMovement(Vector3 moveDir) {
+        applyingSlopeForce = false;
         Vector3 feetPosition = rb.position - new Vector3(0f, (cc.height / 2f), 0f);
         RaycastHit hit;
         if (Physics.SphereCast(
@@ -133,8 +128,7 @@ public class MovementController : MonoBehaviour {
             ~0, 
             QueryTriggerInteraction.Ignore))
         {
-            if (hit.point.y - feetPosition.y <= maxStepHeight )
-            {
+            if (hit.point.y - feetPosition.y <= maxStepHeight) {
                 rb.AddForce(Vector3.up * slopeForce, ForceMode.Force);
                 applyingSlopeForce = true;
             }
@@ -151,7 +145,9 @@ public class MovementController : MonoBehaviour {
                 applyingSlopeForce = true;
             }
         }
+    }
 
+    void AirSteering() {
         if (!grounded && !applyingSlopeForce) {
             Vector3 horizontalVelocity = rb.velocity;
             horizontalVelocity.y = 0;
@@ -161,20 +157,10 @@ public class MovementController : MonoBehaviour {
         }
     }
 
-    private void OnDrawGizmos() {
-        if (null != rb && null != cc) {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(rb.position - new Vector3(0f, (cc.height / 2f) - cc.radius, 0f), cc.radius);
-        }
-    }
-
-    void AttemptJump() 
-    {
+    void AttemptJump() {
         bool canJump = grounded && (Time.time - jtime) > jdelay;
-        if (canJump) 
-        {
-            if (il.GetIsJumping()) 
-            {
+        if (canJump) {
+            if (il.GetIsJumping()) {
                 jtime = Time.time;
                 rb.drag = defaultDrag;
                 rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
@@ -194,11 +180,16 @@ public class MovementController : MonoBehaviour {
         }
     }
 
-    void AdjustHolderPositions(float t)
-    {
-        // Interpolate positions between original and offset values.
-        cameraHolder.localPosition = Vector3.Lerp(originalCameraHolderPosition, new Vector3(originalCameraHolderPosition.x, originalCameraHolderPosition.y + targetYOffset, originalCameraHolderPosition.z), t);
-        model.localPosition = Vector3.Lerp(originalModelPosition, new Vector3(originalModelPosition.x, originalModelPosition.y + targetYOffset, originalModelPosition.z), t);
+    void AdjustHolderPositions(float t) {
+        cameraHolder.localPosition = Vector3.Lerp(
+            originalCameraHolderPosition, 
+            new Vector3(originalCameraHolderPosition.x, originalCameraHolderPosition.y + targetYOffset, originalCameraHolderPosition.z), 
+            t);
+
+        model.localPosition = Vector3.Lerp(
+            originalModelPosition, 
+            new Vector3(originalModelPosition.x, originalModelPosition.y + targetYOffset, originalModelPosition.z), 
+            t);
     }
 
     void Crouch() {
