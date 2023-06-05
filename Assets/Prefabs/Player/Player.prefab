@@ -335,12 +335,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxrspd: 8
   maxwspd: 4
-  aircdelay: 0.1
-  jdelay: 0.1
+  maxaspd: 0.1
+  jdelay: 0
   bfactor: 16
-  jfrc: 5
-  mfrc: 50
-  slopeForce: 20
+  jfrc: 4
+  mfrc: 200
+  slopeForce: 80
   groundColliderMultiplier: 0.75
   groundProbeDistance: 0.05
   crouchHeight: 0.9
@@ -349,7 +349,6 @@ MonoBehaviour:
   toolHolder: {fileID: 9091077047680840880}
   model: {fileID: 2817340426604334257}
   maxStepHeight: 0.3
-  airsteerSpeed: 5
 --- !u!114 &1615095148690019602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +380,9 @@ MonoBehaviour:
   toolNameText: {fileID: 0}
   ammoCountText: {fileID: 0}
   toolHolder: {fileID: 9091077047680840883}
+  fpsText: {fileID: 0}
+  velocityText: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &-141512062052948715
 MonoBehaviour:
   m_ObjectHideFlags: 0

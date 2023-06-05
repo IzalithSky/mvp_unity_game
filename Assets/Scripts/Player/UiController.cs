@@ -11,6 +11,16 @@ public class UiController : MonoBehaviour
     public TMP_Text toolNameText;
     public TMP_Text ammoCountText;
     public ToolHolder toolHolder;
+    
+    public TMP_Text fpsText;
+    public TMP_Text velocityText;
+    public Rigidbody rb;
+
+    
+    int frameCount = 0;
+    float dt = 0.0f;
+    float fps = 0.0f;
+    float updateRate = 4.0f;  // 4 updates per sec.
 
     void Start()
     {
@@ -18,6 +28,9 @@ public class UiController : MonoBehaviour
         
         toolNameText.text = "";
         ammoCountText.text = "";
+
+        fpsText.text = "0";
+        velocityText.text = "0";
     }
 
     void Update()
@@ -31,6 +44,21 @@ public class UiController : MonoBehaviour
             } else {
                 ammoCountText.text = "∞";
             }
+        }
+        
+        UpdateFps();
+        fpsText.text = fps.ToString("F2");
+        
+        velocityText.text = new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2");
+    }
+
+    void UpdateFps() {
+        frameCount++;
+        dt += Time.deltaTime;
+        if (dt > 1.0f / updateRate) {
+            fps = frameCount / dt;
+            frameCount = 0;
+            dt -= 1.0f / updateRate;
         }
     }
 }

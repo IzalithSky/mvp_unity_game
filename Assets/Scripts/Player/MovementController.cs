@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour {
-    public float maxrspd = 10f;
+    public float maxrspd = 8f;
     public float maxwspd = 4f;
-    public float aircdelay = 0.5f;
+    public float maxaspd = 0.1f;
     public float jdelay = 0.2f;
     public float bfactor = 15f;
     public float jfrc = 5f;
     public float mfrc = 50f; 
-    public float slopeForce = 20f;
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float crouchHeight = 0.9f;
@@ -19,23 +18,24 @@ public class MovementController : MonoBehaviour {
     public Transform toolHolder;
     public Transform model;
     public float maxStepHeight = 0.3f;
-    public float airsteerSpeed = 5f;
 
     Rigidbody rb;
     CapsuleCollider cc;
     InputListener il;
     bool grounded = false;
+    bool wasGrounded = false;
     bool isCrouching = false;
     float totime = 0f;
     float jtime = 0f;
     float defaultDrag = 0f;
-    float maxspd = 0;
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
     float targetYOffset; // The target y-offset for the current state.
     Vector3 originalCameraHolderPosition;
     Vector3 originalModelPosition;
     bool applyingSlopeForce = false;
+    float maxspd = 0f;
+    Vector3 moveDir = Vector3.zero;
 
 
     void Start() {
@@ -59,34 +59,32 @@ public class MovementController : MonoBehaviour {
 
     void FixedUpdate() {
         ProcessCrouching();
-        Vector3 moveDir = CalculateMoveDirection();
+        CalculateMoveDirectionAndMaxSpeed();
         UpdateGroundedStatus();
         ApplyDragBasedOnGroundStatus();
-        ApplyHorizontalMovement(moveDir);
+        ApplyHorizontalMovement();
         AttemptJump();
     }
 
-    Vector3 CalculateMoveDirection() {
-        Vector3 moveDir = 
+    void CalculateMoveDirectionAndMaxSpeed() {
+        moveDir = 
             (rb.transform.right * il.GetInputHorizontal() 
             + rb.transform.forward * il.GetInputVertical())
-            .normalized * mfrc;
-        maxspd = il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd;
-
-        return moveDir;
+            .normalized;
     }
 
     void UpdateGroundedStatus() {
-        bool wasGrounded = grounded;
+        wasGrounded = grounded;
         float radius = cc.radius * groundColliderMultiplier;
         float distance = cc.bounds.extents.y - radius + groundProbeDistance;
         RaycastHit hit;
         grounded = Physics.SphereCast(rb.position, radius, Vector3.down, out hit, distance);
 
-        if (!grounded && wasGrounded) 
-        {
+        if (!grounded && wasGrounded)  {
             totime = Time.time;
         }
+
+        maxspd = (grounded && wasGrounded) ? (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd) : maxaspd;
     }
 
     void ApplyDragBasedOnGroundStatus() {
@@ -97,63 +95,55 @@ public class MovementController : MonoBehaviour {
         }
     }
 
-    void ApplyHorizontalMovement(Vector3 moveDir) {
-        RegularMovement(moveDir);
-        SlopeMovement(moveDir);
-        AirSteering();
+    void ApplyHorizontalMovement() {
+        SlopeMovement();
+        RegularMovement();
     }
 
-    void RegularMovement(Vector3 moveDir) {
-        bool hasAirCountrol = (Time.time - totime) <= aircdelay;
-        if (grounded || hasAirCountrol) 
-        {
-            if (moveDir != Vector3.zero && rb.velocity.magnitude < maxspd) 
-            {
-                rb.drag = defaultDrag;
-                rb.AddForce(moveDir, ForceMode.Force);
-            }
+    void RegularMovement() {
+        Vector3 v = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        float velocityInDirection = Vector3.Dot(v, moveDir);
+        
+        float addVel = maxspd - velocityInDirection;
+        
+        if (addVel <= 0) {
+            return;
         }
+        
+        rb.AddForce(moveDir * mfrc, ForceMode.Acceleration);
     }
 
-    void SlopeMovement(Vector3 moveDir) {
+    void SlopeMovement() {
         applyingSlopeForce = false;
         Vector3 feetPosition = rb.position - new Vector3(0f, (cc.height / 2f), 0f);
         RaycastHit hit;
+        Vector3 direction = moveDir;
+        float moveDist = maxspd * Time.deltaTime;
         if (Physics.SphereCast(
             feetPosition + new Vector3(0f, cc.radius, 0f), 
             cc.radius, 
-            moveDir.normalized, 
+            direction, 
             out hit, 
-            moveDir.magnitude * Time.deltaTime, 
+            moveDist, 
             ~0, 
             QueryTriggerInteraction.Ignore))
         {
             if (hit.point.y - feetPosition.y <= maxStepHeight) {
-                rb.AddForce(Vector3.up * slopeForce, ForceMode.Force);
+                rb.AddForce(Vector3.up * Physics.gravity.magnitude * 10.1f, ForceMode.Acceleration);
                 applyingSlopeForce = true;
             }
         } else { 
             if (!applyingSlopeForce && 
                 Physics.Raycast(
                 feetPosition, 
-                -moveDir.normalized, 
-                cc.height, 
+                -direction, 
+                moveDist, 
                 ~0, 
                 QueryTriggerInteraction.Ignore))
             {
-                rb.AddForce(Vector3.down * slopeForce, ForceMode.Force);
+                rb.AddForce(Vector3.down * Physics.gravity.magnitude, ForceMode.Acceleration);
                 applyingSlopeForce = true;
             }
-        }
-    }
-
-    void AirSteering() {
-        if (!grounded && !applyingSlopeForce) {
-            Vector3 horizontalVelocity = rb.velocity;
-            horizontalVelocity.y = 0;
-
-            Vector3 newHorizontalVelocity = horizontalVelocity.magnitude * transform.forward;
-            rb.velocity = new Vector3(newHorizontalVelocity.x, rb.velocity.y, newHorizontalVelocity.z);
         }
     }
 
