@@ -7589,13 +7589,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
+      propertyPath: jfrc
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: accel
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
       propertyPath: maxaspd
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: maxrspd
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: airaccel
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}

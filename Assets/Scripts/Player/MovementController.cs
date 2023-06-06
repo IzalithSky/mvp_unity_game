@@ -9,7 +9,8 @@ public class MovementController : MonoBehaviour {
     public float jdelay = 0.2f;
     public float bfactor = 15f;
     public float jfrc = 5f;
-    public float mfrc = 50f; 
+    public float accel = 50f; 
+    public float airaccel = 5f; 
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float crouchHeight = 0.9f;
@@ -110,7 +111,7 @@ public class MovementController : MonoBehaviour {
             return;
         }
         
-        rb.AddForce(moveDir * mfrc, ForceMode.Acceleration);
+        rb.AddForce(moveDir * (grounded ? accel : airaccel), ForceMode.Acceleration);
     }
 
     void SlopeMovement() {
@@ -152,7 +153,7 @@ public class MovementController : MonoBehaviour {
         if (canJump) {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
-                rb.drag = defaultDrag;
+                // rb.drag = defaultDrag;
                 rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
             }
         }
