@@ -283,7 +283,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9091077048443410405}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c89815aaee9e12f8c9e7d1e402b2a55e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.32
@@ -300,12 +300,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &9091077048443410410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,20 +335,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxrspd: 8
   maxwspd: 4
-  maxaspd: 0.1
+  maxaspd: 2
   jdelay: 0
   bfactor: 16
   jfrc: 4
-  mfrc: 200
-  slopeForce: 80
+  accel: 400
+  airaccel: 50
   groundColliderMultiplier: 0.75
   groundProbeDistance: 0.05
-  crouchHeight: 0.9
+  crouchHeight: 0.5
   crouchSpeed: 0.1
   cameraHolder: {fileID: 9091077048793198211}
-  toolHolder: {fileID: 9091077047680840880}
-  model: {fileID: 2817340426604334257}
+  model: {fileID: 2879563884178219943}
   maxStepHeight: 0.3
+  stairsClimbingAcceleration: 50
+  grounded: 0
+  stairMoving: 0
+  accelerating: 0
 --- !u!114 &1615095148690019602
 MonoBehaviour:
   m_ObjectHideFlags: 0

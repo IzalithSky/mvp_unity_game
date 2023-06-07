@@ -9,24 +9,25 @@ public class MovementController : MonoBehaviour {
     public float jdelay = 0.2f;
     public float bfactor = 15f;
     public float jfrc = 5f;
-    public float accel = 50f; 
-    public float airaccel = 5f; 
+    public float accel = 400f; 
+    public float airaccel = 20f; 
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float crouchHeight = 0.9f;
     public float crouchSpeed = 0.1f;
     public Transform cameraHolder;
-    public Transform toolHolder;
     public Transform model;
     public float maxStepHeight = 0.3f;
+    public float stairsClimbingAcceleration = 1f;
 
     Rigidbody rb;
     CapsuleCollider cc;
     InputListener il;
-    bool grounded = false;
-    bool wasGrounded = false;
+    public bool grounded = false;
+    public bool accelerating = false;
+    public bool bumpingStep = false;
+    public bool bumpingStepBack = false;
     bool isCrouching = false;
-    float totime = 0f;
     float jtime = 0f;
     float defaultDrag = 0f;
     float defaultHeight;
@@ -34,7 +35,6 @@ public class MovementController : MonoBehaviour {
     float targetYOffset; // The target y-offset for the current state.
     Vector3 originalCameraHolderPosition;
     Vector3 originalModelPosition;
-    bool applyingSlopeForce = false;
     float maxspd = 0f;
     Vector3 moveDir = Vector3.zero;
 
@@ -62,107 +62,14 @@ public class MovementController : MonoBehaviour {
         ProcessCrouching();
         CalculateMoveDirectionAndMaxSpeed();
         UpdateGroundedStatus();
-        ApplyDragBasedOnGroundStatus();
-        ApplyHorizontalMovement();
-        AttemptJump();
-    }
-
-    void CalculateMoveDirectionAndMaxSpeed() {
-        moveDir = 
-            (rb.transform.right * il.GetInputHorizontal() 
-            + rb.transform.forward * il.GetInputVertical())
-            .normalized;
-    }
-
-    void UpdateGroundedStatus() {
-        wasGrounded = grounded;
-        float radius = cc.radius * groundColliderMultiplier;
-        float distance = cc.bounds.extents.y - radius + groundProbeDistance;
-        RaycastHit hit;
-        grounded = Physics.SphereCast(rb.position, radius, Vector3.down, out hit, distance);
-
-        if (!grounded && wasGrounded)  {
-            totime = Time.time;
-        }
-
-        maxspd = (grounded && wasGrounded) ? (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd) : maxaspd;
-    }
-
-    void ApplyDragBasedOnGroundStatus() {
-        if (grounded) {
-            rb.drag = bfactor;
-        } else {
-            rb.drag = defaultDrag;
-        }
-    }
-
-    void ApplyHorizontalMovement() {
-        SlopeMovement();
+        StairMovement();
         RegularMovement();
-    }
-
-    void RegularMovement() {
-        Vector3 v = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        float velocityInDirection = Vector3.Dot(v, moveDir);
-        
-        float addVel = maxspd - velocityInDirection;
-        
-        if (addVel <= 0) {
-            return;
-        }
-        
-        rb.AddForce(moveDir * (grounded ? accel : airaccel), ForceMode.Acceleration);
-    }
-
-    void SlopeMovement() {
-        applyingSlopeForce = false;
-        Vector3 feetPosition = rb.position - new Vector3(0f, (cc.height / 2f), 0f);
-        RaycastHit hit;
-        Vector3 direction = moveDir;
-        float moveDist = maxspd * Time.deltaTime;
-        if (Physics.SphereCast(
-            feetPosition + new Vector3(0f, cc.radius, 0f), 
-            cc.radius, 
-            direction, 
-            out hit, 
-            moveDist, 
-            ~0, 
-            QueryTriggerInteraction.Ignore))
-        {
-            if (hit.point.y - feetPosition.y <= maxStepHeight) {
-                rb.AddForce(Vector3.up * Physics.gravity.magnitude * 10.1f, ForceMode.Acceleration);
-                applyingSlopeForce = true;
-            }
-        } else { 
-            if (!applyingSlopeForce && 
-                Physics.Raycast(
-                feetPosition, 
-                -direction, 
-                moveDist, 
-                ~0, 
-                QueryTriggerInteraction.Ignore))
-            {
-                rb.AddForce(Vector3.down * Physics.gravity.magnitude, ForceMode.Acceleration);
-                applyingSlopeForce = true;
-            }
-        }
-    }
-
-    void AttemptJump() {
-        bool canJump = grounded && (Time.time - jtime) > jdelay;
-        if (canJump) {
-            if (il.GetIsJumping()) {
-                jtime = Time.time;
-                // rb.drag = defaultDrag;
-                rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
-            }
-        }
+        AttemptJump();
     }
 
     void ProcessCrouching() {
         cc.height = Mathf.Lerp(cc.height, targetHeight, crouchSpeed);
         AdjustHolderPositions(Mathf.Clamp01(Mathf.Abs((cc.height - defaultHeight) / (crouchHeight - defaultHeight))));
-
 
         if (il.GetIsCrouching()) {
             Crouch();
@@ -197,6 +104,85 @@ public class MovementController : MonoBehaviour {
                 targetHeight = defaultHeight;
                 targetYOffset = 0f;
                 isCrouching = false;
+            }
+        }
+    }
+
+    void CalculateMoveDirectionAndMaxSpeed() {
+        moveDir = 
+            (rb.transform.right * il.GetInputHorizontal() 
+            + rb.transform.forward * il.GetInputVertical())
+            .normalized;
+    }
+
+    void UpdateGroundedStatus() {
+        RaycastHit hit;
+        grounded = Physics.SphereCast(
+            transform.position, 
+            groundColliderMultiplier * cc.radius, 
+            Vector3.down, 
+            out hit, 
+            cc.bounds.extents.y + groundProbeDistance);
+
+        if (grounded) {
+            rb.drag = bfactor;
+        } else {
+            rb.drag = defaultDrag;
+        }
+
+        maxspd = grounded ? (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd) : maxaspd;
+    }
+
+    void StairMovement() {
+        Vector3 stairProbeOrigin = new Vector3(
+            transform.position.x, 
+            transform.position.y - cc.bounds.extents.y + cc.radius, 
+            transform.position.z);
+        float probeLen = (maxrspd * Time.fixedDeltaTime) + cc.radius;
+        RaycastHit hit;
+
+        bumpingStep = Physics.SphereCast(
+            stairProbeOrigin, 
+            groundColliderMultiplier * cc.radius, 
+            moveDir, 
+            out hit, 
+            probeLen);
+
+        if (bumpingStep) {
+            if (grounded) {
+                rb.AddForce(Vector3.up * stairsClimbingAcceleration, ForceMode.Acceleration);
+            }
+        } else {
+            bumpingStepBack = Physics.SphereCast(
+                stairProbeOrigin, 
+                groundColliderMultiplier * cc.radius, 
+                -moveDir, 
+                out hit, 
+                probeLen);
+
+            if (bumpingStepBack) {
+                rb.AddForce(Vector3.down * stairsClimbingAcceleration, ForceMode.Acceleration);
+            }
+        }
+    }
+
+    void RegularMovement() {
+        Vector3 v = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        float velocityInDirection = Vector3.Dot(v, moveDir);
+        
+        accelerating = Vector3.zero != moveDir && velocityInDirection < maxspd;
+        if (accelerating) {
+            rb.AddForce(moveDir * (grounded ? accel : airaccel), ForceMode.Acceleration);
+        }
+    }
+
+    void AttemptJump() {
+        bool canJump = grounded && (Time.time - jtime) > jdelay;
+        if (canJump) {
+            if (il.GetIsJumping()) {
+                jtime = Time.time;
+                // rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+                rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
             }
         }
     }
