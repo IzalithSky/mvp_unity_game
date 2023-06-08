@@ -7299,7 +7299,7 @@ PrefabInstance:
     - target: {fileID: -141512062052948715, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: toolExamples.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -141512062052948715, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
@@ -7318,6 +7318,12 @@ PrefabInstance:
       propertyPath: toolExamples.Array.data[2]
       value: 
       objectReference: {fileID: 4318038646063292183, guid: d0d29772e25fd9659b8169da0829d249,
+        type: 3}
+    - target: {fileID: -141512062052948715, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: toolExamples.Array.data[3]
+      value: 
+      objectReference: {fileID: 5455370826462973949, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
     - target: {fileID: 1615095148690019602, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
@@ -7447,7 +7453,7 @@ PrefabInstance:
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: jfrc
-      value: 16
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}

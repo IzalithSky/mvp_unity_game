@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4122390688533107531}
   - component: {fileID: 2506621652770747002}
   m_Layer: 3
-  m_Name: projectile
+  m_Name: bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

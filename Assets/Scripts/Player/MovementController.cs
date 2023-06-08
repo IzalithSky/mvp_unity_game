@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour {
     public float maxStepHeight = 0.3f;
     public float stairsClimbingAcceleration = 1f;
     public bool crouchSlidesEnabled = false;
+    public float crouchJumpMult = 0.7f;
 
     Rigidbody rb;
     CapsuleCollider cc;
@@ -200,7 +201,7 @@ public class MovementController : MonoBehaviour {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-                rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
+                rb.AddForce(rb.transform.up * jfrc * (isCrouching && crouchSlidesEnabled ? crouchJumpMult : 1f), ForceMode.Impulse);
             }
         }
     }

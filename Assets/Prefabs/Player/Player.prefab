@@ -351,6 +351,7 @@ MonoBehaviour:
   maxStepHeight: 0.3
   stairsClimbingAcceleration: 50
   crouchSlidesEnabled: 1
+  crouchJumpMult: 0.7
   grounded: 0
   accelerating: 0
   bumpingStep: 0
