@@ -336,6 +336,7 @@ MonoBehaviour:
   maxrspd: 8
   maxwspd: 4
   maxaspd: 2
+  maxcspd: 4
   jdelay: 0
   bfactor: 16
   jfrc: 4
@@ -349,9 +350,12 @@ MonoBehaviour:
   model: {fileID: 2879563884178219943}
   maxStepHeight: 0.3
   stairsClimbingAcceleration: 50
+  crouchSlidesEnabled: 1
   grounded: 0
-  stairMoving: 0
   accelerating: 0
+  bumpingStep: 0
+  bumpingStepBack: 0
+  isClimbing: 0
 --- !u!114 &1615095148690019602
 MonoBehaviour:
   m_ObjectHideFlags: 0

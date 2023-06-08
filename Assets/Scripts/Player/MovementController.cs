@@ -5,7 +5,8 @@ using UnityEngine;
 public class MovementController : MonoBehaviour {
     public float maxrspd = 8f;
     public float maxwspd = 4f;
-    public float maxaspd = 0.1f;
+    public float maxaspd = 1f;
+    public float maxcspd = 4f;
     public float jdelay = 0.2f;
     public float bfactor = 15f;
     public float jfrc = 5f;
@@ -19,6 +20,7 @@ public class MovementController : MonoBehaviour {
     public Transform model;
     public float maxStepHeight = 0.3f;
     public float stairsClimbingAcceleration = 1f;
+    public bool crouchSlidesEnabled = false;
 
     Rigidbody rb;
     CapsuleCollider cc;
@@ -27,6 +29,7 @@ public class MovementController : MonoBehaviour {
     public bool accelerating = false;
     public bool bumpingStep = false;
     public bool bumpingStepBack = false;
+    public bool isClimbing = false;
     bool isCrouching = false;
     float jtime = 0f;
     float defaultDrag = 0f;
@@ -125,12 +128,24 @@ public class MovementController : MonoBehaviour {
             cc.bounds.extents.y + groundProbeDistance);
 
         if (grounded) {
-            rb.drag = bfactor;
+            if (crouchSlidesEnabled) {
+                rb.drag = isCrouching ? defaultDrag : bfactor;
+            } else {
+                rb.drag = bfactor;
+            }
         } else {
             rb.drag = defaultDrag;
         }
 
         maxspd = grounded ? (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd) : maxaspd;
+
+        if (isClimbing) {
+            rb.useGravity = false;
+            grounded = false;
+            return;
+        } else {
+            rb.useGravity = true;
+        }
     }
 
     void StairMovement() {
@@ -147,10 +162,13 @@ public class MovementController : MonoBehaviour {
             moveDir, 
             out hit, 
             probeLen);
+        float vv = rb.velocity.y;
 
         if (bumpingStep) {
-            if (grounded) {
-                rb.AddForce(Vector3.up * stairsClimbingAcceleration, ForceMode.Acceleration);
+            if (grounded || isClimbing) {
+                if (vv < maxcspd) {
+                    rb.AddForce(Vector3.up * stairsClimbingAcceleration, ForceMode.Acceleration);
+                }
             }
         } else {
             bumpingStepBack = Physics.SphereCast(
@@ -181,9 +199,21 @@ public class MovementController : MonoBehaviour {
         if (canJump) {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
-                // rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Ladder")) {
+            isClimbing = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Ladder")) {
+            isClimbing = false;
         }
     }
 }
