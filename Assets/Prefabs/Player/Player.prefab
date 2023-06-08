@@ -336,10 +336,10 @@ MonoBehaviour:
   maxrspd: 8
   maxwspd: 4
   maxaspd: 2
-  maxcspd: 4
+  maxcspd: 2
   jdelay: 0
-  bfactor: 16
-  jfrc: 4
+  bfactor: 20
+  jfrc: 12
   accel: 400
   airaccel: 50
   groundColliderMultiplier: 0.75
