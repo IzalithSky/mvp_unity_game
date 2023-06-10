@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType {
+    Blunt,
+    Piercing,
+    Explosive,
+    Fire
+}
+
 public class DamageSource : Tool {
     public int damage = 40;
     public int multiplier = 1;
@@ -18,11 +25,11 @@ public class DamageSource : Tool {
     public void SetMultiplier(int multiplier) {
         this.multiplier = multiplier;
     }
-}
 
-public enum DamageType {
-    Blunt,
-    Piercing,
-    Explosive,
-    Fire
+    protected virtual void TryHit(GameObject go) {
+        Damageable d = go.GetComponent<Damageable>();
+        if (d != null) {
+            d.Hit(damage);
+        }
+    }
 }

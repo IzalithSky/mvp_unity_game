@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProjectileExplosive : Projectile {
     public GameObject explosion;
 
-    private new void OnCollisionEnter(Collision c) { //use 'new' keyword to override base method completely
+    private void OnCollisionEnter(Collision c) {
         GameObject impfl = Instantiate(impactFlash, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
         Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
         

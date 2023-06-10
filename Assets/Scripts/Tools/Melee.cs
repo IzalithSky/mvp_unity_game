@@ -26,12 +26,4 @@ public class Melee : DamageSource {
             TryHit(hit.collider.gameObject);
         }   
     }
-
-    void TryHit(GameObject go) {
-        Damageable d = go.GetComponent<Damageable>();
-
-        if (d != null) {
-            d.Hit(DealDamage());
-        }
-    }
 }

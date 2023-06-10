@@ -38,12 +38,4 @@ public class Hitscan : DamageSource {
         t.GetComponent<LineRenderer>().SetPosition(1, to);
         Destroy(t, tracerTtl);
     }
-
-    void TryHit(GameObject go) {
-        Damageable d = go.GetComponent<Damageable>();
-
-        if (d != null) {
-            d.Hit(damageType, DealDamage());
-        }
-    }
 }

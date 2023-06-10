@@ -150,6 +150,6 @@ public class MobAi : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(nm.destination, 1f);
+        Gizmos.DrawWireSphere(nm.destination, 0.1f);
     }
 }
