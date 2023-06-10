@@ -265,6 +265,7 @@ MonoBehaviour:
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 1058457433421647451, guid: 1468b356b17669b409972fbd7b5dd193, type: 3}
+  tracerSource: {fileID: 3260385710911653097}
   bmarkTtl: 20
   tracerDistance: 100
   tracerTtl: 0.05

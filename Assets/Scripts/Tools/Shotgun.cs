@@ -8,6 +8,7 @@ public class Shotgun : DamageSource
     public ParticleSystem muzzleFlash;
     public GameObject impactFlash;
     public GameObject bmark;
+    public Transform tracerSource;
     public float bmarkTtl = 20f;
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
@@ -25,7 +26,7 @@ public class Shotgun : DamageSource
 
             if (Physics.Raycast(lookPoint.position, spreadDirection, out hit))
             {
-                DrawTracer(firePoint.position, hit.point);
+                DrawTracer(tracerSource.position, hit.point);
 
                 GameObject impfl = Instantiate(impactFlash, hit.point + (hit.normal * .001f), Quaternion.LookRotation(hit.normal));
                 Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
@@ -39,7 +40,7 @@ public class Shotgun : DamageSource
             else
             {
                 Vector3 tracerEnd = firePoint.position + spreadDirection * tracerDistance;
-                DrawTracer(firePoint.position, tracerEnd);
+                DrawTracer(tracerSource.position, tracerEnd);
             }
         }
     }
@@ -52,7 +53,7 @@ public class Shotgun : DamageSource
 
     void DrawTracer(Vector3 from, Vector3 to)
     {
-        GameObject t = Instantiate(tracer, firePoint.position, Quaternion.identity);
+        GameObject t = Instantiate(tracer, tracerSource.position, Quaternion.identity);
         t.GetComponent<LineRenderer>().SetPosition(0, from);
         t.GetComponent<LineRenderer>().SetPosition(1, to);
         Destroy(t, tracerTtl);
