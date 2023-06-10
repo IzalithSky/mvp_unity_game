@@ -303,6 +303,7 @@ MonoBehaviour:
   usesAmmo: 1
   damage: 80
   multiplier: 1
+  headMultiplier: 1
   damageType: 2
   projectilePrefab: {fileID: 8373390393789196344, guid: a64c005acf411c27bb9957af3e35ae9b,
     type: 3}

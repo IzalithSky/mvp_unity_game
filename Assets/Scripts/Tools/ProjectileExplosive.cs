@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileExplosive : Projectile {
     public GameObject explosion;
@@ -18,8 +19,17 @@ public class ProjectileExplosive : Projectile {
         Destroy(e1, 1f);
 
         Collider[] colliders = Physics.OverlapSphere(c.contacts[0].point, splashRadius);
+        
+        HashSet<Damageable> uniqueDamageables = new HashSet<Damageable>();
         foreach (Collider hit in colliders) {
-            TryHit(hit.gameObject);
+            Damageable d = hit.GetComponentInParent<Damageable>();
+            if (d != null && !uniqueDamageables.Contains(d)) {
+                uniqueDamageables.Add(d);
+            }
+        }
+
+        foreach (Damageable d in uniqueDamageables) {
+            TryHit(d.gameObject);
         }
 
         Destroy(gameObject);

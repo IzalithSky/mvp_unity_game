@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour {
     }
 
     protected virtual void TryHit(GameObject go) {
-        Damageable d = go.GetComponent<Damageable>();
+        Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
             d.Hit(damage);
         }

@@ -378,15 +378,11 @@ MonoBehaviour:
   timeoutSec: 4
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
-  explosion: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
-    type: 3}
-  lt: {fileID: 8507298886905743430}
   bmark: {fileID: 8373390393789196344, guid: 7e7445d4e4e5b6d8daff0432221f46d9, type: 3}
   bmarkTtl: 20
-  bmarkLimit: 4
   damage: 60
   launcher: {fileID: 0}
-  splashRadius: 5
+  splashRadius: 0
   tickRate: 2
   damagePerTick: 1
   dotDuration: 8

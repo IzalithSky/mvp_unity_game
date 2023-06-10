@@ -12,6 +12,7 @@ public enum DamageType {
 public class DamageSource : Tool {
     public int damage = 40;
     public int multiplier = 1;
+    public int headMultiplier = 1;
     public DamageType damageType = DamageType.Blunt;
 
     public int DealDamage() {
@@ -27,9 +28,13 @@ public class DamageSource : Tool {
     }
 
     protected virtual void TryHit(GameObject go) {
-        Damageable d = go.GetComponent<Damageable>();
+        Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
-            d.Hit(damage);
+            if (go.CompareTag("Head")) {
+                d.Hit(DealDamage() * headMultiplier);
+            } else {
+                d.Hit(DealDamage());
+            }
         }
     }
 }

@@ -301,8 +301,9 @@ MonoBehaviour:
   toolName: Bombgun
   ammoCount: 10
   usesAmmo: 1
-  damage: 80
+  damage: 90
   multiplier: 1
+  headMultiplier: 1
   damageType: 1
   projectilePrefab: {fileID: 8373390393789196344, guid: a9296de14203a2d7993072131143180d,
     type: 3}

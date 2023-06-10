@@ -304,6 +304,7 @@ MonoBehaviour:
   usesAmmo: 1
   damage: 55
   multiplier: 1
+  headMultiplier: 4
   damageType: 1
   tracer: {fileID: 2696618800695045305, guid: 8c8cdc1b7a01b67a0b8a87d3d9a53ba5, type: 3}
   muzzleFlash: {fileID: 8023714112317165203}

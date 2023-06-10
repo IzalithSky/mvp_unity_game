@@ -7,9 +7,9 @@ public class ProjectileDot : Projectile {
     
     protected override void TryHit(GameObject go) {
         base.TryHit(go);
-        Damageable d = go.GetComponent<Damageable>();
+        Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
-            StatusController sc = go.GetComponent<StatusController>();
+            StatusController sc = go.GetComponentInParent<StatusController>();
             if (sc != null) {
                 StatusDot dot = go.AddComponent<StatusDot>();
                 dot.duration = dotDuration;

@@ -55,6 +55,7 @@ MonoBehaviour:
   usesAmmo: 0
   damage: 60
   multiplier: 1
+  headMultiplier: 2
   damageType: 1
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
