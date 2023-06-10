@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1741134671565539032}
   - component: {fileID: 1741134671565539033}
   - component: {fileID: 1598142722248078066}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741134671843520015}
   - component: {fileID: 5495925924238438316}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 7396837667174784832}
   - component: {fileID: 3817484323963826055}
   - component: {fileID: 4867641912299673014}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 2663966151139337883}
   - component: {fileID: 5971640924520002079}
   - component: {fileID: 5068011415777816616}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

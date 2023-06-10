@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5266291238601740680}
   - component: {fileID: -8196945934864589121}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3260385710911653097}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: muzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,10 +697,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5767510632448937950, guid: 896b53f659a357f9c89e5b2d9d75bacb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6032995144665166442, guid: 896b53f659a357f9c89e5b2d9d75bacb,
         type: 3}
       propertyPath: m_Name
       value: MuzzleFlare
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032995144665166442, guid: 896b53f659a357f9c89e5b2d9d75bacb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 896b53f659a357f9c89e5b2d9d75bacb, type: 3}
