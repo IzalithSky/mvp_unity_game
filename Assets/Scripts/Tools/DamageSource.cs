@@ -31,9 +31,9 @@ public class DamageSource : Tool {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
             if (go.CompareTag("Head")) {
-                d.Hit(DealDamage() * headMultiplier);
+                d.Hit(damageType, DealDamage() * headMultiplier);
             } else {
-                d.Hit(DealDamage());
+                d.Hit(damageType, DealDamage());
             }
         }
     }

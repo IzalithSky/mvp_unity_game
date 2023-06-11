@@ -24,6 +24,7 @@ public class ProjectileShotgun : DamageSource
             GameObject proj = Instantiate(projectilePrefab, spawnPosition, (null != lookPoint) ? lookPoint.rotation : firePoint.rotation);
             proj.GetComponent<Projectile>().launcher = owner;
             proj.GetComponent<Projectile>().damage = DealDamage();
+            proj.GetComponent<Projectile>().damageType = damageType;
             proj.GetComponent<Rigidbody>().AddForce(spreadDirection * fireForce, ForceMode.Impulse);
         }
     }

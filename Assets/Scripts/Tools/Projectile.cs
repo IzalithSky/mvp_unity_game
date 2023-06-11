@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour {
     public GameObject bmark;
     public float bmarkTtl = 20f;
     public int damage = 60;
+    public DamageType damageType = DamageType.Blunt;
     public GameObject launcher;
     public float splashRadius = 5f;
 
@@ -39,7 +40,7 @@ public class Projectile : MonoBehaviour {
     protected virtual void TryHit(GameObject go) {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
-            d.Hit(damage);
+            d.Hit(damageType, damage);
         }
     }
 
