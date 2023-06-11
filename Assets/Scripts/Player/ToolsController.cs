@@ -6,7 +6,7 @@ public class ToolsController : MonoBehaviour
 {
     public InputListener inputListener;
     public ToolHolder toolHolder;
-    public GameObject owner;
+    public Collider owner;
     public Transform lookPoint;
     public Transform firePoint;
     public List<GameObject> toolExamples;

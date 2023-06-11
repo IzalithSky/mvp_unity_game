@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputListener: {fileID: 9091077048443410410}
   toolHolder: {fileID: 9091077047680840883}
-  owner: {fileID: 9091077048443410405}
+  owner: {fileID: 9091077048443410407}
   lookPoint: {fileID: 9091077048793198211}
   firePoint: {fileID: 0}
   toolExamples: []

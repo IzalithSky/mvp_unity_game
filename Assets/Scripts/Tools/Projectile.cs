@@ -30,8 +30,7 @@ public class Projectile : DamageSource {
         int projLayer = LayerMask.NameToLayer("Projectiles");
         Physics.IgnoreLayerCollision(projLayer, projLayer);
         
-        Debug.Log("ignoring " + owner.ToString() + " -> " + owner.GetComponentInChildren<Collider>().ToString());
-        Physics.IgnoreCollision(GetComponent<Collider>(), owner.GetComponentInChildren<Collider>());
+        Physics.IgnoreCollision(GetComponent<Collider>(), owner);
         
         Destroy(gameObject, timeoutSec);
     }

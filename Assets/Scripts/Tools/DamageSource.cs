@@ -13,7 +13,7 @@ public class DamageSource : MonoBehaviour {
     public int damage = 40;
     public int multiplier = 1;
     public int headMultiplier = 1;
-    public GameObject owner;
+    public Collider owner;
     public DamageType damageType = DamageType.Blunt;
     public float damageDropoffStart = 10f;
     public float damageDropoffEnd = 20f;
