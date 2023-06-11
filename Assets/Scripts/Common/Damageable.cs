@@ -32,6 +32,7 @@ public class Damageable : MonoBehaviour {
 
         if (damage > 0) {
             hp -= damage;
+            Debug.Log(damage);
         }
         if (!IsAlive()) {
             Die();

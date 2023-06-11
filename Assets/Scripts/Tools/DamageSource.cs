@@ -14,9 +14,15 @@ public class DamageSource : Tool {
     public int multiplier = 1;
     public int headMultiplier = 1;
     public DamageType damageType = DamageType.Blunt;
+    public float damageDropoffStart = 10f;
+    public float damageDropoffEnd = 20f;
 
     public int DealDamage() {
         return damage * multiplier;
+    }
+
+    public int DealDamage(float distanceFactor) {
+        return Mathf.Max(0, (int)(damage * multiplier * distanceFactor));
     }
 
     public int GetMultiplier() {
@@ -30,10 +36,22 @@ public class DamageSource : Tool {
     protected virtual void TryHit(GameObject go) {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
+            // Calculate the distance to the Damageable
+            float distance = Vector3.Distance(transform.position, d.transform.position);
+            
+            // Calculate the distanceFactor based on the dropoff start and end
+            float distanceFactor = 1f;
+            if (distance > damageDropoffStart) {
+                distanceFactor = Mathf.Clamp01(1 - ((distance - damageDropoffStart) / (damageDropoffEnd - damageDropoffStart)));
+            }
+
+            // Calculate the damage to deal
+            int damageToDeal = DealDamage(distanceFactor);
+
             if (go.CompareTag("Head")) {
-                d.Hit(damageType, DealDamage() * headMultiplier);
+                d.Hit(damageType, damageToDeal * headMultiplier);
             } else {
-                d.Hit(damageType, DealDamage());
+                d.Hit(damageType, damageToDeal);
             }
         }
     }
