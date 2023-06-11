@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : DamageSource {
     public float timeoutSec = 4;
     public GameObject impactFlash;
     public GameObject bmark;
     public float bmarkTtl = 20f;
-    public int damage = 60;
-    public DamageType damageType = DamageType.Blunt;
     public GameObject launcher;
     public float splashRadius = 5f;
 
@@ -35,13 +33,6 @@ public class Projectile : MonoBehaviour {
             Physics.IgnoreCollision(GetComponent<Collider>(), launcher.GetComponent<Collider>());
         }
         Destroy(gameObject, timeoutSec);
-    }
-
-    protected virtual void TryHit(GameObject go) {
-        Damageable d = go.GetComponentInParent<Damageable>();
-        if (d != null) {
-            d.Hit(damageType, damage);
-        }
     }
 
     private void OnDrawGizmosSelected() {

@@ -11,6 +11,7 @@ public class ProjectileLauncher : DamageSource {
         proj.GetComponent<Projectile>().launcher = owner;
         proj.GetComponent<Projectile>().damage = DealDamage();
         proj.GetComponent<Projectile>().damageType = damageType;
+        proj.GetComponent<Projectile>().headMultiplier = headMultiplier;
         proj.GetComponent<Rigidbody>().AddForce(((null !=  lookPoint) ? lookPoint.forward : firePoint.forward) * fireForce, ForceMode.Impulse);
     }
 }
