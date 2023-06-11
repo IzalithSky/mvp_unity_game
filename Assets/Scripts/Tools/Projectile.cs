@@ -14,7 +14,6 @@ public class Projectile : DamageSource {
 
 
     void Start() {
-        Debug.Log("Projectile here");
         int projLayer = LayerMask.NameToLayer("Projectiles");
         Physics.IgnoreLayerCollision(projLayer, projLayer);
         
