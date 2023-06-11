@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5266291238601740680}
   - component: {fileID: 2098895369143666915}
+  - component: {fileID: 5814433677131648137}
   m_Layer: 6
   m_Name: pistol
   m_TagString: Untagged
@@ -298,16 +299,9 @@ MonoBehaviour:
   fireRateRps: 2
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  owner: {fileID: 0}
   toolName: Pistol
   ammoCount: 30
   usesAmmo: 1
-  damage: 55
-  multiplier: 1
-  headMultiplier: 4
-  damageType: 0
-  damageDropoffStart: 10
-  damageDropoffEnd: 20
   tracer: {fileID: 2696618800695045305, guid: 8c8cdc1b7a01b67a0b8a87d3d9a53ba5, type: 3}
   muzzleFlash: {fileID: 8023714112317165203}
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
@@ -317,6 +311,26 @@ MonoBehaviour:
   bmarkTtl: 20
   tracerDistance: 100
   tracerTtl: 0.05
+  damageSource: {fileID: 5814433677131648137}
+--- !u!114 &5814433677131648137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4318038646063292183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  multiplier: 1
+  headMultiplier: 4
+  owner: {fileID: 0}
+  damageType: 0
+  damageDropoffStart: 10
+  damageDropoffEnd: 20
 --- !u!1 &5448748941944833924
 GameObject:
   m_ObjectHideFlags: 0

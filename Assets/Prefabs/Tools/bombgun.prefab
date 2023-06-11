@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5455370826462973950}
   - component: {fileID: 753556795154919464}
+  - component: {fileID: 1773164845773162154}
   m_Layer: 6
   m_Name: bombgun
   m_TagString: Untagged
@@ -297,17 +298,32 @@ MonoBehaviour:
   fireRateRps: 2
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  owner: {fileID: 0}
   toolName: Bombgun
   ammoCount: 10
   usesAmmo: 1
-  damage: 80
-  multiplier: 1
-  headMultiplier: 1
-  damageType: 2
   projectilePrefab: {fileID: 8373390393789196344, guid: a64c005acf411c27bb9957af3e35ae9b,
     type: 3}
+  damageSource: {fileID: 1773164845773162154}
   fireForce: 35
+--- !u!114 &1773164845773162154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455370826462973949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 60
+  multiplier: 1
+  headMultiplier: 1
+  owner: {fileID: 0}
+  damageType: 2
+  damageDropoffStart: 1
+  damageDropoffEnd: 8
 --- !u!1 &5745054476672874413
 GameObject:
   m_ObjectHideFlags: 0

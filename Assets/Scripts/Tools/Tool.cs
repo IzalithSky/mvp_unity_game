@@ -6,7 +6,6 @@ public class Tool : MonoBehaviour {
     public float fireRateRps = 1f;
     public Transform firePoint;
     public Transform lookPoint;
-    public GameObject owner;
     public string toolName;
     public int ammoCount = 0;
     public bool usesAmmo = false;

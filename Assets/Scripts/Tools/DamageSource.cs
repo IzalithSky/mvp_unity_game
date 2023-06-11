@@ -9,10 +9,11 @@ public enum DamageType {
     Fire
 }
 
-public class DamageSource : Tool {
+public class DamageSource : MonoBehaviour {
     public int damage = 40;
     public int multiplier = 1;
     public int headMultiplier = 1;
+    public GameObject owner;
     public DamageType damageType = DamageType.Blunt;
     public float damageDropoffStart = 10f;
     public float damageDropoffEnd = 20f;
@@ -33,7 +34,7 @@ public class DamageSource : Tool {
         this.multiplier = multiplier;
     }
 
-    protected virtual void TryHit(GameObject go) {
+    public virtual void TryHit(GameObject go) {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
             // Calculate the distance to the Damageable

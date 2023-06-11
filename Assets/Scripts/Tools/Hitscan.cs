@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hitscan : DamageSource {
+public class Hitscan : Tool {
     public GameObject tracer;
     public ParticleSystem muzzleFlash;
     public GameObject impactFlash;
@@ -11,6 +11,7 @@ public class Hitscan : DamageSource {
     public float bmarkTtl = 20f;
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
+    public DamageSource damageSource;
 
     protected override void FireReady() {
         muzzleFlash.Play();
@@ -26,7 +27,7 @@ public class Hitscan : DamageSource {
             bm1.transform.parent = hit.transform.gameObject.transform;
             Destroy(bm1, bmarkTtl);
 
-            TryHit(hit.collider.gameObject);
+            damageSource.TryHit(hit.collider.gameObject);
         } else {
             DrawTracer(tracerSource.position, lookPoint.forward * tracerDistance);
         }

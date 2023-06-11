@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee : DamageSource {
+public class Melee : Tool {
     public GameObject impactFlash;
     public GameObject bmark;
     public GunAnimation anim;
+    public DamageSource damageSource;
     
     public float bmarkTtl = 20f;
     public float range = 1;
@@ -23,7 +24,7 @@ public class Melee : DamageSource {
             bm1.transform.parent = hit.transform.gameObject.transform;
             Destroy(bm1, bmarkTtl);
 
-            TryHit(hit.collider.gameObject);
+            damageSource.TryHit(hit.collider.gameObject);
         }   
     }
 }

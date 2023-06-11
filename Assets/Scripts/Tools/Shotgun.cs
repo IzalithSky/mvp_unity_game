@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : DamageSource
-{
+public class Shotgun : Tool {
     public GameObject tracer;
     public ParticleSystem muzzleFlash;
     public GameObject impactFlash;
     public GameObject bmark;
     public Transform tracerSource;
+    public DamageSource damageSource;
+
     public float bmarkTtl = 20f;
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
@@ -35,7 +36,7 @@ public class Shotgun : DamageSource
                 bm1.transform.parent = hit.transform.gameObject.transform;
                 Destroy(bm1, bmarkTtl);
 
-                TryHit(hit.collider.gameObject);
+                damageSource.TryHit(hit.collider.gameObject);
             }
             else
             {

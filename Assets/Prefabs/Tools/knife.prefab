@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1741134671565539032}
   - component: {fileID: 1741134671565539033}
   - component: {fileID: 1598142722248078066}
+  - component: {fileID: 692147463041459404}
   m_Layer: 6
   m_Name: knife
   m_TagString: Untagged
@@ -49,18 +50,14 @@ MonoBehaviour:
   fireRateRps: 2
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  owner: {fileID: 0}
   toolName: Knife
   ammoCount: 0
   usesAmmo: 0
-  damage: 60
-  multiplier: 1
-  headMultiplier: 2
-  damageType: 1
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 1058457433421647451, guid: 1468b356b17669b409972fbd7b5dd193, type: 3}
   anim: {fileID: 1598142722248078066}
+  damageSource: {fileID: 692147463041459404}
   bmarkTtl: 20
   range: 2
   splash: 0.2
@@ -78,6 +75,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 5495925924238438316}
   fireAnimationName: Gun2Anim0
+--- !u!114 &692147463041459404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741134671565539047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 60
+  multiplier: 1
+  headMultiplier: 1
+  owner: {fileID: 0}
+  damageType: 1
+  damageDropoffStart: 10
+  damageDropoffEnd: 20
 --- !u!1 &1741134671843520014
 GameObject:
   m_ObjectHideFlags: 0

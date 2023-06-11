@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileShotgun : DamageSource
-{
+public class ProjectileShotgun : Tool {
     public GameObject projectilePrefab;
+    public DamageSource damageSource;
+
     public float fireForce = 20f;
 
     public int pelletCount = 8; // Number of projectiles to fire in the spread
@@ -22,9 +23,9 @@ public class ProjectileShotgun : DamageSource
             Vector3 spawnPosition = firePoint.position + randomOffset;
 
             GameObject proj = Instantiate(projectilePrefab, spawnPosition, (null != lookPoint) ? lookPoint.rotation : firePoint.rotation);
-            proj.GetComponent<Projectile>().owner = owner;
-            proj.GetComponent<Projectile>().damage = DealDamage();
-            proj.GetComponent<Projectile>().damageType = damageType;
+            proj.GetComponent<Projectile>().owner = damageSource.owner;
+            proj.GetComponent<Projectile>().damage = damageSource.DealDamage();
+            proj.GetComponent<Projectile>().damageType = damageSource.damageType;
             proj.GetComponent<Rigidbody>().AddForce(spreadDirection * fireForce, ForceMode.Impulse);
         }
     }

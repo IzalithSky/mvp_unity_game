@@ -31,7 +31,11 @@ public class ToolsController : MonoBehaviour
 
         tool.lookPoint = lookPoint;
         tool.firePoint = firePoint;
-        tool.owner = owner;
         toolHolder.currentTool = tool;
+
+        DamageSource damageSource = toolObject.GetComponent<DamageSource>();
+        if (null != damageSource) {
+            damageSource.owner = owner;
+        }
     }
 }

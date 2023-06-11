@@ -5,7 +5,7 @@ public class ProjectileDot : Projectile {
     public int damagePerTick = 1;
     public float dotDuration = 8f;
     
-    protected override void TryHit(GameObject go) {
+    public override void TryHit(GameObject go) {
         base.TryHit(go);
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
