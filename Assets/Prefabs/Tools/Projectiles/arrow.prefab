@@ -375,14 +375,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43fe0c5ad88e7c342ac0faea8dbd33f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 60
+  multiplier: 1
+  headMultiplier: 1
+  owner: {fileID: 0}
+  damageType: 0
+  damageDropoffStart: 10
+  damageDropoffEnd: 20
   timeoutSec: 4
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 8373390393789196344, guid: 7e7445d4e4e5b6d8daff0432221f46d9, type: 3}
   bmarkTtl: 20
-  damage: 60
-  launcher: {fileID: 0}
   splashRadius: 0
+  ignored1: {fileID: 0}
+  ignored2: {fileID: 0}
   tickRate: 2
   damagePerTick: 1
   dotDuration: 8

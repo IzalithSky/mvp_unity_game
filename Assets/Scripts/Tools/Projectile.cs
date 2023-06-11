@@ -9,6 +9,22 @@ public class Projectile : DamageSource {
     public float bmarkTtl = 20f;
     public float splashRadius = 5f;
 
+    public Collider ignored1;
+    public Collider ignored2;
+
+
+    void Start() {
+        Debug.Log("Projectile here");
+        int projLayer = LayerMask.NameToLayer("Projectiles");
+        Physics.IgnoreLayerCollision(projLayer, projLayer);
+        
+        Physics.IgnoreCollision(GetComponent<Collider>(), owner);
+        ignored1 = GetComponent<Collider>();
+        ignored2 = owner;
+        
+        Destroy(gameObject, timeoutSec);
+    }
+
     private void OnCollisionEnter(Collision c) {
         GameObject impfl = Instantiate(impactFlash, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
         Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
@@ -23,16 +39,6 @@ public class Projectile : DamageSource {
         TryHit(c.gameObject);
         
         Destroy(gameObject);
-    }
-
-    void Start() {
-        Debug.Log("Projectile here");
-        int projLayer = LayerMask.NameToLayer("Projectiles");
-        Physics.IgnoreLayerCollision(projLayer, projLayer);
-        
-        Physics.IgnoreCollision(GetComponent<Collider>(), owner);
-        
-        Destroy(gameObject, timeoutSec);
     }
 
     private void OnDrawGizmosSelected() {
