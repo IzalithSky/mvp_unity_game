@@ -8,7 +8,7 @@ public class ProjectileLauncher : DamageSource {
 
     protected override void FireReady() {
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, (null !=  lookPoint) ? lookPoint.rotation : firePoint.rotation);
-        proj.GetComponent<Projectile>().launcher = owner;
+        proj.GetComponent<Projectile>().owner = owner;
         proj.GetComponent<Projectile>().damage = DealDamage();
         proj.GetComponent<Projectile>().damageType = damageType;
         proj.GetComponent<Projectile>().headMultiplier = headMultiplier;

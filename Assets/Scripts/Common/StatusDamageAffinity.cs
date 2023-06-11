@@ -6,7 +6,7 @@ public class StatusDamageAffinity : Status
 {
     public Damageable damagable;
     public DamageType damageType = DamageType.Blunt;
-    public int affinity = 1;
+    public int affinity = 0;
 
     public override void Apply() {
         if (!damagable.damageAffinityMap.ContainsKey(damageType)) {

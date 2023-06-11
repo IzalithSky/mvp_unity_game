@@ -27,12 +27,17 @@ public class Damageable : MonoBehaviour {
 
     public void Hit(DamageType damageType, int damage) {
         if (damageAffinityMap.ContainsKey(damageType)) {
-            damage *= damageAffinityMap[damageType];
+            int affinity = damageAffinityMap[damageType];
+            
+            if (affinity > 0) {
+                damage *= affinity;
+            } else if (affinity < 0) {
+                damage /= Mathf.Abs(affinity);
+            }
         }
 
         if (damage > 0) {
             hp -= damage;
-            Debug.Log(damage);
         }
         if (!IsAlive()) {
             Die();

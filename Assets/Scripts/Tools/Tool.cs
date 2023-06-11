@@ -15,6 +15,7 @@ public class Tool : MonoBehaviour {
     protected float t1;
 
     void Start () {
+        Debug.Log("Tool here");
         t1 = Time.time; 
     }
 

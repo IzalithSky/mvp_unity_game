@@ -7,7 +7,6 @@ public class Projectile : DamageSource {
     public GameObject impactFlash;
     public GameObject bmark;
     public float bmarkTtl = 20f;
-    public GameObject launcher;
     public float splashRadius = 5f;
 
     private void OnCollisionEnter(Collision c) {
@@ -27,11 +26,13 @@ public class Projectile : DamageSource {
     }
 
     void Start() {
+        Debug.Log("Projectile here");
         int projLayer = LayerMask.NameToLayer("Projectiles");
         Physics.IgnoreLayerCollision(projLayer, projLayer);
-        if (null != launcher) {
-            Physics.IgnoreCollision(GetComponent<Collider>(), launcher.GetComponent<Collider>());
-        }
+        
+        Debug.Log("ignoring " + owner.ToString() + " -> " + owner.GetComponentInChildren<Collider>().ToString());
+        Physics.IgnoreCollision(GetComponent<Collider>(), owner.GetComponentInChildren<Collider>());
+        
         Destroy(gameObject, timeoutSec);
     }
 
