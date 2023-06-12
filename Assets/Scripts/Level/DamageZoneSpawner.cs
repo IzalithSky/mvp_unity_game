@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CapturePointSpawner : MonoBehaviour {
-    public GameObject zonePrefab;
+public class DamageZoneSpawner : MonoBehaviour {
+    public GameObject damageZonePrefab;
     public List<Transform> spawnPositions;
     public int zoneCount = 3;
 
@@ -10,7 +10,7 @@ public class CapturePointSpawner : MonoBehaviour {
     private int activeZoneCount = 0;
 
     private void Start() {
-        CaptureZone.OnCapture += OnZoneCaptured;
+        DamageZone.OnDespawn += OnZoneDespawned;
 
         for (int i = 0; i < zoneCount; i++) {
             SpawnZone();
@@ -18,10 +18,10 @@ public class CapturePointSpawner : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        CaptureZone.OnCapture -= OnZoneCaptured;
+        DamageZone.OnDespawn -= OnZoneDespawned;
     }
 
-    private void OnZoneCaptured() {
+    private void OnZoneDespawned() {
         activeZoneCount--;
         if (activeZoneCount < zoneCount) {
             SpawnZone();
@@ -35,7 +35,7 @@ public class CapturePointSpawner : MonoBehaviour {
         } while (index == lastSpawnIndex);
 
         Vector3 position = spawnPositions[index].position;
-        Instantiate(zonePrefab, position, Quaternion.identity);
+        Instantiate(damageZonePrefab, position, Quaternion.identity);
 
         lastSpawnIndex = index;
         activeZoneCount++;
