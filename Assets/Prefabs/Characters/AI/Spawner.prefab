@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8812628627105714305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 8812628628705532177}
   - component: {fileID: 8812628628705532178}
   - component: {fileID: 8812628628705532176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawner
-  m_TagString: Trigger
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,11 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  mobExamples:
-  - {fileID: 53250902452406902, guid: d507d00e6b56327149706cf1e6520708, type: 3}
-  - {fileID: 53250902452406902, guid: d507d00e6b56327149706cf1e6520708, type: 3}
-  - {fileID: 53250902452406902, guid: 1b7bdd2be97447689b3e4a7f363497cf, type: 3}
-  - {fileID: 53250902452406902, guid: 1b7bdd2be97447689b3e4a7f363497cf, type: 3}
+  mobExamples: []
   spawnPoint: {fileID: 8812628627105714305}
   respawnCooldown: 2
 --- !u!1 &9024463020785984942
@@ -110,7 +106,7 @@ GameObject:
   - component: {fileID: 4455039736798718810}
   - component: {fileID: 8873090374073299953}
   - component: {fileID: 6358682559747071423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

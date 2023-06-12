@@ -121,12 +121,14 @@ public class MovementController : MonoBehaviour {
 
     void UpdateGroundedStatus() {
         RaycastHit hit;
+        int layerMask = ~(1 << LayerMask.NameToLayer("Trigger"));
         grounded = Physics.SphereCast(
             transform.position, 
             groundColliderMultiplier * cc.radius, 
             Vector3.down, 
             out hit, 
-            cc.bounds.extents.y + groundProbeDistance);
+            cc.bounds.extents.y + groundProbeDistance,
+            layerMask);
 
         if (grounded) {
             if (crouchSlidesEnabled) {
