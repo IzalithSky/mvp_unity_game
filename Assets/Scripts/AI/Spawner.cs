@@ -24,7 +24,8 @@ public class Spawner : MonoBehaviour {
     void SpwanMobs() {
         foreach (GameObject ex in mobExamples) {
             GameObject mob = Instantiate(ex, spawnPoint.position, spawnPoint.rotation);
-            mob.GetComponent<MobAi>().player = player;
+            // mob.GetComponent<MobAi>().player = player;
+            mob.GetComponent<EnemyAI>().player = player.transform;
         }
     }
 }
