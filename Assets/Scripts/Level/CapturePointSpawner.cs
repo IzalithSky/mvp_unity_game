@@ -5,6 +5,7 @@ public class CapturePointSpawner : MonoBehaviour {
     public GameObject zonePrefab;
     public List<Transform> spawnPositions;
     public int zoneCount = 3;
+    public int zonesCapturedTotal = 0;
 
     private int lastSpawnIndex = -1;
     private int activeZoneCount = 0;
@@ -26,6 +27,7 @@ public class CapturePointSpawner : MonoBehaviour {
         if (activeZoneCount < zoneCount) {
             SpawnZone();
         }
+        zonesCapturedTotal++;
     }
 
     private void SpawnZone() {

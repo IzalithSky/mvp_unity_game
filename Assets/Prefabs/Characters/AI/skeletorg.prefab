@@ -89,7 +89,7 @@ MonoBehaviour:
   walkRadius: 5
   pathFndRadius: 1
   strafeDelay: 0.3
-  fireingRange: 2
+  fireingRange: 4
   preAttackDelay: 0.3
 --- !u!195 &53250902452406903
 NavMeshAgent:
@@ -468,6 +468,16 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 53250902452406902}
+    - target: {fileID: 1741134671565539033, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
+        type: 3}
+      propertyPath: range
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741134671565539033, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
+        type: 3}
+      propertyPath: splash
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1741134671565539033, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: firePoint

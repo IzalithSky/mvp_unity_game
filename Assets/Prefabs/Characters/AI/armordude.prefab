@@ -91,8 +91,8 @@ MonoBehaviour:
   walkRadius: 5
   pathFndRadius: 1
   strafeDelay: 0.3
-  fireingRange: 15
-  preAttackDelay: 0.5
+  fireingRange: 20
+  preAttackDelay: 1.5
 --- !u!195 &53250902452406903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -348,6 +348,16 @@ PrefabInstance:
       objectReference: {fileID: 53250902452406902}
     - target: {fileID: 753556795154919464, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
+      propertyPath: usesAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753556795154919464, guid: 392dc3f40c843a90888aa8dc46a71c6c,
+        type: 3}
+      propertyPath: fireForce
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 753556795154919464, guid: 392dc3f40c843a90888aa8dc46a71c6c,
+        type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5005457578388336714}
@@ -360,6 +370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753556795154919464, guid: 392dc3f40c843a90888aa8dc46a71c6c,
+        type: 3}
+      propertyPath: fireRateRps
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1068605029336365475, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
