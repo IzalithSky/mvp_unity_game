@@ -87,7 +87,9 @@ MonoBehaviour:
   player: {fileID: 0}
   toolHolder: {fileID: 53250900893143608}
   tool: {fileID: 2478540673979741019}
+  bodyCollider: {fileID: 1974909185775711980}
   walkRadius: 5
+  losSearchRadius: 5
   pathFndRadius: 1
   strafeDelay: 0.3
   fireingRange: 4
