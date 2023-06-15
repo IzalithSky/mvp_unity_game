@@ -2784,6 +2784,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1634113127}
+    - target: {fileID: 53250902452406900, guid: f033e092a6fc31dd89b49962f7c8395e,
+        type: 3}
+      propertyPath: losProbesCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 53250902452406900, guid: f033e092a6fc31dd89b49962f7c8395e,
+        type: 3}
+      propertyPath: preAttackDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 53250902452406901, guid: f033e092a6fc31dd89b49962f7c8395e,
         type: 3}
       propertyPath: m_RootOrder
@@ -2843,6 +2853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: armordude
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883397469484421798, guid: f033e092a6fc31dd89b49962f7c8395e,
+        type: 3}
+      propertyPath: damage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f033e092a6fc31dd89b49962f7c8395e, type: 3}
