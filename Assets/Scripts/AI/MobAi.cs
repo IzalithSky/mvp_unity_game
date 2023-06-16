@@ -18,6 +18,7 @@ public class MobAi : MonoBehaviour {
     public Transform toolHolder;
     public Tool tool;
     public Collider bodyCollider;
+    public Transform firePoint;
     public float walkRadius = 5.0f;
     public float losSearchRadius = 5.0f;
     public float losSearchProjectileSize = 0.5f;
@@ -27,7 +28,7 @@ public class MobAi : MonoBehaviour {
     public float fireingRange = 15.0f;
     public float preAttackDelay = 0.3f;
 
-    AiBehMode state = AiBehMode.CHASING;
+    public AiBehMode state = AiBehMode.CHASING;
     
     bool isStrafeReady = false;
     float strafeStartTime = 0.0f;
@@ -49,7 +50,6 @@ public class MobAi : MonoBehaviour {
     void FixedUpdate() { 
         DoState();
         UpdateState();
-        Debug.Log("state: " + state + " newLosPosFound: " + newLosPosFound);
     }
 
     void UpdateState() {
@@ -77,7 +77,7 @@ public class MobAi : MonoBehaviour {
                 }
                 break;
             case AiBehMode.GETTING_LOS:
-                if (nm.remainingDistance <= nm.stoppingDistance && HasLineOfSight())  {
+                if (HasLineOfSight())  {
                     state = AiBehMode.ATTACKING;
                 }
                 if (TargetOutOfRange()) {
@@ -85,7 +85,7 @@ public class MobAi : MonoBehaviour {
                 }
                 break;
             case AiBehMode.DODGING:
-                if (TargetOutOfRange() && nm.remainingDistance <= nm.stoppingDistance) {
+                if (TargetOutOfRange()) {
                     state = AiBehMode.CHASING;
                 }
                 if (tool.IsReady()) {
@@ -112,7 +112,7 @@ public class MobAi : MonoBehaviour {
             case AiBehMode.ATTACKING:
                 FaceTarget(player.transform);
                 nm.SetDestination(transform.position);
-                if (isAttackReady) {
+                if (isAttackReady && HasLineOfSight()) {
                     isAttackReady = false;
                     attackModeStartTime = Time.time;
 
@@ -147,7 +147,7 @@ public class MobAi : MonoBehaviour {
 
                 Vector3 lookPos = new Vector3(
                     hit.position.x,
-                    hit.position.y + (toolHolder.position.y - bodyCollider.bounds.min.y),
+                    hit.position.y + (firePoint.position.y - bodyCollider.bounds.min.y),
                     hit.position.z);
                 if (HasLineOfSight(lookPos, player.transform.position)) {
                     nm.SetDestination(hit.position);
@@ -197,7 +197,7 @@ public class MobAi : MonoBehaviour {
     }
 
     bool HasLineOfSight() {
-        return HasLineOfSight(toolHolder.position, player.bounds.center);
+        return HasLineOfSight(firePoint.position, player.bounds.center);
     }
 
     bool HasLineOfSight(Vector3 fromPosition, Vector3 toPosition) {
