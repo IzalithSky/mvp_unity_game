@@ -44161,17 +44161,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 4868
   m_IsSelectable: 1
-  m_SelectedFaces: 3f000000
-  m_SelectedEdges:
-  - a: 254
-    b: 255
-  - a: 255
-    b: 252
-  - a: 252
-    b: 253
-  - a: 253
-    b: 254
-  m_SelectedVertices: fe000000ff000000fc000000fd000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &6162716076050772578
 MonoBehaviour:
   m_ObjectHideFlags: 0
