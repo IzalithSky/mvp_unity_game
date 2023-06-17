@@ -8,8 +8,7 @@ public enum AiBehMode {
     ATTACKING,
     CHASING,
     FLEEING,
-    DODGING,
-    GETTING_LOS
+    DODGING
 }
 
 public class MobAi : MonoBehaviour {
@@ -17,15 +16,13 @@ public class MobAi : MonoBehaviour {
     public Collider player;
     public Transform toolHolder;
     public Tool tool;
-    public Collider bodyCollider;
     public Transform firePoint;
     public float walkRadius = 5.0f;
-    public float losSearchRadius = 5.0f;
     public float losSearchProjectileSize = 0.5f;
-    public int losProbesCount = 10;
     public float pathFndRadius = 1.0f;
     public float strafeDelay = 5.0f;
     public float fireingRange = 15.0f;
+    public float minLosSearchRange = 0f;
     public float preAttackDelay = 0.3f;
 
     public AiBehMode state = AiBehMode.CHASING;
@@ -37,8 +34,7 @@ public class MobAi : MonoBehaviour {
     float attackModeStartTime = 0.0f;
 
     LayerMask losSearchMask;
-    bool newLosPosFound = false;
-
+    
 
     void Start () {
         strafeStartTime = Time.time;
@@ -62,10 +58,6 @@ public class MobAi : MonoBehaviour {
                 }
                 break;
             case AiBehMode.ATTACKING:
-                if (!HasLineOfSight())  {
-                    newLosPosFound = false;
-                    state = AiBehMode.GETTING_LOS;
-                }
                 if (TargetOutOfRange()) {	
                     state = AiBehMode.CHASING;
                 }
@@ -74,14 +66,6 @@ public class MobAi : MonoBehaviour {
                 }
                 if (Time.time - attackModeStartTime >= preAttackDelay) {
                     isAttackReady = true;
-                }
-                break;
-            case AiBehMode.GETTING_LOS:
-                if (HasLineOfSight())  {
-                    state = AiBehMode.ATTACKING;
-                }
-                if (TargetOutOfRange()) {
-                    state = AiBehMode.CHASING;
                 }
                 break;
             case AiBehMode.DODGING:
@@ -99,7 +83,7 @@ public class MobAi : MonoBehaviour {
     }
 
     bool TargetOutOfRange() {
-        return Vector3.Distance(player.transform.position, transform.position) > fireingRange;
+        return Vector3.Distance(player.transform.position, transform.position) > (HasLineOfSight() ? fireingRange : minLosSearchRange);
     }
 
     void DoState() {      
@@ -119,42 +103,12 @@ public class MobAi : MonoBehaviour {
                     tool.Fire();
                 }
                 break;
-            case AiBehMode.GETTING_LOS:
-                if (!newLosPosFound) {
-                    DoLosSearch();
-                }
-                break;
             case AiBehMode.DODGING:
                 FaceTarget(player.transform);
                 DoStrafing();
                 break;
             default:
                 break;
-        }
-    }
-
-    void DoLosSearch() {
-        for (int i = 0; i < losProbesCount; i++) {
-            Vector3 rndPos = transform.position 
-                + Random.insideUnitSphere * losSearchRadius;
-                
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(
-                    rndPos, 
-                    out hit, 
-                    pathFndRadius, 
-                    NavMesh.AllAreas)) {
-
-                Vector3 lookPos = new Vector3(
-                    hit.position.x,
-                    hit.position.y + (firePoint.position.y - bodyCollider.bounds.min.y),
-                    hit.position.z);
-                if (HasLineOfSight(lookPos, player.transform.position)) {
-                    nm.SetDestination(hit.position);
-                    newLosPosFound = true;
-                    break;
-                }
-            }
         }
     }
 

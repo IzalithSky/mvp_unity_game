@@ -92,11 +92,12 @@ MonoBehaviour:
   firePoint: {fileID: 5005457578388336714}
   walkRadius: 5
   losSearchRadius: 50
-  losSearchProjectileSize: 0.5
+  losSearchProjectileSize: 0.003
   losProbesCount: 10
   pathFndRadius: 1
   strafeDelay: 0.3
   fireingRange: 20
+  minLosSearchRange: 0
   preAttackDelay: 1.5
   state: 2
 --- !u!195 &53250902452406903
