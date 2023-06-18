@@ -10,8 +10,12 @@ public class ToolHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inputListener.GetIsFiring() && null != currentTool) {
-            currentTool.Fire();
+        if (inputListener.GetIsWalking()) {
+            if (inputListener.GetIsFiring() && null != currentTool) {
+                currentTool.Fire();
+            }
+        } else {
+            transform.localRotation = Quaternion.Euler(-60, -45, 45);
         }
     }
 }
