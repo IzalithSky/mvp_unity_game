@@ -95,6 +95,8 @@ MonoBehaviour:
   mobExamples: []
   spawnPoint: {fileID: 8812628627105714305}
   respawnCooldown: 2
+  automaticSpawning: 0
+  respawnOnEnter: 0
 --- !u!1 &9024463020785984942
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 443870fbb3d79b933be177582f5ad297, type: 2}
+  - {fileID: 2100000, guid: 84210599cfd6f549fa29540cba24ed3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

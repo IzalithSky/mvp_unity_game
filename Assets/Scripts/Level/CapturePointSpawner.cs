@@ -6,6 +6,7 @@ public class CapturePointSpawner : MonoBehaviour {
     public List<Transform> spawnPositions;
     public int zoneCount = 3;
     public int zonesCapturedTotal = 0;
+    public int zonesCapturedMax = 10;
 
     private int lastSpawnIndex = -1;
     private int activeZoneCount = 0;

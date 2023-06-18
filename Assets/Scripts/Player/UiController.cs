@@ -16,12 +16,14 @@ public class UiController : MonoBehaviour
     public TMP_Text velocityText;
     public Rigidbody rb;
 
-    
+    public TMP_Text zoneCapturedText;
+    public CapturePointSpawner capturePointSpawner;
+
     float dt = 0.0f;
     float fps = 0.0f;
     float updateRate = 4.0f;  // 4 updates per sec.
-    int frameCount = 16;
-    Queue<float> velocities;
+    int frameCount = 0;
+
 
     void Start()
     {
@@ -33,7 +35,7 @@ public class UiController : MonoBehaviour
         fpsText.text = "0";
         velocityText.text = "0";
 
-        velocities = new Queue<float>();
+        zoneCapturedText.text = "";
     }
 
     void Update()
@@ -52,12 +54,12 @@ public class UiController : MonoBehaviour
         UpdateFps();
         fpsText.text = fps.ToString("F2");
         
+        velocityText.text = new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2");
 
-        velocities.Enqueue(new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude);
-        if (velocities.Count > frameCount) {
-            velocities.Dequeue();
-        }
-        velocityText.text = GetAverageVelocity().ToString("F2");
+        zoneCapturedText.text = 
+            capturePointSpawner.zonesCapturedTotal.ToString() + 
+            "/" + 
+            capturePointSpawner.zonesCapturedMax.ToString();
     }
 
     void UpdateFps() {
@@ -68,14 +70,5 @@ public class UiController : MonoBehaviour
             frameCount = 0;
             dt -= 1.0f / updateRate;
         }
-    }
-
-    float GetAverageVelocity() {
-        float sum = 0f;
-        foreach (float velocity in velocities) {
-            sum += velocity;
-        }
-
-        return sum / velocities.Count;
     }
 }

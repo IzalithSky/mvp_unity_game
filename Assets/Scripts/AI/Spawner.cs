@@ -7,23 +7,30 @@ public class Spawner : MonoBehaviour {
     public List<GameObject> mobExamples;
     public Transform spawnPoint;
     public float respawnCooldown = 2;
-
-    // New variable to control automatic spawning
     public bool automaticSpawning = false;
+    public bool respawnOnEnter = false;
 
     float respwanTime = 0;
 
     void Start() {
         respwanTime = Time.time;
+    }
+
+    private void Update() {
         if (automaticSpawning) {
-            StartCoroutine(SpawnMobsAutomatically());
+            if (Time.time - respwanTime >= respawnCooldown) {
+                SpwanMobs();
+                respwanTime = Time.time;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (Time.time - respwanTime >= respawnCooldown) {
-            SpwanMobs();
-            respwanTime = Time.time;
+        if (respawnOnEnter) {
+            if (Time.time - respwanTime >= respawnCooldown) {
+                SpwanMobs();
+                respwanTime = Time.time;
+            }
         }
     }
 
@@ -31,15 +38,6 @@ public class Spawner : MonoBehaviour {
         foreach (GameObject ex in mobExamples) {
             GameObject mob = Instantiate(ex, spawnPoint.position, spawnPoint.rotation);
             mob.GetComponent<MobAi>().player = player;
-            // mob.GetComponent<EnemyAI>().player = player.transform;
-        }
-    }
-
-    // New coroutine for automatic spawning
-    IEnumerator SpawnMobsAutomatically() {
-        while (true) {
-            yield return new WaitForSeconds(respawnCooldown);
-            SpwanMobs();
         }
     }
 }
