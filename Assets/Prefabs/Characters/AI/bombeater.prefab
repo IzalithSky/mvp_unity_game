@@ -28,10 +28,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5005457578388336714}
   - {fileID: 2478540673979741018}
   m_Father: {fileID: 53250902452406901}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &53250902452406902
 GameObject:
@@ -66,6 +65,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5005457578388336714}
   - {fileID: 53250900893143608}
   - {fileID: 30312102135011342}
   m_Father: {fileID: 0}
@@ -89,10 +89,10 @@ MonoBehaviour:
   tool: {fileID: 2478540673979741019}
   firePoint: {fileID: 5005457578388336714}
   walkRadius: 5
-  losSearchProjectileSize: 0.5
+  losSearchProjectileSize: 0.003
   pathFndRadius: 1
   strafeDelay: 0.3
-  fireingRange: 4
+  fireingRange: 3
   minLosSearchRange: 0
   preAttackDelay: 0.3
   state: 2
@@ -184,11 +184,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870841685311453067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0.39999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 53250900893143608}
+  m_Father: {fileID: 53250902452406901}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4450376137067097306
@@ -221,7 +221,7 @@ Transform:
   m_Children:
   - {fileID: 950145094096802656}
   m_Father: {fileID: 53250902452406901}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7882183566324021611
 GameObject:
@@ -336,7 +336,7 @@ PrefabInstance:
     - target: {fileID: 1741134671565539032, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1741134671565539032, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}

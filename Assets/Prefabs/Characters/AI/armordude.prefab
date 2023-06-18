@@ -29,9 +29,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6277614083145263159}
-  - {fileID: 5005457578388336714}
   m_Father: {fileID: 53250902452406901}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &53250902452406902
 GameObject:
@@ -67,6 +66,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5005457578388336714}
   - {fileID: 53250900893143608}
   - {fileID: 30312102135011342}
   m_Father: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   losSearchProjectileSize: 0.003
   pathFndRadius: 1
   strafeDelay: 0.3
-  fireingRange: 20
+  fireingRange: 35
   minLosSearchRange: 0
   preAttackDelay: 1.5
   state: 2
@@ -202,12 +202,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870841685311453067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.3}
+  m_LocalPosition: {x: 0, y: 1, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 53250900893143608}
-  m_RootOrder: 1
+  m_Father: {fileID: 53250902452406901}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4450376137067097306
 GameObject:
@@ -239,7 +239,7 @@ Transform:
   m_Children:
   - {fileID: 2746305026624961218}
   m_Father: {fileID: 53250902452406901}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4579706985539488714
 GameObject:
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 2746305026624961218}
   - component: {fileID: 5224922064711716526}
   - component: {fileID: 2183289911347129402}
-  - component: {fileID: 784275021857515894}
+  - component: {fileID: 7652202235027701677}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -325,7 +325,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &784275021857515894
+--- !u!65 &7652202235027701677
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,7 +469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: owner
       value: 
-      objectReference: {fileID: 784275021857515894}
+      objectReference: {fileID: 7652202235027701677}
     - target: {fileID: 6988781384122420343, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer

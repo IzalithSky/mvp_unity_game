@@ -41,6 +41,11 @@ public class MobAi : MonoBehaviour {
         
         string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger" };
         losSearchMask = ~LayerMask.GetMask(transparentLayers); 
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 0) {
+            player = players[0].GetComponentInChildren<Collider>();
+        }
     }
 
     void FixedUpdate() { 
