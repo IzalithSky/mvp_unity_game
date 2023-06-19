@@ -9840,12 +9840,12 @@ PrefabInstance:
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: maxrspd
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: maxwspd
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
