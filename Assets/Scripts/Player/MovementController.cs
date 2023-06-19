@@ -140,7 +140,9 @@ public class MovementController : MonoBehaviour {
             rb.drag = defaultDrag;
         }
 
-        maxspd = grounded ? (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : maxrspd) : maxaspd;
+        maxspd = grounded ? 
+            (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : (IsMovingForward() ? maxrspd : maxwspd)) : 
+            maxaspd;
 
         if (isClimbing) {
             rb.useGravity = false;
@@ -149,6 +151,10 @@ public class MovementController : MonoBehaviour {
         } else {
             rb.useGravity = true;
         }
+    }
+
+    bool IsMovingForward() {
+        return Vector3.Dot(rb.transform.forward, moveDir) > 0f;
     }
 
     void StairMovement() {
