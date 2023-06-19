@@ -156,7 +156,8 @@ public class MobAi : MonoBehaviour {
 								rotation, 
 								nm.angularSpeed);
 
-        toolHolder.LookAt(t);  
+        toolHolder.LookAt(t);
+        firePoint.LookAt(t);
     }
 
     bool HasLineOfSight() {

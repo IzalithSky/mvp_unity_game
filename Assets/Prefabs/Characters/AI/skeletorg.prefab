@@ -88,7 +88,7 @@ MonoBehaviour:
   tool: {fileID: 2478540673979741019}
   firePoint: {fileID: 5005457578388336714}
   walkRadius: 5
-  losSearchProjectileSize: 0.003
+  losSearchProjectileSize: 0.05
   pathFndRadius: 1
   strafeDelay: 0.3
   fireingRange: 2.5

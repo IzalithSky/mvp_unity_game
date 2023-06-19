@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53250900893143611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.8}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90,12 +90,12 @@ MonoBehaviour:
   tool: {fileID: 1648006898136143841}
   firePoint: {fileID: 5005457578388336714}
   walkRadius: 5
-  losSearchProjectileSize: 0.003
+  losSearchProjectileSize: 0.03
   pathFndRadius: 1
   strafeDelay: 0.3
   fireingRange: 35
   minLosSearchRange: 0
-  preAttackDelay: 1.5
+  preAttackDelay: 0.3
   state: 2
 --- !u!195 &53250902452406903
 NavMeshAgent:
@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870841685311453067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -423,7 +423,7 @@ PrefabInstance:
     - target: {fileID: 5455370826462973950, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.78617465
       objectReference: {fileID: 0}
     - target: {fileID: 5455370826462973950, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
