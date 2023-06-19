@@ -48,7 +48,7 @@ public class MobAi : MonoBehaviour {
         }
     }
 
-    void FixedUpdate() { 
+    void Update() { 
         DoState();
         UpdateState();
     }
