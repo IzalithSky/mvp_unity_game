@@ -63,13 +63,13 @@ public class MobAi : MonoBehaviour {
                 }
                 break;
             case AiBehMode.ATTACKING:
-                if (TargetOutOfRange()) {	
+                if (TargetOutOfRange() && IsPreAttackDelayOver()) {	
                     state = AiBehMode.CHASING;
                 }
                 if (!tool.IsReady()) {
                     state = AiBehMode.DODGING;
                 }
-                if (Time.time - attackModeStartTime >= preAttackDelay) {
+                if (IsPreAttackDelayOver()) {
                     isAttackReady = true;
                 }
                 break;
@@ -85,6 +85,10 @@ public class MobAi : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    bool IsPreAttackDelayOver() {
+        return Time.time - attackModeStartTime >= preAttackDelay;
     }
 
     bool TargetOutOfRange() {
