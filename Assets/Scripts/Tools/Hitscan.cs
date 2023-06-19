@@ -17,7 +17,7 @@ public class Hitscan : Tool {
         muzzleFlash.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit)) {
+        if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit, Mathf.Infinity, mask)) {
             DrawTracer(tracerSource.position, hit.point);
 
             GameObject impfl = Instantiate(impactFlash, hit.point + (hit.normal * .001f), Quaternion.LookRotation(hit.normal));

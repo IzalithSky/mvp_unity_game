@@ -25,7 +25,7 @@ public class Shotgun : Tool {
             Vector3 spreadDirection = CalculateSpreadDirection(lookPoint.forward);
             RaycastHit hit;
 
-            if (Physics.Raycast(lookPoint.position, spreadDirection, out hit))
+            if (Physics.Raycast(lookPoint.position, spreadDirection, out hit, Mathf.Infinity, mask))
             {
                 DrawTracer(tracerSource.position, hit.point);
 

@@ -12,9 +12,12 @@ public class Tool : MonoBehaviour {
 
     protected bool ready = true;
     protected float t1;
+    protected LayerMask mask;
 
     void Start () {
-        t1 = Time.time; 
+        t1 = Time.time;
+        string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger" };
+        mask = ~LayerMask.GetMask(transparentLayers); 
     }
 
     public void Fire() {
