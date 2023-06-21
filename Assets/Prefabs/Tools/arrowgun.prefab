@@ -299,7 +299,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
   toolName: Arrowgun
-  ammoCount: 10
+  ammoCount: 0
   usesAmmo: 1
   projectilePrefab: {fileID: 8373390393789196344, guid: a9296de14203a2d7993072131143180d,
     type: 3}

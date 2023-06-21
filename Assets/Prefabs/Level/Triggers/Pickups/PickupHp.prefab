@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3763180583465977460}
   - component: {fileID: 3763180583465977463}
   - component: {fileID: 3763180583465977462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PickupHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3763180583465977456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.763268, y: 9.904125, z: 12.887665}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

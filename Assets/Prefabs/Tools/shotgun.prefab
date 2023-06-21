@@ -254,7 +254,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
   toolName: Shotgun
-  ammoCount: 20
+  ammoCount: 0
   usesAmmo: 1
   tracer: {fileID: 2696618800695045305, guid: 8c8cdc1b7a01b67a0b8a87d3d9a53ba5, type: 3}
   muzzleFlash: {fileID: 6061208663848151777, guid: 896b53f659a357f9c89e5b2d9d75bacb,

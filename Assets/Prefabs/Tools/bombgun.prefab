@@ -299,7 +299,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
   toolName: Bombgun
-  ammoCount: 10
+  ammoCount: 0
   usesAmmo: 1
   projectilePrefab: {fileID: 8373390393789196344, guid: a64c005acf411c27bb9957af3e35ae9b,
     type: 3}

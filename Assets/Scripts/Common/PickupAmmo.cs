@@ -9,7 +9,7 @@ public class PickupAmmo : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        Tool tool = other.GetComponentInChildren<Tool>();
+        Tool tool = other.GetComponentInChildren<Tool>(true);
         if (tool != null && tool.toolName == toolName && tool.usesAmmo) {
             tool.ammoCount += refillCount;
             Destroy(gameObject);
