@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour {
     float respwanTime = 0;
 
     void Start() {
-        respwanTime = Time.time;
+        respwanTime = -respawnCooldown;
     }
 
     private void Update() {
