@@ -74,9 +74,6 @@ public class MobAi : MonoBehaviour {
                 }
                 break;
             case AiBehMode.DODGING:
-                if (TargetOutOfRange()) {
-                    state = AiBehMode.CHASING;
-                }
                 if (tool.IsReady()) {
                     state = AiBehMode.ATTACKING;
                     attackModeStartTime = Time.time;
