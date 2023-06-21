@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class InputListener : MonoBehaviour
 {
-    public float sensHorizontal = 800f;
-    public float sensVertical = 800f;
     public int toolListLength = 6;
+
+    public float sensHorizontal {
+        get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
+        set => PlayerPrefs.SetFloat(SensHorizontalKey, value);
+    }
+
+    public float sensVertical {
+        get => PlayerPrefs.GetFloat(SensVerticalKey, 800f);
+        set => PlayerPrefs.SetFloat(SensVerticalKey, value);
+    }
+
+    private const string SensHorizontalKey = "SensHorizontal";
+    private const string SensVerticalKey = "SensVertical";
 
     float inputHorizontal = 0f;
     float inputVertical = 0f;
@@ -62,7 +73,6 @@ public class InputListener : MonoBehaviour
         return Input.GetAxis($"Tool {toolIndex}") != 0f;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -72,6 +82,6 @@ public class InputListener : MonoBehaviour
         isJumping = Input.GetAxisRaw("Jump") != 0f;
         isFiring = Input.GetAxis("Fire1") != 0f;
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
-        cameraVertical = Input.GetAxis("Mouse Y") * sensHorizontal * Time.deltaTime;
+        cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
     }
 }

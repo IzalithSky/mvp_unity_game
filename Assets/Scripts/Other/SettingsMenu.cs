@@ -49,8 +49,16 @@ public class SettingsMenu : MonoBehaviour
 
     public void Resume()
     {
-        float.TryParse(sensXtext.text, out inputListener.sensHorizontal);
-        float.TryParse(sensYtext.text, out inputListener.sensVertical);
+        float sensX;
+        if (float.TryParse(sensXtext.text, out sensX)) {
+            inputListener.sensHorizontal = sensX;
+        }
+
+        float sensY;
+        if (float.TryParse(sensYtext.text, out sensY)) {
+            inputListener.sensVertical = sensY;
+        }
+
         settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isMenuActive = false;
