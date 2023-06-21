@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpawnerController : MonoBehaviour {
     public List<Spawner> spawners; // List of Spawner objects
     public CapturePointSpawner capturePointSpawner; // CapturePointSpawner
+    public GameObject extractionZone;
 
     private void Update() {
         // Check if zonesCapturedTotal has reached the limit
@@ -12,6 +13,8 @@ public class SpawnerController : MonoBehaviour {
             foreach (Spawner spawner in spawners) {
                 spawner.automaticSpawning = false;
             }
+
+            extractionZone.SetActive(true);
         }
     }
 }

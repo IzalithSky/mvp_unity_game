@@ -13,7 +13,7 @@ public class Respawnable : Damageable
             transform.position = respawn.position;
             transform.rotation = respawn.rotation;
         } else {
-            sceneLoader.ResetScene();
+            sceneLoader.LoadLose();
         }
     }
 }
