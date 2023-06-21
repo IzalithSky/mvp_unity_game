@@ -9,10 +9,13 @@ public class PickupAmmo : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        Tool tool = other.GetComponentInChildren<Tool>(true);
-        if (tool != null && tool.toolName == toolName && tool.usesAmmo) {
-            tool.ammoCount += refillCount;
-            Destroy(gameObject);
+        Tool[] tools = other.GetComponentsInChildren<Tool>(true);
+        foreach (Tool tool in tools) {
+            if (tool != null && tool.toolName == toolName && tool.usesAmmo) {
+                tool.ammoCount += refillCount;
+                Destroy(gameObject);
+                break;
+            }
         }
     }
 }

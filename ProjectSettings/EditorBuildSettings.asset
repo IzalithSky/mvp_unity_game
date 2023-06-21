@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayableScenes/MvpScene.unity
     guid: cbd16f1b8050fb906afb17843f67d473
   - enabled: 1
+    path: Assets/Scenes/PlayableScenes/DonjonScene.unity
+    guid: a465b7d0b80fa043ba822c1654edb3c6
+  - enabled: 1
     path: Assets/Scenes/MenuScenes/LoseScene.unity
     guid: 05489554ee2ee6afa9a8a16e481d7b96
   - enabled: 1
