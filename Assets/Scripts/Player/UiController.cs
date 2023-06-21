@@ -56,10 +56,12 @@ public class UiController : MonoBehaviour
         
         velocityText.text = new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2");
 
-        zoneCapturedText.text = 
-            capturePointSpawner.zonesCapturedTotal.ToString() + 
-            "/" + 
-            capturePointSpawner.zonesCapturedMax.ToString();
+        if (null != capturePointSpawner) {
+            zoneCapturedText.text = 
+                capturePointSpawner.zonesCapturedTotal.ToString() + 
+                "/" + 
+                capturePointSpawner.zonesCapturedMax.ToString();
+        }
     }
 
     void UpdateFps() {

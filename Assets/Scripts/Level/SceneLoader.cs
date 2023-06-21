@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour {
+[CreateAssetMenu(fileName = "SceneLoader", menuName = "ScriptableObjects/SceneLoader", order = 1)]
+public class SceneLoader : ScriptableObject {
     public string loseSceneName = "LoseScene";
     public string winSceneName = "WinScene";
+    public string prevSceneName = "MainMenuScene";
 
     public void LoadScene(string sceneName) {
+        prevSceneName = SceneManager.GetActiveScene().name; 
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1f;
     }
@@ -27,5 +30,9 @@ public class SceneLoader : MonoBehaviour {
     public void LoadWin() {
         LoadScene(winSceneName);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void LoadPrevious() {
+        LoadScene(prevSceneName);
     }
 }

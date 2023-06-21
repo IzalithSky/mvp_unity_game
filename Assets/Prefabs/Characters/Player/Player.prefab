@@ -370,7 +370,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  cameraEffects: {fileID: 0}
+  damageShakeThreshold: 1
   respawn: {fileID: 0}
+  sceneLoader: {fileID: 11400000, guid: 62b43e9a99345bfd287cea6275d9ab57, type: 2}
 --- !u!114 &5300365103291432227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +394,8 @@ MonoBehaviour:
   fpsText: {fileID: 0}
   velocityText: {fileID: 0}
   rb: {fileID: 0}
+  zoneCapturedText: {fileID: 0}
+  capturePointSpawner: {fileID: 0}
 --- !u!114 &-141512062052948715
 MonoBehaviour:
   m_ObjectHideFlags: 0
