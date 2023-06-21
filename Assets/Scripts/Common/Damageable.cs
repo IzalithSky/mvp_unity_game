@@ -5,6 +5,7 @@ using UnityEngine;
 public class Damageable : MonoBehaviour {
     public int maxHp = 100;
     public Dictionary<DamageType, int> damageAffinityMap = new Dictionary<DamageType, int>();
+    public CameraEffects cameraEffects;
     
     protected int hp = 0;
 
@@ -26,6 +27,10 @@ public class Damageable : MonoBehaviour {
     }
 
     public void Hit(DamageType damageType, int damage) {
+        if (null != cameraEffects) {
+            cameraEffects.ReceiveDamageShake();
+        }
+
         if (damageAffinityMap.ContainsKey(damageType)) {
             int affinity = damageAffinityMap[damageType];
             
