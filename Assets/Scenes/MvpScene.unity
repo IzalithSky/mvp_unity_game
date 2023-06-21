@@ -9726,6 +9726,11 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 287852934}
+    - target: {fileID: 1615095148690019602, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: sceneLoader
+      value: 
+      objectReference: {fileID: 64673657}
     - target: {fileID: 5300365103291432227, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: rb
@@ -9864,7 +9869,7 @@ PrefabInstance:
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: accel
-      value: 400
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 9091077048443410411, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
