@@ -19,7 +19,14 @@ public class CameraEffects : MonoBehaviour {
 
     void Start() {
         def = transform.localRotation;
+    }
+
+    void OnEnable() {
         ProjectileExplosive.OnExplosion += ExplosionShake;
+    }
+
+    void OnDisable() {
+        ProjectileExplosive.OnExplosion -= ExplosionShake;
     }
 
     void Update() {
