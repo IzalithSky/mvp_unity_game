@@ -6,6 +6,7 @@ public class Damageable : MonoBehaviour {
     public int maxHp = 100;
     public Dictionary<DamageType, int> damageAffinityMap = new Dictionary<DamageType, int>();
     public CameraEffects cameraEffects;
+    public int damageShakeThreshold = 1;
     
     protected int hp = 0;
 
@@ -27,7 +28,7 @@ public class Damageable : MonoBehaviour {
     }
 
     public void Hit(DamageType damageType, int damage) {
-        if (null != cameraEffects) {
+        if (null != cameraEffects && damage > damageShakeThreshold) {
             cameraEffects.ReceiveDamageShake();
         }
 

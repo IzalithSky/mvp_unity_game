@@ -1,10 +1,14 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class ProjectileExplosive : Projectile {
     public GameObject explosion;
+    public static event Action<Vector3> OnExplosion = delegate { };
 
     private void OnCollisionEnter(Collision c) {
+        OnExplosion.Invoke(transform.position);
+
         GameObject impfl = Instantiate(impactFlash, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
         Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
         

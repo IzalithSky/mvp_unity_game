@@ -11,6 +11,7 @@ public class CameraEffects : MonoBehaviour {
     public float damageShakeMagnitude = 0.05f;
     public float explosionShakeDuration = 0.2f;
     public float explosionShakeMagnitude = 0.05f;
+    public float explosionSensitivityDistance = 10f;
     
     Quaternion def;
     bool isShaking = false;
@@ -18,6 +19,7 @@ public class CameraEffects : MonoBehaviour {
 
     void Start() {
         def = transform.localRotation;
+        ProjectileExplosive.OnExplosion += ExplosionShake;
     }
 
     void Update() {
@@ -64,8 +66,8 @@ public class CameraEffects : MonoBehaviour {
         }
     }
 
-    public void ExplosionShake() {
-        if (!IsShaking) {
+    public void ExplosionShake(Vector3 explosionPosition) {
+        if (!IsShaking && Vector3.Distance(transform.position, explosionPosition) <= explosionSensitivityDistance) {
             StartCoroutine(Shake(explosionShakeDuration, explosionShakeMagnitude));
         }
     }
