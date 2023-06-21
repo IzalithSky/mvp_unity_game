@@ -16,7 +16,7 @@ public class Melee : Tool {
         anim.Fire();
 
         RaycastHit hit;
-        if (Physics.SphereCast(firePoint.position, splash, firePoint.forward, out hit, range)) {
+        if (Physics.SphereCast(firePoint.position, splash, firePoint.forward, out hit, range, mask)) {
             GameObject impfl = Instantiate(impactFlash, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
 
