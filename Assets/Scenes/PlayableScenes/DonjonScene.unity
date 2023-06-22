@@ -1527,7 +1527,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 70
   orthographic: 0
@@ -1618,6 +1618,10 @@ MonoBehaviour:
   explosionShakeDuration: 0.2
   explosionShakeMagnitude: 0.05
   explosionSensitivityDistance: 10
+  cam: {fileID: 330585545}
+  zoomSpeed: 30
+  minFOV: 30
+  maxFOV: 150
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0

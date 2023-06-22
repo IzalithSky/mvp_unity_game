@@ -12,6 +12,11 @@ public class CameraEffects : MonoBehaviour {
     public float explosionShakeDuration = 0.2f;
     public float explosionShakeMagnitude = 0.05f;
     public float explosionSensitivityDistance = 10f;
+
+    public Camera cam;
+    public float zoomSpeed = 30f;
+    public float minFOV = 30f;
+    public float maxFOV = 150f;
     
     Quaternion def;
     bool isShaking = false;
@@ -35,7 +40,12 @@ public class CameraEffects : MonoBehaviour {
         
         Quaternion final = Quaternion.Euler(0, 0, def.z + factorZ);
 
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime * amount * smooth);  
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime * amount * smooth);
+
+        if (inputListener.GetScrollInput() != 0) {
+            cam.fieldOfView -= inputListener.GetScrollInput() * zoomSpeed;
+            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minFOV, maxFOV);
+        }
     }
 
     

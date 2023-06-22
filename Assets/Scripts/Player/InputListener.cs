@@ -28,6 +28,7 @@ public class InputListener : MonoBehaviour
     bool isFiring = false;
     bool isCrouching = false;
     List<bool> isTool; // Array to store the tool states
+    float scrollInput = 0f;
 
     public float GetInputHorizontal()
     {
@@ -73,6 +74,10 @@ public class InputListener : MonoBehaviour
         return Input.GetAxis($"Tool {toolIndex}") != 0f;
     }
 
+    public float GetScrollInput() {
+        return scrollInput;
+    }
+
     void LateUpdate()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -83,5 +88,6 @@ public class InputListener : MonoBehaviour
         isFiring = Input.GetAxis("Fire1") != 0f;
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
         cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
+        scrollInput = Input.GetAxis("Mouse ScrollWheel");
     }
 }
