@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53250900893143608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8892924438532986004}
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 8440436394983091824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bombeater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 400
+  cameraEffects: {fileID: 0}
+  damageShakeThreshold: 1
 --- !u!114 &1068506614669222836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5005457578388336714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30312102135011342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +237,7 @@ GameObject:
   - component: {fileID: 2778342372245451633}
   - component: {fileID: 2556432842599510652}
   - component: {fileID: 1974909185775711980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,12 +428,12 @@ PrefabInstance:
     - target: {fileID: 1741134671565539047, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1741134671843520014, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1741134671987201634, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
@@ -456,12 +458,12 @@ PrefabInstance:
     - target: {fileID: 5240089946083229703, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7314548481175275949, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7396837667174784832, guid: dccb5b59ffa9fa3d8a3f1bf54bdfc9f6,
         type: 3}

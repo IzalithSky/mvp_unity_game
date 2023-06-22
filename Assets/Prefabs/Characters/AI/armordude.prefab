@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53250900893143608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 8440436394983091824}
   - component: {fileID: 6782512400695696397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: armordude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 400
+  cameraEffects: {fileID: 0}
+  damageShakeThreshold: 1
 --- !u!114 &1068506614669222836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5005457578388336714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30312102135011342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +255,7 @@ GameObject:
   - component: {fileID: 5224922064711716526}
   - component: {fileID: 2183289911347129402}
   - component: {fileID: 7652202235027701677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,17 +385,17 @@ PrefabInstance:
     - target: {fileID: 1068605029336365475, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5210996872984002437, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5248014430798920173, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5455370826462973949, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
@@ -403,7 +405,7 @@ PrefabInstance:
     - target: {fileID: 5455370826462973949, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5455370826462973950, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
@@ -463,7 +465,7 @@ PrefabInstance:
     - target: {fileID: 5745054476672874413, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6876607693691237743, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
@@ -473,12 +475,12 @@ PrefabInstance:
     - target: {fileID: 6988781384122420343, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7946978137909828071, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 392dc3f40c843a90888aa8dc46a71c6c, type: 3}

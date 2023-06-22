@@ -128,7 +128,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e22043e431e85b22ebad0dfdbf76c204, type: 2}
   m_TargetDisplay: 0
@@ -530,6 +530,7 @@ MonoBehaviour:
   owner: {fileID: 9091077048443410407}
   lookPoint: {fileID: 9091077048793198211}
   firePoint: {fileID: 0}
+  cameraEffects: {fileID: 0}
   toolExamples: []
 --- !u!114 &1947881702082532639
 MonoBehaviour:
