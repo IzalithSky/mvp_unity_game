@@ -9,6 +9,7 @@ public class ToolsController : MonoBehaviour
     public Collider owner;
     public Transform lookPoint;
     public Transform firePoint;
+    public CameraEffects cameraEffects;
     public List<GameObject> toolExamples;
 
     private List<Tool> tools = new List<Tool>();
@@ -22,6 +23,7 @@ public class ToolsController : MonoBehaviour
             Tool tool = toolObject.GetComponent<Tool>();
             tool.lookPoint = lookPoint;
             tool.firePoint = firePoint;
+            tool.cameraEffects = cameraEffects;
             
             DamageSource damageSource = toolObject.GetComponent<DamageSource>();
             if (null != damageSource) {

@@ -301,6 +301,10 @@ MonoBehaviour:
   toolName: Arrowgun
   ammoCount: 0
   usesAmmo: 1
+  cameraEffects: {fileID: 0}
+  recoilDuration: 0.1
+  recoilMagnitude: 1
+  maxRecoilAngle: 15
   projectilePrefab: {fileID: 8373390393789196344, guid: a9296de14203a2d7993072131143180d,
     type: 3}
   damageSource: {fileID: 6876607693691237743}

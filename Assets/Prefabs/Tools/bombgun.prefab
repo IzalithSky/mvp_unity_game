@@ -301,6 +301,10 @@ MonoBehaviour:
   toolName: Bombgun
   ammoCount: 0
   usesAmmo: 1
+  cameraEffects: {fileID: 0}
+  recoilDuration: 0.1
+  recoilMagnitude: 2
+  maxRecoilAngle: 10
   projectilePrefab: {fileID: 8373390393789196344, guid: a64c005acf411c27bb9957af3e35ae9b,
     type: 3}
   damageSource: {fileID: 1773164845773162154}

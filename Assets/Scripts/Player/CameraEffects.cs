@@ -88,4 +88,29 @@ public class CameraEffects : MonoBehaviour {
             StartCoroutine(Shake(explosionShakeDuration, explosionShakeMagnitude));
         }
     }
+
+    public IEnumerator Recoil(float recoilDuration, float recoilMagnitude, float maxRecoilAngle) {
+        float elapsed = 0.0f;
+        float recoilAngle = Mathf.Min(recoilMagnitude, maxRecoilAngle);
+        
+        while (elapsed < recoilDuration) {
+            float x = Random.Range(-recoilAngle, recoilAngle);
+            float y = Random.Range(-recoilAngle, recoilAngle);
+
+            cam.transform.localRotation = Quaternion.Euler(x, y, 0f);
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        // Return camera to its original rotation
+        while (Quaternion.Angle(cam.transform.localRotation, Quaternion.identity) > 0.01f) {
+            cam.transform.localRotation = Quaternion.Slerp(cam.transform.localRotation, Quaternion.identity, Time.deltaTime * smooth);
+            yield return null;
+        }
+    }
+
+    public void PlayRecoil(float recoilDuration, float recoilMagnitude, float maxRecoilAngle) {
+        StartCoroutine(Recoil(recoilDuration, recoilMagnitude, maxRecoilAngle));
+    }
 }

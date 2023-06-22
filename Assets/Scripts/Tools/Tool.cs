@@ -9,6 +9,10 @@ public class Tool : MonoBehaviour {
     public string toolName;
     public int ammoCount = 0;
     public bool usesAmmo = false;
+    public CameraEffects cameraEffects;
+    public float recoilDuration = 0f;
+    public float recoilMagnitude = 0f;
+    public float maxRecoilAngle = 0f;
 
     protected bool ready = true;
     protected float t1;
@@ -37,6 +41,10 @@ public class Tool : MonoBehaviour {
             
             if (usesAmmo) {
                 ammoCount--;
+            }
+
+            if (null != cameraEffects && recoilDuration > 0f && recoilMagnitude > 0f && maxRecoilAngle > 0f) {
+                cameraEffects.PlayRecoil(recoilDuration, recoilMagnitude, maxRecoilAngle);
             }
 
             FireReady();
