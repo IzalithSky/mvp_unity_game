@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    public float activationDelay = 2.0f;   // Time after which the damage zone becomes active
+    public float activationDelay = 1.0f;   // Time after which the damage zone becomes active
     public float damageInterval = 1.0f;    // Interval of time between each damage infliction
     public int damagePerHit = 1;           // Damage inflicted on each hit
+    public float lifetime = 2.0f;
 
     public bool isActive = false;
     public int len = 0;
@@ -24,6 +25,7 @@ public class DamageZone : MonoBehaviour
     {
         yield return new WaitForSeconds(activationDelay);
         isActive = true;
+        Destroy(gameObject, lifetime);
     }
 
     private void FixedUpdate()
