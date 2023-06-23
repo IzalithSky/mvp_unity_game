@@ -107,7 +107,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.6
-  m_Speed: 8
+  m_Speed: 6
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -382,6 +382,12 @@ PrefabInstance:
       propertyPath: fireRateRps
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 753556795154919464, guid: 392dc3f40c843a90888aa8dc46a71c6c,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8373390393789196344, guid: 040925b8973767c609d82411e0c18134,
+        type: 3}
     - target: {fileID: 1068605029336365475, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
@@ -472,6 +478,11 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 7652202235027701677}
+    - target: {fileID: 6876607693691237743, guid: 392dc3f40c843a90888aa8dc46a71c6c,
+        type: 3}
+      propertyPath: damage
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6988781384122420343, guid: 392dc3f40c843a90888aa8dc46a71c6c,
         type: 3}
       propertyPath: m_Layer
