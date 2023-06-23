@@ -216,7 +216,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: DonjonScene
+          m_StringArgument: Donjon
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &178261996
@@ -603,7 +603,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MvpScene
+          m_StringArgument: Carmick
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &490046002

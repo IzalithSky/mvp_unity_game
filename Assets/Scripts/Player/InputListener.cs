@@ -84,10 +84,10 @@ public class InputListener : MonoBehaviour
         inputVertical = Input.GetAxisRaw("Vertical");
         isWalking = !(Input.GetAxisRaw("Walk") != 0f);
         isCrouching = Input.GetAxisRaw("Crouch") != 0f;
-        isJumping = Input.GetAxisRaw("Jump") != 0f;
+        isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
         isFiring = Input.GetAxis("Fire1") != 0f;
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
         cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
-        scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        scrollInput = Input.GetAxis("Zoom");
     }
 }

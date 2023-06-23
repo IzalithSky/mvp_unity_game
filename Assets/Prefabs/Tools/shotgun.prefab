@@ -271,7 +271,7 @@ MonoBehaviour:
   bmarkTtl: 20
   tracerDistance: 100
   tracerTtl: 0.05
-  pelletCount: 16
+  pelletCount: 24
   spreadAngle: 8
 --- !u!114 &2434390404075796982
 MonoBehaviour:

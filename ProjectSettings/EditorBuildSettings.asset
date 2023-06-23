@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScenes/MainMenuScene.unity
     guid: d12b1d7c796eb58e6b79eaa82ffd19b7
   - enabled: 1
-    path: Assets/Scenes/PlayableScenes/MvpScene.unity
+    path: Assets/Scenes/PlayableScenes/Carmick.unity
     guid: cbd16f1b8050fb906afb17843f67d473
   - enabled: 1
-    path: Assets/Scenes/PlayableScenes/DonjonScene.unity
+    path: Assets/Scenes/PlayableScenes/Donjon.unity
     guid: a465b7d0b80fa043ba822c1654edb3c6
   - enabled: 1
     path: Assets/Scenes/MenuScenes/LoseScene.unity

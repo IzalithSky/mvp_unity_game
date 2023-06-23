@@ -846,7 +846,7 @@ MonoBehaviour:
   explosionShakeMagnitude: 0.05
   explosionSensitivityDistance: 10
   cam: {fileID: 1002835781404635728}
-  zoomSpeed: 30
+  zoomSpeed: 1
   minFOV: 30
   maxFOV: 150
 --- !u!114 &1002835781404635734
