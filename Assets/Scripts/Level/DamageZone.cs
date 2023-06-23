@@ -1,54 +1,59 @@
-using UnityEngine;
-using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    public float activeTime = 10f;
-    public float damageInterval = 0.2f;
-    public int damageAmount = 2;
-    private bool isPlayerInside = false;
-    private Damageable playerDamageable = null;
+    public float activationDelay = 2.0f;   // Time after which the damage zone becomes active
+    public float damageInterval = 1.0f;    // Interval of time between each damage infliction
+    public int damagePerHit = 1;           // Damage inflicted on each hit
 
-    public static event Action OnDespawn;
+    public bool isActive = false;
+    public int len = 0;
 
-    private IEnumerator DamageProcess() {
-        while (isPlayerInside) {
-            if (playerDamageable != null) {
-                playerDamageable.Hit(damageAmount);
+    float to = 0f;
+    HashSet<Damageable> insideObjects = new HashSet<Damageable>();
+
+    private void Start()
+    {
+        to = Time.time;
+        StartCoroutine(ActivationDelayCoroutine());
+    }
+
+    private IEnumerator ActivationDelayCoroutine()
+    {
+        yield return new WaitForSeconds(activationDelay);
+        isActive = true;
+    }
+
+    private void FixedUpdate()
+    {
+        len = insideObjects.Count;
+        if (isActive && Time.time - to >= damageInterval)
+        {
+            to = Time.time;
+            foreach (Damageable damageableObject in insideObjects)
+            {
+                damageableObject.Hit(damagePerHit);
             }
-            yield return new WaitForSeconds(damageInterval);
         }
-    }
-
-    private void Start() {
-        StartCoroutine(DespawnProcess());
-    }
-
-    private IEnumerator DespawnProcess() {
-        yield return new WaitForSeconds(activeTime);
-        Despawn();
-    }
-
-    private void Despawn() {
-        OnDespawn?.Invoke(); // Trigger the OnDespawn event
-        Destroy(gameObject); // Destroy the current zone after it is captured
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player") {
-            isPlayerInside = true;
-            playerDamageable = other.GetComponent<Damageable>();
-            StartCoroutine(DamageProcess());
+        Damageable damageableObject = other.GetComponentInParent<Damageable>();
+        if (damageableObject != null && !insideObjects.Contains(damageableObject))
+        {
+            insideObjects.Add(damageableObject);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player") {
-            isPlayerInside = false;
-            StopCoroutine(DamageProcess());
+        Damageable damageableObject = other.GetComponentInParent<Damageable>();
+        if (damageableObject != null)
+        {
+            insideObjects.Remove(damageableObject);
         }
     }
 }

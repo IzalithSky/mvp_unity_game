@@ -10,7 +10,7 @@ public class DamageZoneSpawner : MonoBehaviour {
     private int activeZoneCount = 0;
 
     private void Start() {
-        DamageZone.OnDespawn += OnZoneDespawned;
+        // DamageZone.OnDespawn += OnZoneDespawned;
 
         for (int i = 0; i < zoneCount; i++) {
             SpawnZone();
@@ -18,7 +18,7 @@ public class DamageZoneSpawner : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        DamageZone.OnDespawn -= OnZoneDespawned;
+        // DamageZone.OnDespawn -= OnZoneDespawned;
     }
 
     private void OnZoneDespawned() {

@@ -55,8 +55,6 @@ public class Shotgun : Tool {
         float outerRadius = Mathf.Tan(Mathf.Deg2Rad * angle); // The radius of the outer circle
         float innerRadius = outerRadius / 2; // The radius of the inner circle
 
-        Debug.Log(outerRadius + " " + innerRadius);
-
         // Generate directions for the outer and inner circles
         directions.AddRange(GenerateCircleDirections(baseDirection, outerRadius, outerCount));
         directions.AddRange(GenerateCircleDirections(baseDirection, innerRadius, innerCount));
