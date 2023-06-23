@@ -24,6 +24,7 @@ public class Destroyable : Damageable
     IEnumerator ResetStaggerAfterSeconds(float seconds) {
         yield return new WaitForSeconds(seconds);
         isStaggered = false;
+        staggerDamage = 0;
     }
 
     public override void Die() {
