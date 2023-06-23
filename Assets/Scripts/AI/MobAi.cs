@@ -8,7 +8,8 @@ public enum AiBehMode {
     ATTACKING,
     CHASING,
     FLEEING,
-    DODGING
+    DODGING,
+    STAGGER
 }
 
 public class MobAi : MonoBehaviour {
@@ -24,6 +25,7 @@ public class MobAi : MonoBehaviour {
     public float fireingRange = 15.0f;
     public float minLosSearchRange = 0f;
     public float preAttackDelay = 0.3f;
+    public Destroyable destroyable;
 
     public AiBehMode state = AiBehMode.CHASING;
     
@@ -79,8 +81,17 @@ public class MobAi : MonoBehaviour {
                     attackModeStartTime = Time.time;
                 }
                 break;
+            case AiBehMode.STAGGER:
+                if (null != destroyable && !destroyable.isStaggered) {
+                    state = AiBehMode.CHASING;
+                }
+                break;
             default:
                 break;
+        }
+
+        if (null != destroyable && destroyable.isStaggered) {
+            state = AiBehMode.STAGGER;
         }
     }
 
@@ -112,6 +123,9 @@ public class MobAi : MonoBehaviour {
             case AiBehMode.DODGING:
                 FaceTarget(player.transform);
                 DoStrafing();
+                break;
+            case AiBehMode.STAGGER:
+                nm.SetDestination(transform.position);
                 break;
             default:
                 break;

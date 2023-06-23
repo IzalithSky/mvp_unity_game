@@ -95,6 +95,7 @@ MonoBehaviour:
   fireingRange: 3
   minLosSearchRange: 0
   preAttackDelay: 0.3
+  destroyable: {fileID: 8892924438532986004}
   state: 2
 --- !u!195 &53250902452406903
 NavMeshAgent:
@@ -133,6 +134,9 @@ MonoBehaviour:
   maxHp: 400
   cameraEffects: {fileID: 0}
   damageShakeThreshold: 1
+  staggerDamageThreshold: 100
+  staggerDuration: 1
+  isStaggered: 0
 --- !u!114 &1068506614669222836
 MonoBehaviour:
   m_ObjectHideFlags: 0

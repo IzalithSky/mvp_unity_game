@@ -43,11 +43,15 @@ public class Damageable : MonoBehaviour {
         }
 
         if (damage > 0) {
-            hp -= damage;
+            TakeDamageRaw(damage);
         }
         if (!IsAlive()) {
             Die();
         }
+    }
+
+    protected virtual void TakeDamageRaw(int damage) {
+        hp -= damage;
     }
 
     public void Heal(int amount) {
