@@ -14,7 +14,7 @@ public class ToolHolder : MonoBehaviour
             if (inputListener.GetIsFiring() && null != currentTool) {
                 currentTool.Fire();
             }
-        } else {
+        } else if (currentTool != null && currentTool.toolName != "Scanner") {
             transform.localRotation = Quaternion.Euler(-60, -45, 45);
         }
     }
