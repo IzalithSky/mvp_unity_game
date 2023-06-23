@@ -1119,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: respawnCooldown
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -1129,7 +1129,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -2979,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: respawnCooldown
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -2989,7 +2989,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -3001,19 +3001,19 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[1]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: fc31885a6a1910b849f7dc28d6a132f9,
+      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.data[2]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 1b7bdd2be97447689b3e4a7f363497cf,
+      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.data[3]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 1b7bdd2be97447689b3e4a7f363497cf,
+      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -9620,7 +9620,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: respawnCooldown
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -9630,7 +9630,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -9660,7 +9660,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[4]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
+      objectReference: {fileID: 53250902452406902, guid: fc31885a6a1910b849f7dc28d6a132f9,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}

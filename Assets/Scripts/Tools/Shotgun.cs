@@ -13,16 +13,15 @@ public class Shotgun : Tool {
     public float bmarkTtl = 20f;
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
-    public int pelletCount = 16; // Number of projectiles to fire in the spread
     public float spreadAngle = 8f; // Spread angle in degrees
 
     protected override void FireReady()
     {
         muzzleFlash.Play();
 
-        for (int i = 0; i < pelletCount; i++)
+        List<Vector3> rayDirs = GenerateConeDirections(firePoint.forward, spreadAngle, 8, 4);   
+        foreach (Vector3 spreadDirection in rayDirs)
         {
-            Vector3 spreadDirection = CalculateSpreadDirection(lookPoint.forward);
             RaycastHit hit;
 
             if (Physics.Raycast(lookPoint.position, spreadDirection, out hit, Mathf.Infinity, mask))
@@ -46,12 +45,43 @@ public class Shotgun : Tool {
         }
     }
 
-    Vector3 CalculateSpreadDirection(Vector3 baseDirection)
+    public List<Vector3> GenerateConeDirections(Vector3 baseDirection, float angle, int outerCount, int innerCount)
     {
-        Quaternion spreadRotation = Quaternion.Euler(Random.Range(-spreadAngle, spreadAngle), Random.Range(-spreadAngle, spreadAngle), 0f);
-        return spreadRotation * baseDirection;
+        List<Vector3> directions = new List<Vector3>();
+
+        // The center direction
+        directions.Add(baseDirection);
+
+        float outerRadius = Mathf.Tan(Mathf.Deg2Rad * angle); // The radius of the outer circle
+        float innerRadius = outerRadius / 2; // The radius of the inner circle
+
+        Debug.Log(outerRadius + " " + innerRadius);
+
+        // Generate directions for the outer and inner circles
+        directions.AddRange(GenerateCircleDirections(baseDirection, outerRadius, outerCount));
+        directions.AddRange(GenerateCircleDirections(baseDirection, innerRadius, innerCount));
+
+        return directions;
     }
 
+    private List<Vector3> GenerateCircleDirections(Vector3 baseDirection, float radius, int count)
+    {
+        List<Vector3> directions = new List<Vector3>();
+
+        for (int i = 0; i < count; i++)
+        {
+            float t = i / (float)count; // The fraction around the circle (between 0 and 1)
+            float angleRad = t * 2 * Mathf.PI; // The angle in radians
+
+            Vector3 direction = new Vector3(radius * Mathf.Cos(angleRad), radius * Mathf.Sin(angleRad), 1f).normalized;
+            Vector3 rotatedDirection = Quaternion.FromToRotation(Vector3.forward, baseDirection) * direction;
+
+            directions.Add(rotatedDirection);
+        }
+
+        return directions;
+    }
+    
     void DrawTracer(Vector3 from, Vector3 to)
     {
         GameObject t = Instantiate(tracer, tracerSource.position, Quaternion.identity);

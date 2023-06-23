@@ -271,8 +271,7 @@ MonoBehaviour:
   bmarkTtl: 20
   tracerDistance: 100
   tracerTtl: 0.05
-  pelletCount: 24
-  spreadAngle: 8
+  spreadAngle: 4
 --- !u!114 &2434390404075796982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 20
   multiplier: 1
   headMultiplier: 1
   owner: {fileID: 0}
