@@ -40,7 +40,10 @@ public class MovementController : MonoBehaviour {
     Vector3 originalCameraHolderPosition;
     Vector3 originalModelPosition;
     float maxspd = 0f;
+    float currentAccel = 0f;
     Vector3 moveDir = Vector3.zero;
+    bool wasGrounded = false;
+    bool jumpStarted = false;
 
 
     void Start() {
@@ -120,6 +123,8 @@ public class MovementController : MonoBehaviour {
     }
 
     void UpdateGroundedStatus() {
+        wasGrounded = grounded;
+
         RaycastHit hit;
         int layerMask = ~(1 << LayerMask.NameToLayer("Trigger"));
         grounded = Physics.SphereCast(
@@ -130,19 +135,24 @@ public class MovementController : MonoBehaviour {
             cc.bounds.extents.y + groundProbeDistance,
             layerMask);
 
-        if (grounded) {
+        if (jumpStarted && grounded && !wasGrounded) {
+            jumpStarted = false;
+        }
+
+        if (grounded && !jumpStarted) {
+            maxspd = il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : (IsMovingForward() ? maxrspd : maxwspd);
+            currentAccel = accel;
+
             if (crouchSlidesEnabled) {
                 rb.drag = isCrouching ? defaultDrag : bfactor;
             } else {
                 rb.drag = bfactor;
             }
         } else {
+            maxspd = maxaspd;
+            currentAccel = airaccel;
             rb.drag = defaultDrag;
         }
-
-        maxspd = grounded ? 
-            (il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : (IsMovingForward() ? maxrspd : maxwspd)) : 
-            maxaspd;
 
         if (isClimbing) {
             rb.useGravity = false;
@@ -199,7 +209,7 @@ public class MovementController : MonoBehaviour {
         
         accelerating = Vector3.zero != moveDir && velocityInDirection < maxspd;
         if (accelerating) {
-            rb.AddForce(moveDir * (grounded ? accel : airaccel), ForceMode.Acceleration);
+            rb.AddForce(moveDir * currentAccel, ForceMode.Acceleration);
         }
     }
 
@@ -207,9 +217,16 @@ public class MovementController : MonoBehaviour {
         bool canJump = grounded && (Time.time - jtime) > jdelay;
         if (canJump) {
             if (il.GetIsJumping()) {
+                jumpStarted = true;
                 jtime = Time.time;
+                
+                // rb.drag = defaultDrag;
+                // maxspd = maxaspd;
+                // currentAccel = airaccel;
+
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-                rb.AddForce(rb.transform.up * jfrc * (isCrouching && crouchSlidesEnabled ? crouchJumpMult : 1f), ForceMode.Impulse);
+
+                rb.AddForce(rb.transform.up * jfrc, ForceMode.Impulse);
             }
         }
     }
