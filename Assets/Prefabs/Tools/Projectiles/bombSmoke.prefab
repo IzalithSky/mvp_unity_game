@@ -312,7 +312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbe1ddafd7111f96d9676ec3a13ebee1, type: 2}
+  - {fileID: 2100000, guid: 9ebb845a6eef90c428dea4d44ca71f51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -392,3 +392,5 @@ MonoBehaviour:
   ignored2: {fileID: 0}
   explosion: {fileID: 4814750517331119647, guid: d6fe496d764b4826182d058cadff8f02,
     type: 3}
+  bmarkFollows: 0
+  bmarkAlignsWithProjectile: 0
