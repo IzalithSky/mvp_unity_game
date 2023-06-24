@@ -20,7 +20,7 @@ public class Tool : MonoBehaviour {
 
     void Start () {
         t1 = Time.time;
-        string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger" };
+        string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
         mask = ~LayerMask.GetMask(transparentLayers); 
     }
 

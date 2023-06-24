@@ -126,14 +126,16 @@ public class MovementController : MonoBehaviour {
         wasGrounded = grounded;
 
         RaycastHit hit;
-        int layerMask = ~(1 << LayerMask.NameToLayer("Trigger"));
+
+        string[] ignoredLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
+        var mask = ~LayerMask.GetMask(ignoredLayers);
         grounded = Physics.SphereCast(
             transform.position, 
             groundColliderMultiplier * cc.radius, 
             Vector3.down, 
             out hit, 
             cc.bounds.extents.y + groundProbeDistance,
-            layerMask);
+            mask);
 
         if (jumpStarted && grounded && !wasGrounded) {
             jumpStarted = false;

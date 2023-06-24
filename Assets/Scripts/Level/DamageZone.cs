@@ -34,9 +34,16 @@ public class DamageZone : MonoBehaviour
         if (isActive && Time.time - to >= damageInterval)
         {
             to = Time.time;
-            foreach (Damageable damageableObject in insideObjects)
+            foreach (Damageable damageableObject in new HashSet<Damageable>(insideObjects))  // Create a copy for iteration
             {
-                damageableObject.Hit(damagePerHit);
+                if (damageableObject != null)  // Check if the object is not destroyed
+                {
+                    damageableObject.Hit(damagePerHit);
+                }
+                else  // If the object is destroyed, remove it from the set
+                {
+                    insideObjects.Remove(damageableObject);
+                }
             }
         }
     }
