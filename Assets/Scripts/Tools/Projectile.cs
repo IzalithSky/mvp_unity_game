@@ -9,17 +9,12 @@ public class Projectile : DamageSource {
     public float bmarkTtl = 20f;
     public float splashRadius = 5f;
 
-    public Collider ignored1;
-    public Collider ignored2;
-
 
     void Start() {
         int projLayer = LayerMask.NameToLayer("Projectiles");
         Physics.IgnoreLayerCollision(projLayer, projLayer);
         
         Physics.IgnoreCollision(GetComponent<Collider>(), owner);
-        ignored1 = GetComponent<Collider>();
-        ignored2 = owner;
         
         Destroy(gameObject, timeoutSec);
     }
