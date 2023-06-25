@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatusController : MonoBehaviour
 {
-    List<Status> statuses;
+    public List<Status> statuses;
 
     private void Start()
     {
