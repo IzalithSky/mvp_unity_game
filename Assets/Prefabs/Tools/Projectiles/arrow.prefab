@@ -379,7 +379,7 @@ MonoBehaviour:
   multiplier: 1
   headMultiplier: 1
   owner: {fileID: 0}
-  damageType: 0
+  damageType: 1
   damageDropoffStart: 10
   damageDropoffEnd: 20
   timeoutSec: 4
@@ -388,5 +388,3 @@ MonoBehaviour:
   bmark: {fileID: 8373390393789196344, guid: 7e7445d4e4e5b6d8daff0432221f46d9, type: 3}
   bmarkTtl: 20
   splashRadius: 5
-  ignored1: {fileID: 0}
-  ignored2: {fileID: 0}
