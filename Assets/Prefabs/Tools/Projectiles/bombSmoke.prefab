@@ -388,9 +388,8 @@ MonoBehaviour:
   bmark: {fileID: 4584550511957648556, guid: e2e8d68f03e2bc407a145bd64f94c2b7, type: 3}
   bmarkTtl: 30
   splashRadius: 8
-  ignored1: {fileID: 0}
-  ignored2: {fileID: 0}
   explosion: {fileID: 4814750517331119647, guid: d6fe496d764b4826182d058cadff8f02,
     type: 3}
+  pushForce: 5
   bmarkFollows: 0
   bmarkAlignsWithProjectile: 0

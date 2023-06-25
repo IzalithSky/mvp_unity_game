@@ -390,5 +390,6 @@ MonoBehaviour:
   splashRadius: 8
   explosion: {fileID: 4814750517331119647, guid: d6fe496d764b4826182d058cadff8f02,
     type: 3}
+  pushForce: 5
   bmarkFollows: 0
   bmarkAlignsWithProjectile: 0

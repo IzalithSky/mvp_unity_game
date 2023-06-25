@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class ProjectileExplosive : Projectile {
     public GameObject explosion;
+    public float pushForce = 10f;
     public static event Action<Vector3> OnExplosion = delegate { };
     public bool bmarkFollows = true;
     public bool bmarkAlignsWithProjectile = true;
@@ -34,15 +35,24 @@ public class ProjectileExplosive : Projectile {
         Collider[] colliders = Physics.OverlapSphere(c.contacts[0].point, splashRadius);
         
         HashSet<Damageable> uniqueDamageables = new HashSet<Damageable>();
+        HashSet<Rigidbody> uniqueRbs = new HashSet<Rigidbody>();
         foreach (Collider hit in colliders) {
             Damageable d = hit.GetComponentInParent<Damageable>();
             if (d != null && !uniqueDamageables.Contains(d)) {
                 uniqueDamageables.Add(d);
             }
+            Rigidbody rb = hit.GetComponentInParent<Rigidbody>();
+            if (rb != null && !uniqueRbs.Contains(rb)) {
+                uniqueRbs.Add(rb);
+            }
         }
 
         foreach (Damageable d in uniqueDamageables) {
             TryHit(d.gameObject);
+        }
+
+        foreach (Rigidbody rb in uniqueRbs) {
+            rb.AddForce((rb.position - transform.position).normalized * pushForce, ForceMode.Impulse);
         }
 
         Destroy(gameObject);
