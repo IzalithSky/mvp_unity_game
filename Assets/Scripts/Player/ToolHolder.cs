@@ -16,6 +16,7 @@ public class ToolHolder : MonoBehaviour
             }
         } else if (currentTool != null && currentTool.toolName != "Scanner") {
             transform.localRotation = Quaternion.Euler(-60, -45, 45);
+            transform.localPosition = new Vector3(0f, -0.4f, 0.3f);
         }
     }
 }
