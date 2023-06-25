@@ -7,6 +7,7 @@ public class StatusDot : Status
     public Damageable damageable;
     public float tickRate;
     public int damagePerTick;
+    public DamageType damageType = DamageType.Blunt;
 
     float nextTickTime = 0f;
 
@@ -14,7 +15,7 @@ public class StatusDot : Status
     {
         if (Time.time >= nextTickTime)
         {            
-            damageable.Hit(damagePerTick);
+            damageable.Hit(damageType, damagePerTick);
             nextTickTime = Time.time + (1 / tickRate);
         }
     }

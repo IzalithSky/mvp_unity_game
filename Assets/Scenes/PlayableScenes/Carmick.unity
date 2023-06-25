@@ -406,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 5176812230428712826, guid: 046ad3b31c1f4cd2faed0d075881dad6,
         type: 3}
       propertyPath: refillCount
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046ad3b31c1f4cd2faed0d075881dad6, type: 3}
@@ -1098,7 +1098,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -1134,7 +1134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[5]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
+      objectReference: {fileID: 53250902452406902, guid: f033e092a6fc31dd89b49962f7c8395e,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -2596,7 +2596,7 @@ PrefabInstance:
     - target: {fileID: 1002835779930137192, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1002835779930137192, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
@@ -2777,7 +2777,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -3377,7 +3377,7 @@ PrefabInstance:
     - target: {fileID: 5176812230428712826, guid: 046ad3b31c1f4cd2faed0d075881dad6,
         type: 3}
       propertyPath: refillCount
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046ad3b31c1f4cd2faed0d075881dad6, type: 3}
@@ -9472,7 +9472,7 @@ PrefabInstance:
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
       propertyPath: mobExamples.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -9496,7 +9496,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[3]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
+      objectReference: {fileID: 53250902452406902, guid: fc31885a6a1910b849f7dc28d6a132f9,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -10717,7 +10717,7 @@ PrefabInstance:
     - target: {fileID: 5176812230428712826, guid: 046ad3b31c1f4cd2faed0d075881dad6,
         type: 3}
       propertyPath: refillCount
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046ad3b31c1f4cd2faed0d075881dad6, type: 3}
@@ -12823,7 +12823,7 @@ PrefabInstance:
     - target: {fileID: 5176812230428712826, guid: 046ad3b31c1f4cd2faed0d075881dad6,
         type: 3}
       propertyPath: refillCount
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046ad3b31c1f4cd2faed0d075881dad6, type: 3}

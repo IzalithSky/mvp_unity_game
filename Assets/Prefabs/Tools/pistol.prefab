@@ -328,13 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 40
+  damage: 55
   multiplier: 1
   headMultiplier: 4
   owner: {fileID: 0}
   damageType: 0
-  damageDropoffStart: 10
-  damageDropoffEnd: 20
+  damageDropoffStart: 20
+  damageDropoffEnd: 50
 --- !u!1 &5448748941944833924
 GameObject:
   m_ObjectHideFlags: 0
