@@ -521,6 +521,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5521358271874900447, guid: 8a8dfebcf7e263a4aa69333805e8c9b2,
         type: 3}
+      propertyPath: usesAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5521358271874900447, guid: 8a8dfebcf7e263a4aa69333805e8c9b2,
+        type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5005457578388336714}

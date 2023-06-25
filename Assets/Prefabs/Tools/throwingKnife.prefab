@@ -134,9 +134,9 @@ MonoBehaviour:
   fireRateRps: 2
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  toolName: Arrowgun
+  toolName: ThrowingKnife
   ammoCount: 0
-  usesAmmo: 0
+  usesAmmo: 1
   cameraEffects: {fileID: 0}
   recoilDuration: 0.1
   recoilMagnitude: 1
