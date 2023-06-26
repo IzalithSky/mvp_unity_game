@@ -8,7 +8,7 @@ public class PickupHeal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         Damageable db = other.GetComponentInChildren<Damageable>();
-        if (db != null) {
+        if (db != null && db.hp < db.maxHp) {
             db.Heal(healAmount);
             Destroy(gameObject);
         }
