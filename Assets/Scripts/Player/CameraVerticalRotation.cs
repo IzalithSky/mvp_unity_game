@@ -10,11 +10,17 @@ public class CameraVerticalRotation : MonoBehaviour
 
     float yRotate = 0.0f;
 
+    public Transform tracerSource;
+
     // Update is called once per frame
     void LateUpdate() {
         yRotate -= inputListener.GetCameraVertical();
         yRotate = ClampAngle(yRotate, minAngle, maxAngle);
         transform.localRotation = Quaternion.Euler(yRotate, 0.0f, 0.0f);
+
+        if (tracerSource != null) {
+            Debug.DrawRay(tracerSource.position, transform.forward * 1000f, Color.magenta);
+        }
     }
 
     float ClampAngle(float lfAngle, float lfMin, float lfMax) {

@@ -13022,6 +13022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1002835779930137191, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: capturePointSpawner
+      value: 
+      objectReference: {fileID: 1935986488}
     - target: {fileID: 1002835779930137192, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
       propertyPath: m_RootOrder
