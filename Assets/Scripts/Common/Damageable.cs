@@ -8,7 +8,7 @@ public class Damageable : MonoBehaviour {
     public CameraEffects cameraEffects;
     public int damageShakeThreshold = 1;
     
-    protected int hp = 0;
+    public int hp = 0;
 
 
     void Start() {
