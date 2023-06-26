@@ -12,12 +12,13 @@ public class Hitscan : Tool {
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
     public DamageSource damageSource;
+    public float beamRadius = 0.01f;
 
     protected override void FireReady() {
         muzzleFlash.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit, Mathf.Infinity, mask)) {
+        if (Physics.SphereCast(lookPoint.position, beamRadius, lookPoint.forward, out hit, Mathf.Infinity, mask)) {
             DrawTracer(tracerSource.position, hit.point);
 
             GameObject impfl = Instantiate(impactFlash, hit.point + (hit.normal * .001f), Quaternion.LookRotation(hit.normal));
@@ -33,7 +34,7 @@ public class Hitscan : Tool {
         }
     }
 
-    void DrawTracer(Vector3 from, Vector3 to) {
+    protected void DrawTracer(Vector3 from, Vector3 to) {
         GameObject t = Instantiate(tracer, tracerSource.position, Quaternion.identity);
         t.GetComponent<LineRenderer>().SetPosition(0, from);
         t.GetComponent<LineRenderer>().SetPosition(1, to);

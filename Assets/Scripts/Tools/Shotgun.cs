@@ -14,6 +14,7 @@ public class Shotgun : Tool {
     public float tracerDistance = 100f;
     public float tracerTtl = 0.05f;
     public float spreadAngle = 8f; // Spread angle in degrees
+    public float beamRadius = 0.01f;
 
     protected override void FireReady()
     {
@@ -24,7 +25,7 @@ public class Shotgun : Tool {
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(lookPoint.position, spreadDirection, out hit, Mathf.Infinity, mask))
+            if (Physics.SphereCast(lookPoint.position, beamRadius, spreadDirection, out hit, Mathf.Infinity, mask))
             {
                 DrawTracer(tracerSource.position, hit.point);
 
