@@ -133,6 +133,7 @@ MonoBehaviour:
   maxHp: 100
   cameraEffects: {fileID: 0}
   damageShakeThreshold: 1
+  hp: 0
   staggerDamageThreshold: 20
   staggerDuration: 1
   isStaggered: 0
@@ -534,6 +535,12 @@ PrefabInstance:
       propertyPath: lookPoint
       value: 
       objectReference: {fileID: 5005457578388336714}
+    - target: {fileID: 5521358271874900447, guid: 8a8dfebcf7e263a4aa69333805e8c9b2,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 8373390393789196344, guid: 9f9ac65e58111d9488da3085e10f8bfb,
+        type: 3}
     - target: {fileID: 5710877592905438895, guid: 8a8dfebcf7e263a4aa69333805e8c9b2,
         type: 3}
       propertyPath: m_Mesh
