@@ -6,7 +6,7 @@ public class Railgun : Hitscan
 {
     protected override void FireReady() {
         muzzleFlash.Play();
-        DrawTracer(tracerSource.position, lookPoint.forward * tracerDistance);
+        DrawTracer(tracerSource.position, lookPoint.position + lookPoint.forward * tracerDistance);
 
         RaycastHit[] hits = Physics.SphereCastAll(lookPoint.position, beamRadius, lookPoint.forward, Mathf.Infinity, mask);
 

@@ -30,7 +30,7 @@ public class Hitscan : Tool {
 
             damageSource.TryHit(hit.collider.gameObject);
         } else {
-            DrawTracer(tracerSource.position, lookPoint.forward * tracerDistance);
+            DrawTracer(tracerSource.position, lookPoint.position + lookPoint.forward * tracerDistance);
         }
     }
 
