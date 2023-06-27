@@ -159,6 +159,7 @@ MonoBehaviour:
   inputListener: {fileID: 1002835779930137188}
   minAngle: -90
   maxAngle: 90
+  tracerSource: {fileID: 1002835779975599071}
 --- !u!1 &1002835779930137186
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +306,7 @@ MonoBehaviour:
   maxHp: 400
   cameraEffects: {fileID: 1002835781404635729}
   damageShakeThreshold: 1
+  hp: 0
   respawn: {fileID: 0}
   sceneLoader: {fileID: 11400000, guid: 62b43e9a99345bfd287cea6275d9ab57, type: 2}
 --- !u!114 &1002835779930137191
@@ -435,6 +437,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputListener: {fileID: 1002835779930137188}
   currentTool: {fileID: 0}
+  lookPoint: {fileID: 1002835779700171575}
+  defaultAimDistance: 1000
 --- !u!114 &1002835779975599070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,8 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e323ba46cc3638ca3830497dff6b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 20
-  maxamount: 20
   smooth: 3
   rightOffset: 0.3
   walkSwayIntensity: 0.0025
