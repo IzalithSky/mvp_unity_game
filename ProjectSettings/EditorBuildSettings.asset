@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScenes/MainMenuScene.unity
     guid: d12b1d7c796eb58e6b79eaa82ffd19b7
   - enabled: 1
+    path: Assets/Scenes/PlayableScenes/CarmickEmpty.unity
+    guid: 03b7a155b1bd454e0a907fe2042b051c
+  - enabled: 1
+    path: Assets/Scenes/PlayableScenes/CarmickEasy.unity
+    guid: 07a04f62cd9e88201ac1675138f97ea4
+  - enabled: 1
     path: Assets/Scenes/PlayableScenes/Carmick.unity
     guid: cbd16f1b8050fb906afb17843f67d473
+  - enabled: 1
+    path: Assets/Scenes/PlayableScenes/CarmickNightmare.unity
+    guid: 08fa878a74ccaf1d6b73a5ca38631174
   - enabled: 1
     path: Assets/Scenes/PlayableScenes/Donjon.unity
     guid: a465b7d0b80fa043ba822c1654edb3c6
