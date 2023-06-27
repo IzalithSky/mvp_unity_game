@@ -21,6 +21,10 @@ public class Tool : MonoBehaviour {
     protected LayerMask mask;
 
     void Start () {
+        StartRoutine();
+    }
+
+    protected virtual void StartRoutine() {
         t1 = Time.time;
         string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
         mask = ~LayerMask.GetMask(transparentLayers); 
@@ -55,6 +59,8 @@ public class Tool : MonoBehaviour {
 
             if (null != audioSource) {
                 audioSource.Play();
+            } else {
+                Debug.Log("No audioSource");
             }
         }
     }

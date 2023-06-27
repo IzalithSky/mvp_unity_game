@@ -95,6 +95,10 @@ MonoBehaviour:
   minLosSearchRange: 0
   preAttackDelay: 0
   destroyable: {fileID: 8892924438532986004}
+  attackSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  voiceSound: {fileID: 0}
+  voiceInterval: 10
   state: 2
 --- !u!195 &53250902452406903
 NavMeshAgent:
@@ -133,6 +137,9 @@ MonoBehaviour:
   maxHp: 100
   cameraEffects: {fileID: 0}
   damageShakeThreshold: 1
+  hp: 0
+  hitSound: {fileID: 8300000, guid: 32f402b7cfd8a7590af698fd5167b831, type: 3}
+  deathSound: {fileID: 8300000, guid: 32f402b7cfd8a7590af698fd5167b831, type: 3}
   staggerDamageThreshold: 20
   staggerDuration: 1
   isStaggered: 0
@@ -148,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be8f15bbc00e8c9297aa216d8d9dff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statuses: []
 --- !u!1 &171489123435136819
 GameObject:
   m_ObjectHideFlags: 0

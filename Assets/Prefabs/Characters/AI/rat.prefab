@@ -139,6 +139,8 @@ MonoBehaviour:
   cameraEffects: {fileID: 0}
   damageShakeThreshold: 1
   hp: 0
+  hitSound: {fileID: 8300000, guid: 32f402b7cfd8a7590af698fd5167b831, type: 3}
+  deathSound: {fileID: 8300000, guid: 32f402b7cfd8a7590af698fd5167b831, type: 3}
   staggerDamageThreshold: 1
   staggerDuration: 1
   isStaggered: 0

@@ -31,6 +31,8 @@ public class InputListener : MonoBehaviour
     float scrollInput = 0f;
     bool isNext;
     bool isPrev;
+    bool isPlayNext;
+    bool isPlayStop;
 
     public float GetInputHorizontal()
     {
@@ -88,6 +90,14 @@ public class InputListener : MonoBehaviour
         return isPrev;
     }
 
+    public bool GetIsPlayNext() {
+        return isPlayNext;
+    }
+
+    public bool GetIsPlayStop() {
+        return isPlayStop;
+    }
+
     void LateUpdate()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -101,5 +111,7 @@ public class InputListener : MonoBehaviour
         scrollInput = Input.GetAxis("Zoom");
         isNext = Input.GetAxisRaw("ToolNext") != 0f;
         isPrev = Input.GetAxisRaw("ToolPrev") != 0f;
+        isPlayNext = Input.GetAxisRaw("PlayNext") != 0f;
+        isPlayStop = Input.GetAxisRaw("PlayStop") != 0f;
     }
 }

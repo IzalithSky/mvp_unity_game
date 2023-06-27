@@ -18,8 +18,10 @@ public class DamageZoneShooter : Tool
 
     Vector3 spawnPosition = Vector3.zero;
 
-    void Start()
+    protected override void StartRoutine()
     {
+        base.StartRoutine();
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length > 0) {
             target = players[0].GetComponentInChildren<Collider>().transform;

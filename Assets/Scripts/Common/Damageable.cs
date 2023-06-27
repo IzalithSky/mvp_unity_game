@@ -10,9 +10,14 @@ public class Damageable : MonoBehaviour {
     
     public int hp = 0;
 
+    public AudioClip hitSound;  // The sound to play when the object is hit
+    public AudioClip deathSound;  // The sound to play when the object dies
+    private AudioSource audioSource;  // The AudioSource component
 
     void Start() {
         hp = maxHp;
+        audioSource = gameObject.AddComponent<AudioSource>();  // Initialize the AudioSource
+        audioSource.spatialBlend = 1f;
     }
 
     public int GetHp() {
@@ -44,8 +49,18 @@ public class Damageable : MonoBehaviour {
 
         if (damage > 0) {
             TakeDamageRaw(damage);
+
+            if (audioSource != null && hitSound != null)  // Check that the AudioSource and AudioClip are not null
+            {
+                audioSource.PlayOneShot(hitSound);  // Play the hit sound
+            }
         }
         if (!IsAlive()) {
+            if (audioSource != null && deathSound != null)  // Check that the AudioSource and AudioClip are not null
+            {
+                audioSource.PlayOneShot(deathSound);  // Play the death sound
+            }
+
             Die();
         }
     }
@@ -63,5 +78,6 @@ public class Damageable : MonoBehaviour {
         }
     }
 
-    public virtual void Die() {}
+    public virtual void Die() {
+    }
 }

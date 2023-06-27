@@ -1,5 +1,4 @@
 outs:
-- md5: ca8282af511ab9addccf9dd9bc2c107d.dir
-  size: 69186
-  nfiles: 12
+- md5: f7d7cc9e20b5d2e72f39648afed0e061.dir
+  nfiles: 33
   path: Art
