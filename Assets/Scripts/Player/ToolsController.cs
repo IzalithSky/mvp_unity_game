@@ -12,7 +12,10 @@ public class ToolsController : MonoBehaviour
     public CameraEffects cameraEffects;
     public List<GameObject> toolExamples;
 
-    private List<Tool> tools = new List<Tool>();
+    List<Tool> tools = new List<Tool>();
+    int currentToolIndex = 0;
+    private bool wasNextPressedLastFrame = false;
+    private bool wasPrevPressedLastFrame = false;
 
     void Start() {
         // Instantiate all tools in a disabled state
@@ -42,9 +45,32 @@ public class ToolsController : MonoBehaviour
                 }
             }
         }
+        bool isNextPressed = inputListener.GetIsNext();
+        if (isNextPressed && !wasNextPressedLastFrame) {
+            SetToolNext();
+        }
+        wasNextPressedLastFrame = isNextPressed;
+
+        bool isPrevPressed = inputListener.GetIsPrev();
+        if (isPrevPressed && !wasPrevPressedLastFrame) {
+            SetToolPrev();
+        }
+        wasPrevPressedLastFrame = isPrevPressed;
+    }
+
+    void SetToolNext() {
+        int nextToolIndex = (currentToolIndex + 1) % tools.Count;
+        SetTool(nextToolIndex);
+    }
+
+    void SetToolPrev() {
+        int prevToolIndex = (currentToolIndex - 1 + tools.Count) % tools.Count;
+        SetTool(prevToolIndex);
     }
 
     void SetTool(int toolIndex) {
+        currentToolIndex = toolIndex;
+
         // Disable current tool
         if (null != toolHolder.currentTool) {
             toolHolder.currentTool.gameObject.SetActive(false);

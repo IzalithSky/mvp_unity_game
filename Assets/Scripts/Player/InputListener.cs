@@ -29,6 +29,8 @@ public class InputListener : MonoBehaviour
     bool isCrouching = false;
     List<bool> isTool; // Array to store the tool states
     float scrollInput = 0f;
+    bool isNext;
+    bool isPrev;
 
     public float GetInputHorizontal()
     {
@@ -78,6 +80,14 @@ public class InputListener : MonoBehaviour
         return scrollInput;
     }
 
+    public bool GetIsNext() {
+        return isNext;
+    }
+
+    public bool GetIsPrev() {
+        return isPrev;
+    }
+
     void LateUpdate()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -89,5 +99,7 @@ public class InputListener : MonoBehaviour
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
         cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
         scrollInput = Input.GetAxis("Zoom");
+        isNext = Input.GetAxisRaw("ToolNext") != 0f;
+        isPrev = Input.GetAxisRaw("ToolPrev") != 0f;
     }
 }
