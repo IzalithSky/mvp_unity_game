@@ -23,7 +23,7 @@ public class ProjectileShotgun : Tool {
             Vector3 spawnPosition = firePoint.position + randomOffset;
 
             GameObject proj = Instantiate(projectilePrefab, spawnPosition, (null != lookPoint) ? lookPoint.rotation : firePoint.rotation);
-            proj.GetComponent<Projectile>().owner = damageSource.owner;
+            proj.GetComponent<Projectile>().owners = damageSource.owners;
             proj.GetComponent<Projectile>().damage = damageSource.DealDamage();
             proj.GetComponent<Projectile>().damageType = damageSource.damageType;
             proj.GetComponent<Rigidbody>().AddForce(spreadDirection * fireForce, ForceMode.Impulse);

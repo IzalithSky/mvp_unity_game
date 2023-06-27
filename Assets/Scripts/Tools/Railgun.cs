@@ -11,7 +11,7 @@ public class Railgun : Hitscan
         RaycastHit[] hits = Physics.SphereCastAll(lookPoint.position, beamRadius, lookPoint.forward, Mathf.Infinity, mask);
 
         foreach (RaycastHit hit in hits) {
-            if (hit.collider == damageSource.owner)
+            if (damageSource.owners.Contains(hit.collider))
                 continue;
 
             GameObject impfl = Instantiate(impactFlash, hit.point + (hit.normal * .001f), Quaternion.LookRotation(hit.normal));

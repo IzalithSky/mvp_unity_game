@@ -6,7 +6,7 @@ public class ToolsController : MonoBehaviour
 {
     public InputListener inputListener;
     public ToolHolder toolHolder;
-    public Collider owner;
+    public List<Collider> owners;
     public Transform lookPoint;
     public Transform firePoint;
     public CameraEffects cameraEffects;
@@ -30,7 +30,7 @@ public class ToolsController : MonoBehaviour
             
             DamageSource damageSource = toolObject.GetComponent<DamageSource>();
             if (null != damageSource) {
-                damageSource.owner = owner;
+                damageSource.owners = owners;
             }
 
             tools.Add(tool);

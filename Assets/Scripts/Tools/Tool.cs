@@ -13,6 +13,8 @@ public class Tool : MonoBehaviour {
     public float recoilDuration = 0f;
     public float recoilMagnitude = 0f;
     public float maxRecoilAngle = 0f;
+    private AudioSource audioSource;  // AudioSource component to play the sound
+
 
     protected bool ready = true;
     protected float t1;
@@ -22,6 +24,8 @@ public class Tool : MonoBehaviour {
         t1 = Time.time;
         string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
         mask = ~LayerMask.GetMask(transparentLayers); 
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Fire() {
@@ -48,6 +52,10 @@ public class Tool : MonoBehaviour {
             }
 
             FireReady();
+
+            if (null != audioSource) {
+                audioSource.Play();
+            }
         }
     }
 

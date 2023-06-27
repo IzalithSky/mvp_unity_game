@@ -26,6 +26,10 @@ public class MobAi : MonoBehaviour {
     public float minLosSearchRange = 0f;
     public float preAttackDelay = 0.3f;
     public Destroyable destroyable;
+    public AudioClip attackSound; // Sound to play when the mob attacks
+    public AudioClip deathSound; // Sound to play when the mob dies
+    public AudioClip voiceSound; // Sound to play at fixed intervals
+    public float voiceInterval = 10.0f; // The interval at which the voice sound is played, in seconds
 
     public AiBehMode state = AiBehMode.CHASING;
     
@@ -37,6 +41,9 @@ public class MobAi : MonoBehaviour {
 
     LayerMask losSearchMask;
     
+    AudioSource audioSource;
+    float lastVoiceTime;
+
 
     void Start () {
         strafeStartTime = Time.time;
@@ -48,11 +55,24 @@ public class MobAi : MonoBehaviour {
         if (players.Length > 0) {
             player = players[0].GetComponentInChildren<Collider>();
         }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null) {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        lastVoiceTime = Time.time;
     }
 
     void Update() { 
         DoState();
         UpdateState();
+
+        // Play the voice sound at fixed intervals
+        if (voiceSound != null && Time.time - lastVoiceTime >= voiceInterval) {
+            audioSource.PlayOneShot(voiceSound);
+            lastVoiceTime = Time.time;
+        }
     }
 
     void UpdateState() {
@@ -93,6 +113,11 @@ public class MobAi : MonoBehaviour {
         if (null != destroyable && destroyable.isStaggered) {
             state = AiBehMode.STAGGER;
         }
+
+        // Play the death sound when the mob dies
+        if (null != destroyable && !destroyable.IsAlive() && deathSound != null) {
+            audioSource.PlayOneShot(deathSound);
+        }
     }
 
     bool IsPreAttackDelayOver() {
@@ -118,6 +143,11 @@ public class MobAi : MonoBehaviour {
                     attackModeStartTime = Time.time;
 
                     tool.Fire();
+
+                    // Play the attack sound when the mob attacks
+                    if (attackSound != null) {
+                        audioSource.PlayOneShot(attackSound);
+                    }
                 }
                 break;
             case AiBehMode.DODGING:

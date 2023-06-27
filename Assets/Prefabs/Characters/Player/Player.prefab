@@ -345,7 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputListener: {fileID: 1002835779930137188}
   toolHolder: {fileID: 1002835779975599068}
-  owner: {fileID: 1002835779930137194}
+  owners:
+  - {fileID: 1002835779930137194}
   lookPoint: {fileID: 1002835779700171575}
   firePoint: {fileID: 1002835780775762328}
   cameraEffects: {fileID: 1002835781404635729}

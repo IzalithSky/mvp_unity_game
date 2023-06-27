@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1616618857728943749}
   - component: {fileID: 3621319139349261997}
   - component: {fileID: 8803476420073664359}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,9 @@ GameObject:
   - component: {fileID: 963694647376616969}
   - component: {fileID: 5521358271874900447}
   - component: {fileID: 1838730554852369560}
-  m_Layer: 6
-  m_Name: throwingKnife
+  - component: {fileID: -8577537002888487120}
+  m_Layer: 8
+  m_Name: throwingKnifeAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,12 +137,12 @@ MonoBehaviour:
   lookPoint: {fileID: 0}
   toolName: ThrowingKnife
   ammoCount: 0
-  usesAmmo: 1
+  usesAmmo: 0
   cameraEffects: {fileID: 0}
   recoilDuration: 0.1
   recoilMagnitude: 1
   maxRecoilAngle: 15
-  projectilePrefab: {fileID: 8373390393789196344, guid: 4326b14f4631e03dd8578cb087ee709b,
+  projectilePrefab: {fileID: 8373390393789196344, guid: 9f9ac65e58111d9488da3085e10f8bfb,
     type: 3}
   damageSource: {fileID: 1838730554852369560}
   fireForce: 8
@@ -164,6 +165,103 @@ MonoBehaviour:
   damageType: 1
   damageDropoffStart: 10
   damageDropoffEnd: 20
+--- !u!82 &-8577537002888487120
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963694647376616970}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ba27692a72eed418fbaa957adeb1bb70,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 49f6917a74a68d6de87e0b91a5d0d43a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1602544820799399117
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +274,7 @@ GameObject:
   - component: {fileID: 4750186523577211909}
   - component: {fileID: 474188000421085988}
   - component: {fileID: 8717925044436790093}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +854,7 @@ GameObject:
   - component: {fileID: 693994808008982639}
   - component: {fileID: 6928197550298765392}
   - component: {fileID: 8820997478512003426}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5735286041700894108}
   - component: {fileID: 8979798747211587914}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: model (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1390,7 +1488,7 @@ GameObject:
   - component: {fileID: 6653835355782171716}
   - component: {fileID: 1869731271808104219}
   - component: {fileID: 2079997849582074421}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1473,7 +1571,7 @@ GameObject:
   - component: {fileID: 6789556623685600122}
   - component: {fileID: 8895648750408592571}
   - component: {fileID: 5918850093430429281}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1655,7 @@ GameObject:
   - component: {fileID: 1053952020300982390}
   - component: {fileID: 5891744334989156667}
   - component: {fileID: 5710877592905438895}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2135,7 +2233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3833660537981513948}
   - component: {fileID: 7026937150801910800}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: model (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2190,7 +2288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987429915438258160}
   - component: {fileID: 5642826542716051311}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
