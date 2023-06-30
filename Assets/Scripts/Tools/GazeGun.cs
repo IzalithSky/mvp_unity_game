@@ -10,13 +10,15 @@ public class GazeGun : Tool
 
     bool hasLineOfSight = false;
     bool hadLineOfSight = false;
-    float lastSeenTime = 0f;
-    float lastHitTime = 0f;
-    bool preFireDelayPassed = false;
+    float firstSeenTime = 0f;
+    bool canShoot = false;
 
     protected override void StartRoutine()
     {
         base.StartRoutine();
+
+        string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger" };
+        mask = ~LayerMask.GetMask(transparentLayers); 
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length > 0) {
@@ -32,6 +34,7 @@ public class GazeGun : Tool
         Vector3 direction = toPosition - fromPosition;  
         RaycastHit hit;        
         if (Physics.Raycast(fromPosition, direction, out hit, Mathf.Infinity, mask)) {
+            Debug.DrawRay(fromPosition, hit.point - fromPosition, Color.yellow);
             if (hit.collider.gameObject == target.gameObject) {
                 return true;
             }
@@ -40,22 +43,24 @@ public class GazeGun : Tool
         return false;
     }
 
-    protected override void FireReady() {
+    void Update() {
+        canShoot = false;
         hadLineOfSight = hasLineOfSight;
         hasLineOfSight = HasLineOfSight();
         
         // If target has just entered line of sight, start the countdown
         if (hasLineOfSight && !hadLineOfSight) {
-            lastSeenTime = Time.time;
-        }
-
-        // If target has left line of sight, reset countdown
-        if (!hasLineOfSight && hadLineOfSight) {
-            lastSeenTime = 0;
+            firstSeenTime = Time.time;
         }
 
         // If target has stayed in line of sight for preFireDelaySeconds, deal damage
-        if (hasLineOfSight && Time.time - lastSeenTime >= preFireDelaySeconds) {
+        if (hasLineOfSight && Time.time - firstSeenTime >= preFireDelaySeconds) {
+            canShoot = true;
+        }        
+    }
+
+    protected override void FireReady() {
+        if (canShoot) {
             damageSource.TryHit(target.gameObject);
         }
     }
