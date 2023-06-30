@@ -2786,7 +2786,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[4]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
+      objectReference: {fileID: 53250902452406902, guid: da777c2ee9aa84fc3be8aee73207f19d,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
@@ -10805,7 +10805,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mobExamples.Array.data[4]
       value: 
-      objectReference: {fileID: 53250902452406902, guid: 6d26d6ad351606cfab26a6386d050642,
+      objectReference: {fileID: 53250902452406902, guid: da777c2ee9aa84fc3be8aee73207f19d,
         type: 3}
     - target: {fileID: 8812628628705532176, guid: 546ead7bfb5b103b8bc7962bca54d539,
         type: 3}
