@@ -30,6 +30,8 @@ public class UiController : MonoBehaviour
     public Image bottomLeftImage;
     public Image bottomRightImage;
 
+    public float fadeDuration = 1f;
+
 
     float dt = 0.0f;
     float fps = 0.0f;
@@ -88,51 +90,73 @@ public class UiController : MonoBehaviour
 
     public void ShowDamageDirection(Vector3 damageSourcePosition)
     {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(damageSourcePosition);
-        Vector3 direction = (screenPos - new Vector3(Screen.width / 2, Screen.height / 2, 0)).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Get player's position and forward/right direction
+        Vector3 playerPos = Camera.main.transform.position;
+        Vector3 playerForward = Camera.main.transform.forward;
+        Vector3 playerRight = Camera.main.transform.right;
 
-        // Angle correction to match the UI images
-        if(angle < 0) 
+        // Get the direction from the player to the damage source
+        Vector3 direction = (damageSourcePosition - playerPos).normalized;
+
+        // Calculate the dot products
+        float forwardDot = Vector3.Dot(direction, playerForward);
+        float rightDot = Vector3.Dot(direction, playerRight);
+
+        // Determine which direction the damage came from
+        if (forwardDot > 0.7f)
         {
-            angle += 360;
+            // Damage came from the front (top)
+            LightIndicator(topImage);
         }
-
-        // Reset images
-        ResetImages();
-
-        // Determine which image to show
-        if (angle <= 22.5 || angle > 337.5)
-            ShowImage(rightImage);
-        else if (angle <= 67.5)
-            ShowImage(topRightImage);
-        else if (angle <= 112.5)
-            ShowImage(topImage);
-        else if (angle <= 157.5)
-            ShowImage(topLeftImage);
-        else if (angle <= 202.5)
-            ShowImage(leftImage);
-        else if (angle <= 247.5)
-            ShowImage(bottomLeftImage);
-        else if (angle <= 292.5)
-            ShowImage(bottomImage);
-        else if (angle <= 337.5)
-            ShowImage(bottomRightImage);
-    }
-
-    private void ShowImage(Image image)
-    {
-        // Make the image visible
-        image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
-    }
-
-    private void ResetImages()
-    {
-        // Make all images transparent
-        Image[] images = new Image[] {topImage, bottomImage, leftImage, rightImage, topLeftImage, topRightImage, bottomLeftImage, bottomRightImage};
-        foreach(Image image in images)
+        else if (forwardDot < -0.7f)
         {
-            if(image != null) image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+            // Damage came from the back (bottom)
+            LightIndicator(bottomImage);
+        } 
+        else if (rightDot > 0.7f)
+        {
+            // Damage came from the right
+            LightIndicator(rightImage);
+        }
+        else if (rightDot < -0.7f)
+        {
+            // Damage came from the left
+            LightIndicator(leftImage);
+        }
+        // Check for corner directions
+        else if(Mathf.Abs(forwardDot) <= 0.7f && Mathf.Abs(rightDot) <= 0.7f) {
+            if(forwardDot > 0 && rightDot > 0) {
+                // Front-Right (Top-Right)
+                LightIndicator(topRightImage);
+            } else if(forwardDot > 0 && rightDot < 0) {
+                // Front-Left (Top-Left)
+                LightIndicator(topLeftImage);
+            } else if(forwardDot < 0 && rightDot > 0) {
+                // Back-Right (Bottom-Right)
+                LightIndicator(bottomRightImage);
+            } else if(forwardDot < 0 && rightDot < 0) {
+                // Back-Left (Bottom-Left)
+                LightIndicator(bottomLeftImage);
+            }
+        }
+    }
+
+
+    void LightIndicator(Image image) {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0.5f);
+        StartCoroutine(FadeImageInAndOut(image, fadeDuration));
+    }
+
+    IEnumerator FadeImageInAndOut(Image image, float duration)
+    {        
+        // Fade image out
+        float elapsedTime = 0f;
+        while(elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(0.5f, 0f, elapsedTime / duration);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            yield return null;
         }
     }
 }
