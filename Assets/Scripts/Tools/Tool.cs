@@ -30,6 +30,42 @@ public class Tool : MonoBehaviour {
         mask = ~LayerMask.GetMask(transparentLayers); 
 
         audioSource = GetComponent<AudioSource>();
+
+        if (firePoint == null || lookPoint == null) {
+            FindFirePoint();
+        }
+    }
+
+    private void FindFirePoint() {
+        // Look for firePoint in the parent
+        Transform parent = transform.parent;
+        if (parent != null) {
+            if (!TryAssignFirePoint(parent)) {
+                Debug.Log("No transform named 'firePoint' found in the parent.");
+
+                // Look for firePoint in the grandparent
+                Transform grandparent = parent.parent;
+                if (grandparent != null) {
+                    if (!TryAssignFirePoint(grandparent)) {
+                        Debug.Log("No transform named 'firePoint' found in the grandparent.");
+                    }
+                } else {
+                    Debug.Log("The parent has no parent.");
+                }
+            }
+        } else {
+            Debug.Log("This object has no parent.");
+        }
+    }
+
+    private bool TryAssignFirePoint(Transform potentialParent) {
+        Transform firePointTransform = potentialParent.Find("firePoint");
+        if (firePointTransform != null) {
+            if (firePoint == null) firePoint = firePointTransform;
+            if (lookPoint == null) lookPoint = firePointTransform;
+            return true;
+        }
+        return false;
     }
 
     public void Fire() {
@@ -66,9 +102,13 @@ public class Tool : MonoBehaviour {
     }
 
     public bool IsReady() {
-        if (!ready) {
-            if ((Time.time - t1) >= (1 / fireRateRps)) {
-                ready = true;
+        if (fireRateRps <= 0) {
+            ready = true;
+        } else {
+            if (!ready) {
+                if ((Time.time - t1) >= (1 / fireRateRps)) {
+                    ready = true;
+                }
             }
         }
         return ready;

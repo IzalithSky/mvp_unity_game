@@ -34,7 +34,7 @@ public class DamageSource : MonoBehaviour {
         this.multiplier = multiplier;
     }
 
-    public virtual void TryHit(GameObject go) {
+    public virtual bool TryHit(GameObject go) {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
             // Calculate the distance to the Damageable
@@ -54,6 +54,9 @@ public class DamageSource : MonoBehaviour {
             } else {
                 d.Hit(damageType, damageToDeal);
             }
+            
+            return true;
         }
+        return false;
     }
 }

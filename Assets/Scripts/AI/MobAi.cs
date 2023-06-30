@@ -62,6 +62,15 @@ public class MobAi : MonoBehaviour {
         }
 
         lastVoiceTime = Time.time;
+
+        // If tool is not assigned, find it in the current GameObject or its children
+        if (tool == null) {
+            tool = GetComponentInChildren<Tool>();
+        }
+
+        if (tool == null) {
+            Debug.LogWarning("No Tool found in the GameObject or its children.");
+        }
     }
 
     void Update() { 
