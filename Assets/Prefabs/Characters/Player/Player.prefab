@@ -336,14 +336,16 @@ MonoBehaviour:
   rb: {fileID: 1002835779930137195}
   zoneCapturedText: {fileID: 6036395605185486772}
   capturePointSpawner: {fileID: 0}
-  topImage: {fileID: 3313136600596949268}
-  bottomImage: {fileID: 4079410194803562384}
-  leftImage: {fileID: 7978452983695545367}
-  rightImage: {fileID: 2156945692125935212}
-  topLeftImage: {fileID: 2839814734286471382}
-  topRightImage: {fileID: 7672221307703561977}
-  bottomLeftImage: {fileID: 5708503874691138046}
-  bottomRightImage: {fileID: 2288759336001436161}
+  directionIndicators:
+  - {fileID: 3313136600596949268}
+  - {fileID: 4079410194803562384}
+  - {fileID: 7978452983695545367}
+  - {fileID: 2156945692125935212}
+  - {fileID: 2839814734286471382}
+  - {fileID: 7672221307703561977}
+  - {fileID: 5708503874691138046}
+  - {fileID: 2288759336001436161}
+  fadeDuration: 1
 --- !u!114 &1002835779930137184
 MonoBehaviour:
   m_ObjectHideFlags: 0
