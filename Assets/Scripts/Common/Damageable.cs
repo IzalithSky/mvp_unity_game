@@ -6,6 +6,7 @@ public class Damageable : MonoBehaviour {
     public int maxHp = 100;
     public Dictionary<DamageType, int> damageAffinityMap = new Dictionary<DamageType, int>();
     public CameraEffects cameraEffects;
+    public UiController uiController;
     public int damageShakeThreshold = 1;
     
     public int hp = 0;
@@ -18,6 +19,18 @@ public class Damageable : MonoBehaviour {
         hp = maxHp;
         audioSource = gameObject.AddComponent<AudioSource>();  // Initialize the AudioSource
         audioSource.spatialBlend = 1f;
+
+        if(cameraEffects == null)
+        {
+            // Search for CameraEffects in the current GameObject and its children
+            cameraEffects = GetComponentInChildren<CameraEffects>();
+        }
+
+        if(uiController == null)
+        {
+            // Search for UiController in the current GameObject and its children
+            uiController = GetComponentInChildren<UiController>();
+        }
     }
 
     public int GetHp() {
@@ -28,11 +41,7 @@ public class Damageable : MonoBehaviour {
         return hp >= 0;
     }
 
-    public void Hit(int damage) {
-        Hit(DamageType.Blunt, damage);
-    }
-
-    public void Hit(DamageType damageType, int damage) {
+    public void Hit(DamageType damageType, int damage, Vector3 damageSourcePosition) {
         if (null != cameraEffects && damage > damageShakeThreshold) {
             cameraEffects.ReceiveDamageShake();
         }
@@ -50,8 +59,11 @@ public class Damageable : MonoBehaviour {
         if (damage > 0) {
             TakeDamageRaw(damage);
 
-            if (audioSource != null && hitSound != null)  // Check that the AudioSource and AudioClip are not null
-            {
+            if (uiController != null) {
+                uiController.ShowDamageDirection(damageSourcePosition);
+            }
+
+            if (audioSource != null && hitSound != null) { // Check that the AudioSource and AudioClip are not null
                 audioSource.PlayOneShot(hitSound);  // Play the hit sound
             }
         }

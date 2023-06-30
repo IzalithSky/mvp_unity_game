@@ -38,7 +38,7 @@ public class DamageZone : MonoBehaviour
             {
                 if (damageableObject != null)  // Check if the object is not destroyed
                 {
-                    damageableObject.Hit(damagePerHit);
+                    damageableObject.Hit(DamageType.Fire, damagePerHit, transform.position);
                 }
                 else  // If the object is destroyed, remove it from the set
                 {

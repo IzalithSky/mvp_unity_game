@@ -17,7 +17,7 @@ public class ZoneDamageable : MonoBehaviour {
     // This method allows you to apply damage to a specific zone
     public void HitZone(string zoneName, DamageType damageType, int damage) {
         if(damageZones.ContainsKey(zoneName)){
-            damageZones[zoneName].Hit(damageType, damage);
+            damageZones[zoneName].Hit(damageType, damage, transform.position);
         } else {
             Debug.LogError("Zone not found: " + zoneName);
         }

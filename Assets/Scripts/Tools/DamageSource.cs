@@ -50,9 +50,9 @@ public class DamageSource : MonoBehaviour {
             int damageToDeal = DealDamage(distanceFactor);
 
             if (go.CompareTag("Head")) {
-                d.Hit(damageType, damageToDeal * headMultiplier);
+                d.Hit(damageType, damageToDeal * headMultiplier, transform.position);
             } else {
-                d.Hit(damageType, damageToDeal);
+                d.Hit(damageType, damageToDeal, transform.position);
             }
             
             return true;
