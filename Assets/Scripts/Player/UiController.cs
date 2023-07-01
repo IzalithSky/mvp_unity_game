@@ -86,8 +86,6 @@ public class UiController : MonoBehaviour
         float forwardDot = Vector3.Dot(direction, Camera.main.transform.forward);
         float rightDot = Vector3.Dot(direction, Camera.main.transform.right);
 
-        Debug.Log("forward " + forwardDot + " right " + rightDot);
-
         Dictionary<string, Image> directions = new Dictionary<string, Image> {
             {"Top", directionIndicators[0]}, {"Bottom", directionIndicators[1]}, {"Left", directionIndicators[2]}, {"Right", directionIndicators[3]},
             {"TopLeft", directionIndicators[4]}, {"TopRight", directionIndicators[5]}, {"BottomLeft", directionIndicators[6]}, {"BottomRight", directionIndicators[7]}

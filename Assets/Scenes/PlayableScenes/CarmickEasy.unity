@@ -12410,7 +12410,7 @@ PrefabInstance:
     - target: {fileID: 1165118276916326433, guid: 814a0d226ea8cb107a09277b1746b209,
         type: 3}
       propertyPath: spawners.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1165118276916326433, guid: 814a0d226ea8cb107a09277b1746b209,
         type: 3}
