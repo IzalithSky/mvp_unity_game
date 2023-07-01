@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 53250902452406903}
   - component: {fileID: 8892924438532986004}
   - component: {fileID: 1068506614669222836}
+  - component: {fileID: 4496179870247313422}
   m_Layer: 8
   m_Name: zonedude
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   cameraEffects: {fileID: 0}
+  uiController: {fileID: 0}
   damageShakeThreshold: 1
   hp: 0
   hitSound: {fileID: 8300000, guid: 32f402b7cfd8a7590af698fd5167b831, type: 3}
@@ -156,6 +158,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statuses: []
+--- !u!114 &4496179870247313422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda36c7cee28f3f378cd43b5d2acffbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  isPermanent: 1
+  damagable: {fileID: 8892924438532986004}
+  damageType: 4
+  affinity: -50
 --- !u!1 &171489123435136819
 GameObject:
   m_ObjectHideFlags: 0

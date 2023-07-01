@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4843389300792049291}
   - component: {fileID: 2331126274144321474}
   - component: {fileID: 2475176975640669694}
+  - component: {fileID: 1782638038778249410}
   - component: {fileID: 4219816902757182153}
   m_Layer: 7
   m_Name: DamageZone
@@ -112,12 +113,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b25daa70124945caf01a3656188298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageSource: {fileID: 1782638038778249410}
   activationDelay: 1
   damageInterval: 0.2
-  damagePerHit: 20
   lifetime: 2
   isActive: 0
   len: 0
+--- !u!114 &1782638038778249410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068745843889771207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81db20b15dbc6a1fbf03534bf6b1178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  multiplier: 1
+  headMultiplier: 1
+  owners: []
+  damageType: 3
+  damageDropoffStart: 10
+  damageDropoffEnd: 20
 --- !u!54 &4219816902757182153
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -6,7 +6,8 @@ public enum DamageType {
     Blunt,
     Piercing,
     Explosive,
-    Fire
+    Fire,
+    Psi
 }
 
 public class DamageSource : MonoBehaviour {
@@ -37,26 +38,33 @@ public class DamageSource : MonoBehaviour {
     public virtual bool TryHit(GameObject go) {
         Damageable d = go.GetComponentInParent<Damageable>();
         if (d != null) {
-            // Calculate the distance to the Damageable
-            float distance = Vector3.Distance(transform.position, d.transform.position);
-            
-            // Calculate the distanceFactor based on the dropoff start and end
-            float distanceFactor = 1f;
-            if (distance > damageDropoffStart) {
-                distanceFactor = Mathf.Clamp01(1 - ((distance - damageDropoffStart) / (damageDropoffEnd - damageDropoffStart)));
-            }
-
-            // Calculate the damage to deal
-            int damageToDeal = DealDamage(distanceFactor);
-
-            if (go.CompareTag("Head")) {
-                d.Hit(damageType, damageToDeal * headMultiplier, transform.position);
-            } else {
-                d.Hit(damageType, damageToDeal, transform.position);
-            }
-            
+            Hit(d, go.CompareTag("Head"));
             return true;
         }
         return false;
+    }
+
+    public virtual void Hit(Damageable d) {
+        Hit(d, false);
+    }
+
+    public virtual void Hit(Damageable d, bool headTag) {
+        // Calculate the distance to the Damageable
+        float distance = Vector3.Distance(transform.position, d.transform.position);
+        
+        // Calculate the distanceFactor based on the dropoff start and end
+        float distanceFactor = 1f;
+        if (distance > damageDropoffStart) {
+            distanceFactor = Mathf.Clamp01(1 - ((distance - damageDropoffStart) / (damageDropoffEnd - damageDropoffStart)));
+        }
+
+        // Calculate the damage to deal
+        int damageToDeal = DealDamage(distanceFactor);
+
+        if (headTag) {
+            d.Hit(damageType, damageToDeal * headMultiplier, transform.position);
+        } else {
+            d.Hit(damageType, damageToDeal, transform.position);
+        }
     }
 }

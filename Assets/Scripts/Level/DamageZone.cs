@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
+    public DamageSource damageSource;
     public float activationDelay = 1.0f;   // Time after which the damage zone becomes active
     public float damageInterval = 1.0f;    // Interval of time between each damage infliction
-    public int damagePerHit = 1;           // Damage inflicted on each hit
     public float lifetime = 2.0f;
 
     public bool isActive = false;
@@ -38,7 +38,7 @@ public class DamageZone : MonoBehaviour
             {
                 if (damageableObject != null)  // Check if the object is not destroyed
                 {
-                    damageableObject.Hit(DamageType.Fire, damagePerHit, transform.position);
+                    damageSource.Hit(damageableObject);
                 }
                 else  // If the object is destroyed, remove it from the set
                 {
