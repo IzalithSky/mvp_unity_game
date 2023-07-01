@@ -18,10 +18,8 @@ public class MovementController : MonoBehaviour {
     public float crouchSpeed = 0.1f;
     public Transform cameraHolder;
     public Transform model;
-    public float maxStepHeight = 0.3f;
     public float stairsClimbingAcceleration = 1f;
     public bool crouchSlidesEnabled = false;
-    public float crouchJumpMult = 0.7f;
 
     Rigidbody rb;
     CapsuleCollider cc;
@@ -45,6 +43,8 @@ public class MovementController : MonoBehaviour {
     bool wasGrounded = false;
     bool jumpStarted = false;
 
+    string[] ignoredLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
+    int mask;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -59,6 +59,8 @@ public class MovementController : MonoBehaviour {
         originalModelPosition = model.localPosition;
 
         il = GetComponent<InputListener>();
+
+        mask = ~LayerMask.GetMask(ignoredLayers);
     }
 
     void LateUpdate() {
@@ -67,8 +69,7 @@ public class MovementController : MonoBehaviour {
 
     void FixedUpdate() {
         ProcessCrouching();
-        CalculateMoveDirectionAndMaxSpeed();
-        UpdateGroundedStatus();
+        UpdateGroundedStatusAndMoveDirection();
         StairMovement();
         RegularMovement();
         AttemptJump();
@@ -115,20 +116,11 @@ public class MovementController : MonoBehaviour {
         }
     }
 
-    void CalculateMoveDirectionAndMaxSpeed() {
-        moveDir = 
-            (rb.transform.right * il.GetInputHorizontal() 
-            + rb.transform.forward * il.GetInputVertical())
-            .normalized;
-    }
-
-    void UpdateGroundedStatus() {
+    void UpdateGroundedStatusAndMoveDirection() {
         wasGrounded = grounded;
 
         RaycastHit hit;
 
-        string[] ignoredLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
-        var mask = ~LayerMask.GetMask(ignoredLayers);
         grounded = Physics.SphereCast(
             transform.position, 
             groundColliderMultiplier * cc.radius, 
@@ -141,28 +133,14 @@ public class MovementController : MonoBehaviour {
             jumpStarted = false;
         }
 
-        if (grounded && !jumpStarted) {
-            maxspd = il.GetIsWalking() || il.GetIsCrouching() ? maxwspd : (IsMovingForward() ? maxrspd : maxwspd);
-            currentAccel = accel;
+        // CalculateMoveDirectionAndMaxSpeed
+        moveDir = (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
+        maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? maxrspd : maxwspd;
+        currentAccel = grounded ? accel : airaccel;
+        rb.drag = (grounded && (!crouchSlidesEnabled || isCrouching)) ? bfactor : defaultDrag;
+        rb.useGravity = !isClimbing;
 
-            if (crouchSlidesEnabled) {
-                rb.drag = isCrouching ? defaultDrag : bfactor;
-            } else {
-                rb.drag = bfactor;
-            }
-        } else {
-            maxspd = maxaspd;
-            currentAccel = airaccel;
-            rb.drag = defaultDrag;
-        }
-
-        if (isClimbing) {
-            rb.useGravity = false;
-            grounded = false;
-            return;
-        } else {
-            rb.useGravity = true;
-        }
+        grounded = isClimbing ? false : grounded;
     }
 
     bool IsMovingForward() {
