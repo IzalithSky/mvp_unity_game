@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 90
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -284,10 +284,8 @@ MonoBehaviour:
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  maxStepHeight: 0.3
   stairsClimbingAcceleration: 50
   crouchSlidesEnabled: 0
-  crouchJumpMult: 0.7
   grounded: 0
   accelerating: 0
   bumpingStep: 0
