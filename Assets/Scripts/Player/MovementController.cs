@@ -35,8 +35,9 @@ public class MovementController : MonoBehaviour {
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
     float targetYOffset; // The target y-offset for the current state.
+    float targetYScale;
     Vector3 originalCameraHolderPosition;
-    Vector3 originalModelPosition;
+    float originalModelScaleY;
     float maxspd = 0f;
     float currentAccel = 0f;
     Vector3 moveDir = Vector3.zero;
@@ -56,7 +57,7 @@ public class MovementController : MonoBehaviour {
         targetYOffset = 0f;
 
         originalCameraHolderPosition = cameraHolder.localPosition;
-        originalModelPosition = model.localPosition;
+        originalModelScaleY = model.transform.localScale.y;
 
         il = GetComponent<InputListener>();
 
@@ -92,16 +93,17 @@ public class MovementController : MonoBehaviour {
             new Vector3(originalCameraHolderPosition.x, originalCameraHolderPosition.y + targetYOffset, originalCameraHolderPosition.z), 
             t);
 
-        model.localPosition = Vector3.Lerp(
-            originalModelPosition, 
-            new Vector3(originalModelPosition.x, originalModelPosition.y + targetYOffset, originalModelPosition.z), 
-            t);
+        model.localScale = new Vector3(
+            model.localScale.x, 
+            Mathf.Lerp(model.localScale.y, targetYScale, t), 
+            model.localScale.z);
     }
 
     void Crouch() {
         if (!isCrouching) {
             targetHeight = crouchHeight;
             targetYOffset = -(defaultHeight - crouchHeight) / 2;
+            targetYScale = crouchHeight / defaultHeight;
             isCrouching = true;
         }
     }
@@ -111,6 +113,7 @@ public class MovementController : MonoBehaviour {
             if (!Physics.Raycast(transform.position, Vector3.up, defaultHeight - crouchHeight)) {
                 targetHeight = defaultHeight;
                 targetYOffset = 0f;
+                targetYScale = originalModelScaleY;
                 isCrouching = false;
             }
         }
