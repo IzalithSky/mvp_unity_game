@@ -187,9 +187,14 @@ public class MovementController : MonoBehaviour {
         Vector3 v = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         float velocityInDirection = Vector3.Dot(v, moveDir);
         
-        accelerating = Vector3.zero != moveDir && velocityInDirection < maxspd;
+        float dv = maxspd - velocityInDirection;
+        accelerating = Vector3.zero != moveDir && dv > 0;
         if (accelerating) {
-            rb.AddForce(moveDir * currentAccel, ForceMode.Acceleration);
+            // Calculate necessary acceleration and then force
+            float requiredAccel = dv / Time.fixedDeltaTime;
+            requiredAccel = requiredAccel > currentAccel ? currentAccel : requiredAccel;
+            Vector3 requiredForce = moveDir * requiredAccel * rb.mass;
+            rb.AddForce(requiredForce, ForceMode.Force);
         }
     }
 
@@ -199,10 +204,6 @@ public class MovementController : MonoBehaviour {
             if (il.GetIsJumping()) {
                 jumpStarted = true;
                 jtime = Time.time;
-                
-                // rb.drag = defaultDrag;
-                // maxspd = maxaspd;
-                // currentAccel = airaccel;
 
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 

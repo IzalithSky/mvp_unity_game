@@ -269,14 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe016451fa02d38b8596e0201786a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxrspd: 12
+  maxrspd: 10
   maxwspd: 5
   maxaspd: 2
   maxcspd: 2
   jdelay: 0.5
-  bfactor: 20
-  jfrc: 14
-  accel: 600
+  bfactor: 10
+  jfrc: 10
+  accel: 500
   airaccel: 50
   groundColliderMultiplier: 0.75
   groundProbeDistance: 0.05
