@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5612607118141277584}
   - component: {fileID: 5612607118141277587}
   - component: {fileID: 8639813172693389173}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ProbeIndication
   m_TagString: Untagged
   m_Icon: {fileID: 0}

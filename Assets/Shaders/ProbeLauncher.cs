@@ -16,20 +16,11 @@ public class ProbeLauncher : MonoBehaviour
     public UnityEvent<GameObject> OnNewProbeIndicatorCreated;
 
     private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
-    private Vector3[] circlePoints;
 
 
     private void Start()
     {
         OnNewProbeIndicatorCreated.AddListener(AddSphere);
-        
-        // Calculate the points of a unit circle
-        circlePoints = new Vector3[ringSegments];
-        for (int i = 0; i < ringSegments; i++)
-        {
-            float angle = i * 2 * Mathf.PI / ringSegments;
-            circlePoints[i] = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
-        }
     }
 
     private void OnDestroy()
@@ -73,12 +64,16 @@ public class ProbeLauncher : MonoBehaviour
 
     void Update()
     {
+        // Get all keys from the dictionary
+        List<string> keys = new List<string>(ringObjects.Keys);
+
         // For each pair of spheres
         for (int i = 0; i < spheres.Count; i++)
         {
             for (int j = i + 1; j < spheres.Count; j++)
             {
                 string key = i.ToString() + "_" + j.ToString();
+                keys.Remove(key);
 
                 float radius1 = spheres[i].transform.localScale.x / 2f;
                 float radius2 = spheres[j].transform.localScale.x / 2f;
@@ -118,7 +113,8 @@ public class ProbeLauncher : MonoBehaviour
 
                     for (int k = 0; k < currentRing.positionCount; k++)
                     {
-                        Vector3 direction = right * circlePoints[k].x + up * circlePoints[k].y;
+                        float angle = k * 2 * Mathf.PI / currentRing.positionCount;
+                        Vector3 direction = (Mathf.Cos(angle) * right + Mathf.Sin(angle) * up).normalized;
                         currentRing.SetPosition(k, circleCenter + direction * circleRadius);
                     }
                 }
@@ -131,18 +127,10 @@ public class ProbeLauncher : MonoBehaviour
             }
         }
 
-        // Remove rings from the dictionary if their corresponding spheres have been destroyed
-        List<string> keysToRemove = new List<string>();
-        foreach (var pair in ringObjects)
+        // Destroy the rings of the pairs of spheres that no longer exist
+        foreach (string key in keys)
         {
-            if (pair.Value == null)
-            {
-                keysToRemove.Add(pair.Key);
-            }
-        }
-
-        foreach (string key in keysToRemove)
-        {
+            Destroy(ringObjects[key]);
             ringObjects.Remove(key);
         }
     }
