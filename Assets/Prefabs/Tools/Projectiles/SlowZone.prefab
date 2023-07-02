@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4219816902757182153}
   - component: {fileID: 6663289375066081136}
   m_Layer: 7
-  m_Name: DamageSlow
+  m_Name: SlowZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
