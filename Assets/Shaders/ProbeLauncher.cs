@@ -1,26 +1,73 @@
+using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class SphereIntersectionRing : MonoBehaviour
+
+public class ProbeLauncher : MonoBehaviour
 {
-    public List<GameObject> spheres;
+    public List<GameObject> spheres = new List<GameObject>();
+    public float ringLineWidth = 0.1f;
     public Material ringMaterial;
     public int ringSegments = 100;
     public float ringWidth = 0.1f;
     public string ringNamePrefix = "Intersection Ring ";
+    
+    public UnityEvent<GameObject> OnNewProbeIndicatorCreated;
 
     private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
     private Vector3[] circlePoints;
 
+
     private void Start()
     {
+        OnNewProbeIndicatorCreated.AddListener(AddSphere);
+        
         // Calculate the points of a unit circle
         circlePoints = new Vector3[ringSegments];
         for (int i = 0; i < ringSegments; i++)
         {
             float angle = i * 2 * Mathf.PI / ringSegments;
             circlePoints[i] = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe when this object is destroyed to prevent memory leaks
+        OnNewProbeIndicatorCreated.RemoveListener(AddSphere);
+    }
+
+    private void AddSphere(GameObject newSphere)
+    {
+        spheres.Add(newSphere);
+        // Subscribe to the OnDestroyed event of the ProbeIndicator
+        ProbeIndicator probeIndicator = newSphere.GetComponent<ProbeIndicator>();
+        if (probeIndicator != null)
+        {
+            probeIndicator.OnDestroyed.AddListener(RemoveSphere);
+        }
+    }
+
+    private void RemoveSphere(GameObject sphereToRemove)
+    {
+        spheres.Remove(sphereToRemove);
+
+        // Destroy rings related to this sphere
+        List<string> keysToRemove = new List<string>();
+        foreach (var pair in ringObjects)
+        {
+            string[] indices = pair.Key.Split('_');
+            if (indices[0] == sphereToRemove.name || indices[1] == sphereToRemove.name)
+            {
+                Destroy(pair.Value);
+                keysToRemove.Add(pair.Key);
+            }
+        }
+
+        foreach (string key in keysToRemove)
+        {
+            ringObjects.Remove(key);
         }
     }
 

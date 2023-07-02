@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5612607118141277585}
   - component: {fileID: 5612607118141277584}
   - component: {fileID: 5612607118141277587}
-  m_Layer: 6
+  - component: {fileID: 8639813172693389173}
+  m_Layer: 0
   m_Name: ProbeIndication
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8639813172693389173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612607118141277589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6a858748083411984f156e3c4a7556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  OnDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
