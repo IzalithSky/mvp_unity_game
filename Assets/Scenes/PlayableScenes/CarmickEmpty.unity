@@ -2464,7 +2464,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1974
+  m_Name: pb_Mesh146676
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10573,7 +10573,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1960
+  m_Name: pb_Mesh146992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11523,7 +11523,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1932
+  m_Name: pb_Mesh147686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11815,7 +11815,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27102
+  m_Name: pb_Mesh39984
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12319,7 +12319,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1946
+  m_Name: pb_Mesh147364
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12852,7 +12852,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1918
+  m_Name: pb_Mesh146614
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13027,6 +13027,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002835779930137189, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: crouchHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002835779930137189, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
+        type: 3}
+      propertyPath: crouchSlidesEnabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1002835779930137190, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}

@@ -137,7 +137,7 @@ public class MovementController : MonoBehaviour {
         moveDir = (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
         maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? maxrspd : maxwspd;
         currentAccel = grounded ? accel : airaccel;
-        rb.drag = (grounded && (!crouchSlidesEnabled || isCrouching)) ? bfactor : defaultDrag;
+        rb.drag = grounded ? ((crouchSlidesEnabled && isCrouching) ? defaultDrag : bfactor) : defaultDrag;
         rb.useGravity = !isClimbing;
 
         grounded = isClimbing ? false : grounded;
