@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4959172634181131824}
   - component: {fileID: 2135546578659465723}
   m_Layer: 6
-  m_Name: Detector
+  m_Name: motionTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,15 +111,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3206933979766202274}
-  m_LocalRotation: {x: -0.4929759, y: 0.06939272, z: 0.01506182, w: 0.86714053}
-  m_LocalPosition: {x: 0.314, y: 0.212, z: 0.339405}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.2, y: 0.3, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2203528219496664852}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -58.987, y: 11.815, z: -4.709}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &6569574080003161458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,3 +937,7 @@ MonoBehaviour:
   toolName: Scanner
   ammoCount: 0
   usesAmmo: 0
+  cameraEffects: {fileID: 0}
+  recoilDuration: 0
+  recoilMagnitude: 0
+  maxRecoilAngle: 0
