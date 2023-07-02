@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class ProbeLauncher : MonoBehaviour
 {
     public List<GameObject> spheres = new List<GameObject>();
@@ -12,11 +11,11 @@ public class ProbeLauncher : MonoBehaviour
     public int ringSegments = 100;
     public float ringWidth = 0.1f;
     public string ringNamePrefix = "Intersection Ring ";
-    
+    public LayerMask ringLayerMask; // Layer selection using LayerMask
+
     public UnityEvent<GameObject> OnNewProbeIndicatorCreated;
 
     private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
-
 
     private void Start()
     {
@@ -97,6 +96,7 @@ public class ProbeLauncher : MonoBehaviour
                         newRing.startWidth = ringWidth;
                         newRing.endWidth = ringWidth;
                         newRing.material = ringMaterial;
+                        newRing.gameObject.layer = LayerMaskToLayer(ringLayerMask); // Assign the desired layer to the ring object
 
                         ringObjects.Add(key, ringObject);
                     }
@@ -133,5 +133,18 @@ public class ProbeLauncher : MonoBehaviour
             Destroy(ringObjects[key]);
             ringObjects.Remove(key);
         }
+    }
+
+    // Converts LayerMask to a single layer index
+    private int LayerMaskToLayer(LayerMask layerMask)
+    {
+        int layerNumber = layerMask.value;
+        int layer = 0;
+        while (layerNumber > 0)
+        {
+            layerNumber >>= 1;
+            layer++;
+        }
+        return layer - 1;
     }
 }

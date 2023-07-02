@@ -494,8 +494,11 @@ MonoBehaviour:
   ringLineWidth: 0.1
   ringMaterial: {fileID: 2100000, guid: 716110907ae2de8a883b65356f20cf4e, type: 2}
   ringSegments: 32
-  ringWidth: 0.02
+  ringWidth: 0.1
   ringNamePrefix: 'Intersection Ring '
+  ringLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   OnNewProbeIndicatorCreated:
     m_PersistentCalls:
       m_Calls: []
