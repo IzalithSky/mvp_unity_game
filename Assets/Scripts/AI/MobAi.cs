@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
+
 
 public enum AiBehMode {
     IDLE,
@@ -12,9 +14,11 @@ public enum AiBehMode {
     STAGGER
 }
 
+
 public class MobAi : MonoBehaviour {
     public NavMeshAgent nm;
-    public Collider player;
+    public float targetChangeInterval = 5f; // The time interval to change the target in seconds.
+    public List<string> targetTags = new List<string>{"Player"}; // List of tags that this mob can target.
     public Transform toolHolder;
     public Tool tool;
     public Transform firePoint;
@@ -31,6 +35,8 @@ public class MobAi : MonoBehaviour {
     public AudioClip voiceSound; // Sound to play at fixed intervals
     public float voiceInterval = 10.0f; // The interval at which the voice sound is played, in seconds
 
+    public List<Collider> targets = new List<Collider>(); // List of potential targets.
+    public Collider target; // The current target.
     public AiBehMode state = AiBehMode.CHASING;
     
     bool isStrafeReady = false;
@@ -51,10 +57,12 @@ public class MobAi : MonoBehaviour {
         string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger" };
         losSearchMask = ~LayerMask.GetMask(transparentLayers); 
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length > 0) {
-            player = players[0].GetComponentInChildren<Collider>();
+        RefreshTargets();
+        if (targets.Count > 0) 
+        {
+            target = targets[Random.Range(0, targets.Count)];
         }
+        StartCoroutine(ChangeTargetCoroutine());
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null) {
@@ -74,6 +82,8 @@ public class MobAi : MonoBehaviour {
     }
 
     void Update() { 
+        EnsureTargetPresence();
+        
         DoState();
         UpdateState();
 
@@ -81,6 +91,34 @@ public class MobAi : MonoBehaviour {
         if (voiceSound != null && Time.time - lastVoiceTime >= voiceInterval) {
             audioSource.PlayOneShot(voiceSound);
             lastVoiceTime = Time.time;
+        }
+    }
+
+    void EnsureTargetPresence() {
+        if (null == target) {
+            RefreshTargets();
+        }
+    }
+
+    private IEnumerator ChangeTargetCoroutine() 
+    {
+        while (true) 
+        {
+            yield return new WaitForSeconds(targetChangeInterval);
+            RefreshTargets();
+            if (targets.Count > 0) 
+            {
+                target = targets[Random.Range(0, targets.Count)];
+            }
+        }
+    }
+
+    private void RefreshTargets() 
+    {
+        targets.Clear();
+        foreach (string tag in targetTags) 
+        {
+            targets.AddRange(GameObject.FindGameObjectsWithTag(tag).Select(go => go.GetComponentInChildren<Collider>()));
         }
     }
 
@@ -134,18 +172,19 @@ public class MobAi : MonoBehaviour {
     }
 
     bool TargetOutOfRange() {
-        return Vector3.Distance(player.transform.position, transform.position) > (HasLineOfSight() ? fireingRange : minLosSearchRange);
+        return Vector3.Distance(target.transform.position, transform.position) > (HasLineOfSight() ? fireingRange : minLosSearchRange);
     }
 
-    void DoState() {      
+    void DoState() {
+        EnsureTargetPresence();
         switch (state)
         {
             case AiBehMode.CHASING:
-                FaceTarget(player.transform);
-                nm.SetDestination(player.transform.position);
+                FaceTarget(target.transform);
+                nm.SetDestination(target.transform.position);
                 break;
             case AiBehMode.ATTACKING:
-                FaceTarget(player.transform);
+                FaceTarget(target.transform);
                 nm.SetDestination(transform.position);
                 if (isAttackReady && HasLineOfSight()) {
                     isAttackReady = false;
@@ -158,9 +197,10 @@ public class MobAi : MonoBehaviour {
                         audioSource.PlayOneShot(attackSound);
                     }
                 }
+                EnsureTargetPresence();
                 break;
             case AiBehMode.DODGING:
-                FaceTarget(player.transform);
+                FaceTarget(target.transform);
                 DoStrafing();
                 break;
             case AiBehMode.STAGGER:
@@ -211,7 +251,7 @@ public class MobAi : MonoBehaviour {
     }
 
     bool HasLineOfSight() {
-        return HasLineOfSight(firePoint.position, player.bounds.center);
+        return HasLineOfSight(firePoint.position, target.bounds.center);
     }
 
     bool HasLineOfSight(Vector3 fromPosition, Vector3 toPosition) {
