@@ -275,7 +275,7 @@ MonoBehaviour:
   maxcspd: 2
   jdelay: 0.5
   bfactor: 10
-  jfrc: 10
+  jfrc: 8
   accel: 500
   airaccel: 50
   groundColliderMultiplier: 0.75

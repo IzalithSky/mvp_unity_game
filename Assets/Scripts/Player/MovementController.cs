@@ -142,6 +142,12 @@ public class MovementController : MonoBehaviour {
         currentAccel = grounded ? accel : airaccel;
         rb.drag = grounded ? ((crouchSlidesEnabled && isCrouching) ? defaultDrag : bfactor) : defaultDrag;
         rb.useGravity = !isClimbing;
+        
+        if (jumpStarted) {
+            currentAccel = airaccel;
+            rb.drag = defaultDrag;
+            maxspd = maxaspd;
+        }
 
         grounded = isClimbing ? false : grounded;
     }
