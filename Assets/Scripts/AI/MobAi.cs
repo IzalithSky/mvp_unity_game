@@ -109,6 +109,10 @@ public class MobAi : MonoBehaviour {
             if (targets.Count > 0) 
             {
                 target = targets[Random.Range(0, targets.Count)];
+                if (target == null)
+                {
+                    RefreshTargets();
+                }
             }
         }
     }
@@ -118,7 +122,15 @@ public class MobAi : MonoBehaviour {
         targets.Clear();
         foreach (string tag in targetTags) 
         {
-            targets.AddRange(GameObject.FindGameObjectsWithTag(tag).Select(go => go.GetComponentInChildren<Collider>()));
+            var gameObjects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (var go in gameObjects)
+            {
+                var collider = go.GetComponentInChildren<Collider>();
+                if (collider != null)
+                {
+                    targets.Add(collider);
+                }
+            }
         }
     }
 
@@ -172,6 +184,9 @@ public class MobAi : MonoBehaviour {
     }
 
     bool TargetOutOfRange() {
+        if (target == null) {
+            return true; // or whatever makes sense in your game logic
+        }
         return Vector3.Distance(target.transform.position, transform.position) > (HasLineOfSight() ? fireingRange : minLosSearchRange);
     }
 
@@ -180,28 +195,34 @@ public class MobAi : MonoBehaviour {
         switch (state)
         {
             case AiBehMode.CHASING:
-                FaceTarget(target.transform);
-                nm.SetDestination(target.transform.position);
+                if (target != null) {
+                    FaceTarget(target.transform);
+                    nm.SetDestination(target.transform.position);
+                }
                 break;
             case AiBehMode.ATTACKING:
-                FaceTarget(target.transform);
-                nm.SetDestination(transform.position);
-                if (isAttackReady && HasLineOfSight()) {
-                    isAttackReady = false;
-                    attackModeStartTime = Time.time;
+                if (target != null) {
+                    FaceTarget(target.transform);
+                    nm.SetDestination(transform.position);
+                    if (isAttackReady && HasLineOfSight()) {
+                        isAttackReady = false;
+                        attackModeStartTime = Time.time;
 
-                    tool.Fire();
+                        tool.Fire();
 
-                    // Play the attack sound when the mob attacks
-                    if (attackSound != null) {
-                        audioSource.PlayOneShot(attackSound);
+                        // Play the attack sound when the mob attacks
+                        if (attackSound != null) {
+                            audioSource.PlayOneShot(attackSound);
+                        }
                     }
+                    EnsureTargetPresence();
                 }
-                EnsureTargetPresence();
                 break;
             case AiBehMode.DODGING:
-                FaceTarget(target.transform);
-                DoStrafing();
+                if (target != null) {
+                    FaceTarget(target.transform);
+                    DoStrafing();
+                }
                 break;
             case AiBehMode.STAGGER:
                 nm.SetDestination(transform.position);
@@ -251,6 +272,9 @@ public class MobAi : MonoBehaviour {
     }
 
     bool HasLineOfSight() {
+        if (target == null) {
+            return false; // or whatever makes sense in your game logic
+        }
         return HasLineOfSight(firePoint.position, target.bounds.center);
     }
 
