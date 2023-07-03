@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 6611939164028952567}
   - component: {fileID: 1327119620471240321}
   - component: {fileID: 4122390688533107531}
-  - component: {fileID: 3235752689896327388}
+  - component: {fileID: 8937546187465227814}
   m_Layer: 3
   m_Name: probe
   m_TagString: Untagged
@@ -363,7 +363,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3235752689896327388
+--- !u!114 &8937546187465227814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,24 +372,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8373390393789196344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 193d47062044b0c719ffc05abf0f96ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 0730c58015d74d964871aa2f04f73714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   multiplier: 1
   headMultiplier: 1
   owners: []
-  damageType: 2
-  damageDropoffStart: 0.6
-  damageDropoffEnd: 5
+  damageType: 0
+  damageDropoffStart: 10
+  damageDropoffEnd: 20
   timeoutSec: 8
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 5612607118141277589, guid: d314e886608757faebddb079a0846cf9, type: 3}
   bmarkTtl: 30
-  splashRadius: 8
-  explosion: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
-    type: 3}
-  pushForce: 5
-  bmarkFollows: 0
+  splashRadius: 0.2
+  bmarkFollows: 1
   bmarkAlignsWithProjectile: 0

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8892924438532986004}
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 7685101074430909381}
+  - component: {fileID: 2197253974707607110}
   m_Layer: 8
   m_Name: gazedude
   m_TagString: Untagged
@@ -174,6 +175,23 @@ MonoBehaviour:
   isPermanent: 1
   damagable: {fileID: 8892924438532986004}
   damageType: 4
+  affinity: -50
+--- !u!114 &2197253974707607110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda36c7cee28f3f378cd43b5d2acffbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  isPermanent: 0
+  damagable: {fileID: 8892924438532986004}
+  damageType: 0
   affinity: -50
 --- !u!1 &171489123435136819
 GameObject:

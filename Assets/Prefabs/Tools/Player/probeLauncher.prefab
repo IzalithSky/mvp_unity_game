@@ -629,7 +629,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5455370826462973950}
   - component: {fileID: 8142431226178378301}
-  - component: {fileID: 753556795154919464}
   - component: {fileID: 1773164845773162154}
   - component: {fileID: 435879597584122075}
   m_Layer: 6
@@ -669,6 +668,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66890acd712427f97be7e7cb37f69f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRateRps: 1
+  firePoint: {fileID: 0}
+  lookPoint: {fileID: 0}
+  toolName: Probelauncher
+  ammoCount: 0
+  usesAmmo: 0
+  cameraEffects: {fileID: 0}
+  recoilDuration: 0.1
+  recoilMagnitude: 2
+  maxRecoilAngle: 10
+  audioSource: {fileID: 0}
   spheres: []
   ringLineWidth: 0.1
   ringMaterial: {fileID: 2100000, guid: 716110907ae2de8a883b65356f20cf4e, type: 2}
@@ -681,32 +691,10 @@ MonoBehaviour:
   OnNewProbeIndicatorCreated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &753556795154919464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5455370826462973949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ddb4bd6cb67c528daae6bc2d847ec0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRateRps: 1
-  firePoint: {fileID: 0}
-  lookPoint: {fileID: 0}
-  toolName: Probelauncher
-  ammoCount: 0
-  usesAmmo: 0
-  cameraEffects: {fileID: 0}
-  recoilDuration: 0.1
-  recoilMagnitude: 2
-  maxRecoilAngle: 10
   projectilePrefab: {fileID: 8373390393789196344, guid: 9b82637b85c5e2f61bbf9d00db54d258,
     type: 3}
   damageSource: {fileID: 1773164845773162154}
-  fireForce: 35
+  fireForce: 20
 --- !u!114 &1773164845773162154
 MonoBehaviour:
   m_ObjectHideFlags: 0

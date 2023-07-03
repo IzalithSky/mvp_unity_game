@@ -13,7 +13,7 @@ public class Tool : MonoBehaviour {
     public float recoilDuration = 0f;
     public float recoilMagnitude = 0f;
     public float maxRecoilAngle = 0f;
-    private AudioSource audioSource;  // AudioSource component to play the sound
+    public AudioSource audioSource;  // AudioSource component to play the sound
 
 
     protected bool ready = true;

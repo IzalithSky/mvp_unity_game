@@ -6,8 +6,7 @@ public class ProjectileExplosive : Projectile {
     public GameObject explosion;
     public float pushForce = 10f;
     public static event Action<Vector3> OnExplosion = delegate { };
-    public bool bmarkFollows = true;
-    public bool bmarkAlignsWithProjectile = true;
+
 
     private void OnCollisionEnter(Collision c) {
         OnExplosion.Invoke(transform.position);

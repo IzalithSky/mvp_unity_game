@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5266844045840035110}
   m_Layer: 7
   m_Name: CaptureZone
-  m_TagString: Untagged
+  m_TagString: Capture Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ladder
   - Head
+  - Capture Point
   layers:
   - Default
   - TransparentFX

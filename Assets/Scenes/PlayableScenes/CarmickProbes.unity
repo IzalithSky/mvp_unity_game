@@ -2444,7 +2444,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80982
+  m_Name: pb_Mesh-17420
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9424,7 +9424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80318
+  m_Name: pb_Mesh-17406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10314,7 +10314,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80296
+  m_Name: pb_Mesh-17392
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10548,7 +10548,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80550
+  m_Name: pb_Mesh-17378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11273,6 +11273,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
         type: 3}
+      propertyPath: zoneCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
+      propertyPath: zonePrefab
+      value: 
+      objectReference: {fileID: 5266844045840035111, guid: c088b56b2f18c000c9c745a11a50af5d,
+        type: 3}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
       propertyPath: zonesCapturedMax
       value: 10
       objectReference: {fileID: 0}
@@ -11546,7 +11557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80374
+  m_Name: pb_Mesh35654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11807,7 +11818,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh79792
+  m_Name: pb_Mesh-17364
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11999,7 +12010,7 @@ PrefabInstance:
         type: 3}
       propertyPath: toolExamples.Array.data[3]
       value: 
-      objectReference: {fileID: 3206933979766202274, guid: 0d694a7aebb7f64feb7bebec252f8967,
+      objectReference: {fileID: 5455370826462973949, guid: eccc6d6b71cc826508766e8eb8cad7e9,
         type: 3}
     - target: {fileID: 1002835779930137184, guid: 5a5ddac42d84c22d4b78e8ec1f4bf116,
         type: 3}
