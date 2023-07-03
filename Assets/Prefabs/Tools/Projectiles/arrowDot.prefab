@@ -378,7 +378,7 @@ MonoBehaviour:
   damage: 60
   multiplier: 1
   headMultiplier: 1
-  owner: {fileID: 0}
+  owners: []
   damageType: 1
   damageDropoffStart: 10
   damageDropoffEnd: 20
@@ -388,6 +388,8 @@ MonoBehaviour:
   bmark: {fileID: 8373390393789196344, guid: 7e7445d4e4e5b6d8daff0432221f46d9, type: 3}
   bmarkTtl: 20
   splashRadius: 0
+  bmarkFollows: 1
+  bmarkAlignsWithProjectile: 1
   tickRate: 2
   damagePerTick: 1
   dotDuration: 8

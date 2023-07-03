@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5266844045840035099}
   - component: {fileID: 5266844045840035109}
   - component: {fileID: 5266844045840035110}
+  - component: {fileID: 6652318608856908722}
   m_Layer: 7
   m_Name: CaptureZoneInvis
   m_TagString: Capture Point
@@ -68,4 +69,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1edf1c2910811d8271717002b861b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  captureTime: 3
+  captureTime: 5
+  capturingTags:
+  - Player
+  - Capper
+  cp: 0
+--- !u!54 &6652318608856908722
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5266844045840035111}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
