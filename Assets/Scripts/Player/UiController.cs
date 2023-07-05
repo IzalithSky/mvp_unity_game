@@ -16,6 +16,7 @@ public class UiController : MonoBehaviour
     public TMP_Text fpsText;
     public TMP_Text velocityText;
     public Rigidbody rb;
+    public CharacterController characterController;
 
     public TMP_Text zoneCapturedText;
     public CapturePointSpawner capturePointSpawner;
@@ -55,7 +56,12 @@ public class UiController : MonoBehaviour
 
         UpdateFps();
         UpdateText(fpsText, fps.ToString("F2"));
-        UpdateText(velocityText, new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2"));
+        if (null != rb) {
+            UpdateText(velocityText, new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2"));
+        }
+        if (null != characterController) {
+            UpdateText(velocityText, new Vector3(characterController.velocity.x, 0f, characterController.velocity.z).magnitude.ToString("F2"));
+        }
 
         if (null != capturePointSpawner)
         {
