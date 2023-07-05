@@ -230,7 +230,8 @@ public class MovementControllerAlt : MonoBehaviour {
                 jtime = Time.time;
                 Throw(Vector3.up, jfrc);
             }
-        } else if (!grounded) {
+        } 
+        if(grounded && !il.GetIsJumping()){
             jumpStarted = false;
         }
     }
