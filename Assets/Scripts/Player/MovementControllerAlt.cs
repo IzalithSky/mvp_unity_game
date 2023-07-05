@@ -45,6 +45,7 @@ public class MovementControllerAlt : MonoBehaviour {
     public float slopeAngle = 0f;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
+    int cnt = 0;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -196,7 +197,7 @@ public class MovementControllerAlt : MonoBehaviour {
         if (bumpingStep) {
             if (grounded || isClimbing) {
                 if (vv < maxcspd) {
-                    rb.AddForce(Vector3.up * stairsClimbingAcceleration, ForceMode.Acceleration);
+                    Accelerate(Vector3.up, stairsClimbingAcceleration);
                 }
             }
         }
@@ -222,22 +223,27 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void AttemptJump() {
-        bool canJump = grounded && !jumpStarted && (Time.time - jtime) > jdelay;
+        cnt += 1;
+        cnt = cnt % 1000;
 
+        if (jumpStarted && grounded && !wasGrounded) {
+            jumpStarted = false;
+        }
+
+        bool canJump = grounded && (Time.time - jtime) > jdelay;
         if (canJump) {
             if (il.GetIsJumping()) {
                 jumpStarted = true;
                 jtime = Time.time;
+
+                Debug.Log("jump, grounded " + grounded + ", wasgrounded " + wasGrounded + ", jumpstarted " + jumpStarted + " " + cnt);
                 Throw(Vector3.up, jfrc);
             }
-        } 
-        if(grounded && !il.GetIsJumping()){
-            jumpStarted = false;
         }
     }
 
     void DoFriction() {
-        if (grounded) {
+        if (grounded && !jumpStarted) {
             if (!(crouchSlidesEnabled && isCrouching)) {
                 if (Vector3.zero == moveDir) {
                     ApplyFriction();
