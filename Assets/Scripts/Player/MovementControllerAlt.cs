@@ -26,6 +26,8 @@ public class MovementControllerAlt : MonoBehaviour {
     CapsuleCollider cc;
     InputListener il;
     public bool grounded = false;
+    public bool wasGrounded = false;
+    public bool jumpStarted = false;
     public bool accelerating = false;
     public bool bumpingStep = false;
     public bool isClimbing = false;
@@ -40,9 +42,6 @@ public class MovementControllerAlt : MonoBehaviour {
     public float maxspd = 0f;
     public float currentAccel = 0f;
     Vector3 moveDir = Vector3.zero;
-    bool wasGrounded = false;
-    bool jumpStarted = false;
-    bool inJump = false;
     public float slopeAngle = 0f;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
@@ -132,29 +131,16 @@ public class MovementControllerAlt : MonoBehaviour {
             out hit,
             cc.bounds.extents.y + groundProbeDistance,
             mask);
+            
         surfaceNormal = GetSurfaceNormalInPoint(transform.position, cc.bounds.extents.y + slopeProbeDistance);
         slopeAngle = Vector3.Angle(surfaceNormal, Vector3.up);
 
         rb.useGravity = !grounded;
 
-        if (jumpStarted && !grounded) {
-            jumpStarted = false;
-            inJump = true;
-        }
-        
-        if (inJump && grounded && !wasGrounded) {
-            inJump = false;
-        }
-
         // CalculateMoveDirectionAndMaxSpeed
         moveDir = (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
         maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? maxrspd : maxwspd;
         currentAccel = grounded ? accel : airaccel;
-        
-        if (inJump) {
-            currentAccel = airaccel;
-            maxspd = maxaspd;
-        }
     }
 
     Vector3 GetSurfaceNormalInPoint(Vector3 position, float distance) {
@@ -236,19 +222,21 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void AttemptJump() {
-        bool canJump = grounded && !inJump && (Time.time - jtime) > jdelay;
+        bool canJump = grounded && !jumpStarted && (Time.time - jtime) > jdelay;
+
         if (canJump) {
             if (il.GetIsJumping()) {
                 jumpStarted = true;
                 jtime = Time.time;
-
                 Throw(Vector3.up, jfrc);
             }
+        } else if (!grounded) {
+            jumpStarted = false;
         }
     }
 
     void DoFriction() {
-        if (grounded && !inJump) {
+        if (grounded) {
             if (!(crouchSlidesEnabled && isCrouching)) {
                 if (Vector3.zero == moveDir) {
                     ApplyFriction();
