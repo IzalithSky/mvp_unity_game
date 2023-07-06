@@ -11503,13 +11503,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
+      propertyPath: accel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
       propertyPath: jdelay
-      value: 0
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
+      propertyPath: airaccel
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
       propertyPath: slopeProbeDistance
-      value: 10
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}

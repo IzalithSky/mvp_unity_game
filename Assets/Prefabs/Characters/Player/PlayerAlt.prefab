@@ -273,9 +273,9 @@ MonoBehaviour:
   maxwspd: 4
   maxaspd: 1
   maxcspd: 4
-  jdelay: 0.2
+  jdelay: 0.1
   frictionCoefficient: 15
-  jfrc: 5
+  jfrc: 8
   accel: 400
   airaccel: 20
   groundColliderMultiplier: 0.75
@@ -288,6 +288,8 @@ MonoBehaviour:
   stairsClimbingAcceleration: 50
   crouchSlidesEnabled: 0
   grounded: 0
+  wasGrounded: 0
+  jumpStarted: 0
   accelerating: 0
   bumpingStep: 0
   isClimbing: 0

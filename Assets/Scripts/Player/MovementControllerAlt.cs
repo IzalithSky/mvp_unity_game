@@ -10,6 +10,7 @@ public class MovementControllerAlt : MonoBehaviour {
     public float jdelay = 0.2f;
     public float frictionCoefficient = 15f;
     public float jfrc = 5f;
+    public float groundingForce = 80;
     public float accel = 400f; 
     public float airaccel = 20f; 
     public float groundColliderMultiplier = .75f; 
@@ -27,10 +28,10 @@ public class MovementControllerAlt : MonoBehaviour {
     InputListener il;
     public bool grounded = false;
     public bool wasGrounded = false;
-    public bool jumpStarted = false;
     public bool accelerating = false;
     public bool bumpingStep = false;
     public bool isClimbing = false;
+    public bool canBeGrounded = true;
     bool isCrouching = false;
     float jtime = 0f;
     float defaultHeight;
@@ -45,7 +46,6 @@ public class MovementControllerAlt : MonoBehaviour {
     public float slopeAngle = 0f;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
-    int cnt = 0;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -72,6 +72,7 @@ public class MovementControllerAlt : MonoBehaviour {
         ProcessCrouching();
         UpdateGroundedStatusAndMoveDirection();
         // StairMovement();
+        AppliyGroundingForce();
         RegularMovement();
         AttemptJump();
         DoFriction();
@@ -153,9 +154,17 @@ public class MovementControllerAlt : MonoBehaviour {
             distance,
             mask))
         {
+            canBeGrounded = true;
             return hit.normal;
         } else {
+            canBeGrounded = false;
             return Vector3.up;
+        }
+    }
+
+    void AppliyGroundingForce() {
+        if (canBeGrounded && isJumpReady()) {
+            Accelerate(-surfaceNormal, groundingForce);
         }
     }
 
@@ -223,27 +232,24 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void AttemptJump() {
-        cnt += 1;
-        cnt = cnt % 1000;
-
-        if (jumpStarted && grounded && !wasGrounded) {
-            jumpStarted = false;
+        if (grounded && !il.GetIsJumping()) {
         }
 
-        bool canJump = grounded && (Time.time - jtime) > jdelay;
+        bool canJump = grounded && isJumpReady();
         if (canJump) {
             if (il.GetIsJumping()) {
-                jumpStarted = true;
                 jtime = Time.time;
-
-                Debug.Log("jump, grounded " + grounded + ", wasgrounded " + wasGrounded + ", jumpstarted " + jumpStarted + " " + cnt);
                 Throw(Vector3.up, jfrc);
             }
         }
     }
 
+    bool isJumpReady() {
+        return (Time.time - jtime) > jdelay;
+    }
+
     void DoFriction() {
-        if (grounded && !jumpStarted) {
+        if (grounded && isJumpReady()) {
             if (!(crouchSlidesEnabled && isCrouching)) {
                 if (Vector3.zero == moveDir) {
                     ApplyFriction();
