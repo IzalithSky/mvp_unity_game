@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementControllerAlt : MonoBehaviour {
-    public float maxrspd = 8f;
-    public float maxwspd = 4f;
-    public float maxaspd = 1f;
-    public float maxcspd = 4f;
-    public float jdelay = 0.2f;
+    public float runSpeed = 8f;
+    public float walkSpeed = 4f;
+    public float airSpeed = 1f;
+    public float climbSpeed = 4f;
+    public float jumpDelay = 0.2f;
     public float frictionCoefficient = 15f;
-    public float jfrc = 5f;
+    public float jumpForce = 5f;
     public float groundingForce = 80;
-    public float accel = 400f; 
-    public float airaccel = 20f; 
+    public float acceleration = 400f; 
+    public float airAcceleration = 20f; 
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float slopeProbeDistance = 1f;
+    public float maxStepHeight = 0.5f;
+    public float minStepDepth = 0.2f;
     public float crouchHeight = 0.9f;
     public float crouchSpeed = 0.1f;
     public Transform cameraHolder;
     public Transform model;
-    public float stairsClimbingAcceleration = 1f;
+    public float stairsClimbingForce = 1f;
     public bool crouchSlidesEnabled = false;
 
     Rigidbody rb;
@@ -30,6 +32,7 @@ public class MovementControllerAlt : MonoBehaviour {
     public bool wasGrounded = false;
     public bool accelerating = false;
     public bool bumpingStep = false;
+    public bool upperProbe = false;
     public bool isClimbing = false;
     public bool canBeGrounded = true;
     bool isCrouching = false;
@@ -71,7 +74,7 @@ public class MovementControllerAlt : MonoBehaviour {
     void FixedUpdate() {
         ProcessCrouching();
         UpdateGroundedStatusAndMoveDirection();
-        // StairMovement();
+        StairMovement();
         AppliyGroundingForce();
         RegularMovement();
         AttemptJump();
@@ -141,8 +144,8 @@ public class MovementControllerAlt : MonoBehaviour {
 
         // CalculateMoveDirectionAndMaxSpeed
         moveDir = (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
-        maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? maxrspd : maxwspd;
-        currentAccel = grounded ? accel : airaccel;
+        maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed;
+        currentAccel = grounded ? acceleration : airAcceleration;
     }
 
     Vector3 GetSurfaceNormalInPoint(Vector3 position, float distance) {
@@ -184,31 +187,45 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void StairMovement() {
+        Vector3 projectedDir = ProjectVectorOntoPlane(moveDir, surfaceNormal).normalized;
+        
         Vector3 stairProbeOrigin = new Vector3(
             transform.position.x, 
-            transform.position.y - cc.bounds.extents.y + cc.radius, 
+            transform.position.y - cc.bounds.extents.y + maxStepHeight / 2, 
             transform.position.z);
         float probeLen = (rb.velocity.magnitude * Time.fixedDeltaTime) + cc.radius;
         RaycastHit hit;
 
         bumpingStep = Physics.SphereCast(
             stairProbeOrigin, 
-            groundColliderMultiplier * cc.radius, 
-            moveDir, 
+            maxStepHeight / 2,
+            projectedDir, 
             out hit, 
             probeLen,
             mask);
 
-        Debug.DrawRay(stairProbeOrigin, moveDir * probeLen, Color.red, 1f);
-
-        float vv = rb.velocity.y;
-
         if (bumpingStep) {
-            if (grounded || isClimbing) {
-                if (vv < maxcspd) {
-                    Accelerate(Vector3.up, stairsClimbingAcceleration);
-                }
+            Debug.DrawRay(stairProbeOrigin, projectedDir * probeLen, Color.red, 1f);
+            
+            Vector3 upperProbeOrigin = new Vector3(
+                transform.position.x, 
+                transform.position.y - cc.bounds.extents.y + maxStepHeight, 
+                transform.position.z);
+            
+            upperProbe = !Physics.Raycast(
+                upperProbeOrigin, 
+                projectedDir, 
+                out hit, 
+                minStepDepth + cc.radius,
+                mask);
+
+            if (upperProbe) {
+                Debug.DrawRay(upperProbeOrigin, projectedDir * (minStepDepth + cc.radius), Color.red, 1f);
+
+                Accelerate(Vector3.up, stairsClimbingForce);
             }
+        } else {
+            upperProbe = false;
         }
     }
 
@@ -239,13 +256,13 @@ public class MovementControllerAlt : MonoBehaviour {
         if (canJump) {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
-                Throw(Vector3.up, jfrc);
+                Throw(Vector3.up, jumpForce);
             }
         }
     }
 
     bool isJumpReady() {
-        return (Time.time - jtime) > jdelay;
+        return (Time.time - jtime) > jumpDelay;
     }
 
     void DoFriction() {
