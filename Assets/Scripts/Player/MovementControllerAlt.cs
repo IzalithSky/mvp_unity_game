@@ -18,6 +18,7 @@ public class MovementControllerAlt : MonoBehaviour {
     public float slopeProbeDistance = 1f;
     public float maxStepHeight = 0.5f;
     public float minStepDepth = 0.2f;
+    public int stepProbesCount = 3;
     public float crouchHeight = 0.9f;
     public float crouchSpeed = 0.1f;
     public Transform cameraHolder;
@@ -31,8 +32,8 @@ public class MovementControllerAlt : MonoBehaviour {
     public bool grounded = false;
     public bool wasGrounded = false;
     public bool accelerating = false;
-    public bool bumpingStep = false;
-    public bool upperProbe = false;
+    public bool isSteppingUp = false;
+    public bool isJumping = false;
     public bool isClimbing = false;
     public bool canBeGrounded = true;
     bool isCrouching = false;
@@ -75,10 +76,12 @@ public class MovementControllerAlt : MonoBehaviour {
         ProcessCrouching();
         UpdateGroundedStatusAndMoveDirection();
         StairMovement();
-        AppliyGroundingForce();
+        
         RegularMovement();
+        
         AttemptJump();
-        DoFriction();
+
+        ExecuteMovements();
     }
 
     void ProcessCrouching() {
@@ -165,12 +168,6 @@ public class MovementControllerAlt : MonoBehaviour {
         }
     }
 
-    void AppliyGroundingForce() {
-        if (canBeGrounded && isJumpReady()) {
-            Accelerate(-surfaceNormal, groundingForce);
-        }
-    }
-
     bool IsMovingForward() {
         return Vector3.Dot(rb.transform.forward, moveDir) > 0.5f;
     }
@@ -187,45 +184,53 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void StairMovement() {
+        isSteppingUp = false;
+
         Vector3 projectedDir = ProjectVectorOntoPlane(moveDir, surfaceNormal).normalized;
         
         Vector3 stairProbeOrigin = new Vector3(
             transform.position.x, 
-            transform.position.y - cc.bounds.extents.y + maxStepHeight / 2, 
+            transform.position.y - cc.bounds.extents.y, 
             transform.position.z);
-        float probeLen = (rb.velocity.magnitude * Time.fixedDeltaTime) + cc.radius;
+        float probeLen = minStepDepth + cc.radius;
         RaycastHit hit;
 
-        bumpingStep = Physics.SphereCast(
-            stairProbeOrigin, 
-            maxStepHeight / 2,
-            projectedDir, 
-            out hit, 
-            probeLen,
-            mask);
+        bool bumpingStep = false;
+        for (int i = 0; i < stepProbesCount; i++)
+        {
+            Vector3 probeOrigin = stairProbeOrigin + (Vector3.up * maxStepHeight / (stepProbesCount + 1)) * (i + 1);
+
+            if (Physics.Raycast(
+                probeOrigin, 
+                projectedDir, 
+                out hit, 
+                probeLen, 
+                mask))
+            {
+                bumpingStep = true;
+                Debug.DrawRay(probeOrigin, projectedDir * probeLen, Color.red, 1f);
+                break;
+            }
+        }
 
         if (bumpingStep) {
-            Debug.DrawRay(stairProbeOrigin, projectedDir * probeLen, Color.red, 1f);
-            
             Vector3 upperProbeOrigin = new Vector3(
                 transform.position.x, 
                 transform.position.y - cc.bounds.extents.y + maxStepHeight, 
                 transform.position.z);
             
-            upperProbe = !Physics.Raycast(
+            bool upperProbe = !Physics.Raycast(
                 upperProbeOrigin, 
                 projectedDir, 
                 out hit, 
-                minStepDepth + cc.radius,
+                probeLen,
                 mask);
 
             if (upperProbe) {
-                Debug.DrawRay(upperProbeOrigin, projectedDir * (minStepDepth + cc.radius), Color.red, 1f);
+                Debug.DrawRay(upperProbeOrigin, projectedDir * probeLen, Color.red, 1f);
 
-                Accelerate(Vector3.up, stairsClimbingForce);
+                isSteppingUp = true;
             }
-        } else {
-            upperProbe = false;
         }
     }
 
@@ -249,6 +254,8 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void AttemptJump() {
+        isJumping = false;
+
         if (grounded && !il.GetIsJumping()) {
         }
 
@@ -256,25 +263,13 @@ public class MovementControllerAlt : MonoBehaviour {
         if (canJump) {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
-                Throw(Vector3.up, jumpForce);
+                isJumping = true;
             }
         }
     }
 
     bool isJumpReady() {
         return (Time.time - jtime) > jumpDelay;
-    }
-
-    void DoFriction() {
-        if (grounded && isJumpReady()) {
-            if (!(crouchSlidesEnabled && isCrouching)) {
-                if (Vector3.zero == moveDir) {
-                    ApplyFriction();
-                } else {
-                    ApplyFrictionCounterDrift();
-                }
-            }
-        }
     }
 
     void OnTriggerEnter(Collider other) {
@@ -286,6 +281,30 @@ public class MovementControllerAlt : MonoBehaviour {
     void OnTriggerExit(Collider other) {
         if (other.CompareTag("Ladder")) {
             isClimbing = false;
+        }
+    }
+
+    void ExecuteMovements() {
+        if (isJumping) {
+            Throw(Vector3.up, jumpForce);
+        }
+
+        if (isSteppingUp && isJumpReady()) {
+            Accelerate(Vector3.up, stairsClimbingForce);
+        }
+
+        if (canBeGrounded && !isSteppingUp && isJumpReady()) {
+            Accelerate(-surfaceNormal, groundingForce);
+        }
+
+        if (grounded && isJumpReady()) {
+            if (!(crouchSlidesEnabled && isCrouching)) {
+                if (Vector3.zero == moveDir) {
+                    ApplyFriction();
+                } else {
+                    ApplyFrictionCounterDrift();
+                }
+            }
         }
     }
 

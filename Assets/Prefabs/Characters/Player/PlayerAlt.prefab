@@ -269,30 +269,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18e76eab0f7da7a4a6df846c057d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxrspd: 8
-  maxwspd: 4
-  maxaspd: 1
-  maxcspd: 4
-  jdelay: 0.1
-  frictionCoefficient: 15
-  jfrc: 8
-  accel: 400
-  airaccel: 20
-  groundColliderMultiplier: 0.75
-  groundProbeDistance: 0.05
-  slopeProbeDistance: 1
+  runSpeed: 8
+  walkSpeed: 4
+  airSpeed: 1
+  climbSpeed: 4
+  jumpDelay: 0.2
+  frictionCoefficient: 35
+  jumpForce: 8
+  groundingForce: 80
+  acceleration: 50
+  airAcceleration: 20
+  groundColliderMultiplier: 0.5
+  groundProbeDistance: 0
+  slopeProbeDistance: 0.5
+  maxStepHeight: 0.5
+  minStepDepth: 0.2
+  stepProbesCount: 5
   crouchHeight: 0.9
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  stairsClimbingAcceleration: 50
+  stairsClimbingForce: 25
   crouchSlidesEnabled: 0
   grounded: 0
   wasGrounded: 0
-  jumpStarted: 0
   accelerating: 0
-  bumpingStep: 0
+  isSteppingUp: 0
+  isJumping: 0
   isClimbing: 0
+  canBeGrounded: 1
   maxspd: 0
   currentAccel: 0
   slopeAngle: 0

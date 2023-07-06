@@ -11523,6 +11523,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
+      propertyPath: acceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
       propertyPath: slopeProbeDistance
       value: 0.5
       objectReference: {fileID: 0}
@@ -11534,7 +11539,7 @@ PrefabInstance:
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
       propertyPath: stairsClimbingForce
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 820337936448226673, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
