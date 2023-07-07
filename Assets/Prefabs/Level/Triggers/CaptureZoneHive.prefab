@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5266844045840035110}
   - component: {fileID: 6652318608856908722}
   m_Layer: 7
-  m_Name: CaptureZoneInvis
+  m_Name: CaptureZoneHive
   m_TagString: Capture Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -117,7 +117,7 @@ public class MovementController : MonoBehaviour {
 
     void StandUp() {
         if (isCrouching) {
-            if (!Physics.Raycast(transform.position, Vector3.up, defaultHeight - crouchHeight)) {
+            if (!Physics.Raycast(transform.position, Vector3.up, defaultHeight - crouchHeight, mask)) {
                 targetHeight = defaultHeight;
                 targetYOffset = 0f;
                 targetYScale = originalModelScaleY;

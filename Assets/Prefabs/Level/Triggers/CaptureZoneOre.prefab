@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &463530693913782788
+--- !u!1 &3626587320356276580
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5405119750347179655}
-  - component: {fileID: 1094111568000705479}
-  - component: {fileID: 5094322748897828259}
-  m_Layer: 7
+  - component: {fileID: 1323099344334131433}
+  - component: {fileID: 7358473008394843960}
+  - component: {fileID: 3222432827805576499}
+  m_Layer: 13
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5405119750347179655
+--- !u!4 &1323099344334131433
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463530693913782788}
+  m_GameObject: {fileID: 3626587320356276580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.15, z: 0}
-  m_LocalScale: {x: 1, y: 0.15, z: 1}
+  m_LocalScale: {x: 1, y: 0.14999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5266844045840035098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1094111568000705479
+--- !u!33 &7358473008394843960
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463530693913782788}
+  m_GameObject: {fileID: 3626587320356276580}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5094322748897828259
+--- !u!23 &3222432827805576499
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463530693913782788}
+  m_GameObject: {fileID: 3626587320356276580}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 5266844045840035099}
   - component: {fileID: 5266844045840035109}
   - component: {fileID: 5266844045840035110}
-  - component: {fileID: 8963353572485622887}
-  m_Layer: 7
-  m_Name: CaptureZone
+  - component: {fileID: 6652318608856908722}
+  m_Layer: 13
+  m_Name: CaptureZoneOre
   m_TagString: Capture Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,10 +112,10 @@ Transform:
   m_GameObject: {fileID: 5266844045840035111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 2, z: 4}
+  m_LocalScale: {x: 6, y: 2, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5405119750347179655}
+  - {fileID: 1323099344334131433}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -153,11 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1edf1c2910811d8271717002b861b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  captureTime: 3
+  captureTime: 5
   capturingTags:
-  - Capper
+  - Drill
   cp: 0
---- !u!54 &8963353572485622887
+--- !u!54 &6652318608856908722
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
