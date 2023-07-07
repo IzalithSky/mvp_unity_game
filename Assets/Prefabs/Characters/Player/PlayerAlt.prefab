@@ -282,8 +282,8 @@ MonoBehaviour:
   groundColliderMultiplier: 0.5
   groundProbeDistance: 0
   slopeProbeDistance: 0.5
-  maxStepHeight: 0.5
-  minStepDepth: 0.2
+  maxStepHeight: 0.8
+  minStepDepth: 0.5
   stepProbesCount: 5
   crouchHeight: 0.9
   crouchSpeed: 0.1

@@ -6,10 +6,10 @@ public class MovementControllerAlt : MonoBehaviour {
     public float runSpeed = 8f;
     public float walkSpeed = 4f;
     public float airSpeed = 1f;
-    public float climbSpeed = 4f;
     public float jumpDelay = 0.2f;
     public float frictionCoefficient = 15f;
-    public float jumpForce = 5f;
+    public float jumpForce = 8f;
+    public float ladderJumpForce = 2f;
     public float groundingForce = 80;
     public float acceleration = 400f; 
     public float airAcceleration = 20f; 
@@ -30,7 +30,6 @@ public class MovementControllerAlt : MonoBehaviour {
     CapsuleCollider cc;
     InputListener il;
     public bool grounded = false;
-    public bool wasGrounded = false;
     public bool accelerating = false;
     public bool isSteppingUp = false;
     public bool isJumping = false;
@@ -47,7 +46,6 @@ public class MovementControllerAlt : MonoBehaviour {
     public float maxspd = 0f;
     public float currentAccel = 0f;
     Vector3 moveDir = Vector3.zero;
-    public float slopeAngle = 0f;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
 
@@ -128,8 +126,6 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void UpdateGroundedStatusAndMoveDirection() {
-        wasGrounded = grounded;
-
         RaycastHit hit;
 
         grounded = Physics.SphereCast(
@@ -139,23 +135,28 @@ public class MovementControllerAlt : MonoBehaviour {
             out hit,
             cc.bounds.extents.y + groundProbeDistance,
             mask);
+        
+        rb.useGravity = !grounded && !isClimbing;
             
         surfaceNormal = GetSurfaceNormalInPoint(transform.position, cc.bounds.extents.y + slopeProbeDistance);
-        slopeAngle = Vector3.Angle(surfaceNormal, Vector3.up);
+        Debug.DrawRay(transform.position, surfaceNormal * 2f, Color.green);
 
-        rb.useGravity = !grounded;
+        Quaternion planeRotation = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
 
-        // CalculateMoveDirectionAndMaxSpeed
-        moveDir = (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
-        maxspd = grounded && (!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed;
+        moveDir = 
+            planeRotation * 
+            (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
+        maxspd = grounded ? ((!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed) : airSpeed;
         currentAccel = grounded ? acceleration : airAcceleration;
     }
 
     Vector3 GetSurfaceNormalInPoint(Vector3 position, float distance) {
+        Debug.DrawRay(position, isClimbing ? rb.transform.forward * distance : Vector3.down, Color.cyan, 1f);
+        
         RaycastHit hit;
         if (Physics.Raycast(
             position,
-            Vector3.down,
+            isClimbing ? rb.transform.forward : Vector3.down,
             out hit,
             distance,
             mask))
@@ -172,21 +173,8 @@ public class MovementControllerAlt : MonoBehaviour {
         return Vector3.Dot(rb.transform.forward, moveDir) > 0.5f;
     }
 
-    Vector3 ProjectVectorOntoPlane(Vector3 vector, Vector3 planeNormal)
-    {
-        // Calculate the dot product of the vector and the plane normal
-        float dotProduct = Vector3.Dot(vector, planeNormal);
-
-        // Calculate the projection of the vector onto the plane
-        Vector3 projection = vector - dotProduct * planeNormal;
-
-        return projection;
-    }
-
     void StairMovement() {
         isSteppingUp = false;
-
-        Vector3 projectedDir = ProjectVectorOntoPlane(moveDir, surfaceNormal).normalized;
         
         Vector3 stairProbeOrigin = new Vector3(
             transform.position.x, 
@@ -202,13 +190,13 @@ public class MovementControllerAlt : MonoBehaviour {
 
             if (Physics.Raycast(
                 probeOrigin, 
-                projectedDir, 
+                moveDir, 
                 out hit, 
                 probeLen, 
                 mask))
             {
                 bumpingStep = true;
-                Debug.DrawRay(probeOrigin, projectedDir * probeLen, Color.red, 1f);
+                Debug.DrawRay(probeOrigin, moveDir * probeLen, Color.red, 1f);
                 break;
             }
         }
@@ -221,13 +209,13 @@ public class MovementControllerAlt : MonoBehaviour {
             
             bool upperProbe = !Physics.Raycast(
                 upperProbeOrigin, 
-                projectedDir, 
+                moveDir, 
                 out hit, 
                 probeLen,
                 mask);
 
             if (upperProbe) {
-                Debug.DrawRay(upperProbeOrigin, projectedDir * probeLen, Color.red, 1f);
+                Debug.DrawRay(upperProbeOrigin, moveDir * probeLen, Color.red, 1f);
 
                 isSteppingUp = true;
             }
@@ -235,7 +223,7 @@ public class MovementControllerAlt : MonoBehaviour {
     }
 
     void RegularMovement() {
-        Vector3 v = ProjectVectorOntoPlane(rb.velocity, surfaceNormal);
+        Vector3 v = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         float velocityInDirection = Vector3.Dot(v, moveDir);
         
         float dv = maxspd - velocityInDirection;
@@ -246,21 +234,16 @@ public class MovementControllerAlt : MonoBehaviour {
             float requiredAccel = dv / Time.fixedDeltaTime;
             requiredAccel = requiredAccel > currentAccel ? currentAccel : requiredAccel;
             
-            Vector3 nv = ProjectVectorOntoPlane(moveDir, surfaceNormal).normalized;
-            Accelerate(nv, requiredAccel);
+            Accelerate(moveDir, requiredAccel);
 
-            Debug.DrawRay(transform.position, nv * requiredAccel, Color.green, 1f);
+            Debug.DrawRay(transform.position, moveDir * requiredAccel, Color.green, 1f);
         }
     }
 
     void AttemptJump() {
         isJumping = false;
 
-        if (grounded && !il.GetIsJumping()) {
-        }
-
-        bool canJump = grounded && isJumpReady();
-        if (canJump) {
+        if ((grounded || isClimbing) && isJumpReady()) {
             if (il.GetIsJumping()) {
                 jtime = Time.time;
                 isJumping = true;
@@ -286,18 +269,18 @@ public class MovementControllerAlt : MonoBehaviour {
 
     void ExecuteMovements() {
         if (isJumping) {
-            Throw(Vector3.up, jumpForce);
+            Throw(isClimbing ? -rb.transform.forward : Vector3.up, isClimbing ? ladderJumpForce : jumpForce);
         }
 
-        if (isSteppingUp && isJumpReady()) {
+        if (isSteppingUp && isJumpReady() && !isClimbing) {
             Accelerate(Vector3.up, stairsClimbingForce);
         }
 
-        if (canBeGrounded && !isSteppingUp && isJumpReady()) {
+        if (canBeGrounded && !isSteppingUp && isJumpReady() && !isClimbing) {
             Accelerate(-surfaceNormal, groundingForce);
         }
 
-        if (grounded && isJumpReady()) {
+        if ((grounded || isClimbing) && isJumpReady()) {
             if (!(crouchSlidesEnabled && isCrouching)) {
                 if (Vector3.zero == moveDir) {
                     ApplyFriction();
@@ -310,7 +293,7 @@ public class MovementControllerAlt : MonoBehaviour {
 
     private void ApplyFriction()
     {
-        Vector3 inPlainVelocity = ProjectVectorOntoPlane(rb.velocity, surfaceNormal);
+        Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         Vector3 friction = -inPlainVelocity * frictionCoefficient;
         rb.AddForce(friction, ForceMode.Force);
         Debug.DrawRay(transform.position, -inPlainVelocity * frictionCoefficient, Color.red, 1f);
@@ -318,8 +301,8 @@ public class MovementControllerAlt : MonoBehaviour {
 
     private void ApplyFrictionCounterDrift()
     {
-        Vector3 inPlainVelocity = ProjectVectorOntoPlane(rb.velocity, surfaceNormal);
-        Vector3 driftDir = -(inPlainVelocity - ProjectVectorOntoPlane(moveDir, surfaceNormal).normalized * maxspd);
+        Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
+        Vector3 driftDir = -(inPlainVelocity - moveDir * maxspd);
 
         // Apply friction proportional to the direction difference
         Vector3 friction = driftDir * frictionCoefficient;
