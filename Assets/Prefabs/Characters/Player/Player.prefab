@@ -290,7 +290,7 @@ MonoBehaviour:
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  stairsClimbingForce: 25
+  stairsClimbingForce: 35
   crouchSlidesEnabled: 0
   grounded: 0
   accelerating: 0
@@ -341,7 +341,6 @@ MonoBehaviour:
   fpsText: {fileID: 4924045478803948961}
   velocityText: {fileID: 8252447082746828873}
   rb: {fileID: 1002835779930137195}
-  characterController: {fileID: 0}
   zoneCapturedText: {fileID: 6036395605185486772}
   capturePointSpawner: {fileID: 0}
   directionIndicators:
