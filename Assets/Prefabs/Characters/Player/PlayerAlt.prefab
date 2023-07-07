@@ -271,11 +271,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 8
   walkSpeed: 4
-  airSpeed: 1
-  climbSpeed: 4
+  airSpeed: 2
+  climbingSpeed: 4
   jumpDelay: 0.2
   frictionCoefficient: 35
   jumpForce: 8
+  ladderJumpForce: 2
   groundingForce: 80
   acceleration: 50
   airAcceleration: 20
@@ -283,7 +284,7 @@ MonoBehaviour:
   groundProbeDistance: 0
   slopeProbeDistance: 0.5
   maxStepHeight: 0.8
-  minStepDepth: 0.5
+  minStepDepth: 0.2
   stepProbesCount: 5
   crouchHeight: 0.9
   crouchSpeed: 0.1
@@ -292,7 +293,6 @@ MonoBehaviour:
   stairsClimbingForce: 25
   crouchSlidesEnabled: 0
   grounded: 0
-  wasGrounded: 0
   accelerating: 0
   isSteppingUp: 0
   isJumping: 0
@@ -300,7 +300,6 @@ MonoBehaviour:
   canBeGrounded: 1
   maxspd: 0
   currentAccel: 0
-  slopeAngle: 0
 --- !u!114 &1002835779930137190
 MonoBehaviour:
   m_ObjectHideFlags: 0
