@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayableScenes/Donjon.unity
     guid: a465b7d0b80fa043ba822c1654edb3c6
   - enabled: 1
+    path: Assets/Scenes/PlayableScenes/Planes.unity
+    guid: 163d9406272ed6c9d8aa194ce3219c18
+  - enabled: 1
     path: Assets/Scenes/MenuScenes/LoseScene.unity
     guid: 05489554ee2ee6afa9a8a16e481d7b96
   - enabled: 1

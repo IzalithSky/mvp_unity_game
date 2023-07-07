@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 1002835779930137194}
   - component: {fileID: 1002835779930137195}
   - component: {fileID: 1002835779930137188}
-  - component: {fileID: 1002835779930137189}
+  - component: {fileID: 820337936448226673}
   - component: {fileID: 1002835779930137190}
   - component: {fileID: 1002835779930137191}
   - component: {fileID: 1002835779930137184}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolListLength: 11
---- !u!114 &1002835779930137189
+--- !u!114 &820337936448226673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,31 +266,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1002835779930137186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dbe016451fa02d38b8596e0201786a9, type: 3}
+  m_Script: {fileID: 11500000, guid: b18e76eab0f7da7a4a6df846c057d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxrspd: 10
-  maxwspd: 5
-  maxaspd: 2
-  maxcspd: 2
-  jdelay: 0.5
-  bfactor: 10
-  jfrc: 8
-  accel: 500
-  airaccel: 50
-  groundColliderMultiplier: 0.75
-  groundProbeDistance: 0.05
+  runSpeed: 8
+  walkSpeed: 4
+  airSpeed: 2
+  climbingSpeed: 4
+  jumpDelay: 0.2
+  frictionCoefficient: 35
+  jumpForce: 8
+  ladderJumpForce: 2
+  groundingForce: 80
+  acceleration: 50
+  airAcceleration: 20
+  groundColliderMultiplier: 0.5
+  groundProbeDistance: 0
+  slopeProbeDistance: 0.5
+  maxStepHeight: 0.8
+  minStepDepth: 0.2
+  stepProbesCount: 5
   crouchHeight: 0.9
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  stairsClimbingAcceleration: 50
+  stairsClimbingForce: 25
   crouchSlidesEnabled: 0
   grounded: 0
   accelerating: 0
-  bumpingStep: 0
-  bumpingStepBack: 0
+  isSteppingUp: 0
+  isJumping: 0
   isClimbing: 0
+  canBeGrounded: 1
+  maxspd: 0
+  currentAccel: 0
 --- !u!114 &1002835779930137190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +341,7 @@ MonoBehaviour:
   fpsText: {fileID: 4924045478803948961}
   velocityText: {fileID: 8252447082746828873}
   rb: {fileID: 1002835779930137195}
+  characterController: {fileID: 0}
   zoneCapturedText: {fileID: 6036395605185486772}
   capturePointSpawner: {fileID: 0}
   directionIndicators:
