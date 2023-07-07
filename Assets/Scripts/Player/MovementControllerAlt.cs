@@ -6,6 +6,7 @@ public class MovementControllerAlt : MonoBehaviour {
     public float runSpeed = 8f;
     public float walkSpeed = 4f;
     public float airSpeed = 1f;
+    public float climbingSpeed = 4f;
     public float jumpDelay = 0.2f;
     public float frictionCoefficient = 15f;
     public float jumpForce = 8f;
@@ -136,7 +137,7 @@ public class MovementControllerAlt : MonoBehaviour {
             cc.bounds.extents.y + groundProbeDistance,
             mask);
         
-        rb.useGravity = !grounded && !isClimbing;
+        rb.useGravity = (!grounded && !isClimbing) || (crouchSlidesEnabled && isCrouching);
             
         surfaceNormal = GetSurfaceNormalInPoint(transform.position, cc.bounds.extents.y + slopeProbeDistance);
         Debug.DrawRay(transform.position, surfaceNormal * 2f, Color.green);
@@ -146,7 +147,11 @@ public class MovementControllerAlt : MonoBehaviour {
         moveDir = 
             planeRotation * 
             (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
-        maxspd = grounded ? ((!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed) : airSpeed;
+        
+        maxspd = grounded ?
+            ((!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed) 
+            : isClimbing ? climbingSpeed : airSpeed;
+        
         currentAccel = grounded ? acceleration : airAcceleration;
     }
 
