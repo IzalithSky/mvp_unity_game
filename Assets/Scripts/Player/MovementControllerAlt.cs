@@ -272,7 +272,7 @@ public class MovementControllerAlt : MonoBehaviour {
             Throw(isClimbing ? -rb.transform.forward : Vector3.up, isClimbing ? ladderJumpForce : jumpForce);
         }
 
-        if (isSteppingUp && isJumpReady() && !isClimbing) {
+        if (isSteppingUp && !isClimbing) {
             Accelerate(Vector3.up, stairsClimbingForce);
         }
 
