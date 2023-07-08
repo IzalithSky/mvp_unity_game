@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolListLength: 11
+  toggleCrouch: 0
+  toggleWalk: 0
 --- !u!114 &820337936448226673
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 public class InputListener : MonoBehaviour
 {
     public int toolListLength = 6;
+    public bool toggleCrouch = false;
+    public bool toggleWalk = false;
 
     public float sensHorizontal {
         get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
@@ -102,8 +104,21 @@ public class InputListener : MonoBehaviour
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
-        isWalking = (Input.GetAxisRaw("Walk") != 0f);
-        isCrouching = Input.GetAxisRaw("Crouch") != 0f;
+        if (toggleWalk) {
+            if (Input.GetButtonDown("Walk")) {
+                isWalking = !isWalking;
+            }
+        } else {
+            isWalking = (Input.GetAxisRaw("Walk") != 0f);
+        }
+
+        if (toggleCrouch) {
+            if (Input.GetButtonDown("Crouch")) {
+                isCrouching = !isCrouching;
+            }
+        } else {
+            isCrouching = (Input.GetAxisRaw("Crouch") != 0f);
+        }
         isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
         isFiring = Input.GetAxis("Fire1") != 0f;
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;

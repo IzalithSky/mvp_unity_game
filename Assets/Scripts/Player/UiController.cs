@@ -58,7 +58,7 @@ public class UiController : MonoBehaviour
         UpdateFps();
         UpdateText(fpsText, fps.ToString("F2"));
         if (null != rb) {
-            UpdateText(velocityText, new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude.ToString("F2"));
+            UpdateText(velocityText, (3.6 * rb.velocity.magnitude).ToString("F0"));
         }
 
         if (null != capturePointSpawner)
