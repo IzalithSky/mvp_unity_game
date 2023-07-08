@@ -58,7 +58,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -439,6 +439,7 @@ MonoBehaviour:
   windSoundSource: {fileID: 7249636028884305055}
   slidingSoundSource: {fileID: 2925377219689226131}
   ambientSoundSource: {fileID: 2756895191129735423}
+  stepsAudioSource: {fileID: 0}
   scaleVolume: 1
   maxSpeed: 50
   minSpeedForWindSound: 10
@@ -1229,7 +1230,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 90
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
