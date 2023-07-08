@@ -38,7 +38,7 @@ public class ToolsController : MonoBehaviour
     }
 
     void Update() {
-        for(int i = 0; i < inputListener.toolListLength; i++) {
+        for(int i = 0; i < tools.Count; i++) {
             if (inputListener.GetIsTool(i)) {
                 if (tools.Count > i) {
                     SetTool(i);

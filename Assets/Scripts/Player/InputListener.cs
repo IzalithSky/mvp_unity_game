@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputListener : MonoBehaviour
 {
-    public int toolListLength = 6;
     public bool toggleCrouch = false;
     public bool toggleWalk = false;
 
@@ -102,8 +101,12 @@ public class InputListener : MonoBehaviour
 
     void LateUpdate()
     {
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
+        if (Input.GetButtonDown("Walk Toggle")) {
+            toggleWalk = !isWalking;
+        }
+        if (Input.GetButtonDown("Crouch Toggle")) {
+            toggleCrouch = !isCrouching;
+        }
         if (toggleWalk) {
             if (Input.GetButtonDown("Walk")) {
                 isWalking = !isWalking;
@@ -111,7 +114,6 @@ public class InputListener : MonoBehaviour
         } else {
             isWalking = (Input.GetAxisRaw("Walk") != 0f);
         }
-
         if (toggleCrouch) {
             if (Input.GetButtonDown("Crouch")) {
                 isCrouching = !isCrouching;
@@ -119,10 +121,15 @@ public class InputListener : MonoBehaviour
         } else {
             isCrouching = (Input.GetAxisRaw("Crouch") != 0f);
         }
-        isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
-        isFiring = Input.GetAxis("Fire1") != 0f;
+        
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        inputVertical = Input.GetAxisRaw("Vertical");
+                
         cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
         cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
+        
+        isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
+        isFiring = Input.GetAxis("Fire1") != 0f;
         scrollInput = Input.GetAxis("Zoom");
         isNext = Input.GetAxisRaw("ToolNext") != 0f;
         isPrev = Input.GetAxisRaw("ToolPrev") != 0f;
