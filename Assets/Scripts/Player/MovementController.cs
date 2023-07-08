@@ -36,7 +36,7 @@ public class MovementController : MonoBehaviour {
     public bool isJumping = false;
     public bool isClimbing = false;
     public bool canBeGrounded = true;
-    bool isCrouching = false;
+    public bool isCrouching = false;
     float jtime = 0f;
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
