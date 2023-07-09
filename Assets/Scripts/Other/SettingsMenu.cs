@@ -34,7 +34,7 @@ public class SettingsMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (inputListener.GetIsMenu())
         {
             if (isMenuActive)
             {
