@@ -11,7 +11,7 @@ public class MovementController : MonoBehaviour {
     public float frictionCoefficient = 15f;
     public float jumpForce = 8f;
     public float ladderJumpForce = 2f;
-    public float groundingForce = 80;
+    public float groundingAcceleration = 80f;
     public float acceleration = 400f; 
     public float airAcceleration = 20f; 
     public float groundColliderMultiplier = .75f; 
@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour {
     public float crouchSpeed = 0.1f;
     public Transform cameraHolder;
     public Transform model;
-    public float stairsClimbingForce = 1f;
+    public float stairsClimbingAcceleration = 35f;
     public bool crouchSlidesEnabled = false;
 
     Rigidbody rb;
@@ -238,7 +238,6 @@ public class MovementController : MonoBehaviour {
         accelerating = Vector3.zero != moveDir && dv > 0;
         
         if (accelerating) {
-            // Calculate necessary acceleration and then force
             float requiredAccel = dv / Time.fixedDeltaTime;
             requiredAccel = requiredAccel > currentAccel ? currentAccel : requiredAccel;
             
@@ -277,15 +276,17 @@ public class MovementController : MonoBehaviour {
 
     void ExecuteMovements() {
         if (isJumping) {
-            Throw(isClimbing ? -rb.transform.forward : Vector3.up, isClimbing ? ladderJumpForce : jumpForce);
+            rb.AddForce(
+                (isClimbing ? -rb.transform.forward : Vector3.up) * (isClimbing ? ladderJumpForce : jumpForce), 
+                ForceMode.Impulse);
         }
 
         if (isSteppingUp && !isClimbing) {
-            surfaceAcceleraton += Vector3.up * stairsClimbingForce;
+            surfaceAcceleraton += Vector3.up * stairsClimbingAcceleration;
         }
 
         if (canBeGrounded && !isSteppingUp && isJumpReady() && !isClimbing) {
-            surfaceAcceleraton += (-surfaceNormal * groundingForce);
+            surfaceAcceleraton += (-surfaceNormal * groundingAcceleration);
         }
 
         if ((grounded || isClimbing) && isJumpReady()) {
@@ -298,7 +299,7 @@ public class MovementController : MonoBehaviour {
             }
         }
 
-        Accelerate(surfaceAcceleraton, 1f);
+        rb.AddForce(surfaceAcceleraton, ForceMode.Force);
     }
 
     private void ApplyFriction()
@@ -320,18 +321,5 @@ public class MovementController : MonoBehaviour {
         surfaceAcceleraton += friction;
         
         Debug.DrawRay(transform.position, driftDir * frictionCoefficient, Color.blue, 1f);
-    }
-
-    public void Accelerate(Vector3 direction, float acceleration)
-    {
-        // assuming that the direction is a unit vector
-        Vector3 force = direction * acceleration;
-        rb.AddForce(force, ForceMode.Force);
-    }
-
-    public void Throw(Vector3 direction, float impulseForce)
-    {
-        // assuming that the direction is a unit vector
-        rb.AddForce(direction * impulseForce, ForceMode.Impulse);
     }
 }
