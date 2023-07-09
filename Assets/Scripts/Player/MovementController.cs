@@ -49,6 +49,7 @@ public class MovementController : MonoBehaviour {
     Vector3 moveDir = Vector3.zero;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
+    Vector3 surfaceAcceleraton = Vector3.zero;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -72,6 +73,8 @@ public class MovementController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        surfaceAcceleraton = Vector3.zero;
+
         ProcessCrouching();
         UpdateGroundedStatusAndMoveDirection();
         StairMovement();
@@ -239,7 +242,7 @@ public class MovementController : MonoBehaviour {
             float requiredAccel = dv / Time.fixedDeltaTime;
             requiredAccel = requiredAccel > currentAccel ? currentAccel : requiredAccel;
             
-            Accelerate(moveDir, requiredAccel);
+            surfaceAcceleraton += moveDir * requiredAccel;
 
             Debug.DrawRay(transform.position, moveDir * requiredAccel, Color.green, 1f);
         }
@@ -278,11 +281,11 @@ public class MovementController : MonoBehaviour {
         }
 
         if (isSteppingUp && !isClimbing) {
-            Accelerate(Vector3.up, stairsClimbingForce);
+            surfaceAcceleraton += Vector3.up * stairsClimbingForce;
         }
 
         if (canBeGrounded && !isSteppingUp && isJumpReady() && !isClimbing) {
-            Accelerate(-surfaceNormal, groundingForce);
+            surfaceAcceleraton += (-surfaceNormal * groundingForce);
         }
 
         if ((grounded || isClimbing) && isJumpReady()) {
@@ -294,13 +297,16 @@ public class MovementController : MonoBehaviour {
                 }
             }
         }
+
+        Accelerate(surfaceAcceleraton, 1f);
     }
 
     private void ApplyFriction()
     {
         Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         Vector3 friction = -inPlainVelocity * frictionCoefficient;
-        rb.AddForce(friction, ForceMode.Force);
+        surfaceAcceleraton += friction;
+
         Debug.DrawRay(transform.position, -inPlainVelocity * frictionCoefficient, Color.red, 1f);
     }
 
@@ -311,7 +317,7 @@ public class MovementController : MonoBehaviour {
 
         // Apply friction proportional to the direction difference
         Vector3 friction = driftDir * frictionCoefficient;
-        rb.AddForce(friction, ForceMode.Force);
+        surfaceAcceleraton += friction;
         
         Debug.DrawRay(transform.position, driftDir * frictionCoefficient, Color.blue, 1f);
     }
