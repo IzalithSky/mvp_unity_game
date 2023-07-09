@@ -12,13 +12,17 @@ public class AudioPlayer : MonoBehaviour
 
     private void Update() {
         if (inputListener.GetIsPlayNext()) {
-            PlayClip(currentClipIndex);
-            currentClipIndex = (currentClipIndex + 1) % audioClips.Length;  // Cycle through the audio clips
+            PlayClipNext();
         }
 
         if (inputListener.GetIsPlayStop()) {
             Stop();
         }
+    }
+
+    public void PlayClipNext() {
+        PlayClip(currentClipIndex);
+        currentClipIndex = (currentClipIndex + 1) % audioClips.Length;
     }
 
     public void PlayClip(int clipIndex)
