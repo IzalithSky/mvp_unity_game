@@ -43,24 +43,32 @@ public class InputListener : MonoBehaviour
     {
         playerControls = new PlayerControls();
 
-        playerControls.Map0.Walk.performed += ctx => {
+        playerControls.Movement.Walk.performed += ctx => {
             inputHorizontal = ctx.ReadValue<Vector2>().x; 
             inputVertical = ctx.ReadValue<Vector2>().y;};
-        playerControls.Map0.Walk.canceled += ctx => {inputHorizontal = 0f; inputVertical = 0f;};
+        playerControls.Movement.Walk.canceled += ctx => {inputHorizontal = 0f; inputVertical = 0f;};
 
-        playerControls.Map0.Look.performed += ctx => {
+        playerControls.Movement.Look.performed += ctx => {
             cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontal * Time.deltaTime; 
             cameraVertical = ctx.ReadValue<Vector2>().y * sensHorizontal * Time.deltaTime;};
-        playerControls.Map0.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
+        playerControls.Movement.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
 
-        playerControls.Map0.Jump.started += ctx => isJumping = true;
-        playerControls.Map0.Jump.canceled += ctx => isJumping = false;
+        playerControls.Movement.Jump.started += ctx => isJumping = true;
+        playerControls.Movement.Jump.canceled += ctx => isJumping = false;
 
-        playerControls.Map0.Crouch.performed += ctx => isCrouching = !isCrouching;
-
-        playerControls.Map0.Menu.performed += ctx => isMenu = !isMenu;
+        playerControls.Movement.Crouch.performed += ctx => isCrouching = !isCrouching;
 
         playerControls.Enable();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     void OnDestroy()
@@ -134,43 +142,5 @@ public class InputListener : MonoBehaviour
 
     public bool GetIsPlayStop() {
         return isPlayStop;
-    }
-
-    void LateUpdate()
-    {
-        // if (Input.GetButtonDown("Walk Toggle")) {
-        //     toggleWalk = !isWalking;
-        // }
-        // if (Input.GetButtonDown("Crouch Toggle")) {
-        //     toggleCrouch = !isCrouching;
-        // }
-        // if (toggleWalk) {
-        //     if (Input.GetButtonDown("Walk")) {
-        //         isWalking = !isWalking;
-        //     }
-        // } else {
-        //     isWalking = (Input.GetAxisRaw("Walk") != 0f);
-        // }
-        // if (toggleCrouch) {
-        //     if (Input.GetButtonDown("Crouch")) {
-        //         isCrouching = !isCrouching;
-        //     }
-        // } else {
-        //     isCrouching = (Input.GetAxisRaw("Crouch") != 0f);
-        // }
-        
-        // inputHorizontal = Input.GetAxisRaw("Horizontal");
-        // inputVertical = Input.GetAxisRaw("Vertical");
-                
-        // cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
-        // cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
-        
-        // isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
-        // isFiring = Input.GetAxis("Fire1") != 0f;
-        // scrollInput = Input.GetAxis("Zoom");
-        // isNext = Input.GetAxisRaw("ToolNext") != 0f;
-        // isPrev = Input.GetAxisRaw("ToolPrev") != 0f;
-        // isPlayNext = Input.GetAxisRaw("PlayNext") != 0f;
-        // isPlayStop = Input.GetAxisRaw("PlayStop") != 0f;
     }
 }

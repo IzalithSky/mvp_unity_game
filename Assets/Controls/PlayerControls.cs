@@ -24,7 +24,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Map0"",
+            ""name"": ""Movement"",
             ""id"": ""f95c7d64-77c4-4b8c-834a-7ebd40794781"",
             ""actions"": [
                 {
@@ -67,186 +67,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""d04ef757-a2b6-4eb9-a3bd-25d1eeffec6c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Menu"",
-                    ""type"": ""Button"",
-                    ""id"": ""a14f484c-7ee9-4882-8f8b-08c0f91bd6df"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool0"",
-                    ""type"": ""Button"",
-                    ""id"": ""3f16a00f-a419-46ed-af43-c20c0c97ec29"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool1"",
-                    ""type"": ""Button"",
-                    ""id"": ""42ad2ba9-ad58-4bf2-bfd1-2475d60db615"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool2"",
-                    ""type"": ""Button"",
-                    ""id"": ""5d341c52-b535-4cf7-b686-15d6eb12b4aa"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool3"",
-                    ""type"": ""Button"",
-                    ""id"": ""6adf6279-a9a6-407f-af52-d43160a92a93"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool4"",
-                    ""type"": ""Button"",
-                    ""id"": ""3ad81479-c3cf-42c1-a50d-1cde49224042"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool5"",
-                    ""type"": ""Button"",
-                    ""id"": ""bf414b59-159c-4295-aa8c-acf0dfc071ac"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool6"",
-                    ""type"": ""Button"",
-                    ""id"": ""0ce990ea-753d-4ee8-9904-c96614e21138"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool7"",
-                    ""type"": ""Button"",
-                    ""id"": ""47e5e3e6-08d6-441f-9d3b-83c74039fe1e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool8"",
-                    ""type"": ""Button"",
-                    ""id"": ""9d99ace3-b3c1-40b2-a732-ae506a691825"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool9"",
-                    ""type"": ""Button"",
-                    ""id"": ""114b772f-673d-40b9-b054-8f11b8528f5d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Tool10"",
-                    ""type"": ""Button"",
-                    ""id"": ""ee61388e-8a25-43de-bfcd-b19789a78496"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToolPrev"",
-                    ""type"": ""Button"",
-                    ""id"": ""6b926f03-437b-4427-aa3b-aff34d8acdfe"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToolNext"",
-                    ""type"": ""Button"",
-                    ""id"": ""ddaf8967-a9f3-4274-84f7-000c3e04a116"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""FoVIn"",
-                    ""type"": ""Button"",
-                    ""id"": ""75bfb075-aa07-4c14-a6b5-74318db03eb4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""FoVOut"",
-                    ""type"": ""Button"",
-                    ""id"": ""8bb47838-3c6b-41bb-abc7-22a305efa1d9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CrouchToggle"",
-                    ""type"": ""Button"",
-                    ""id"": ""2b9fcefa-546a-4c0b-9f33-047f553a6ada"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""WalkToggle"",
-                    ""type"": ""Button"",
-                    ""id"": ""9377a63d-5419-40b0-a5b8-8e1442cb2e8a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlayNext"",
-                    ""type"": ""Button"",
-                    ""id"": ""3557ee90-8a94-45bb-b0ea-900ac45b8e2d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlayStop"",
-                    ""type"": ""Button"",
-                    ""id"": ""726ffbe6-226f-4ddc-b0ca-c05ab59b3b8d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -429,32 +249,155 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Tools"",
+            ""id"": ""cc393fec-7a3a-47a0-ba6e-88d0c1cb68d2"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""b87a7256-1f8b-4b11-a9aa-ddd4362fb642"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Tool0"",
+                    ""type"": ""Button"",
+                    ""id"": ""4271ddc7-6b7e-468e-8cf2-c83a005d7f3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool1"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1209295-c1e7-44d5-89c2-b1452188137f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool2"",
+                    ""type"": ""Button"",
+                    ""id"": ""74874627-1799-440f-be76-c49da8a85ec0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool3"",
+                    ""type"": ""Button"",
+                    ""id"": ""22d67858-db52-46cd-89d5-2acca78ca19c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3977012-d277-4608-b719-2e967e73fcfe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool5"",
+                    ""type"": ""Button"",
+                    ""id"": ""5569ecfa-40b7-4234-b4a4-82e976685a8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool6"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3c89a67-ba2b-411d-85b5-5e7cd301aab3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool7"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6a21104-5ff6-4639-a675-0b23107e1d3e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool8"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e86fafc-d794-4093-acf8-0c24cc742258"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool9"",
+                    ""type"": ""Button"",
+                    ""id"": ""efb69602-892b-4640-b5ab-a78592884b39"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tool10"",
+                    ""type"": ""Button"",
+                    ""id"": ""347e035a-e0af-4045-aa36-36cf7ec5f008"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToolPrev"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a04e783-449d-4fef-8095-78689345fb99"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToolNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe968c74-8310-44ad-bf93-dfef55e4396e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""84dc0115-c53a-4785-8aa5-84528ee9221b"",
-                    ""path"": ""<Gamepad>/start"",
+                    ""id"": ""d851012d-81d7-47fc-be7f-d6d0e57b5d81"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Menu"",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""270e8f07-b10c-49be-85ca-d4797b1d0b72"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Menu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3c106559-4193-4c74-b0cc-799d7939161e"",
+                    ""id"": ""27bb4142-0c0f-43d9-9c81-cc07e39709ae"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -465,7 +408,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a34803d3-1ace-4381-bc67-1b39e49563dc"",
+                    ""id"": ""7b8cae12-18ed-425e-9d7d-4bc34c664654"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -476,7 +419,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e163956a-9c12-4848-82d9-50a89326f884"",
+                    ""id"": ""ba67fc1e-56c6-4efa-b08c-659961f9c9dc"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -487,7 +430,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""331a280d-5f2a-486d-b2e5-29069ee700d1"",
+                    ""id"": ""48c25a5b-3df1-4ceb-b440-7b3ae20796cf"",
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -498,7 +441,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""02c1f90f-4e66-4e87-8758-7224b9e43926"",
+                    ""id"": ""07af1235-dd9f-48c5-8076-c13748d7f069"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -509,7 +452,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b6b122c9-745a-401a-87d3-5bd6b0ea1e9f"",
+                    ""id"": ""7eee022e-17ec-4b3c-b4d8-1921634ef4c8"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -520,7 +463,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8c36e0c5-c500-4326-ab7e-c7bc6654748f"",
+                    ""id"": ""e7588196-3844-425c-8296-35b4eeef3da3"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -531,7 +474,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""561e1630-a69c-49c1-9c65-0dd5d80be045"",
+                    ""id"": ""5665731f-3d9d-44d2-9d2c-3b4381af4d68"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -542,7 +485,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c09379ae-a52e-4475-b779-894e7b9a0ff7"",
+                    ""id"": ""d32b96f0-343f-46f1-bc45-66c1d0b72be3"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -553,7 +496,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bc230188-f4c0-42dc-897e-3256f8f6762a"",
+                    ""id"": ""db16bf66-af92-48b7-aca3-d2ff769cf7f3"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -564,7 +507,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4320f813-717e-4e29-b220-bec9545ac567"",
+                    ""id"": ""0100a8a6-c675-43a1-a59c-8678c44127c8"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -575,7 +518,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bed4a5e8-61c9-45ce-a11b-59930c960c2e"",
+                    ""id"": ""8848e24b-976d-405d-af43-7d3e8817623e"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -586,7 +529,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""de6c8677-e569-46b5-8cb2-157f8d315229"",
+                    ""id"": ""8eb8cf47-5cf0-4c51-b203-c87b691c316d"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -597,7 +540,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef82ee0b-4a52-4286-bd79-064ade6ccb64"",
+                    ""id"": ""2f3aed21-39b3-437e-a4d4-075f224f2dcb"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -608,7 +551,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ce92bf22-2f20-4e78-b440-22fa30d5ed03"",
+                    ""id"": ""3d21e944-a7cc-447c-ba39-8fea2d00fd4f"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -616,10 +559,123 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ToolNext"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menus"",
+            ""id"": ""fcf50c0b-0e41-45ec-aeb2-4dd25927c000"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""82a4e623-063d-46f0-a16b-ee80311701da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f36101a-2e68-40eb-a4e9-982dc92398d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FoVIn"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b22bd4c-213b-4844-8f39-aa87e33711bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FoVOut"",
+                    ""type"": ""Button"",
+                    ""id"": ""790467dc-fe34-4391-8aa2-e3446fc07da0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CrouchToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e96c31c3-f85f-487d-aeda-5f2662b8ebe8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WalkToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""e08f4840-2703-4a32-aff3-3ed12943cfa4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""317142da-6614-477f-8cec-05c19ec36b28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayStop"",
+                    ""type"": ""Button"",
+                    ""id"": ""06f076d6-94f7-449c-80db-ead04b2c7022"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c4cdb9c7-b19f-417d-a174-8c79f43c201b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cb83f555-1b24-45ef-a3ae-0ca58a15534c"",
+                    ""id"": ""4df11a4d-3365-4911-be83-4ee4bf763932"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eab056de-42a9-4291-a8c0-5c864a378e06"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f5eed2e-6a2e-400f-ac9c-bddb49d78a06"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -630,7 +686,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""220d5f5f-477f-4d8a-9152-f215494df8fc"",
+                    ""id"": ""9761fed5-1366-4780-bb60-b6feaa559086"",
                     ""path"": ""<Keyboard>/n"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -641,7 +697,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d971c85a-0b0d-4341-8abf-99921d90642c"",
+                    ""id"": ""743f7940-05c8-4ed8-a0f4-8640345edde7"",
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -652,7 +708,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1c590445-c7a2-417a-a55d-bd957b09cd1c"",
+                    ""id"": ""27df0cb2-aa0c-45bb-b4c4-824c47eae230"",
                     ""path"": ""<Keyboard>/y"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -663,7 +719,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""624bacbd-e427-4309-ae1f-034576a7919c"",
+                    ""id"": ""4cab495b-e971-4fe6-89cc-348f33c6eff0"",
                     ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -674,7 +730,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""915a5735-644d-406c-abae-3f547c8fda7a"",
+                    ""id"": ""2d4bf8fb-6ef7-48e9-bd49-dd187e218b07"",
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -688,33 +744,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Map0
-        m_Map0 = asset.FindActionMap("Map0", throwIfNotFound: true);
-        m_Map0_Walk = m_Map0.FindAction("Walk", throwIfNotFound: true);
-        m_Map0_Look = m_Map0.FindAction("Look", throwIfNotFound: true);
-        m_Map0_Jump = m_Map0.FindAction("Jump", throwIfNotFound: true);
-        m_Map0_Fire = m_Map0.FindAction("Fire", throwIfNotFound: true);
-        m_Map0_Crouch = m_Map0.FindAction("Crouch", throwIfNotFound: true);
-        m_Map0_Menu = m_Map0.FindAction("Menu", throwIfNotFound: true);
-        m_Map0_Tool0 = m_Map0.FindAction("Tool0", throwIfNotFound: true);
-        m_Map0_Tool1 = m_Map0.FindAction("Tool1", throwIfNotFound: true);
-        m_Map0_Tool2 = m_Map0.FindAction("Tool2", throwIfNotFound: true);
-        m_Map0_Tool3 = m_Map0.FindAction("Tool3", throwIfNotFound: true);
-        m_Map0_Tool4 = m_Map0.FindAction("Tool4", throwIfNotFound: true);
-        m_Map0_Tool5 = m_Map0.FindAction("Tool5", throwIfNotFound: true);
-        m_Map0_Tool6 = m_Map0.FindAction("Tool6", throwIfNotFound: true);
-        m_Map0_Tool7 = m_Map0.FindAction("Tool7", throwIfNotFound: true);
-        m_Map0_Tool8 = m_Map0.FindAction("Tool8", throwIfNotFound: true);
-        m_Map0_Tool9 = m_Map0.FindAction("Tool9", throwIfNotFound: true);
-        m_Map0_Tool10 = m_Map0.FindAction("Tool10", throwIfNotFound: true);
-        m_Map0_ToolPrev = m_Map0.FindAction("ToolPrev", throwIfNotFound: true);
-        m_Map0_ToolNext = m_Map0.FindAction("ToolNext", throwIfNotFound: true);
-        m_Map0_FoVIn = m_Map0.FindAction("FoVIn", throwIfNotFound: true);
-        m_Map0_FoVOut = m_Map0.FindAction("FoVOut", throwIfNotFound: true);
-        m_Map0_CrouchToggle = m_Map0.FindAction("CrouchToggle", throwIfNotFound: true);
-        m_Map0_WalkToggle = m_Map0.FindAction("WalkToggle", throwIfNotFound: true);
-        m_Map0_PlayNext = m_Map0.FindAction("PlayNext", throwIfNotFound: true);
-        m_Map0_PlayStop = m_Map0.FindAction("PlayStop", throwIfNotFound: true);
+        // Movement
+        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
+        m_Movement_Walk = m_Movement.FindAction("Walk", throwIfNotFound: true);
+        m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
+        m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
+        m_Movement_Fire = m_Movement.FindAction("Fire", throwIfNotFound: true);
+        m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
+        // Tools
+        m_Tools = asset.FindActionMap("Tools", throwIfNotFound: true);
+        m_Tools_Newaction = m_Tools.FindAction("New action", throwIfNotFound: true);
+        m_Tools_Tool0 = m_Tools.FindAction("Tool0", throwIfNotFound: true);
+        m_Tools_Tool1 = m_Tools.FindAction("Tool1", throwIfNotFound: true);
+        m_Tools_Tool2 = m_Tools.FindAction("Tool2", throwIfNotFound: true);
+        m_Tools_Tool3 = m_Tools.FindAction("Tool3", throwIfNotFound: true);
+        m_Tools_Tool4 = m_Tools.FindAction("Tool4", throwIfNotFound: true);
+        m_Tools_Tool5 = m_Tools.FindAction("Tool5", throwIfNotFound: true);
+        m_Tools_Tool6 = m_Tools.FindAction("Tool6", throwIfNotFound: true);
+        m_Tools_Tool7 = m_Tools.FindAction("Tool7", throwIfNotFound: true);
+        m_Tools_Tool8 = m_Tools.FindAction("Tool8", throwIfNotFound: true);
+        m_Tools_Tool9 = m_Tools.FindAction("Tool9", throwIfNotFound: true);
+        m_Tools_Tool10 = m_Tools.FindAction("Tool10", throwIfNotFound: true);
+        m_Tools_ToolPrev = m_Tools.FindAction("ToolPrev", throwIfNotFound: true);
+        m_Tools_ToolNext = m_Tools.FindAction("ToolNext", throwIfNotFound: true);
+        // Menus
+        m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
+        m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
+        m_Menus_Menu = m_Menus.FindAction("Menu", throwIfNotFound: true);
+        m_Menus_FoVIn = m_Menus.FindAction("FoVIn", throwIfNotFound: true);
+        m_Menus_FoVOut = m_Menus.FindAction("FoVOut", throwIfNotFound: true);
+        m_Menus_CrouchToggle = m_Menus.FindAction("CrouchToggle", throwIfNotFound: true);
+        m_Menus_WalkToggle = m_Menus.FindAction("WalkToggle", throwIfNotFound: true);
+        m_Menus_PlayNext = m_Menus.FindAction("PlayNext", throwIfNotFound: true);
+        m_Menus_PlayStop = m_Menus.FindAction("PlayStop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -773,72 +835,32 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Map0
-    private readonly InputActionMap m_Map0;
-    private List<IMap0Actions> m_Map0ActionsCallbackInterfaces = new List<IMap0Actions>();
-    private readonly InputAction m_Map0_Walk;
-    private readonly InputAction m_Map0_Look;
-    private readonly InputAction m_Map0_Jump;
-    private readonly InputAction m_Map0_Fire;
-    private readonly InputAction m_Map0_Crouch;
-    private readonly InputAction m_Map0_Menu;
-    private readonly InputAction m_Map0_Tool0;
-    private readonly InputAction m_Map0_Tool1;
-    private readonly InputAction m_Map0_Tool2;
-    private readonly InputAction m_Map0_Tool3;
-    private readonly InputAction m_Map0_Tool4;
-    private readonly InputAction m_Map0_Tool5;
-    private readonly InputAction m_Map0_Tool6;
-    private readonly InputAction m_Map0_Tool7;
-    private readonly InputAction m_Map0_Tool8;
-    private readonly InputAction m_Map0_Tool9;
-    private readonly InputAction m_Map0_Tool10;
-    private readonly InputAction m_Map0_ToolPrev;
-    private readonly InputAction m_Map0_ToolNext;
-    private readonly InputAction m_Map0_FoVIn;
-    private readonly InputAction m_Map0_FoVOut;
-    private readonly InputAction m_Map0_CrouchToggle;
-    private readonly InputAction m_Map0_WalkToggle;
-    private readonly InputAction m_Map0_PlayNext;
-    private readonly InputAction m_Map0_PlayStop;
-    public struct Map0Actions
+    // Movement
+    private readonly InputActionMap m_Movement;
+    private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
+    private readonly InputAction m_Movement_Walk;
+    private readonly InputAction m_Movement_Look;
+    private readonly InputAction m_Movement_Jump;
+    private readonly InputAction m_Movement_Fire;
+    private readonly InputAction m_Movement_Crouch;
+    public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
-        public Map0Actions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Walk => m_Wrapper.m_Map0_Walk;
-        public InputAction @Look => m_Wrapper.m_Map0_Look;
-        public InputAction @Jump => m_Wrapper.m_Map0_Jump;
-        public InputAction @Fire => m_Wrapper.m_Map0_Fire;
-        public InputAction @Crouch => m_Wrapper.m_Map0_Crouch;
-        public InputAction @Menu => m_Wrapper.m_Map0_Menu;
-        public InputAction @Tool0 => m_Wrapper.m_Map0_Tool0;
-        public InputAction @Tool1 => m_Wrapper.m_Map0_Tool1;
-        public InputAction @Tool2 => m_Wrapper.m_Map0_Tool2;
-        public InputAction @Tool3 => m_Wrapper.m_Map0_Tool3;
-        public InputAction @Tool4 => m_Wrapper.m_Map0_Tool4;
-        public InputAction @Tool5 => m_Wrapper.m_Map0_Tool5;
-        public InputAction @Tool6 => m_Wrapper.m_Map0_Tool6;
-        public InputAction @Tool7 => m_Wrapper.m_Map0_Tool7;
-        public InputAction @Tool8 => m_Wrapper.m_Map0_Tool8;
-        public InputAction @Tool9 => m_Wrapper.m_Map0_Tool9;
-        public InputAction @Tool10 => m_Wrapper.m_Map0_Tool10;
-        public InputAction @ToolPrev => m_Wrapper.m_Map0_ToolPrev;
-        public InputAction @ToolNext => m_Wrapper.m_Map0_ToolNext;
-        public InputAction @FoVIn => m_Wrapper.m_Map0_FoVIn;
-        public InputAction @FoVOut => m_Wrapper.m_Map0_FoVOut;
-        public InputAction @CrouchToggle => m_Wrapper.m_Map0_CrouchToggle;
-        public InputAction @WalkToggle => m_Wrapper.m_Map0_WalkToggle;
-        public InputAction @PlayNext => m_Wrapper.m_Map0_PlayNext;
-        public InputAction @PlayStop => m_Wrapper.m_Map0_PlayStop;
-        public InputActionMap Get() { return m_Wrapper.m_Map0; }
+        public MovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Walk => m_Wrapper.m_Movement_Walk;
+        public InputAction @Look => m_Wrapper.m_Movement_Look;
+        public InputAction @Jump => m_Wrapper.m_Movement_Jump;
+        public InputAction @Fire => m_Wrapper.m_Movement_Fire;
+        public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
+        public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(Map0Actions set) { return set.Get(); }
-        public void AddCallbacks(IMap0Actions instance)
+        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
+        public void AddCallbacks(IMovementActions instance)
         {
-            if (instance == null || m_Wrapper.m_Map0ActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_Map0ActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
             @Walk.started += instance.OnWalk;
             @Walk.performed += instance.OnWalk;
             @Walk.canceled += instance.OnWalk;
@@ -854,9 +876,90 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
-            @Menu.started += instance.OnMenu;
-            @Menu.performed += instance.OnMenu;
-            @Menu.canceled += instance.OnMenu;
+        }
+
+        private void UnregisterCallbacks(IMovementActions instance)
+        {
+            @Walk.started -= instance.OnWalk;
+            @Walk.performed -= instance.OnWalk;
+            @Walk.canceled -= instance.OnWalk;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+        }
+
+        public void RemoveCallbacks(IMovementActions instance)
+        {
+            if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMovementActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MovementActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MovementActions @Movement => new MovementActions(this);
+
+    // Tools
+    private readonly InputActionMap m_Tools;
+    private List<IToolsActions> m_ToolsActionsCallbackInterfaces = new List<IToolsActions>();
+    private readonly InputAction m_Tools_Newaction;
+    private readonly InputAction m_Tools_Tool0;
+    private readonly InputAction m_Tools_Tool1;
+    private readonly InputAction m_Tools_Tool2;
+    private readonly InputAction m_Tools_Tool3;
+    private readonly InputAction m_Tools_Tool4;
+    private readonly InputAction m_Tools_Tool5;
+    private readonly InputAction m_Tools_Tool6;
+    private readonly InputAction m_Tools_Tool7;
+    private readonly InputAction m_Tools_Tool8;
+    private readonly InputAction m_Tools_Tool9;
+    private readonly InputAction m_Tools_Tool10;
+    private readonly InputAction m_Tools_ToolPrev;
+    private readonly InputAction m_Tools_ToolNext;
+    public struct ToolsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public ToolsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Tools_Newaction;
+        public InputAction @Tool0 => m_Wrapper.m_Tools_Tool0;
+        public InputAction @Tool1 => m_Wrapper.m_Tools_Tool1;
+        public InputAction @Tool2 => m_Wrapper.m_Tools_Tool2;
+        public InputAction @Tool3 => m_Wrapper.m_Tools_Tool3;
+        public InputAction @Tool4 => m_Wrapper.m_Tools_Tool4;
+        public InputAction @Tool5 => m_Wrapper.m_Tools_Tool5;
+        public InputAction @Tool6 => m_Wrapper.m_Tools_Tool6;
+        public InputAction @Tool7 => m_Wrapper.m_Tools_Tool7;
+        public InputAction @Tool8 => m_Wrapper.m_Tools_Tool8;
+        public InputAction @Tool9 => m_Wrapper.m_Tools_Tool9;
+        public InputAction @Tool10 => m_Wrapper.m_Tools_Tool10;
+        public InputAction @ToolPrev => m_Wrapper.m_Tools_ToolPrev;
+        public InputAction @ToolNext => m_Wrapper.m_Tools_ToolNext;
+        public InputActionMap Get() { return m_Wrapper.m_Tools; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ToolsActions set) { return set.Get(); }
+        public void AddCallbacks(IToolsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ToolsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ToolsActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
             @Tool0.started += instance.OnTool0;
             @Tool0.performed += instance.OnTool0;
             @Tool0.canceled += instance.OnTool0;
@@ -896,46 +999,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ToolNext.started += instance.OnToolNext;
             @ToolNext.performed += instance.OnToolNext;
             @ToolNext.canceled += instance.OnToolNext;
-            @FoVIn.started += instance.OnFoVIn;
-            @FoVIn.performed += instance.OnFoVIn;
-            @FoVIn.canceled += instance.OnFoVIn;
-            @FoVOut.started += instance.OnFoVOut;
-            @FoVOut.performed += instance.OnFoVOut;
-            @FoVOut.canceled += instance.OnFoVOut;
-            @CrouchToggle.started += instance.OnCrouchToggle;
-            @CrouchToggle.performed += instance.OnCrouchToggle;
-            @CrouchToggle.canceled += instance.OnCrouchToggle;
-            @WalkToggle.started += instance.OnWalkToggle;
-            @WalkToggle.performed += instance.OnWalkToggle;
-            @WalkToggle.canceled += instance.OnWalkToggle;
-            @PlayNext.started += instance.OnPlayNext;
-            @PlayNext.performed += instance.OnPlayNext;
-            @PlayNext.canceled += instance.OnPlayNext;
-            @PlayStop.started += instance.OnPlayStop;
-            @PlayStop.performed += instance.OnPlayStop;
-            @PlayStop.canceled += instance.OnPlayStop;
         }
 
-        private void UnregisterCallbacks(IMap0Actions instance)
+        private void UnregisterCallbacks(IToolsActions instance)
         {
-            @Walk.started -= instance.OnWalk;
-            @Walk.performed -= instance.OnWalk;
-            @Walk.canceled -= instance.OnWalk;
-            @Look.started -= instance.OnLook;
-            @Look.performed -= instance.OnLook;
-            @Look.canceled -= instance.OnLook;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
-            @Menu.started -= instance.OnMenu;
-            @Menu.performed -= instance.OnMenu;
-            @Menu.canceled -= instance.OnMenu;
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
             @Tool0.started -= instance.OnTool0;
             @Tool0.performed -= instance.OnTool0;
             @Tool0.canceled -= instance.OnTool0;
@@ -975,6 +1045,90 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ToolNext.started -= instance.OnToolNext;
             @ToolNext.performed -= instance.OnToolNext;
             @ToolNext.canceled -= instance.OnToolNext;
+        }
+
+        public void RemoveCallbacks(IToolsActions instance)
+        {
+            if (m_Wrapper.m_ToolsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IToolsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ToolsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ToolsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ToolsActions @Tools => new ToolsActions(this);
+
+    // Menus
+    private readonly InputActionMap m_Menus;
+    private List<IMenusActions> m_MenusActionsCallbackInterfaces = new List<IMenusActions>();
+    private readonly InputAction m_Menus_Newaction;
+    private readonly InputAction m_Menus_Menu;
+    private readonly InputAction m_Menus_FoVIn;
+    private readonly InputAction m_Menus_FoVOut;
+    private readonly InputAction m_Menus_CrouchToggle;
+    private readonly InputAction m_Menus_WalkToggle;
+    private readonly InputAction m_Menus_PlayNext;
+    private readonly InputAction m_Menus_PlayStop;
+    public struct MenusActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MenusActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Menus_Newaction;
+        public InputAction @Menu => m_Wrapper.m_Menus_Menu;
+        public InputAction @FoVIn => m_Wrapper.m_Menus_FoVIn;
+        public InputAction @FoVOut => m_Wrapper.m_Menus_FoVOut;
+        public InputAction @CrouchToggle => m_Wrapper.m_Menus_CrouchToggle;
+        public InputAction @WalkToggle => m_Wrapper.m_Menus_WalkToggle;
+        public InputAction @PlayNext => m_Wrapper.m_Menus_PlayNext;
+        public InputAction @PlayStop => m_Wrapper.m_Menus_PlayStop;
+        public InputActionMap Get() { return m_Wrapper.m_Menus; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenusActions set) { return set.Get(); }
+        public void AddCallbacks(IMenusActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenusActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenusActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
+            @FoVIn.started += instance.OnFoVIn;
+            @FoVIn.performed += instance.OnFoVIn;
+            @FoVIn.canceled += instance.OnFoVIn;
+            @FoVOut.started += instance.OnFoVOut;
+            @FoVOut.performed += instance.OnFoVOut;
+            @FoVOut.canceled += instance.OnFoVOut;
+            @CrouchToggle.started += instance.OnCrouchToggle;
+            @CrouchToggle.performed += instance.OnCrouchToggle;
+            @CrouchToggle.canceled += instance.OnCrouchToggle;
+            @WalkToggle.started += instance.OnWalkToggle;
+            @WalkToggle.performed += instance.OnWalkToggle;
+            @WalkToggle.canceled += instance.OnWalkToggle;
+            @PlayNext.started += instance.OnPlayNext;
+            @PlayNext.performed += instance.OnPlayNext;
+            @PlayNext.canceled += instance.OnPlayNext;
+            @PlayStop.started += instance.OnPlayStop;
+            @PlayStop.performed += instance.OnPlayStop;
+            @PlayStop.canceled += instance.OnPlayStop;
+        }
+
+        private void UnregisterCallbacks(IMenusActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
             @FoVIn.started -= instance.OnFoVIn;
             @FoVIn.performed -= instance.OnFoVIn;
             @FoVIn.canceled -= instance.OnFoVIn;
@@ -995,29 +1149,32 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PlayStop.canceled -= instance.OnPlayStop;
         }
 
-        public void RemoveCallbacks(IMap0Actions instance)
+        public void RemoveCallbacks(IMenusActions instance)
         {
-            if (m_Wrapper.m_Map0ActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_MenusActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IMap0Actions instance)
+        public void SetCallbacks(IMenusActions instance)
         {
-            foreach (var item in m_Wrapper.m_Map0ActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_MenusActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_Map0ActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_MenusActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public Map0Actions @Map0 => new Map0Actions(this);
-    public interface IMap0Actions
+    public MenusActions @Menus => new MenusActions(this);
+    public interface IMovementActions
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-        void OnMenu(InputAction.CallbackContext context);
+    }
+    public interface IToolsActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
         void OnTool0(InputAction.CallbackContext context);
         void OnTool1(InputAction.CallbackContext context);
         void OnTool2(InputAction.CallbackContext context);
@@ -1031,6 +1188,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTool10(InputAction.CallbackContext context);
         void OnToolPrev(InputAction.CallbackContext context);
         void OnToolNext(InputAction.CallbackContext context);
+    }
+    public interface IMenusActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
         void OnFoVIn(InputAction.CallbackContext context);
         void OnFoVOut(InputAction.CallbackContext context);
         void OnCrouchToggle(InputAction.CallbackContext context);

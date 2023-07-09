@@ -58,17 +58,17 @@ public class ToolsController : MonoBehaviour
         wasPrevPressedLastFrame = isPrevPressed;
     }
 
-    void SetToolNext() {
+    public void SetToolNext() {
         int nextToolIndex = (currentToolIndex + 1) % tools.Count;
         SetTool(nextToolIndex);
     }
 
-    void SetToolPrev() {
+    public void SetToolPrev() {
         int prevToolIndex = (currentToolIndex - 1 + tools.Count) % tools.Count;
         SetTool(prevToolIndex);
     }
 
-    void SetTool(int toolIndex) {
+    public void SetTool(int toolIndex) {
         currentToolIndex = toolIndex;
 
         // Disable current tool

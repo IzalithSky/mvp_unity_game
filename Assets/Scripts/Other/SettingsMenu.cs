@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -32,18 +33,14 @@ public class SettingsMenu : MonoBehaviour
         masterMixer.SetFloat("musicVolume", value);
     }
 
-    void Update()
-    {
-        if (inputListener.GetIsMenu())
+    public void ToggleMenu() {
+        if (isMenuActive)
         {
-            if (isMenuActive)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
