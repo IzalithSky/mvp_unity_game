@@ -11,12 +11,12 @@ public class InputListener : MonoBehaviour
     private const string SensVerticalKey = "SensVertical";
     
     public float sensHorizontal {
-        get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensHorizontalKey, 5f);
         set => PlayerPrefs.SetFloat(SensHorizontalKey, value);
     }
 
     public float sensVertical {
-        get => PlayerPrefs.GetFloat(SensVerticalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensVerticalKey, 5f);
         set => PlayerPrefs.SetFloat(SensVerticalKey, value);
     }
 
@@ -24,12 +24,12 @@ public class InputListener : MonoBehaviour
     private const string SensVerticalControllerKey = "SensVerticalController";
 
     public float sensHorizontalController {
-        get => PlayerPrefs.GetFloat(SensHorizontalControllerKey, 800f);
+        get => PlayerPrefs.GetFloat(SensHorizontalControllerKey, 200f);
         set => PlayerPrefs.SetFloat(SensHorizontalControllerKey, value);
     }
 
     public float sensVerticalController {
-        get => PlayerPrefs.GetFloat(SensVerticalControllerKey, 800f);
+        get => PlayerPrefs.GetFloat(SensVerticalControllerKey, 200f);
         set => PlayerPrefs.SetFloat(SensVerticalControllerKey, value);
     }
 
@@ -55,12 +55,12 @@ public class InputListener : MonoBehaviour
 
         playerControls.Movement.Look.performed += ctx => {
             cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontal * Time.deltaTime; 
-            cameraVertical = ctx.ReadValue<Vector2>().y * sensHorizontal * Time.deltaTime;};
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensVertical * Time.deltaTime;};
         playerControls.Movement.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
 
         playerControls.Movement.LookController.performed += ctx => {
             cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontalController * Time.deltaTime; 
-            cameraVertical = ctx.ReadValue<Vector2>().y * sensHorizontalController * Time.deltaTime;};
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensVerticalController * Time.deltaTime;};
         playerControls.Movement.LookController.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
 
         playerControls.Movement.Jump.performed += ctx => isJumping = true;

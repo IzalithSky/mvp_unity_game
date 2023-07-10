@@ -13,6 +13,8 @@ public class SettingsMenu : MonoBehaviour
     public bool isMenuActive = false;
     public TMP_InputField sensXtext;
     public TMP_InputField sensYtext;
+    public TMP_InputField sensXControllertext;
+    public TMP_InputField sensYControllertext;
     public AudioMixer masterMixer;
     public Slider volumeSlider;
     public Slider musicSlider;
@@ -22,6 +24,9 @@ public class SettingsMenu : MonoBehaviour
     void Start() {
         sensXtext.text = inputListener.sensHorizontal.ToString();
         sensYtext.text = inputListener.sensVertical.ToString();
+        
+        sensXControllertext.text = inputListener.sensHorizontalController.ToString();
+        sensYControllertext.text = inputListener.sensHorizontalController.ToString();
 
         volumeSlider.onValueChanged.AddListener(UpdateVolumeMixer);
         musicSlider.onValueChanged.AddListener(UpdateMusicMixer);
@@ -67,6 +72,16 @@ public class SettingsMenu : MonoBehaviour
         float sensY;
         if (float.TryParse(sensYtext.text, out sensY)) {
             inputListener.sensVertical = sensY;
+        }
+        
+        float sensXController;
+        if (float.TryParse(sensXControllertext.text, out sensXController)) {
+            inputListener.sensHorizontalController = sensXController;
+        }
+
+        float sensYController;
+        if (float.TryParse(sensYControllertext.text, out sensYController)) {
+            inputListener.sensVerticalController = sensYController;
         }
 
         settingsMenuUI.SetActive(false);
