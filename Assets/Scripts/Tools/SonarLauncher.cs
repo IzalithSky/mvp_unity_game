@@ -18,8 +18,6 @@ public class SonarLauncher : Tool, ReceiverInterface
     }
 
     protected override void FireReady() {
-        CycleSonars();
-
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, (null !=  lookPoint) ? lookPoint.rotation : firePoint.rotation);
         proj.GetComponent<PorjectileCarrier>().owners = damageSource.owners;
         proj.GetComponent<PorjectileCarrier>().damage = damageSource.DealDamage();
@@ -29,10 +27,18 @@ public class SonarLauncher : Tool, ReceiverInterface
         proj.GetComponent<Rigidbody>().AddForce(((null !=  lookPoint) ? lookPoint.forward : firePoint.forward) * fireForce, ForceMode.Impulse);
     }
 
+    public override void Switch() {
+        CycleSonars();
+    }
+
     public void receivePayload(GameObject payload) {
         Sonar s = payload.GetComponent<Sonar>();
         if (null != s) {
             sonars.Add(s);
+            
+            if (sonars.Count == 1) {
+                sonars[0].SetCamEnabled(true);
+            }
         }
     }
 
@@ -41,8 +47,12 @@ public class SonarLauncher : Tool, ReceiverInterface
         CleanUpDeadSonars();
 
         // If the list is empty or only has one sonar, do nothing
-        if (sonars.Count <= 1)
-        {
+        if (sonars.Count <= 1) {
+            return;
+        }
+
+        if (sonars.Count == 1) {
+            sonars[0].SetCamEnabled(true);
             return;
         }
 
@@ -50,10 +60,8 @@ public class SonarLauncher : Tool, ReceiverInterface
         currentSonarIndex = (currentSonarIndex + 1) % sonars.Count;
 
         // Iterate through all sonars and set their enabled status
-        for (int i = 0; i < sonars.Count; i++)
-        {
-            if (sonars[i] != null)
-            {
+        for (int i = 0; i < sonars.Count; i++) {
+            if (sonars[i] != null) {
                 // If this sonar is the one at currentSonarIndex, enable it. Otherwise, disable it.
                 sonars[i].SetCamEnabled(i == currentSonarIndex);
             }

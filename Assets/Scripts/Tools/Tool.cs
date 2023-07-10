@@ -115,4 +115,6 @@ public class Tool : MonoBehaviour {
     }
 
     protected virtual void FireReady() {}
+
+    public virtual void Switch() {}
 }

@@ -37,5 +37,9 @@ public class ToolHolder : MonoBehaviour
         if (inputListener.GetIsFiring() && null != currentTool) {
             currentTool.Fire();
         }
+
+        if (inputListener.GetIssSwitching() && null != currentTool) {
+            currentTool.Switch();
+        }
     }
 }

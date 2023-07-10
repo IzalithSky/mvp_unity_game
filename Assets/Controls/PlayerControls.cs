@@ -273,6 +273,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Switch"",
+                    ""type"": ""Value"",
+                    ""id"": ""48c82b08-8e10-4f17-a51b-ec4d226dfd8a"",
+                    ""expectedControlType"": ""Analog"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""ToolPrev"",
                     ""type"": ""Button"",
                     ""id"": ""7a04e783-449d-4fef-8095-78689345fb99"",
@@ -610,6 +619,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ToolNext"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dcb8558-d5d4-42eb-ab7a-a0457ac5224f"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -829,6 +849,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Tools = asset.FindActionMap("Tools", throwIfNotFound: true);
         m_Tools_Newaction = m_Tools.FindAction("New action", throwIfNotFound: true);
         m_Tools_Fire = m_Tools.FindAction("Fire", throwIfNotFound: true);
+        m_Tools_Switch = m_Tools.FindAction("Switch", throwIfNotFound: true);
         m_Tools_ToolPrev = m_Tools.FindAction("ToolPrev", throwIfNotFound: true);
         m_Tools_ToolNext = m_Tools.FindAction("ToolNext", throwIfNotFound: true);
         m_Tools_Tool0 = m_Tools.FindAction("Tool0", throwIfNotFound: true);
@@ -1001,6 +1022,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IToolsActions> m_ToolsActionsCallbackInterfaces = new List<IToolsActions>();
     private readonly InputAction m_Tools_Newaction;
     private readonly InputAction m_Tools_Fire;
+    private readonly InputAction m_Tools_Switch;
     private readonly InputAction m_Tools_ToolPrev;
     private readonly InputAction m_Tools_ToolNext;
     private readonly InputAction m_Tools_Tool0;
@@ -1020,6 +1042,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public ToolsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Newaction => m_Wrapper.m_Tools_Newaction;
         public InputAction @Fire => m_Wrapper.m_Tools_Fire;
+        public InputAction @Switch => m_Wrapper.m_Tools_Switch;
         public InputAction @ToolPrev => m_Wrapper.m_Tools_ToolPrev;
         public InputAction @ToolNext => m_Wrapper.m_Tools_ToolNext;
         public InputAction @Tool0 => m_Wrapper.m_Tools_Tool0;
@@ -1048,6 +1071,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @Switch.started += instance.OnSwitch;
+            @Switch.performed += instance.OnSwitch;
+            @Switch.canceled += instance.OnSwitch;
             @ToolPrev.started += instance.OnToolPrev;
             @ToolPrev.performed += instance.OnToolPrev;
             @ToolPrev.canceled += instance.OnToolPrev;
@@ -1097,6 +1123,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @Switch.started -= instance.OnSwitch;
+            @Switch.performed -= instance.OnSwitch;
+            @Switch.canceled -= instance.OnSwitch;
             @ToolPrev.started -= instance.OnToolPrev;
             @ToolPrev.performed -= instance.OnToolPrev;
             @ToolPrev.canceled -= instance.OnToolPrev;
@@ -1268,6 +1297,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnNewaction(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwitch(InputAction.CallbackContext context);
         void OnToolPrev(InputAction.CallbackContext context);
         void OnToolNext(InputAction.CallbackContext context);
         void OnTool0(InputAction.CallbackContext context);

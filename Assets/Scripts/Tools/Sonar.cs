@@ -8,7 +8,6 @@ public class Sonar : MonoBehaviour
 
     void Start()
     {
-        cam = GetComponentInChildren<Camera>();
         cam.enabled = false;
     }
 

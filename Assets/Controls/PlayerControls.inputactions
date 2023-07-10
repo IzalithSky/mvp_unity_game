@@ -251,6 +251,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Switch",
+                    "type": "Value",
+                    "id": "48c82b08-8e10-4f17-a51b-ec4d226dfd8a",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ToolPrev",
                     "type": "Button",
                     "id": "7a04e783-449d-4fef-8095-78689345fb99",
@@ -586,6 +595,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ToolNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dcb8558-d5d4-42eb-ab7a-a0457ac5224f",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

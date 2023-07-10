@@ -40,6 +40,7 @@ public class InputListener : MonoBehaviour
     bool isJumping = false;
     bool isWalking = false;
     bool isFiring = false;
+    bool isSwitch = false;
     bool isCrouching = false;
     private PlayerControls playerControls;
 
@@ -74,6 +75,9 @@ public class InputListener : MonoBehaviour
 
         playerControls.Tools.Fire.performed += ctx => isFiring = true;
         playerControls.Tools.Fire.canceled += ctx => isFiring = false;
+
+        playerControls.Tools.Switch.performed += ctx => isSwitch = true;
+        playerControls.Tools.Switch.canceled += ctx => isSwitch = false;
 
         playerControls.Menus.CrouchToggle.performed += ctx => toggleCrouch = !toggleCrouch;
         playerControls.Menus.WalkToggle.performed += ctx => toggleWalk = !toggleWalk;
@@ -135,5 +139,10 @@ public class InputListener : MonoBehaviour
     public bool GetIsFiring()
     {
         return isFiring;
+    }
+
+    public bool GetIssSwitching()
+    {
+        return isSwitch;
     }
 }
