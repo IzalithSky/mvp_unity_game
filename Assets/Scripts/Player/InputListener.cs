@@ -7,18 +7,31 @@ public class InputListener : MonoBehaviour
     public bool toggleCrouch = false;
     public bool toggleWalk = false;
 
+    private const string SensHorizontalKey = "SensHorizontal";
+    private const string SensVerticalKey = "SensVertical";
+    
     public float sensHorizontal {
-        get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensHorizontalKey, 5f);
         set => PlayerPrefs.SetFloat(SensHorizontalKey, value);
     }
 
     public float sensVertical {
-        get => PlayerPrefs.GetFloat(SensVerticalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensVerticalKey, 5f);
         set => PlayerPrefs.SetFloat(SensVerticalKey, value);
     }
 
-    private const string SensHorizontalKey = "SensHorizontal";
-    private const string SensVerticalKey = "SensVertical";
+    private const string SensHorizontalControllerKey = "SensHorizontalController";
+    private const string SensVerticalControllerKey = "SensVerticalController";
+
+    public float sensHorizontalController {
+        get => PlayerPrefs.GetFloat(SensHorizontalControllerKey, 200f);
+        set => PlayerPrefs.SetFloat(SensHorizontalControllerKey, value);
+    }
+
+    public float sensVerticalController {
+        get => PlayerPrefs.GetFloat(SensVerticalControllerKey, 200f);
+        set => PlayerPrefs.SetFloat(SensVerticalControllerKey, value);
+    }
 
     float inputHorizontal = 0f;
     float inputVertical = 0f;
@@ -28,12 +41,60 @@ public class InputListener : MonoBehaviour
     bool isWalking = false;
     bool isFiring = false;
     bool isCrouching = false;
-    List<bool> isTool; // Array to store the tool states
-    float scrollInput = 0f;
-    bool isNext;
-    bool isPrev;
-    bool isPlayNext;
-    bool isPlayStop;
+    private PlayerControls playerControls;
+
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        playerControls.Movement.Walk.performed += ctx => {
+            inputHorizontal = ctx.ReadValue<Vector2>().x; 
+            inputVertical = ctx.ReadValue<Vector2>().y;};
+        playerControls.Movement.Walk.canceled += ctx => {inputHorizontal = 0f; inputVertical = 0f;};
+
+        playerControls.Movement.Look.performed += ctx => {
+            cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontal * Time.deltaTime; 
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensVertical * Time.deltaTime;};
+        playerControls.Movement.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
+
+        playerControls.Movement.LookController.performed += ctx => {
+            cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontalController * Time.deltaTime; 
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensVerticalController * Time.deltaTime;};
+        playerControls.Movement.LookController.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
+
+        playerControls.Movement.Jump.performed += ctx => isJumping = true;
+        playerControls.Movement.Jump.canceled += ctx => isJumping = false;
+
+        playerControls.Movement.Crouch.performed += ctx => isCrouching = toggleCrouch ? !isCrouching : true;
+        playerControls.Movement.Crouch.canceled += ctx => isCrouching = toggleCrouch ? isCrouching : false;
+
+        playerControls.Movement.Sneak.performed += ctx => isWalking = toggleWalk ? !isWalking : true;
+        playerControls.Movement.Sneak.canceled += ctx => isWalking = toggleWalk ? isWalking : false;
+
+        playerControls.Tools.Fire.performed += ctx => isFiring = true;
+        playerControls.Tools.Fire.canceled += ctx => isFiring = false;
+
+        playerControls.Menus.CrouchToggle.performed += ctx => toggleCrouch = !toggleCrouch;
+        playerControls.Menus.WalkToggle.performed += ctx => toggleWalk = !toggleWalk;
+
+        playerControls.Enable();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
 
     public float GetInputHorizontal()
     {
@@ -72,68 +133,5 @@ public class InputListener : MonoBehaviour
     public bool GetIsFiring()
     {
         return isFiring;
-    }
-
-    public bool GetIsTool(int toolIndex)
-    {
-        return Input.GetAxis($"Tool {toolIndex}") != 0f;
-    }
-
-    public float GetScrollInput() {
-        return scrollInput;
-    }
-
-    public bool GetIsNext() {
-        return isNext;
-    }
-
-    public bool GetIsPrev() {
-        return isPrev;
-    }
-
-    public bool GetIsPlayNext() {
-        return isPlayNext;
-    }
-
-    public bool GetIsPlayStop() {
-        return isPlayStop;
-    }
-
-    void LateUpdate()
-    {
-        if (Input.GetButtonDown("Walk Toggle")) {
-            toggleWalk = !isWalking;
-        }
-        if (Input.GetButtonDown("Crouch Toggle")) {
-            toggleCrouch = !isCrouching;
-        }
-        if (toggleWalk) {
-            if (Input.GetButtonDown("Walk")) {
-                isWalking = !isWalking;
-            }
-        } else {
-            isWalking = (Input.GetAxisRaw("Walk") != 0f);
-        }
-        if (toggleCrouch) {
-            if (Input.GetButtonDown("Crouch")) {
-                isCrouching = !isCrouching;
-            }
-        } else {
-            isCrouching = (Input.GetAxisRaw("Crouch") != 0f);
-        }
-        
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
-                
-        cameraHorizontal = Input.GetAxis("Mouse X") * sensHorizontal * Time.deltaTime;
-        cameraVertical = Input.GetAxis("Mouse Y") * sensVertical * Time.deltaTime;
-        
-        isJumping = (Input.GetAxisRaw("Jump") != 0f || Input.GetAxis("Mouse ScrollWheel") < 0f);
-        isFiring = Input.GetAxis("Fire1") != 0f;
-        scrollInput = Input.GetAxis("Zoom");
-        isNext = Input.GetAxisRaw("ToolNext") != 0f;
-        isPrev = Input.GetAxisRaw("ToolPrev") != 0f;
-        isPlayNext = Input.GetAxisRaw("PlayNext") != 0f;
-        isPlayStop = Input.GetAxisRaw("PlayStop") != 0f;
     }
 }

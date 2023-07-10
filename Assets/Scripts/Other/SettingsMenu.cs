@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -12,42 +13,56 @@ public class SettingsMenu : MonoBehaviour
     public bool isMenuActive = false;
     public TMP_InputField sensXtext;
     public TMP_InputField sensYtext;
+    public TMP_InputField sensXControllertext;
+    public TMP_InputField sensYControllertext;
     public AudioMixer masterMixer;
     public Slider volumeSlider;
     public Slider musicSlider;
 
+    PlayerControls playerControls;
+
     void Start() {
         sensXtext.text = inputListener.sensHorizontal.ToString();
         sensYtext.text = inputListener.sensVertical.ToString();
+        
+        sensXControllertext.text = inputListener.sensHorizontalController.ToString();
+        sensYControllertext.text = inputListener.sensHorizontalController.ToString();
 
         volumeSlider.onValueChanged.AddListener(UpdateVolumeMixer);
         musicSlider.onValueChanged.AddListener(UpdateMusicMixer);
     }
 
-    public void UpdateVolumeMixer(float value) {
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        playerControls.Menus.Menu.performed += ctx => ToggleMenu();
+
+        playerControls.Enable();
+    }
+
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
+
+    void UpdateVolumeMixer(float value) {
         masterMixer.SetFloat("masterVolume", value);
     }
 
-    public void UpdateMusicMixer(float value) {
+    void UpdateMusicMixer(float value) {
         masterMixer.SetFloat("musicVolume", value);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isMenuActive)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+    void ToggleMenu() {
+        if (isMenuActive) {
+            Resume();
+        } else {
+            Pause();
         }
     }
 
-    public void Resume()
+    void Resume()
     {
         float sensX;
         if (float.TryParse(sensXtext.text, out sensX)) {
@@ -58,6 +73,16 @@ public class SettingsMenu : MonoBehaviour
         if (float.TryParse(sensYtext.text, out sensY)) {
             inputListener.sensVertical = sensY;
         }
+        
+        float sensXController;
+        if (float.TryParse(sensXControllertext.text, out sensXController)) {
+            inputListener.sensHorizontalController = sensXController;
+        }
+
+        float sensYController;
+        if (float.TryParse(sensYControllertext.text, out sensYController)) {
+            inputListener.sensVerticalController = sensYController;
+        }
 
         settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -65,7 +90,7 @@ public class SettingsMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Pause()
+    void Pause()
     {
         settingsMenuUI.SetActive(true);
         Time.timeScale = 0f;

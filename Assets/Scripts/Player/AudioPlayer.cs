@@ -4,21 +4,30 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     public AudioClip[] audioClips;
-    public InputListener inputListener;  // Add a reference to the InputListener
-
     public AudioSource audioSource;
-    private int currentClipIndex = 0;
+    
+    int currentClipIndex = 0;
+    PlayerControls playerControls;
 
 
-    private void Update() {
-        if (inputListener.GetIsPlayNext()) {
-            PlayClip(currentClipIndex);
-            currentClipIndex = (currentClipIndex + 1) % audioClips.Length;  // Cycle through the audio clips
-        }
+    void Awake()
+    {
+        playerControls = new PlayerControls();
 
-        if (inputListener.GetIsPlayStop()) {
-            Stop();
-        }
+        playerControls.Menus.PlayNext.performed += ctx => PlayClipNext();
+        playerControls.Menus.PlayStop.performed += ctx => Stop();
+
+        playerControls.Enable();
+    }
+
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
+
+    public void PlayClipNext() {
+        PlayClip(currentClipIndex);
+        currentClipIndex = (currentClipIndex + 1) % audioClips.Length;
     }
 
     public void PlayClip(int clipIndex)
