@@ -81,19 +81,21 @@ public class InputListener : MonoBehaviour
         playerControls.Enable();
     }
 
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
-    }
-
     void OnDestroy()
     {
         playerControls.Dispose();
+    }
+
+    public void Resume()
+    {
+        playerControls.Movement.Enable();
+        playerControls.Tools.Enable();
+    }
+
+    public void Pause()
+    {
+        playerControls.Movement.Disable();
+        playerControls.Tools.Disable();
     }
 
     public float GetInputHorizontal()

@@ -64,6 +64,8 @@ public class SettingsMenu : MonoBehaviour
 
     void Resume()
     {
+        inputListener.Resume();
+        
         float sensX;
         if (float.TryParse(sensXtext.text, out sensX)) {
             inputListener.sensHorizontal = sensX;
@@ -92,6 +94,8 @@ public class SettingsMenu : MonoBehaviour
 
     void Pause()
     {
+        inputListener.Pause();
+
         settingsMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isMenuActive = true;
