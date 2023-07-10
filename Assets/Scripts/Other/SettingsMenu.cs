@@ -17,6 +17,8 @@ public class SettingsMenu : MonoBehaviour
     public Slider volumeSlider;
     public Slider musicSlider;
 
+    PlayerControls playerControls;
+
     void Start() {
         sensXtext.text = inputListener.sensHorizontal.ToString();
         sensYtext.text = inputListener.sensVertical.ToString();
@@ -25,26 +27,37 @@ public class SettingsMenu : MonoBehaviour
         musicSlider.onValueChanged.AddListener(UpdateMusicMixer);
     }
 
-    public void UpdateVolumeMixer(float value) {
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        playerControls.Menus.Menu.performed += ctx => ToggleMenu();
+
+        playerControls.Enable();
+    }
+
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
+
+    void UpdateVolumeMixer(float value) {
         masterMixer.SetFloat("masterVolume", value);
     }
 
-    public void UpdateMusicMixer(float value) {
+    void UpdateMusicMixer(float value) {
         masterMixer.SetFloat("musicVolume", value);
     }
 
-    public void ToggleMenu() {
-        if (isMenuActive)
-        {
+    void ToggleMenu() {
+        if (isMenuActive) {
             Resume();
-        }
-        else
-        {
+        } else {
             Pause();
         }
     }
 
-    public void Resume()
+    void Resume()
     {
         float sensX;
         if (float.TryParse(sensXtext.text, out sensX)) {
@@ -62,7 +75,7 @@ public class SettingsMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void Pause()
+    void Pause()
     {
         settingsMenuUI.SetActive(true);
         Time.timeScale = 0f;

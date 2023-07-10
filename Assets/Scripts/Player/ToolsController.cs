@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ToolsController : MonoBehaviour
 {
-    public InputListener inputListener;
     public ToolHolder toolHolder;
     public List<Collider> owners;
     public Transform lookPoint;
@@ -14,8 +13,9 @@ public class ToolsController : MonoBehaviour
 
     List<Tool> tools = new List<Tool>();
     int currentToolIndex = 0;
-    private bool wasNextPressedLastFrame = false;
-    private bool wasPrevPressedLastFrame = false;
+
+    PlayerControls playerControls;
+
 
     void Start() {
         // Instantiate all tools in a disabled state
@@ -37,38 +37,44 @@ public class ToolsController : MonoBehaviour
         }
     }
 
-    void Update() {
-        for(int i = 0; i < tools.Count; i++) {
-            if (inputListener.GetIsTool(i)) {
-                if (tools.Count > i) {
-                    SetTool(i);
-                }
-            }
-        }
-        bool isNextPressed = inputListener.GetIsNext();
-        if (isNextPressed && !wasNextPressedLastFrame) {
-            SetToolNext();
-        }
-        wasNextPressedLastFrame = isNextPressed;
+    void Awake()
+    {
+        playerControls = new PlayerControls();
 
-        bool isPrevPressed = inputListener.GetIsPrev();
-        if (isPrevPressed && !wasPrevPressedLastFrame) {
-            SetToolPrev();
-        }
-        wasPrevPressedLastFrame = isPrevPressed;
+        playerControls.Tools.ToolPrev.performed += ctx => SetToolPrev();
+        playerControls.Tools.ToolNext.performed += ctx => SetToolNext();
+
+        playerControls.Tools.Tool0.performed += ctx => SetTool(0);
+        playerControls.Tools.Tool1.performed += ctx => SetTool(1);
+        playerControls.Tools.Tool2.performed += ctx => SetTool(2);
+        playerControls.Tools.Tool3.performed += ctx => SetTool(3);
+        playerControls.Tools.Tool4.performed += ctx => SetTool(4);
+        playerControls.Tools.Tool5.performed += ctx => SetTool(5);
+        playerControls.Tools.Tool6.performed += ctx => SetTool(6);
+        playerControls.Tools.Tool7.performed += ctx => SetTool(7);
+        playerControls.Tools.Tool8.performed += ctx => SetTool(8);
+        playerControls.Tools.Tool9.performed += ctx => SetTool(9);
+        playerControls.Tools.Tool10.performed += ctx => SetTool(10);
+
+        playerControls.Enable();
     }
 
-    public void SetToolNext() {
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
+
+    void SetToolNext() {
         int nextToolIndex = (currentToolIndex + 1) % tools.Count;
         SetTool(nextToolIndex);
     }
 
-    public void SetToolPrev() {
+    void SetToolPrev() {
         int prevToolIndex = (currentToolIndex - 1 + tools.Count) % tools.Count;
         SetTool(prevToolIndex);
     }
 
-    public void SetTool(int toolIndex) {
+    void SetTool(int toolIndex) {
         currentToolIndex = toolIndex;
 
         // Disable current tool

@@ -21,6 +21,23 @@ public class CameraEffects : MonoBehaviour {
     Quaternion def;
     bool isShaking = false;
 
+    PlayerControls playerControls;
+
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        playerControls.Menus.FoVIn.performed += ctx => ChangeFov(zoomSpeed);
+        playerControls.Menus.FoVOut.performed += ctx => ChangeFov(-zoomSpeed);
+
+        playerControls.Enable();
+    }
+
+    void OnDestroy()
+    {
+        playerControls.Dispose();
+    }
 
     void Start() {
         def = transform.localRotation;
@@ -41,11 +58,11 @@ public class CameraEffects : MonoBehaviour {
         Quaternion final = Quaternion.Euler(0, 0, def.z + factorZ);
 
         transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime * amount * smooth);
+    }
 
-        if (inputListener.GetScrollInput() != 0) {
-            cam.fieldOfView -= inputListener.GetScrollInput() * zoomSpeed;
-            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minFOV, maxFOV);
-        }
+    void ChangeFov(float step) {
+        cam.fieldOfView += step;
+        cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minFOV, maxFOV);
     }
 
     

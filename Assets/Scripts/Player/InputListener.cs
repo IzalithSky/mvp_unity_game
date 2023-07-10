@@ -7,6 +7,9 @@ public class InputListener : MonoBehaviour
     public bool toggleCrouch = false;
     public bool toggleWalk = false;
 
+    private const string SensHorizontalKey = "SensHorizontal";
+    private const string SensVerticalKey = "SensVertical";
+    
     public float sensHorizontal {
         get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
         set => PlayerPrefs.SetFloat(SensHorizontalKey, value);
@@ -17,8 +20,18 @@ public class InputListener : MonoBehaviour
         set => PlayerPrefs.SetFloat(SensVerticalKey, value);
     }
 
-    private const string SensHorizontalKey = "SensHorizontal";
-    private const string SensVerticalKey = "SensVertical";
+    private const string SensHorizontalControllerKey = "SensHorizontalController";
+    private const string SensVerticalControllerKey = "SensVerticalController";
+
+    public float sensHorizontalController {
+        get => PlayerPrefs.GetFloat(SensHorizontalControllerKey, 800f);
+        set => PlayerPrefs.SetFloat(SensHorizontalControllerKey, value);
+    }
+
+    public float sensVerticalController {
+        get => PlayerPrefs.GetFloat(SensVerticalControllerKey, 800f);
+        set => PlayerPrefs.SetFloat(SensVerticalControllerKey, value);
+    }
 
     float inputHorizontal = 0f;
     float inputVertical = 0f;
@@ -28,16 +41,8 @@ public class InputListener : MonoBehaviour
     bool isWalking = false;
     bool isFiring = false;
     bool isCrouching = false;
-    List<bool> isTool; // Array to store the tool states
-    float scrollInput = 0f;
-    bool isNext;
-    bool isPrev;
-    bool isPlayNext;
-    bool isPlayStop;
-    bool isMenu;
-
-
     private PlayerControls playerControls;
+
 
     void Awake()
     {
@@ -53,10 +58,25 @@ public class InputListener : MonoBehaviour
             cameraVertical = ctx.ReadValue<Vector2>().y * sensHorizontal * Time.deltaTime;};
         playerControls.Movement.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
 
-        playerControls.Movement.Jump.started += ctx => isJumping = true;
+        playerControls.Movement.LookController.performed += ctx => {
+            cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontalController * Time.deltaTime; 
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensHorizontalController * Time.deltaTime;};
+        playerControls.Movement.LookController.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
+
+        playerControls.Movement.Jump.performed += ctx => isJumping = true;
         playerControls.Movement.Jump.canceled += ctx => isJumping = false;
 
-        playerControls.Movement.Crouch.performed += ctx => isCrouching = !isCrouching;
+        playerControls.Movement.Crouch.performed += ctx => isCrouching = toggleCrouch ? !isCrouching : true;
+        playerControls.Movement.Crouch.canceled += ctx => isCrouching = toggleCrouch ? isCrouching : false;
+
+        playerControls.Movement.Sneak.performed += ctx => isWalking = toggleWalk ? !isWalking : true;
+        playerControls.Movement.Sneak.canceled += ctx => isWalking = toggleWalk ? isWalking : false;
+
+        playerControls.Tools.Fire.performed += ctx => isFiring = true;
+        playerControls.Tools.Fire.canceled += ctx => isFiring = false;
+
+        playerControls.Menus.CrouchToggle.performed += ctx => toggleCrouch = !toggleCrouch;
+        playerControls.Menus.WalkToggle.performed += ctx => toggleWalk = !toggleWalk;
 
         playerControls.Enable();
     }
@@ -74,10 +94,6 @@ public class InputListener : MonoBehaviour
     void OnDestroy()
     {
         playerControls.Dispose();
-    }
-
-    public bool GetIsMenu() {
-        return isMenu;
     }
 
     public float GetInputHorizontal()
@@ -117,30 +133,5 @@ public class InputListener : MonoBehaviour
     public bool GetIsFiring()
     {
         return isFiring;
-    }
-
-    public bool GetIsTool(int toolIndex)
-    {
-        return Input.GetAxis($"Tool {toolIndex}") != 0f;
-    }
-
-    public float GetScrollInput() {
-        return scrollInput;
-    }
-
-    public bool GetIsNext() {
-        return isNext;
-    }
-
-    public bool GetIsPrev() {
-        return isPrev;
-    }
-
-    public bool GetIsPlayNext() {
-        return isPlayNext;
-    }
-
-    public bool GetIsPlayStop() {
-        return isPlayStop;
     }
 }
