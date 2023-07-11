@@ -386,10 +386,10 @@ MonoBehaviour:
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 1058533684158881921, guid: d98b0159be771bca6a92c8450ec0f405, type: 3}
-  bmarkTtl: 20
+  bmarkTtl: 60
   splashRadius: 8
-  bmarkFollows: 1
-  bmarkAlignsWithProjectile: 1
+  bmarkFollows: 0
+  bmarkAlignsWithProjectile: 0
   explosion: {fileID: 4814750517331119647, guid: d6fe496d764b4826182d058cadff8f02,
     type: 3}
   pushForce: 8
