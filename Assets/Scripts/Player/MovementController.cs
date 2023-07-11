@@ -37,6 +37,7 @@ public class MovementController : MonoBehaviour {
     public bool isClimbing = false;
     public bool canBeGrounded = true;
     public bool isCrouching = false;
+    public bool isRunning = false;
     float jtime = 0f;
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
@@ -88,7 +89,7 @@ public class MovementController : MonoBehaviour {
 
     void ProcessCrouching() {
         cc.height = Mathf.Lerp(cc.height, targetHeight, crouchSpeed);
-        AdjustHolderPositions(Mathf.Clamp01(Mathf.Abs((cc.height - defaultHeight) / (crouchHeight - defaultHeight))));
+        // AdjustHolderPositions(Mathf.Clamp01(Mathf.Abs((cc.height - defaultHeight) / (crouchHeight - defaultHeight))));
 
         if (il.GetIsCrouching()) {
             Crouch();
@@ -151,9 +152,12 @@ public class MovementController : MonoBehaviour {
             planeRotation * 
             (rb.transform.right * il.GetInputHorizontal() + rb.transform.forward * il.GetInputVertical()).normalized;
         
+        isRunning = IsMovingForward();
+        
         maxspd = grounded ?
-            ((!il.GetIsWalking() && !il.GetIsCrouching() && IsMovingForward()) ? runSpeed : walkSpeed) 
+            ((!il.GetIsWalking() && !il.GetIsCrouching() && isRunning) ? runSpeed : walkSpeed) 
             : isClimbing ? climbingSpeed : airSpeed;
+
         
         currentAccel = grounded ? acceleration : airAcceleration;
     }
