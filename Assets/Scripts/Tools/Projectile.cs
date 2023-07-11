@@ -13,6 +13,10 @@ public class Projectile : DamageSource {
 
 
     void Start() {
+        StartRoutine();
+    }
+
+    protected virtual void StartRoutine() {
         int projLayer = LayerMask.NameToLayer("Projectiles");
         Physics.IgnoreLayerCollision(projLayer, projLayer);
         

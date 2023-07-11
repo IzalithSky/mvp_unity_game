@@ -1,37 +1,57 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ProjectileExplosive : Projectile {
     public GameObject explosion;
     public float pushForce = 10f;
+    public float fuseDuration = 0f;  // Time in seconds before the projectile explodes
     public static event Action<Vector3> OnExplosion = delegate { };
 
 
-    private void OnCollisionEnter(Collision c) {
-        OnExplosion.Invoke(transform.position);
+    protected override void StartRoutine() {
+        base.StartRoutine();
 
-        GameObject impfl = Instantiate(impactFlash, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
+        // Start the fuse coroutine only if fuseDuration is greater than 0
+        if (fuseDuration > 0f) {
+            StartCoroutine(Fuse());
+        }
+    }
+
+    void OnCollisionEnter(Collision c) {
+        // Stop the fuse coroutine if it is running
+        if (fuseDuration > 0f) {
+            StopCoroutine(Fuse());
+        }
+        ExplodeAtPoint(c.contacts[0].point, c.contacts[0].normal, c.transform);
+        Destroy(gameObject);
+    }
+
+    IEnumerator Fuse() {
+        yield return new WaitForSeconds(fuseDuration);
+        ExplodeAtPoint(transform.position, transform.forward);  // Use transform.forward as the normal
+        Destroy(gameObject);
+    }
+
+    public void ExplodeAtPoint(Vector3 point, Vector3 normal, Transform parent = null) {
+        OnExplosion.Invoke(point);
+
+        GameObject impfl = Instantiate(impactFlash, point, Quaternion.LookRotation(normal));
         Destroy(impfl, impfl.GetComponent<ParticleSystem>().main.duration);
         
         GameObject bm1 = bmarkAlignsWithProjectile ?
-            Instantiate(
-                bmark, 
-                c.contacts[0].point + (c.contacts[0].normal * .001f), 
-                transform.rotation) :
-            Instantiate(
-                bmark, 
-                c.contacts[0].point + (c.contacts[0].normal * .001f), 
-                Quaternion.identity);
-        if (bmarkFollows) {
-            bm1.transform.parent = c.transform;
+            Instantiate(bmark, point + (normal * .001f), transform.rotation) :
+            Instantiate(bmark, point + (normal * .001f), Quaternion.identity);
+        if (bmarkFollows && parent != null) {
+            bm1.transform.parent = parent;
         }
         Destroy(bm1, bmarkTtl);
         
-        GameObject e1 = Instantiate(explosion, c.contacts[0].point, Quaternion.LookRotation(c.contacts[0].normal));
+        GameObject e1 = Instantiate(explosion, point, Quaternion.LookRotation(normal));
         Destroy(e1, 1f);
 
-        Collider[] colliders = Physics.OverlapSphere(c.contacts[0].point, splashRadius);
+        Collider[] colliders = Physics.OverlapSphere(point, splashRadius);
         
         HashSet<Damageable> uniqueDamageables = new HashSet<Damageable>();
         HashSet<Rigidbody> uniqueRbs = new HashSet<Rigidbody>();
@@ -51,9 +71,7 @@ public class ProjectileExplosive : Projectile {
         }
 
         foreach (Rigidbody rb in uniqueRbs) {
-            rb.AddForce((rb.position - transform.position).normalized * pushForce, ForceMode.Impulse);
+            rb.AddForce((rb.position - point).normalized * pushForce, ForceMode.Impulse);
         }
-
-        Destroy(gameObject);
     }
 }

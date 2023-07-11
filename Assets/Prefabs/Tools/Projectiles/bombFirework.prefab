@@ -393,3 +393,4 @@ MonoBehaviour:
   explosion: {fileID: 4814750517331119647, guid: d6fe496d764b4826182d058cadff8f02,
     type: 3}
   pushForce: 8
+  fuseDuration: 1
