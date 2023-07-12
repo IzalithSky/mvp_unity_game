@@ -155,8 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureTime: 3
   capturingTags:
-  - Capper
-  cp: 0
+  - Player
 --- !u!54 &8963353572485622887
 Rigidbody:
   m_ObjectHideFlags: 0

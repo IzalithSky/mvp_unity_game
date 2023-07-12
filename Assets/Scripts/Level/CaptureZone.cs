@@ -5,29 +5,23 @@ using System;
 
 public class CaptureZone : MonoBehaviour
 {
-    public float captureTime = 5f; // The time required to capture the zone.
-    public List<string> capturingTags; // List of tags that can capture the zone.
+    public float captureTime = 5f;
+    public List<string> capturingTags;
 
     private float currentCaptureTime = 0f;
     private bool isCapturing = false;
     private Coroutine captureCoroutine;
 
-    public static event Action OnCapture; // Event to be triggered when zone is captured
+    public Guid spawnerID; // unique ID of the spawner that created this zone
+
+    public static event Action<Guid> OnCapture;
 
     public float CapturePercentage
     {
         get { return currentCaptureTime / captureTime; }
     }
 
-    public float cp = 0f;
-
-
-    void Update() {
-        cp = CapturePercentage;
-    }
-
-
-    private IEnumerator CaptureProcess() // Coroutine to handle capture process
+    private IEnumerator CaptureProcess()
     {
         while (currentCaptureTime < captureTime)
         {
@@ -37,8 +31,8 @@ public class CaptureZone : MonoBehaviour
                 currentCaptureTime += Time.deltaTime;
             }
         }
-        OnCapture?.Invoke(); // Trigger the OnCapture event
-        Destroy(gameObject); // Destroy the current zone after it is captured
+        OnCapture?.Invoke(spawnerID);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

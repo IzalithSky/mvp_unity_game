@@ -155,9 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureTime: 5
   capturingTags:
-  - Player
   - PScanner
-  cp: 0
 --- !u!54 &6652318608856908722
 Rigidbody:
   m_ObjectHideFlags: 0

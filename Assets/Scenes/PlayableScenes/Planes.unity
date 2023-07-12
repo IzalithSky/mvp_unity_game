@@ -19084,6 +19084,16 @@ PrefabInstance:
       objectReference: {fileID: 1656963883}
     - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
         type: 3}
+      propertyPath: xMargin
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
+      propertyPath: zMargin
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
       propertyPath: zonePrefab
       value: 
       objectReference: {fileID: 5266844045840035111, guid: b0fcb2a4344b26530a87717799b78843,
@@ -26561,6 +26571,16 @@ PrefabInstance:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 1656963883}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
+      propertyPath: xMargin
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+        type: 3}
+      propertyPath: zMargin
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
         type: 3}
       propertyPath: zonePrefab
