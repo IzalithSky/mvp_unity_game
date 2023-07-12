@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8090855368372037235}
   - component: {fileID: 6258234022589182478}
   m_Layer: 0
-  m_Name: arrowCapperWall
-  m_TagString: Capper
+  m_Name: arrowPScanner
+  m_TagString: PScanner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3bb2d4c44f323ed8b099d9205af1fcc, type: 2}
+  - {fileID: 2100000, guid: 84210599cfd6f549fa29540cba24ed3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

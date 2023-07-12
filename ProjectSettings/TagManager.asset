@@ -6,8 +6,11 @@ TagManager:
   tags:
   - Ladder
   - Head
-  - Capture Point
-  - Capper
+  - Extraction
+  - EAnomaly
+  - PAnomaly
+  - EScanner
+  - PScanner
   layers:
   - Default
   - TransparentFX

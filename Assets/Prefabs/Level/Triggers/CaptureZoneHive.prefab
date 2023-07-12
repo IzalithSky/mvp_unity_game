@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6652318608856908722}
   m_Layer: 7
   m_Name: CaptureZoneHive
-  m_TagString: Capture Point
+  m_TagString: EAnomaly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   captureTime: 5
   capturingTags:
   - Player
-  - Capper
+  - EScanner
   cp: 0
 --- !u!54 &6652318608856908722
 Rigidbody:

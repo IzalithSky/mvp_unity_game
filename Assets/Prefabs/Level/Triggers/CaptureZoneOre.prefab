@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6652318608856908722}
   m_Layer: 13
   m_Name: CaptureZoneOre
-  m_TagString: Capture Point
+  m_TagString: PAnomaly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   captureTime: 5
   capturingTags:
-  - Drill
+  - Player
+  - PScanner
   cp: 0
 --- !u!54 &6652318608856908722
 Rigidbody:

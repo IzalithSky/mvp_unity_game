@@ -8,6 +8,12 @@ public class CapturePointSpawner : MonoBehaviour {
     public int zonesCapturedTotal = 0;
     public int zonesCapturedMax = 10;
 
+    public enum SpawnMode { FixedPositions, RandomTerrain }
+    public SpawnMode mode;
+    public Terrain terrain;
+    public float xMargin = 100f;
+    public float zMargin = 100f;
+
     private int lastSpawnIndex = -1;
     private int activeZoneCount = 0;
 
@@ -32,15 +38,26 @@ public class CapturePointSpawner : MonoBehaviour {
     }
 
     private void SpawnZone() {
-        int index;
-        do {
-            index = Random.Range(0, spawnPositions.Count);
-        } while (index == lastSpawnIndex);
+        Vector3 position = Vector3.zero;
+        switch(mode)
+        {
+            case SpawnMode.FixedPositions:
+                int index;
+                do {
+                    index = Random.Range(0, spawnPositions.Count);
+                } while (index == lastSpawnIndex);
+                position = spawnPositions[index].position;
+                lastSpawnIndex = index;
+                break;
 
-        Vector3 position = spawnPositions[index].position;
+            case SpawnMode.RandomTerrain:
+                float x = Random.Range(xMargin, terrain.terrainData.size.x - xMargin);
+                float z = Random.Range(zMargin, terrain.terrainData.size.z - zMargin);
+                float y = terrain.SampleHeight(new Vector3(x, 0, z));
+                position = new Vector3(x, y, z);
+                break;
+        }
         Instantiate(zonePrefab, position, Quaternion.identity);
-
-        lastSpawnIndex = index;
         activeZoneCount++;
     }
 }

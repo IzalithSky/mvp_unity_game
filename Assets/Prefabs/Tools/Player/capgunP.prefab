@@ -227,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3bb2d4c44f323ed8b099d9205af1fcc, type: 2}
+  - {fileID: 2100000, guid: 84210599cfd6f549fa29540cba24ed3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 6876607693691237743}
   - component: {fileID: 5687444847237841762}
   m_Layer: 6
-  m_Name: capgun
+  m_Name: capgunP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   fireRateRps: 1
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  toolName: Capgun
+  toolName: CapgunP
   ammoCount: 0
   usesAmmo: 0
   cameraEffects: {fileID: 0}
@@ -307,7 +307,7 @@ MonoBehaviour:
   recoilMagnitude: 1
   maxRecoilAngle: 15
   audioSource: {fileID: 0}
-  projectilePrefab: {fileID: 8373390393789196344, guid: 4d07560c18d20f91e83e95ec6ba8d502,
+  projectilePrefab: {fileID: 8373390393789196344, guid: 11ad5ea9e3adedec5bd24e4efc1f8265,
     type: 3}
   damageSource: {fileID: 6876607693691237743}
   fireForce: 20

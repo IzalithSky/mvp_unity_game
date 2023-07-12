@@ -78,7 +78,7 @@ VisualEffect:
           key0: {r: 0, g: 1.7579348, b: 11.984314, a: 1}
           key1: {r: 1.4668164, g: 14.243139, b: 0, a: 0.78431374}
           key2: {r: 3.247059, g: 0.6555731, b: 0, a: 1}
-          key3: {r: 0, g: 0, b: 0, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 1}
           key4: {r: 0, g: 0, b: 0, a: 1}
           key5: {r: 0, g: 0, b: 0, a: 1}
           key6: {r: 0, g: 0, b: 0, a: 0}
@@ -94,7 +94,7 @@ VisualEffect:
           atime0: 6554
           atime1: 32768
           atime2: 58982
-          atime3: 65535
+          atime3: 58982
           atime4: 65535
           atime5: 65535
           atime6: 0

@@ -10,7 +10,7 @@ public class ProbeIndicator : MonoBehaviour
 
     private void Awake()
     {
-        GameObject extractionObject = GameObject.FindWithTag("Capture Point");
+        GameObject extractionObject = GameObject.FindWithTag("EAnomaly");
         if(extractionObject != null) {
             targetGameObject = extractionObject;
         }

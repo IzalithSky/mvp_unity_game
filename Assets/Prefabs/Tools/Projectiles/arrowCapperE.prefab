@@ -261,8 +261,8 @@ GameObject:
   - component: {fileID: 4122390688533107531}
   - component: {fileID: 6721361702855949864}
   m_Layer: 3
-  m_Name: arrowCapper
-  m_TagString: Untagged
+  m_Name: arrowCapperE
+  m_TagString: EScanner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
