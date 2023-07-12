@@ -282,7 +282,7 @@ MonoBehaviour:
   frictionCoefficient: 35
   jumpForce: 8
   ladderJumpForce: 2
-  groundingForce: 80
+  groundingAcceleration: 80
   acceleration: 50
   airAcceleration: 20
   groundColliderMultiplier: 0.5
@@ -295,7 +295,7 @@ MonoBehaviour:
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  stairsClimbingForce: 35
+  stairsClimbingAcceleration: 35
   crouchSlidesEnabled: 0
   grounded: 0
   accelerating: 0
@@ -347,8 +347,11 @@ MonoBehaviour:
   fpsText: {fileID: 4924045478803948961}
   velocityText: {fileID: 8252447082746828873}
   rb: {fileID: 1002835779930137195}
-  zoneCapturedText: {fileID: 6036395605185486772}
-  capturePointSpawner: {fileID: 0}
+  zoneCapturedEText: {fileID: 6035468686171357234}
+  zoneCapturedPText: {fileID: 6036395605185486772}
+  zoneCapturedBText: {fileID: 8593506415341784357}
+  capturePointSpawnerE: {fileID: 0}
+  capturePointSpawnerP: {fileID: 0}
   directionIndicators:
   - {fileID: 3313136600596949268}
   - {fileID: 4079410194803562384}
@@ -2064,6 +2067,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6035468686171357234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6784817005912281487, guid: 0c5b19462138eb709acd2505f6a15686,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002835781482615229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6036395605185486772 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6786744345947917833, guid: 0c5b19462138eb709acd2505f6a15686,
@@ -2115,6 +2130,18 @@ MonoBehaviour:
 --- !u!114 &8252447082746828873 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9181816207576648180, guid: 0c5b19462138eb709acd2505f6a15686,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002835781482615229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8593506415341784357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8838469684625824920, guid: 0c5b19462138eb709acd2505f6a15686,
     type: 3}
   m_PrefabInstance: {fileID: 1002835781482615229}
   m_PrefabAsset: {fileID: 0}

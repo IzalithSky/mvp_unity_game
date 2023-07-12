@@ -19874,6 +19874,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281624524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+    type: 3}
+  m_PrefabInstance: {fileID: 1180455016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e00d4d3431482c868ffa7ebe53c7c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1283733226
 Mesh:
   m_ObjectHideFlags: 0
@@ -27424,6 +27436,16 @@ PrefabInstance:
       propertyPath: toggleCrouch
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1002835779930137191, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
+      propertyPath: capturePointSpawnerE
+      value: 
+      objectReference: {fileID: 2088615233}
+    - target: {fileID: 1002835779930137191, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
+      propertyPath: capturePointSpawnerP
+      value: 
+      objectReference: {fileID: 1281624524}
     - target: {fileID: 1002835779930137192, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
       propertyPath: m_RootOrder
@@ -31973,6 +31995,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082286372}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2088615233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1203139959816756726, guid: 0617146c6cf59e2bf8bd395334dd1310,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603790059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e00d4d3431482c868ffa7ebe53c7c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2101422175
 Mesh:
   m_ObjectHideFlags: 0

@@ -17,8 +17,11 @@ public class UiController : MonoBehaviour
     public TMP_Text velocityText;
     public Rigidbody rb;
 
-    public TMP_Text zoneCapturedText;
-    public CapturePointSpawner capturePointSpawner;
+    public TMP_Text zoneCapturedEText;
+    public TMP_Text zoneCapturedPText;
+    public TMP_Text zoneCapturedBText;
+    public CapturePointSpawner capturePointSpawnerE;
+    public CapturePointSpawner capturePointSpawnerP;
 
     public Image[] directionIndicators; // 0: Top, 1: Bottom, 2: Left, 3: Right, 4: TopLeft, 5: TopRight, 6: BottomLeft, 7: BottomRight
 
@@ -35,14 +38,18 @@ public class UiController : MonoBehaviour
 
     void Start()
     {
-        capturePointSpawner = FindObjectOfType<CapturePointSpawner>();
+        if (!capturePointSpawnerP && !capturePointSpawnerE) {
+            capturePointSpawnerP = FindObjectOfType<CapturePointSpawner>();
+        }
 
         UpdateText(hpText, "0");
         UpdateText(toolNameText, "");
         UpdateText(ammoCountText, "");
         UpdateText(fpsText, "0");
         UpdateText(velocityText, "0");
-        UpdateText(zoneCapturedText, "");
+        UpdateText(zoneCapturedEText, "");
+        UpdateText(zoneCapturedPText, "");
+        UpdateText(zoneCapturedBText, "");
     }
 
     void Update()
@@ -61,9 +68,13 @@ public class UiController : MonoBehaviour
             UpdateText(velocityText, (3.6 * rb.velocity.magnitude).ToString("F0"));
         }
 
-        if (null != capturePointSpawner)
+        if (null != capturePointSpawnerE)
         {
-            UpdateText(zoneCapturedText, $"{capturePointSpawner.zonesCapturedTotal}/{capturePointSpawner.zonesCapturedMax}");
+            UpdateText(zoneCapturedEText, $"{capturePointSpawnerE.zonesCapturedTotal}/{capturePointSpawnerE.zonesCapturedMax}");
+        }
+        if (null != capturePointSpawnerP)
+        {
+            UpdateText(zoneCapturedPText, $"{capturePointSpawnerP.zonesCapturedTotal}/{capturePointSpawnerP.zonesCapturedMax}");
         }
     }
 
