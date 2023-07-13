@@ -23,6 +23,9 @@ public class UiController : MonoBehaviour
     public CapturePointSpawner capturePointSpawnerE;
     public CapturePointSpawner capturePointSpawnerP;
 
+    public TMP_Text timerText; // Add this line
+    public GameTimer gameTimer; // Add this line
+
     public Image[] directionIndicators; // 0: Top, 1: Bottom, 2: Left, 3: Right, 4: TopLeft, 5: TopRight, 6: BottomLeft, 7: BottomRight
 
     public float fadeDuration = 1f;
@@ -42,6 +45,10 @@ public class UiController : MonoBehaviour
             capturePointSpawnerP = FindObjectOfType<CapturePointSpawner>();
         }
 
+        if (!gameTimer) {
+            gameTimer = FindObjectOfType<GameTimer>();
+        }
+
         UpdateText(hpText, "0");
         UpdateText(toolNameText, "");
         UpdateText(ammoCountText, "");
@@ -50,6 +57,7 @@ public class UiController : MonoBehaviour
         UpdateText(zoneCapturedEText, "");
         UpdateText(zoneCapturedPText, "");
         UpdateText(zoneCapturedBText, "");
+        UpdateText(timerText, "");
     }
 
     void Update()
@@ -75,6 +83,12 @@ public class UiController : MonoBehaviour
         if (null != capturePointSpawnerP)
         {
             UpdateText(zoneCapturedPText, $"{capturePointSpawnerP.zonesCapturedTotal}/{capturePointSpawnerP.zonesCapturedMax}");
+        }
+
+        if (null != gameTimer) // If the gameTimer reference is set
+        {
+            // Update the timerText with the time remaining in minutes:seconds format
+            UpdateText(timerText, $"{Mathf.FloorToInt(gameTimer.timeLeft / 60)}:{Mathf.FloorToInt(gameTimer.timeLeft % 60).ToString("00")}");
         }
     }
 
