@@ -310,7 +310,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8373390393789196344, guid: 18ec024ae169f853d84b3a931bc1d3b5,
     type: 3}
   damageSource: {fileID: 1773164845773162154}
+  veloctiySource: {fileID: 0}
   fireForce: 35
+  inheritSpeed: 1
 --- !u!114 &1773164845773162154
 MonoBehaviour:
   m_ObjectHideFlags: 0

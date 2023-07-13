@@ -5,8 +5,18 @@ using UnityEngine;
 public class ProjectileLauncher : Tool {
     public GameObject projectilePrefab;
     public DamageSource damageSource;
+    public Rigidbody veloctiySource;
 
     public float fireForce = 20f;
+    public bool inheritSpeed = false;
+
+    protected override void StartRoutine() {
+        base.StartRoutine();
+
+        if (!veloctiySource) {
+            veloctiySource = GetComponentInParent<Rigidbody>();
+        }
+    }
 
     protected override void FireReady() {
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, (null !=  lookPoint) ? lookPoint.rotation : firePoint.rotation);
@@ -14,6 +24,12 @@ public class ProjectileLauncher : Tool {
         proj.GetComponent<Projectile>().damage = damageSource.DealDamage();
         proj.GetComponent<Projectile>().damageType = damageSource.damageType;
         proj.GetComponent<Projectile>().headMultiplier = damageSource.headMultiplier;
-        proj.GetComponent<Rigidbody>().AddForce(((null !=  lookPoint) ? lookPoint.forward : firePoint.forward) * fireForce, ForceMode.Impulse);
+        
+        Vector3 initialForce = ((null !=  lookPoint) ? lookPoint.forward : firePoint.forward) * fireForce;
+        if (inheritSpeed && veloctiySource) {
+            initialForce += veloctiySource.velocity;
+        }
+        
+        proj.GetComponent<Rigidbody>().AddForce(initialForce, ForceMode.Impulse);
     }
 }
