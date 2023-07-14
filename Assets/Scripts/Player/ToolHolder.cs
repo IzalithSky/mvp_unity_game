@@ -8,29 +8,22 @@ public class ToolHolder : MonoBehaviour
     public Tool currentTool;
     public Transform lookPoint;
     public float defaultAimDistance = 1000f;
+    public float distance = 0f;
 
-    LayerMask mask ;
+    LayerMask mask;
 
     void Start() {
-        string[] transparentLayers = new string[] { "Tools", "Projectiles", "Trigger", "Smoke" };
+        string[] transparentLayers = new string[] {"Tools", "Projectiles", "Trigger", "Smoke", "Player"};
         mask = ~LayerMask.GetMask(transparentLayers); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        Ray ray = new Ray(lookPoint.position, lookPoint.forward);
+    void Update() {
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, mask))
-        {
-            float distance = Vector3.Distance(lookPoint.position, hit.point);
+        if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit, Mathf.Infinity, mask)) {
+            distance = Vector3.Distance(lookPoint.position, hit.point);
             transform.LookAt(hit.point);
-        }
-        else
-        {
-            // No object is under the camera's gaze. You can either do nothing or
-            // look at a point at a default distance in front of the camera.
+        } else {
+            distance = -1f;
             transform.LookAt(lookPoint.position + lookPoint.forward * defaultAimDistance);
         }
 

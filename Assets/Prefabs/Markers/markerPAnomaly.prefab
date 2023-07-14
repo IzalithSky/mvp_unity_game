@@ -98,4 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTag: Marker Camera
-  cameraTransform: {fileID: 0}
+  autoScale: 1
+  originalSize: 1
+  mult: 1

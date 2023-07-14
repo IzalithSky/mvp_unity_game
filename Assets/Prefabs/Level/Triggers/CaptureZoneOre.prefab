@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5266844045840035109}
   - component: {fileID: 5266844045840035110}
   - component: {fileID: 6652318608856908722}
-  m_Layer: 13
+  m_Layer: 7
   m_Name: CaptureZoneOre
   m_TagString: PAnomaly
   m_Icon: {fileID: 0}
