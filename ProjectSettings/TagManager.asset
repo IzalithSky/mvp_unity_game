@@ -11,6 +11,11 @@ TagManager:
   - PAnomaly
   - EScanner
   - PScanner
+  - Capper
+  - Marker Camera
+  - Lamp
+  - Mob
+  - Equipment Sonar
   layers:
   - Default
   - TransparentFX

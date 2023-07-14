@@ -35,37 +35,11 @@ public class SonarLauncher : Tool, ReceiverInterface
         Sonar s = payload.GetComponent<Sonar>();
         if (null != s) {
             sonars.Add(s);
-            
-            if (sonars.Count == 1) {
-                sonars[0].SetCamEnabled(true);
-            }
         }
     }
 
     public void CycleSonars() 
     {
-        CleanUpDeadSonars();
-
-        // If the list is empty or only has one sonar, do nothing
-        if (sonars.Count <= 1) {
-            return;
-        }
-
-        if (sonars.Count == 1) {
-            sonars[0].SetCamEnabled(true);
-            return;
-        }
-
-        // Increase the index and wrap it around if it exceeds the list length
-        currentSonarIndex = (currentSonarIndex + 1) % sonars.Count;
-
-        // Iterate through all sonars and set their enabled status
-        for (int i = 0; i < sonars.Count; i++) {
-            if (sonars[i] != null) {
-                // If this sonar is the one at currentSonarIndex, enable it. Otherwise, disable it.
-                sonars[i].SetCamEnabled(i == currentSonarIndex);
-            }
-        }
     }
 
     public void CleanUpDeadSonars()
