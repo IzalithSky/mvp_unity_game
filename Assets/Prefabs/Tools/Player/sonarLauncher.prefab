@@ -682,7 +682,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8373390393789196344, guid: 709f41397182bbd82922d0b1a9be3ea2,
     type: 3}
   damageSource: {fileID: 1773164845773162154}
-  fireForce: 20
+  fireForce: 40
   sonars: []
   currentSonarIndex: 0
 --- !u!114 &1773164845773162154
