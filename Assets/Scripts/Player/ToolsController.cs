@@ -20,20 +20,22 @@ public class ToolsController : MonoBehaviour
     void Start() {
         // Instantiate all tools in a disabled state
         foreach (var toolExample in toolExamples) {
-            GameObject toolObject = Instantiate(toolExample, toolHolder.transform);
-            toolObject.SetActive(false);
-            
-            Tool tool = toolObject.GetComponent<Tool>();
-            tool.lookPoint = lookPoint;
-            tool.firePoint = firePoint;
-            tool.cameraEffects = cameraEffects;
-            
-            DamageSource damageSource = toolObject.GetComponent<DamageSource>();
-            if (null != damageSource) {
-                damageSource.owners = owners;
-            }
+            if (toolExample) {
+                GameObject toolObject = Instantiate(toolExample, toolHolder.transform);
+                toolObject.SetActive(false);
+                
+                Tool tool = toolObject.GetComponent<Tool>();
+                tool.lookPoint = lookPoint;
+                tool.firePoint = firePoint;
+                tool.cameraEffects = cameraEffects;
+                
+                DamageSource damageSource = toolObject.GetComponent<DamageSource>();
+                if (null != damageSource) {
+                    damageSource.owners = owners;
+                }
 
-            tools.Add(tool);
+                tools.Add(tool);
+            }
         }
     }
 
@@ -77,13 +79,13 @@ public class ToolsController : MonoBehaviour
     void SetTool(int toolIndex) {
         currentToolIndex = toolIndex;
 
-        // Disable current tool
-        if (null != toolHolder.currentTool) {
-            toolHolder.currentTool.gameObject.SetActive(false);
-        }
+        if (toolIndex >= 0 && toolIndex < tools.Count && tools[toolIndex]) {
+            if (toolHolder.currentTool) {
+                toolHolder.currentTool.gameObject.SetActive(false);
+            }
 
-        // Set and enable new tool
-        toolHolder.currentTool = tools[toolIndex];
-        toolHolder.currentTool.gameObject.SetActive(true);
+            toolHolder.currentTool = tools[toolIndex];
+            toolHolder.currentTool.gameObject.SetActive(true);
+        }
     }
 }
