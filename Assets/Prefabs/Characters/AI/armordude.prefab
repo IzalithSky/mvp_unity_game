@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 4939599433233712069}
   m_Layer: 8
   m_Name: armordude
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,10 +104,6 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   voiceSound: {fileID: 0}
   voiceInterval: 10
-  neighborDistance: 5
-  separationDistance: 2
-  separationSpeed: 0.5
-  cohesionSpeed: 0.5
   targets: []
   target: {fileID: 0}
   state: 2
@@ -296,7 +292,7 @@ GameObject:
   - component: {fileID: 7652202235027701677}
   m_Layer: 8
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
