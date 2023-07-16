@@ -12,7 +12,7 @@ public class CaptureZone : MonoBehaviour
     private bool isCapturing = false;
     private Coroutine captureCoroutine;
 
-    public Guid spawnerID; // unique ID of the spawner that created this zone
+    public Guid spawnerID;
 
     public static event Action<Guid> OnCapture;
 
@@ -40,6 +40,11 @@ public class CaptureZone : MonoBehaviour
         if (capturingTags.Contains(other.gameObject.tag))
         {
             isCapturing = true;
+            ScannerIndication si = other.gameObject.GetComponent<ScannerIndication>();
+            if (si != null)
+            {
+                si.isInZone = true;
+            }
             if (captureCoroutine == null)
             {
                 captureCoroutine = StartCoroutine(CaptureProcess());
@@ -52,6 +57,11 @@ public class CaptureZone : MonoBehaviour
         if (capturingTags.Contains(other.gameObject.tag))
         {
             isCapturing = false;
+            ScannerIndication si = other.gameObject.GetComponent<ScannerIndication>();
+            if (si != null)
+            {
+                si.isInZone = false;
+            }
             if (captureCoroutine != null)
             {
                 StopCoroutine(captureCoroutine);
