@@ -1650,6 +1650,11 @@ PrefabInstance:
       propertyPath: toolListLength
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1002835779930137190, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
+      propertyPath: maxHp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1002835779930137192, guid: c0c2fc5a027151d0097e3d7e70f75482,
         type: 3}
       propertyPath: m_RootOrder

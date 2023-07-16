@@ -8,8 +8,9 @@ public class SonarLauncher : Tool, ReceiverInterface
     public DamageSource damageSource;
     public float fireForce = 20f;
     
+    public MarkersState markersState;
     public List<Sonar> sonars;
-    public int currentSonarIndex = 0; // Add this field to keep track of the active sonar
+    public int currentSonarIndex = 0;
 
 
     protected override void StartRoutine()
@@ -28,7 +29,7 @@ public class SonarLauncher : Tool, ReceiverInterface
     }
 
     public override void Switch() {
-        CycleSonars();
+        markersState.autoScale = !markersState.autoScale;
     }
 
     public void receivePayload(GameObject payload) {
@@ -36,10 +37,6 @@ public class SonarLauncher : Tool, ReceiverInterface
         if (null != s) {
             sonars.Add(s);
         }
-    }
-
-    public void CycleSonars() 
-    {
     }
 
     public void CleanUpDeadSonars()

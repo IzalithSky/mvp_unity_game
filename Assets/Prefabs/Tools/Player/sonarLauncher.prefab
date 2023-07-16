@@ -683,6 +683,7 @@ MonoBehaviour:
     type: 3}
   damageSource: {fileID: 1773164845773162154}
   fireForce: 40
+  markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
   sonars: []
   currentSonarIndex: 0
 --- !u!114 &1773164845773162154

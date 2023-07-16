@@ -36,7 +36,7 @@ public class Sonar : MonoBehaviour
                 {
                     GameObject markerPrefab = tagToPrefab[hitCollider.tag];
                     GameObject marker = Instantiate(markerPrefab, hitCollider.transform.position, Quaternion.identity);
-                    Destroy(marker, markerDuration); // marker will be destroyed after markerDuration
+                    Destroy(marker, markerDuration);
                 }
             }
 
