@@ -900,6 +900,7 @@ MonoBehaviour:
   currentTool: {fileID: 0}
   lookPoint: {fileID: 1002835779700171575}
   defaultAimDistance: 1000
+  distance: 0
 --- !u!114 &1002835779975599070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1043,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 8192
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e22043e431e85b22ebad0dfdbf76c204, type: 2}
   m_TargetDisplay: 0

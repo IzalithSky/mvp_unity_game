@@ -2962,6 +2962,12 @@ PrefabInstance:
         type: 3}
       propertyPath: toolExamples.Array.data[2]
       value: 
+      objectReference: {fileID: 3206933979766202274, guid: 0d694a7aebb7f64feb7bebec252f8967,
+        type: 3}
+    - target: {fileID: 1002835779930137184, guid: c0c2fc5a027151d0097e3d7e70f75482,
+        type: 3}
+      propertyPath: toolExamples.Array.data[10]
+      value: 
       objectReference: {fileID: 5455370826462973949, guid: caeeb048339e58c00adcdbb0e8dd2e67,
         type: 3}
     - target: {fileID: 1002835779930137186, guid: c0c2fc5a027151d0097e3d7e70f75482,

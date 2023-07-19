@@ -8,7 +8,7 @@ public class Marker : MonoBehaviour
     public float defaultScale = 4f;
     public float scaleMultipliyer = 1f;
     
-    private Transform cameraTransform;
+    private Camera c;
     public MarkersState markersState;
 
     private void Awake()
@@ -22,17 +22,22 @@ public class Marker : MonoBehaviour
     }
 
     private void Update() {
-        if (!cameraTransform) {
-            GameObject cameraGameObject = GameObject.FindWithTag(cameraTag);
-
-            if (cameraGameObject) {
-                cameraTransform = cameraGameObject.transform;
+        if (!c) {
+            GameObject[] cameraGameObjects = GameObject.FindGameObjectsWithTag(cameraTag);
+            foreach (GameObject cameraGameObject in cameraGameObjects) {
+                Camera possibleCamera = cameraGameObject.GetComponent<Camera>();
+                if (possibleCamera && possibleCamera.enabled) {
+                    c = possibleCamera;
+                    break;
+                }
             }
-        } else {
-            transform.LookAt(cameraTransform);
+        }
+        
+        if (c) {
+            transform.LookAt(c.transform);
 
             if (markersState.autoScale) {
-                float distance = Vector3.Distance(transform.position, cameraTransform.position);
+                float distance = Vector3.Distance(transform.position, c.transform.position);
                 float scale = distance * scaleMultipliyer;
                 transform.localScale = new Vector3(scale, scale, scale);
             } else {
@@ -41,4 +46,3 @@ public class Marker : MonoBehaviour
         }
     }
 }
-
