@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProbeRenderer : MonoBehaviour
-{
-    public GameObject targetGameObject;
-    
+{    
     public ProbeTracker probeTracker;
 
     public float ringLineWidth = 0.1f;
@@ -14,11 +12,7 @@ public class ProbeRenderer : MonoBehaviour
     public float ringWidth = 0.1f;
     public LayerMask ringLayerMask;
 
-    public GameObject spherePrefab;
-
-
     string ringNamePrefix = "Intersection Ring ";
-    List<GameObject> spheres = new List<GameObject>();
     Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
 
 
@@ -26,7 +20,7 @@ public class ProbeRenderer : MonoBehaviour
     {
         GameObject target = GameObject.FindWithTag("EAnomaly");
         if (target) {
-            targetGameObject = target;
+            probeTracker.targetGameObject = target;
         }
     }
 
@@ -35,8 +29,8 @@ public class ProbeRenderer : MonoBehaviour
         List<string> keys = new List<string>(ringObjects.Keys);
 
         // For each pair of spheres
-        for (int i = 0; i < spheres.Count; i++) {
-            for (int j = i + 1; j < spheres.Count; j++) {
+        for (int i = 0; i < probeTracker.probes.Count; i++) {
+            for (int j = i + 1; j < probeTracker.probes.Count; j++) {
                 ProcessSpherePair(i, j, keys);
             }
         }
@@ -44,15 +38,8 @@ public class ProbeRenderer : MonoBehaviour
         DestroyRemainingRings(keys);
     }
 
-    void AddSphere(GameObject newSphere)
-    {
-        spheres.Add(newSphere);
-    }
-
     void RemoveSphere(GameObject sphereToRemove)
     {
-        spheres.Remove(sphereToRemove);
-
         // Destroy rings related to this sphere
         List<string> keysToRemove = new List<string>();
         foreach (var pair in ringObjects)
@@ -76,11 +63,11 @@ public class ProbeRenderer : MonoBehaviour
         string key = i.ToString() + "_" + j.ToString();
         keys.Remove(key);
 
-        float radius1 = spheres[i].transform.localScale.x / 2f;
-        float radius2 = spheres[j].transform.localScale.x / 2f;
+        float radius1 = probeTracker.probes[i].distance;
+        float radius2 = probeTracker.probes[j].distance;
 
-        Vector3 center1 = spheres[i].transform.position;
-        Vector3 center2 = spheres[j].transform.position;
+        Vector3 center1 = probeTracker.probes[i].transform.position;
+        Vector3 center2 = probeTracker.probes[j].transform.position;
 
         Vector3 centerDiff = center2 - center1;
         float distance = centerDiff.magnitude;

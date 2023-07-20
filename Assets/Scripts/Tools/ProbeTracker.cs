@@ -6,4 +6,5 @@ using UnityEngine;
 public class ProbeTracker : ScriptableObject
 {
     public List<Probe> probes = new List<Probe>();
+    public GameObject targetGameObject;
 }

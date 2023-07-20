@@ -382,17 +382,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e3078a8b8adccf3ad308ddea03dc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetGameObject: {fileID: 0}
   probeTracker: {fileID: 11400000, guid: 2b3ac228c4e8bad6c939843188e31efb, type: 2}
   ringLineWidth: 0.1
-  ringMaterial: {fileID: 0}
+  ringMaterial: {fileID: 2100000, guid: 716110907ae2de8a883b65356f20cf4e, type: 2}
   ringSegments: 100
   ringWidth: 0.1
   ringLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  spherePrefab: {fileID: 5612607118141277589, guid: d314e886608757faebddb079a0846cf9,
-    type: 3}
+    m_Bits: 8192
 --- !u!114 &3511948545888909864
 MonoBehaviour:
   m_ObjectHideFlags: 0

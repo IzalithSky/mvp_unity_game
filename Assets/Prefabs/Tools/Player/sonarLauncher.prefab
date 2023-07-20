@@ -299,7 +299,7 @@ MonoBehaviour:
   fireRateRps: 1
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  toolName: Sonar
+  toolName: Sonarlauncher
   ammoCount: 0
   usesAmmo: 0
   cameraEffects: {fileID: 0}
