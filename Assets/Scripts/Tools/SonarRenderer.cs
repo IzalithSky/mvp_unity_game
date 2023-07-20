@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MarkerRenderer : MonoBehaviour
+public class SonarRenderer : MonoBehaviour
 {
     public bool autoScale = false;
 
-    public List<Sonar> sonars;
+    public SonarTracker sonarTracker;
+    public MarkersState markersState;
     public int currentSonarIndex = 0;
     
     public string cameraTag = "Marker Camera";
@@ -22,16 +23,13 @@ public class MarkerRenderer : MonoBehaviour
     public float markerDuration = 2.3f;
     
     Camera c;
-    List<Marker> allMarkers = new List<Marker>();
     Dictionary<string, GameObject> tagToPrefab;
 
+    HashSet<Sonar> processedSonars = new HashSet<Sonar>();
 
-    void GetSonars() {
-        ;
-    }
 
     void Awake()
-    {
+    {        
         tagToPrefab = new Dictionary<string, GameObject>();
 
         for (int i = 0; i < Mathf.Min(detectableTags.Count, markerPrefabs.Count); i++)
@@ -39,8 +37,17 @@ public class MarkerRenderer : MonoBehaviour
             tagToPrefab[detectableTags[i]] = markerPrefabs[i];
         }
 
-        foreach (Sonar s in sonars) {
-            StartCoroutine(DetectAndMark(s));
+        UpdateSonars();
+    }
+
+    void UpdateSonars() {
+        foreach (Sonar s in sonarTracker.sonars)
+        {
+            if (!processedSonars.Contains(s))
+            {
+                StartCoroutine(DetectAndMark(s));
+                processedSonars.Add(s);
+            }
         }
     }
 
@@ -56,7 +63,6 @@ public class MarkerRenderer : MonoBehaviour
                 {
                     GameObject markerPrefab = tagToPrefab[hitCollider.tag];
                     GameObject marker = Instantiate(markerPrefab, hitCollider.transform.position, Quaternion.identity);
-                    allMarkers.Add(marker.GetComponent<Marker>());
                     Destroy(marker, markerDuration);
                 }
             }
@@ -65,12 +71,9 @@ public class MarkerRenderer : MonoBehaviour
         }
     }
 
-    public void CleanUpDeadSonars()
-    {
-        sonars.RemoveAll(sonar => sonar == null);
-    }
-
     void Update() {
+        UpdateSonars();
+
         if (!c) {
             GameObject[] cameraGameObjects = GameObject.FindGameObjectsWithTag(cameraTag);
             foreach (GameObject cameraGameObject in cameraGameObjects) {
@@ -83,7 +86,7 @@ public class MarkerRenderer : MonoBehaviour
         }
         
         if (c) {
-            foreach (Marker m in allMarkers) {
+            foreach (Marker m in markersState.AllMarkers) {
                 m.transform.LookAt(c.transform);
 
                 if (autoScale) {

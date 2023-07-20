@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 6611939164028952567}
   - component: {fileID: 1327119620471240321}
   - component: {fileID: 4122390688533107531}
-  - component: {fileID: 7791919263478425641}
+  - component: {fileID: 2440215574989683170}
   m_Layer: 3
   m_Name: arrowSonar
   m_TagString: Untagged
@@ -363,7 +363,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &7791919263478425641
+--- !u!114 &2440215574989683170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8373390393789196344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e65c6b38dc278928bc4027e2137e891, type: 3}
+  m_Script: {fileID: 11500000, guid: 0730c58015d74d964871aa2f04f73714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1

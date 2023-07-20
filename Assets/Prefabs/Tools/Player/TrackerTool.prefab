@@ -318,7 +318,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1672286910250175762}
-  - component: {fileID: 2579036083320876845}
+  - component: {fileID: 6468516354047712434}
+  - component: {fileID: 1623139620741185684}
+  - component: {fileID: 3511948545888909864}
   - component: {fileID: 6671578995200104997}
   m_Layer: 6
   m_Name: TrackerTool
@@ -343,7 +345,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2579036083320876845
+--- !u!114 &6468516354047712434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1715797677768653336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f885da5b7837c18c3b3049b02899b77a, type: 3}
+  m_Script: {fileID: 11500000, guid: 70b4866178b20d88391c2594a5ab8f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fireRateRps: 1
@@ -366,6 +368,63 @@ MonoBehaviour:
   recoilMagnitude: 0
   maxRecoilAngle: 0
   audioSource: {fileID: 6671578995200104997}
+  probeRenderer: {fileID: 1623139620741185684}
+  sonarRenderer: {fileID: 3511948545888909864}
+--- !u!114 &1623139620741185684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715797677768653336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e3078a8b8adccf3ad308ddea03dc36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetGameObject: {fileID: 0}
+  probeTracker: {fileID: 11400000, guid: 2b3ac228c4e8bad6c939843188e31efb, type: 2}
+  ringLineWidth: 0.1
+  ringMaterial: {fileID: 0}
+  ringSegments: 100
+  ringWidth: 0.1
+  ringLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  spherePrefab: {fileID: 5612607118141277589, guid: d314e886608757faebddb079a0846cf9,
+    type: 3}
+--- !u!114 &3511948545888909864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715797677768653336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5793e8f00aac90e902ee25c6f1e258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoScale: 0
+  sonarTracker: {fileID: 11400000, guid: a0e2f99fe4f33d31a884eaaf6faee536, type: 2}
+  markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
+  currentSonarIndex: 0
+  cameraTag: Marker Camera
+  defaultScale: 4
+  scaleMultipliyer: 1
+  detectableTags:
+  - PAnomaly
+  - Mob
+  - Equipment Sonar
+  - Lamp
+  markerPrefabs:
+  - {fileID: 344922204200621862, guid: 79ace7a03edfdb43ea90a0d4f19af795, type: 3}
+  - {fileID: 344922204200621862, guid: 8ca6c24a69f87e9d49078c624b9157b9, type: 3}
+  - {fileID: 344922204200621862, guid: fd2795348038a807589dc3164cee2b81, type: 3}
+  - {fileID: 344922204200621862, guid: 52e80469d16f137e6b941b146fd56038, type: 3}
+  detectRadius: 100
+  detectInterval: 2.5
+  markerDuration: 2.3
 --- !u!82 &6671578995200104997
 AudioSource:
   m_ObjectHideFlags: 0

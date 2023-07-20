@@ -6,7 +6,7 @@ public class ProbeRenderer : MonoBehaviour
 {
     public GameObject targetGameObject;
     
-    public List<GameObject> probes;
+    public ProbeTracker probeTracker;
 
     public float ringLineWidth = 0.1f;
     public Material ringMaterial;
@@ -14,19 +14,13 @@ public class ProbeRenderer : MonoBehaviour
     public float ringWidth = 0.1f;
     public LayerMask ringLayerMask;
 
-    public GameObject projectilePrefab;
-    public DamageSource damageSource;
+    public GameObject spherePrefab;
 
-    public float fireForce = 20f;
 
     string ringNamePrefix = "Intersection Ring ";
     List<GameObject> spheres = new List<GameObject>();
     Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
 
-
-    void GetProbes() {
-        ;
-    }
 
     void Awake()
     {
@@ -38,13 +32,6 @@ public class ProbeRenderer : MonoBehaviour
 
     void Update()
     {
-        if (targetGameObject) {
-            float distance = Vector3.Distance(transform.position, targetGameObject.transform.position);
-            transform.localScale = Vector3.one * distance * 2;
-        } else {
-            Destroy(this.gameObject);
-        }
-
         List<string> keys = new List<string>(ringObjects.Keys);
 
         // For each pair of spheres
@@ -60,12 +47,6 @@ public class ProbeRenderer : MonoBehaviour
     void AddSphere(GameObject newSphere)
     {
         spheres.Add(newSphere);
-        
-        ProbeIndicator probeIndicator = newSphere.GetComponent<ProbeIndicator>();
-        if (probeIndicator != null)
-        {
-            probeIndicator.OnDestroyed.AddListener(RemoveSphere);
-        }
     }
 
     void RemoveSphere(GameObject sphereToRemove)

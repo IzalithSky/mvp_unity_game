@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sonar : MonoBehaviour
+public class Probe : MonoBehaviour
 {
-    public SonarTracker sonarTracker;
+    public ProbeTracker probeTracker;
 
     private void Awake()
     {
-        sonarTracker.sonars.Add(this);
+        probeTracker.probes.Add(this);
     }
 
     private void OnDestroy()
     {
-        sonarTracker.sonars.Remove(this);
+        probeTracker.probes.Remove(this);
     }
 }

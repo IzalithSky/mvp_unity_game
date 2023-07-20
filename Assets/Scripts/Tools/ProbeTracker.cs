@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProbeTracker : MonoBehaviour
+[CreateAssetMenu(fileName = "ProbeTracker", menuName = "ScriptableObjects/ProbeTracker")]
+public class ProbeTracker : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<Probe> probes = new List<Probe>();
 }
