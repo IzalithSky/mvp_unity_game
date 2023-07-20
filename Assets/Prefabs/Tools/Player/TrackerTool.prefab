@@ -405,26 +405,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5793e8f00aac90e902ee25c6f1e258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoScale: 0
   sonarTracker: {fileID: 11400000, guid: a0e2f99fe4f33d31a884eaaf6faee536, type: 2}
-  markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
   currentSonarIndex: 0
-  cameraTag: Marker Camera
+  markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
+  autoScale: 0
+  targetCamera: {fileID: 6143488073638842902}
   defaultScale: 4
   scaleMultipliyer: 1
-  detectableTags:
-  - PAnomaly
-  - Mob
-  - Equipment Sonar
-  - Lamp
-  markerPrefabs:
-  - {fileID: 344922204200621862, guid: 79ace7a03edfdb43ea90a0d4f19af795, type: 3}
-  - {fileID: 344922204200621862, guid: 8ca6c24a69f87e9d49078c624b9157b9, type: 3}
-  - {fileID: 344922204200621862, guid: fd2795348038a807589dc3164cee2b81, type: 3}
-  - {fileID: 344922204200621862, guid: 52e80469d16f137e6b941b146fd56038, type: 3}
-  detectRadius: 100
-  detectInterval: 2.5
-  markerDuration: 2.3
 --- !u!82 &6671578995200104997
 AudioSource:
   m_ObjectHideFlags: 0

@@ -317,6 +317,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonarTracker: {fileID: 11400000, guid: a0e2f99fe4f33d31a884eaaf6faee536, type: 2}
+  detectableTags:
+  - PAnomaly
+  - Mob
+  - Equipment Sonar
+  - Lamp
+  markerPrefabs:
+  - {fileID: 344922204200621862, guid: 79ace7a03edfdb43ea90a0d4f19af795, type: 3}
+  - {fileID: 344922204200621862, guid: 8ca6c24a69f87e9d49078c624b9157b9, type: 3}
+  - {fileID: 344922204200621862, guid: fd2795348038a807589dc3164cee2b81, type: 3}
+  - {fileID: 344922204200621862, guid: 52e80469d16f137e6b941b146fd56038, type: 3}
+  detectRadius: 100
+  detectInterval: 2.5
+  markerDuration: 2.3
 --- !u!1 &8592361738275722906
 GameObject:
   m_ObjectHideFlags: 0
