@@ -1,20 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProbeRenderer : MonoBehaviour
 {    
     public ProbeTracker probeTracker;
-
-    public float ringLineWidth = 0.1f;
     public Material ringMaterial;
     public int ringSegments = 100;
     public float ringWidth = 0.1f;
     public LayerMask ringLayerMask;
 
-    string ringNamePrefix = "Intersection Ring ";
-    Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
-
+    private string ringNamePrefix = "Intersection Ring ";
+    private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
+    private HashSet<string> currentProcessedPairs = new HashSet<string>();
 
     void Awake()
     {
@@ -23,52 +20,35 @@ public class ProbeRenderer : MonoBehaviour
             probeTracker.targetGameObject = target;
         }
     }
-
+    
     void Update()
     {
-        List<string> keys = new List<string>(ringObjects.Keys);
+        // Reset the set of processed pairs for this frame
+        currentProcessedPairs.Clear();
 
         // For each pair of spheres
-        for (int i = 0; i < probeTracker.probes.Count; i++) {
-            for (int j = i + 1; j < probeTracker.probes.Count; j++) {
-                ProcessSpherePair(i, j, keys);
-            }
-        }
-
-        DestroyRemainingRings(keys);
-    }
-
-    void RemoveSphere(GameObject sphereToRemove)
-    {
-        // Destroy rings related to this sphere
-        List<string> keysToRemove = new List<string>();
-        foreach (var pair in ringObjects)
+        for (int i = 0; i < probeTracker.probes.Count; i++) 
         {
-            string[] indices = pair.Key.Split('_');
-            if (indices[0] == sphereToRemove.name || indices[1] == sphereToRemove.name)
+            for (int j = i + 1; j < probeTracker.probes.Count; j++) 
             {
-                Destroy(pair.Value);
-                keysToRemove.Add(pair.Key);
+                ProcessSpherePair(i, j);
             }
         }
 
-        foreach (string key in keysToRemove)
-        {
-            ringObjects.Remove(key);
-        }
+        CleanupUnusedRings();
     }
 
-    void ProcessSpherePair(int i, int j, List<string> keys)
+    void ProcessSpherePair(int i, int j)
     {
         string key = i.ToString() + "_" + j.ToString();
-        keys.Remove(key);
+
+        // Add the pair to the current set of processed pairs
+        currentProcessedPairs.Add(key);
 
         float radius1 = probeTracker.probes[i].distance;
         float radius2 = probeTracker.probes[j].distance;
-
         Vector3 center1 = probeTracker.probes[i].transform.position;
         Vector3 center2 = probeTracker.probes[j].transform.position;
-
         Vector3 centerDiff = center2 - center1;
         float distance = centerDiff.magnitude;
 
@@ -130,11 +110,19 @@ public class ProbeRenderer : MonoBehaviour
         }
     }
 
-    void DestroyRemainingRings(List<string> keys)
+    void CleanupUnusedRings()
     {
-        foreach (string key in keys)
+        List<string> keysToRemove = new List<string>();
+        foreach (var key in ringObjects.Keys)
         {
-            Destroy(ringObjects[key]);
+            if (!currentProcessedPairs.Contains(key))
+            {
+                Destroy(ringObjects[key]);
+                keysToRemove.Add(key);
+            }
+        }
+        foreach (var key in keysToRemove)
+        {
             ringObjects.Remove(key);
         }
     }
