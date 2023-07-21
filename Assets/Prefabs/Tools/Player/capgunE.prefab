@@ -301,7 +301,7 @@ MonoBehaviour:
   lookPoint: {fileID: 0}
   toolName: CapgunE
   ammoCount: 0
-  usesAmmo: 0
+  usesAmmo: 1
   cameraEffects: {fileID: 0}
   recoilDuration: 0.1
   recoilMagnitude: 1
@@ -310,7 +310,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8373390393789196344, guid: 4d07560c18d20f91e83e95ec6ba8d502,
     type: 3}
   damageSource: {fileID: 6876607693691237743}
+  veloctiySource: {fileID: 0}
   fireForce: 20
+  inheritSpeed: 0
 --- !u!114 &6876607693691237743
 MonoBehaviour:
   m_ObjectHideFlags: 0

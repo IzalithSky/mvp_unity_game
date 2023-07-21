@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4748094560912428325}
   - component: {fileID: 4836149152373015302}
   m_Layer: 13
-  m_Name: markerMisc
+  m_Name: markerEScanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c781b5ac964fdc9399495ddf9f52faa, type: 2}
+  - {fileID: 2100000, guid: 23469faa6e11b55be9ddf98b07462d8b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d91d0e9f1499c979e90f98120bf753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTag: Marker Camera
-  defaultScale: 16
-  scaleMultipliyer: 1
   markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}

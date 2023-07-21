@@ -13,16 +13,16 @@ public class ProbeRenderer : MonoBehaviour
     private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
     private HashSet<string> currentProcessedPairs = new HashSet<string>();
 
-    void Awake()
-    {
-        GameObject target = GameObject.FindWithTag("EAnomaly");
-        if (target) {
-            probeTracker.targetGameObject = target;
-        }
-    }
     
     void Update()
     {
+        if (!probeTracker.targetGameObject) {
+            GameObject target = GameObject.FindWithTag("EAnomaly");
+            if (target) {
+                probeTracker.targetGameObject = target;
+            }
+        }
+
         // Reset the set of processed pairs for this frame
         currentProcessedPairs.Clear();
 

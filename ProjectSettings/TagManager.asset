@@ -16,6 +16,7 @@ TagManager:
   - Lamp
   - Mob
   - Equipment Sonar
+  - Equipment Probe
   layers:
   - Default
   - TransparentFX

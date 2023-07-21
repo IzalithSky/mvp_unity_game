@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 8090855368372037235}
   - component: {fileID: 6258234022589182478}
   - component: {fileID: 7354923467327784199}
+  - component: {fileID: 8602001615640838411}
   m_Layer: 0
   m_Name: arrowSonarWall
   m_TagString: Equipment Sonar
@@ -277,7 +278,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8373390393789196344}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -321,15 +322,35 @@ MonoBehaviour:
   - PAnomaly
   - Mob
   - Equipment Sonar
+  - Equipment Probe
   - Lamp
+  - PScanner
+  - EScanner
   markerPrefabs:
   - {fileID: 344922204200621862, guid: 79ace7a03edfdb43ea90a0d4f19af795, type: 3}
   - {fileID: 344922204200621862, guid: 8ca6c24a69f87e9d49078c624b9157b9, type: 3}
   - {fileID: 344922204200621862, guid: fd2795348038a807589dc3164cee2b81, type: 3}
+  - {fileID: 344922204200621862, guid: 4e31288828c857f88b7c038571970de5, type: 3}
   - {fileID: 344922204200621862, guid: 52e80469d16f137e6b941b146fd56038, type: 3}
+  - {fileID: 344922204200621862, guid: fb82057631b490ed2bbfe39c5d7ccdce, type: 3}
+  - {fileID: 344922204200621862, guid: cabcb38aba648f1038d51a6c140dda31, type: 3}
   detectRadius: 100
   detectInterval: 2.5
   markerDuration: 2.3
+--- !u!114 &8602001615640838411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8373390393789196344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c46cfcbc6e1afeab0f2957caccd4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolName: Sonarlauncher
+  refillCount: 1
 --- !u!1 &8592361738275722906
 GameObject:
   m_ObjectHideFlags: 0

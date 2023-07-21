@@ -44,7 +44,9 @@ public class Projectile : DamageSource {
             bm1.transform.parent = c.transform;
         }
         
-        Destroy(bm1, bmarkTtl);
+        if (bmarkTtl > 0) {
+            Destroy(bm1, bmarkTtl);
+        }
         
         TryHit(c.gameObject);
         
