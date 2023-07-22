@@ -10,6 +10,8 @@ public class ToolHolder : MonoBehaviour
     public float defaultAimDistance = 1000f;
     public float distance = 0f;
 
+    public List<string> nonLookingTools;
+
     LayerMask mask;
 
     void Start() {
@@ -21,17 +23,22 @@ public class ToolHolder : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(lookPoint.position, lookPoint.forward, out hit, Mathf.Infinity, mask)) {
             distance = Vector3.Distance(lookPoint.position, hit.point);
-            transform.LookAt(hit.point);
+            
+            if (currentTool != null && !nonLookingTools.Contains(currentTool.toolName)) {
+                transform.LookAt(hit.point);
+            } else {
+                transform.LookAt(lookPoint.position + lookPoint.forward * defaultAimDistance);
+            }
         } else {
             distance = -1f;
             transform.LookAt(lookPoint.position + lookPoint.forward * defaultAimDistance);
         }
 
-        if (inputListener.GetIsFiring() && null != currentTool) {
+        if (inputListener.GetIsFiring() && currentTool != null) {
             currentTool.Fire();
         }
 
-        if (inputListener.GetIssSwitching() && null != currentTool) {
+        if (inputListener.GetIssSwitching() && currentTool != null) {
             currentTool.Switch();
         }
     }

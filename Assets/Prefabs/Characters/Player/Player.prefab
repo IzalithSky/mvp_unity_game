@@ -919,6 +919,9 @@ MonoBehaviour:
   lookPoint: {fileID: 1002835779700171575}
   defaultAimDistance: 1000
   distance: 0
+  nonLookingTools:
+  - Tracker
+  - Scanner
 --- !u!114 &1002835779975599070
 MonoBehaviour:
   m_ObjectHideFlags: 0
