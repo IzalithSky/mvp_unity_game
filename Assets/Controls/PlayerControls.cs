@@ -255,15 +255,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""cc393fec-7a3a-47a0-ba6e-88d0c1cb68d2"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""b87a7256-1f8b-4b11-a9aa-ddd4362fb642"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""9641a12a-25d1-40a7-90af-848b342a221e"",
@@ -400,17 +391,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""d851012d-81d7-47fc-be7f-d6d0e57b5d81"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""7b8cae12-18ed-425e-9d7d-4bc34c664654"",
@@ -638,12 +618,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""fcf50c0b-0e41-45ec-aeb2-4dd25927c000"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""82a4e623-063d-46f0-a16b-ee80311701da"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -714,11 +694,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c4cdb9c7-b19f-417d-a174-8c79f43c201b"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63d9c80b-0bd3-4406-b952-7a19102a3105"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -847,7 +838,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Sneak = m_Movement.FindAction("Sneak", throwIfNotFound: true);
         // Tools
         m_Tools = asset.FindActionMap("Tools", throwIfNotFound: true);
-        m_Tools_Newaction = m_Tools.FindAction("New action", throwIfNotFound: true);
         m_Tools_Fire = m_Tools.FindAction("Fire", throwIfNotFound: true);
         m_Tools_Switch = m_Tools.FindAction("Switch", throwIfNotFound: true);
         m_Tools_ToolPrev = m_Tools.FindAction("ToolPrev", throwIfNotFound: true);
@@ -865,7 +855,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Tools_Tool10 = m_Tools.FindAction("Tool10", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
-        m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
+        m_Menus_Interact = m_Menus.FindAction("Interact", throwIfNotFound: true);
         m_Menus_Menu = m_Menus.FindAction("Menu", throwIfNotFound: true);
         m_Menus_FoVIn = m_Menus.FindAction("FoVIn", throwIfNotFound: true);
         m_Menus_FoVOut = m_Menus.FindAction("FoVOut", throwIfNotFound: true);
@@ -1020,7 +1010,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Tools
     private readonly InputActionMap m_Tools;
     private List<IToolsActions> m_ToolsActionsCallbackInterfaces = new List<IToolsActions>();
-    private readonly InputAction m_Tools_Newaction;
     private readonly InputAction m_Tools_Fire;
     private readonly InputAction m_Tools_Switch;
     private readonly InputAction m_Tools_ToolPrev;
@@ -1040,7 +1029,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         private @PlayerControls m_Wrapper;
         public ToolsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Tools_Newaction;
         public InputAction @Fire => m_Wrapper.m_Tools_Fire;
         public InputAction @Switch => m_Wrapper.m_Tools_Switch;
         public InputAction @ToolPrev => m_Wrapper.m_Tools_ToolPrev;
@@ -1065,9 +1053,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ToolsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ToolsActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
@@ -1117,9 +1102,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IToolsActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
@@ -1186,7 +1168,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Menus
     private readonly InputActionMap m_Menus;
     private List<IMenusActions> m_MenusActionsCallbackInterfaces = new List<IMenusActions>();
-    private readonly InputAction m_Menus_Newaction;
+    private readonly InputAction m_Menus_Interact;
     private readonly InputAction m_Menus_Menu;
     private readonly InputAction m_Menus_FoVIn;
     private readonly InputAction m_Menus_FoVOut;
@@ -1198,7 +1180,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         private @PlayerControls m_Wrapper;
         public MenusActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menus_Newaction;
+        public InputAction @Interact => m_Wrapper.m_Menus_Interact;
         public InputAction @Menu => m_Wrapper.m_Menus_Menu;
         public InputAction @FoVIn => m_Wrapper.m_Menus_FoVIn;
         public InputAction @FoVOut => m_Wrapper.m_Menus_FoVOut;
@@ -1215,9 +1197,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenusActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenusActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @Menu.started += instance.OnMenu;
             @Menu.performed += instance.OnMenu;
             @Menu.canceled += instance.OnMenu;
@@ -1243,9 +1225,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMenusActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @Menu.started -= instance.OnMenu;
             @Menu.performed -= instance.OnMenu;
             @Menu.canceled -= instance.OnMenu;
@@ -1295,7 +1277,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IToolsActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
         void OnToolPrev(InputAction.CallbackContext context);
@@ -1314,7 +1295,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IMenusActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnFoVIn(InputAction.CallbackContext context);
         void OnFoVOut(InputAction.CallbackContext context);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9206581228617441832}
   - component: {fileID: 733804071005731725}
   - component: {fileID: 8563503043623109813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: indicator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 6258234022589182478}
   - component: {fileID: 7354923467327784199}
   - component: {fileID: 8602001615640838411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arrowSonarWall
   m_TagString: Equipment Sonar
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8373390393789196344}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 925786673757438986}
   - component: {fileID: 2718211480275641627}
   - component: {fileID: 5682078009512819741}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: indicator0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

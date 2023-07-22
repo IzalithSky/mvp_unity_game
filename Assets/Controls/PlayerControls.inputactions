@@ -233,15 +233,6 @@
             "id": "cc393fec-7a3a-47a0-ba6e-88d0c1cb68d2",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "b87a7256-1f8b-4b11-a9aa-ddd4362fb642",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "9641a12a-25d1-40a7-90af-848b342a221e",
@@ -378,17 +369,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "d851012d-81d7-47fc-be7f-d6d0e57b5d81",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "7b8cae12-18ed-425e-9d7d-4bc34c664654",
@@ -616,12 +596,12 @@
             "id": "fcf50c0b-0e41-45ec-aeb2-4dd25927c000",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "82a4e623-063d-46f0-a16b-ee80311701da",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -692,11 +672,22 @@
                 {
                     "name": "",
                     "id": "c4cdb9c7-b19f-417d-a174-8c79f43c201b",
-                    "path": "",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63d9c80b-0bd3-4406-b952-7a19102a3105",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
