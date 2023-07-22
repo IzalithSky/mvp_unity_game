@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MarkersState
   m_EditorClassIdentifier: 
   AllMarkers: []
-  autoScale: 0
+  autoScale: 1
+  targetCamera: {fileID: 0}

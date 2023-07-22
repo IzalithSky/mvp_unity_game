@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputListener: {fileID: 1002835779930137188}
-  minAngle: -89.5
+  minAngle: -89
   maxAngle: 89.5
   tracerSource: {fileID: 1002835779975599071}
 --- !u!1 &1002835779930137186

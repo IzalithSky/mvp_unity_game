@@ -98,3 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
+  defaultScale: 4
+  scaleMultipliyer: 1

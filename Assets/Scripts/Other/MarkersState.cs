@@ -6,5 +6,7 @@ using UnityEngine;
 public class MarkersState : ScriptableObject
 {
     public List<Marker> AllMarkers = new List<Marker>();
-    public bool autoScale = false;
+    public bool autoScale = true;
+    
+    public Transform targetCamera;
 }

@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d91d0e9f1499c979e90f98120bf753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTag: Marker Camera
-  defaultScale: 16
-  scaleMultipliyer: 1
   markersState: {fileID: 11400000, guid: d8d4a694c31c93611946dfc597451c30, type: 2}
+  defaultScale: 4
+  scaleMultipliyer: 1
