@@ -21,10 +21,8 @@ public class Tracker : Tool
     void SwitchView() {
         if (topView) {
             SetActiveCameraFront();
-            sonarRenderer.markersState.autoScale = true;
         } else {
             SetActiveCameraTop();
-            sonarRenderer.markersState.autoScale = false;
         }
 
         topView = !topView;
@@ -37,6 +35,8 @@ public class Tracker : Tool
         cameraCanvas.worldCamera = cameraFront;
 
         sonarRenderer.markersState.targetCamera = cameraFront.transform;
+
+        sonarRenderer.markersState.autoScale = true;
     }
 
     void SetActiveCameraTop() {
@@ -46,6 +46,8 @@ public class Tracker : Tool
         cameraCanvas.worldCamera = cameraTop;
 
         sonarRenderer.markersState.targetCamera = cameraTop.transform;
+
+        sonarRenderer.markersState.autoScale = false;
     }
 
     public override void Switch() {
