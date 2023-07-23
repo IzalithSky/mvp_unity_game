@@ -312,7 +312,7 @@ MonoBehaviour:
   damageSource: {fileID: 1773164845773162154}
   veloctiySource: {fileID: 0}
   fireForce: 35
-  inheritSpeed: 0
+  inheritSpeed: 1
 --- !u!114 &1773164845773162154
 MonoBehaviour:
   m_ObjectHideFlags: 0

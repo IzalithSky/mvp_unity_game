@@ -38,9 +38,27 @@ public class ProbeRenderer : MonoBehaviour
         CleanupUnusedRings();
     }
 
-    public void SetNextTarget()
-    {
-        List<CaptureZone> zs = zoneTracker.GetZonesWithTag("EAnomaly");
+    public CaptureZone CurrentTarget { 
+        get {
+            List<CaptureZone> zones = GetZones(); // Get the list of zones
+            if (currentTargetIndex < 0 || currentTargetIndex >= zones.Count) return null;
+            return zones[currentTargetIndex];
+        }
+    }
+
+    public int DistanceToCurrentTarget {
+        get {
+            if (!CurrentTarget) return -1;
+            return Mathf.RoundToInt(Vector3.Distance(transform.position, CurrentTarget.transform.position));
+        }
+    }
+
+    public List<CaptureZone> GetZones() {
+        return zoneTracker.GetZonesWithTag("EAnomaly");
+    }
+
+    public void SetNextTarget() {
+        List<CaptureZone> zs = GetZones();
         if (zs.Count == 0) return;
 
         currentTargetIndex = (currentTargetIndex + 1) % zs.Count;

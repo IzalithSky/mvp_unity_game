@@ -24,20 +24,14 @@ public class Tracker : Tool
     }
 
     void Update() {
-        List<CaptureZone> zs = probeRenderer.zoneTracker.GetZonesWithTag("EAnomaly");
-        
-        int distanceToCurrentTarget = -1; // Default value if no target is available
-        if(probeRenderer.probeTracker.targetGameObject) {
-            distanceToCurrentTarget = Mathf.RoundToInt(
-                Vector3.Distance(transform.position, probeRenderer.probeTracker.targetGameObject.transform.position));
-        }
+        List<CaptureZone> zs = probeRenderer.GetZones();
 
         List<string> hexInstanceIDs = zs.Select(zone => {
             string hexID = "0x" + zone.gameObject.GetInstanceID().ToString("X");
             
-            if(probeRenderer.probeTracker.targetGameObject == zone.gameObject) {
+            if (probeRenderer.CurrentTarget == zone) {
                 hexID += " * "; // Add an asterisk to the current target
-                hexID += $"({distanceToCurrentTarget}m)"; // Add the distance to the current target
+                hexID += $"({probeRenderer.DistanceToCurrentTarget}m)"; // Add the distance to the current target
             }
             return hexID;
         }).ToList();
