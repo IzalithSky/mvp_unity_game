@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Linq;
 
 public class Tracker : Tool
 {    
@@ -11,11 +14,36 @@ public class Tracker : Tool
     public Camera cameraFront;
     public Camera cameraTop;
 
+    public TMP_Text outText;
+
     bool topView = false;
 
 
     void Awake() {
         SetActiveCameraFront();
+    }
+
+    void Update() {
+        List<CaptureZone> zs = probeRenderer.zoneTracker.GetZonesWithTag("EAnomaly");
+        
+        int distanceToCurrentTarget = -1; // Default value if no target is available
+        if(probeRenderer.probeTracker.targetGameObject) {
+            distanceToCurrentTarget = Mathf.RoundToInt(
+                Vector3.Distance(transform.position, probeRenderer.probeTracker.targetGameObject.transform.position));
+        }
+
+        List<string> hexInstanceIDs = zs.Select(zone => {
+            string hexID = "0x" + zone.gameObject.GetInstanceID().ToString("X");
+            
+            if(probeRenderer.probeTracker.targetGameObject == zone.gameObject) {
+                hexID += " * "; // Add an asterisk to the current target
+                hexID += $"({distanceToCurrentTarget}m)"; // Add the distance to the current target
+            }
+            return hexID;
+        }).ToList();
+
+        string output = string.Join("\n", hexInstanceIDs);
+        outText.text = output;
     }
 
     void SwitchView() {
@@ -51,8 +79,10 @@ public class Tracker : Tool
     }
 
     public override void Switch() {
-        sonarRenderer.markersState.autoScale = !sonarRenderer.markersState.autoScale;
+        probeRenderer.SetNextTarget();
 
-        SwitchView();
+        // sonarRenderer.markersState.autoScale = !sonarRenderer.markersState.autoScale;
+
+        // SwitchView();
     }
 }

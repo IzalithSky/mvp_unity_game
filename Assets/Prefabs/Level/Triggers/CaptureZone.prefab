@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 5266844045840035098}
   - component: {fileID: 5266844045840035099}
   - component: {fileID: 5266844045840035109}
-  - component: {fileID: 5266844045840035110}
   - component: {fileID: 8963353572485622887}
+  - component: {fileID: 5266844045840035110}
   m_Layer: 7
   m_Name: CaptureZone
   m_TagString: Untagged
@@ -141,21 +141,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5266844045840035110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5266844045840035111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e1edf1c2910811d8271717002b861b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  captureTime: 3
-  capturingTags:
-  - Player
 --- !u!54 &8963353572485622887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,3 +157,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5266844045840035110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5266844045840035111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e1edf1c2910811d8271717002b861b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneTracker: {fileID: 11400000, guid: 8e39feaffea34b224b405db7c9fd2cef, type: 2}
+  captureTime: 3
+  capturingTags:
+  - Player

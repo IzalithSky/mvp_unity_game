@@ -7,20 +7,20 @@ public class ProbeRenderer : MonoBehaviour
     public Material ringMaterial;
     public int ringSegments = 100;
     public float ringWidth = 0.1f;
+    public ZoneTracker zoneTracker;
     public LayerMask ringLayerMask;
 
-    private string ringNamePrefix = "Intersection Ring ";
-    private Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
-    private HashSet<string> currentProcessedPairs = new HashSet<string>();
+    string ringNamePrefix = "Intersection Ring ";
+    Dictionary<string, GameObject> ringObjects = new Dictionary<string, GameObject>();
+    HashSet<string> currentProcessedPairs = new HashSet<string>();
+    int currentTargetIndex = 0;
 
     
     void Update()
     {
+
         if (!probeTracker.targetGameObject) {
-            GameObject target = GameObject.FindWithTag("EAnomaly");
-            if (target) {
-                probeTracker.targetGameObject = target;
-            }
+            SetNextTarget();
         }
 
         // Reset the set of processed pairs for this frame
@@ -36,6 +36,15 @@ public class ProbeRenderer : MonoBehaviour
         }
 
         CleanupUnusedRings();
+    }
+
+    public void SetNextTarget()
+    {
+        List<CaptureZone> zs = zoneTracker.GetZonesWithTag("EAnomaly");
+        if (zs.Count == 0) return;
+
+        currentTargetIndex = (currentTargetIndex + 1) % zs.Count;
+        probeTracker.targetGameObject = zs[currentTargetIndex].gameObject;
     }
 
     void ProcessSpherePair(int i, int j)

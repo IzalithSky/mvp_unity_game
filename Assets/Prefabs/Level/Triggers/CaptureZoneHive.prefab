@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1edf1c2910811d8271717002b861b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneTracker: {fileID: 11400000, guid: 8e39feaffea34b224b405db7c9fd2cef, type: 2}
   captureTime: 20
   capturingTags:
   - EScanner

@@ -5,6 +5,8 @@ using System;
 
 public class CaptureZone : MonoBehaviour
 {
+    public ZoneTracker zoneTracker;
+    
     public float captureTime = 5f;
     public List<string> capturingTags;
 
@@ -15,6 +17,16 @@ public class CaptureZone : MonoBehaviour
     public Guid spawnerID;
 
     public static event Action<Guid> OnCapture;
+
+    private void Awake()
+    {
+        zoneTracker.zones.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        zoneTracker.zones.Remove(this);
+    }
 
     public float CapturePercentage
     {
