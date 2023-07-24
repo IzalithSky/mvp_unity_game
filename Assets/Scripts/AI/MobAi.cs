@@ -39,6 +39,8 @@ public class MobAi : MonoBehaviour {
     public Collider target; // The current target.
     public AiBehMode state = AiBehMode.CHASING;
     
+    public PositioningManager positioningManager;
+
     bool isStrafeReady = false;
     float strafeStartTime = 0.0f;
 
@@ -49,7 +51,6 @@ public class MobAi : MonoBehaviour {
     
     AudioSource audioSource;
     float lastVoiceTime;
-
 
     void Start () {
         strafeStartTime = Time.time;
@@ -79,6 +80,12 @@ public class MobAi : MonoBehaviour {
         if (tool == null) {
             Debug.LogWarning("No Tool found in the GameObject or its children.");
         }
+
+        positioningManager.RegisterAi(this);
+    }
+
+    private void OnDestroy() {
+        positioningManager.UnregisterAi(this);
     }
 
     void Update() { 
@@ -195,9 +202,11 @@ public class MobAi : MonoBehaviour {
         switch (state)
         {
             case AiBehMode.CHASING:
-                if (target != null) {
+                if (target != null)  {
                     FaceTarget(target.transform);
-                    nm.SetDestination(target.transform.position);
+
+                    Vector3 surroundPos = positioningManager.GetSurroundPositionForAi(this);
+                    nm.SetDestination(surroundPos);
                 }
                 break;
             case AiBehMode.ATTACKING:
