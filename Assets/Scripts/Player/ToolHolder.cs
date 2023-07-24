@@ -38,8 +38,20 @@ public class ToolHolder : MonoBehaviour
             currentTool.Fire();
         }
 
-        if (inputListener.GetIssSwitching() && currentTool != null) {
+        if (inputListener.GetIsSwitching() && currentTool != null) {
             currentTool.Switch();
+        }
+
+        if (inputListener.GetIsMode0() && currentTool != null) {
+            currentTool.Mode0();
+        }
+
+        if (inputListener.GetIsMode1() && currentTool != null) {
+            currentTool.Mode1();
+        }
+
+        if (inputListener.GetIsMode2() && currentTool != null) {
+            currentTool.Mode2();
         }
     }
 }

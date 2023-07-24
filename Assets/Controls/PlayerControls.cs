@@ -273,6 +273,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Mode1"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c3a28eb-1aa6-48de-af47-4c5f14a5efbb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mode0"",
+                    ""type"": ""Button"",
+                    ""id"": ""59061f7f-5d26-46bf-9e04-53ada03f585d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mode2"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d1dddcf-2a68-4d91-ba9e-8b38fbf46e9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ToolPrev"",
                     ""type"": ""Button"",
                     ""id"": ""7a04e783-449d-4fef-8095-78689345fb99"",
@@ -610,6 +637,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e79e7568-fce9-4d89-b44a-0c5e66269878"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8185763-1432-4af4-a391-ca31e6f89bfd"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a97d063-fa89-44e5-8f97-323c0fcf59a7"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mode1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -840,6 +900,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Tools = asset.FindActionMap("Tools", throwIfNotFound: true);
         m_Tools_Fire = m_Tools.FindAction("Fire", throwIfNotFound: true);
         m_Tools_Switch = m_Tools.FindAction("Switch", throwIfNotFound: true);
+        m_Tools_Mode1 = m_Tools.FindAction("Mode1", throwIfNotFound: true);
+        m_Tools_Mode0 = m_Tools.FindAction("Mode0", throwIfNotFound: true);
+        m_Tools_Mode2 = m_Tools.FindAction("Mode2", throwIfNotFound: true);
         m_Tools_ToolPrev = m_Tools.FindAction("ToolPrev", throwIfNotFound: true);
         m_Tools_ToolNext = m_Tools.FindAction("ToolNext", throwIfNotFound: true);
         m_Tools_Tool0 = m_Tools.FindAction("Tool0", throwIfNotFound: true);
@@ -1012,6 +1075,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IToolsActions> m_ToolsActionsCallbackInterfaces = new List<IToolsActions>();
     private readonly InputAction m_Tools_Fire;
     private readonly InputAction m_Tools_Switch;
+    private readonly InputAction m_Tools_Mode1;
+    private readonly InputAction m_Tools_Mode0;
+    private readonly InputAction m_Tools_Mode2;
     private readonly InputAction m_Tools_ToolPrev;
     private readonly InputAction m_Tools_ToolNext;
     private readonly InputAction m_Tools_Tool0;
@@ -1031,6 +1097,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public ToolsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Fire => m_Wrapper.m_Tools_Fire;
         public InputAction @Switch => m_Wrapper.m_Tools_Switch;
+        public InputAction @Mode1 => m_Wrapper.m_Tools_Mode1;
+        public InputAction @Mode0 => m_Wrapper.m_Tools_Mode0;
+        public InputAction @Mode2 => m_Wrapper.m_Tools_Mode2;
         public InputAction @ToolPrev => m_Wrapper.m_Tools_ToolPrev;
         public InputAction @ToolNext => m_Wrapper.m_Tools_ToolNext;
         public InputAction @Tool0 => m_Wrapper.m_Tools_Tool0;
@@ -1059,6 +1128,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Switch.started += instance.OnSwitch;
             @Switch.performed += instance.OnSwitch;
             @Switch.canceled += instance.OnSwitch;
+            @Mode1.started += instance.OnMode1;
+            @Mode1.performed += instance.OnMode1;
+            @Mode1.canceled += instance.OnMode1;
+            @Mode0.started += instance.OnMode0;
+            @Mode0.performed += instance.OnMode0;
+            @Mode0.canceled += instance.OnMode0;
+            @Mode2.started += instance.OnMode2;
+            @Mode2.performed += instance.OnMode2;
+            @Mode2.canceled += instance.OnMode2;
             @ToolPrev.started += instance.OnToolPrev;
             @ToolPrev.performed += instance.OnToolPrev;
             @ToolPrev.canceled += instance.OnToolPrev;
@@ -1108,6 +1186,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Switch.started -= instance.OnSwitch;
             @Switch.performed -= instance.OnSwitch;
             @Switch.canceled -= instance.OnSwitch;
+            @Mode1.started -= instance.OnMode1;
+            @Mode1.performed -= instance.OnMode1;
+            @Mode1.canceled -= instance.OnMode1;
+            @Mode0.started -= instance.OnMode0;
+            @Mode0.performed -= instance.OnMode0;
+            @Mode0.canceled -= instance.OnMode0;
+            @Mode2.started -= instance.OnMode2;
+            @Mode2.performed -= instance.OnMode2;
+            @Mode2.canceled -= instance.OnMode2;
             @ToolPrev.started -= instance.OnToolPrev;
             @ToolPrev.performed -= instance.OnToolPrev;
             @ToolPrev.canceled -= instance.OnToolPrev;
@@ -1279,6 +1366,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnFire(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
+        void OnMode1(InputAction.CallbackContext context);
+        void OnMode0(InputAction.CallbackContext context);
+        void OnMode2(InputAction.CallbackContext context);
         void OnToolPrev(InputAction.CallbackContext context);
         void OnToolNext(InputAction.CallbackContext context);
         void OnTool0(InputAction.CallbackContext context);

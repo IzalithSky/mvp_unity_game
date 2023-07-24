@@ -41,6 +41,9 @@ public class InputListener : MonoBehaviour
     bool isWalking = false;
     bool isFiring = false;
     bool isSwitch = false;
+    bool isMode0 = false;
+    bool isMode1 = false;
+    bool isMode2 = false;
     bool isCrouching = false;
     private PlayerControls playerControls;
 
@@ -78,6 +81,15 @@ public class InputListener : MonoBehaviour
 
         playerControls.Tools.Switch.performed += ctx => isSwitch = true;
         playerControls.Tools.Switch.canceled += ctx => isSwitch = false;
+
+        playerControls.Tools.Mode0.performed += ctx => isMode0 = true;
+        playerControls.Tools.Mode0.canceled += ctx => isMode0 = false;
+
+        playerControls.Tools.Mode1.performed += ctx => isMode1 = true;
+        playerControls.Tools.Mode1.canceled += ctx => isMode1 = false;
+
+        playerControls.Tools.Mode2.performed += ctx => isMode2 = true;
+        playerControls.Tools.Mode2.canceled += ctx => isMode2 = false;
 
         playerControls.Menus.CrouchToggle.performed += ctx => toggleCrouch = !toggleCrouch;
         playerControls.Menus.WalkToggle.performed += ctx => toggleWalk = !toggleWalk;
@@ -141,8 +153,23 @@ public class InputListener : MonoBehaviour
         return isFiring;
     }
 
-    public bool GetIssSwitching()
+    public bool GetIsSwitching()
     {
         return isSwitch;
+    }
+
+    public bool GetIsMode0()
+    {
+        return isMode0;
+    }
+
+    public bool GetIsMode1()
+    {
+        return isMode1;
+    }
+
+    public bool GetIsMode2()
+    {
+        return isMode2;
     }
 }

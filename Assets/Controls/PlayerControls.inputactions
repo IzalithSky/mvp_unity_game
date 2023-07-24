@@ -251,6 +251,33 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Mode1",
+                    "type": "Button",
+                    "id": "4c3a28eb-1aa6-48de-af47-4c5f14a5efbb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mode0",
+                    "type": "Button",
+                    "id": "59061f7f-5d26-46bf-9e04-53ada03f585d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mode2",
+                    "type": "Button",
+                    "id": "2d1dddcf-2a68-4d91-ba9e-8b38fbf46e9d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ToolPrev",
                     "type": "Button",
                     "id": "7a04e783-449d-4fef-8095-78689345fb99",
@@ -586,6 +613,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e79e7568-fce9-4d89-b44a-0c5e66269878",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mode2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8185763-1432-4af4-a391-ca31e6f89bfd",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mode0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a97d063-fa89-44e5-8f97-323c0fcf59a7",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mode1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

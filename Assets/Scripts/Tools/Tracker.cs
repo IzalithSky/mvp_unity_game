@@ -74,9 +74,15 @@ public class Tracker : Tool
 
     public override void Switch() {
         probeRenderer.SetNextTarget();
-
-        // sonarRenderer.markersState.autoScale = !sonarRenderer.markersState.autoScale;
-
-        // SwitchView();
     }
+
+    public override void Mode0() {
+        sonarRenderer.markersState.autoScale = !sonarRenderer.markersState.autoScale;
+    }
+
+    public override void Mode1() {
+        SwitchView();
+    }
+
+    public override void Mode2() {}
 }

@@ -115,6 +115,8 @@ public class Tool : MonoBehaviour {
     }
 
     protected virtual void FireReady() {}
-
     public virtual void Switch() {}
+    public virtual void Mode0() {}
+    public virtual void Mode1() {}
+    public virtual void Mode2() {}
 }
