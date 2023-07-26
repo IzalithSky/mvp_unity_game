@@ -40,6 +40,7 @@ public class MobAi : MonoBehaviour {
     public AiBehMode state = AiBehMode.CHASING;
     
     public PositioningManager positioningManager;
+    public AudioSource audioSource;
 
     bool isStrafeReady = false;
     float strafeStartTime = 0.0f;
@@ -49,7 +50,6 @@ public class MobAi : MonoBehaviour {
 
     LayerMask losSearchMask;
     
-    AudioSource audioSource;
     float lastVoiceTime;
 
     void Start () {
@@ -59,25 +59,23 @@ public class MobAi : MonoBehaviour {
         losSearchMask = ~LayerMask.GetMask(transparentLayers); 
 
         RefreshTargets();
-        if (targets.Count > 0) 
-        {
+        if (targets.Count > 0) {
             target = targets[Random.Range(0, targets.Count)];
         }
         StartCoroutine(ChangeTargetCoroutine());
 
         audioSource = GetComponent<AudioSource>();
-        if (audioSource == null) {
+        if (!audioSource) {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
         lastVoiceTime = Time.time;
 
-        // If tool is not assigned, find it in the current GameObject or its children
-        if (tool == null) {
+        if (!tool) {
             tool = GetComponentInChildren<Tool>();
         }
 
-        if (tool == null) {
+        if (!tool) {
             Debug.LogWarning("No Tool found in the GameObject or its children.");
         }
 
@@ -89,15 +87,13 @@ public class MobAi : MonoBehaviour {
     }
 
     void Update() { 
-        EnsureTargetPresence();
-        
-        DoState();
-        UpdateState();
-
-        // Play the voice sound at fixed intervals
         if (voiceSound != null && Time.time - lastVoiceTime >= voiceInterval) {
             audioSource.PlayOneShot(voiceSound);
             lastVoiceTime = Time.time;
+        }
+
+        if (null != destroyable && !destroyable.IsAlive() && deathSound != null) {
+            audioSource.PlayOneShot(deathSound);
         }
     }
 
@@ -197,51 +193,7 @@ public class MobAi : MonoBehaviour {
         return Vector3.Distance(target.transform.position, transform.position) > (HasLineOfSight() ? fireingRange : minLosSearchRange);
     }
 
-    void DoState() {
-        EnsureTargetPresence();
-        switch (state)
-        {
-            case AiBehMode.CHASING:
-                if (target != null)  {
-                    FaceTarget(target.transform);
-
-                    Vector3 surroundPos = positioningManager.GetSurroundPositionForAi(this);
-                    nm.SetDestination(surroundPos);
-                }
-                break;
-            case AiBehMode.ATTACKING:
-                if (target != null) {
-                    FaceTarget(target.transform);
-                    nm.SetDestination(transform.position);
-                    if (isAttackReady && HasLineOfSight()) {
-                        isAttackReady = false;
-                        attackModeStartTime = Time.time;
-
-                        tool.Fire();
-
-                        // Play the attack sound when the mob attacks
-                        if (attackSound != null) {
-                            audioSource.PlayOneShot(attackSound);
-                        }
-                    }
-                    EnsureTargetPresence();
-                }
-                break;
-            case AiBehMode.DODGING:
-                if (target != null) {
-                    FaceTarget(target.transform);
-                    DoStrafing();
-                }
-                break;
-            case AiBehMode.STAGGER:
-                nm.SetDestination(transform.position);
-                break;
-            default:
-                break;
-        }
-    }
-
-    void DoStrafing() {
+    public void DoStrafing() {
         if (!isStrafeReady) {
             if (Time.time - strafeStartTime >= strafeDelay) {
                 isStrafeReady = true;

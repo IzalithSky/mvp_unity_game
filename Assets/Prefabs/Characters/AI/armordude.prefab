@@ -107,6 +107,7 @@ MonoBehaviour:
   targets: []
   target: {fileID: 0}
   state: 2
+  positioningManager: {fileID: 0}
 --- !u!195 &53250902452406903
 NavMeshAgent:
   m_ObjectHideFlags: 0

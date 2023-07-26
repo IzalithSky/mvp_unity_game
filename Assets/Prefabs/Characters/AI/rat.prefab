@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 5736539456758911742}
   - component: {fileID: 9159196991007154864}
+  - component: {fileID: 4007886169518481232}
   m_Layer: 8
   m_Name: rat
   m_TagString: Untagged
@@ -106,6 +107,8 @@ MonoBehaviour:
   targets: []
   target: {fileID: 0}
   state: 2
+  positioningManager: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!195 &53250902452406903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -197,6 +200,27 @@ MonoBehaviour:
   damagable: {fileID: 8892924438532986004}
   damageType: 4
   affinity: -50
+--- !u!95 &4007886169518481232
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 56813872b99f310eca0e255b0121c481, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0

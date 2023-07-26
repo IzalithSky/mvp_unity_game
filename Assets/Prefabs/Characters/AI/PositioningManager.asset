@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff4e7827472d547e90a653b1e408c98, type: 3}
   m_Name: PositioningManager
   m_EditorClassIdentifier: 
-  surroundRadius: 1.3
+  surroundRadius: 5
   updateFrequency: 10
