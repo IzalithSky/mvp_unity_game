@@ -41,13 +41,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53250902452406901}
-  - component: {fileID: 53250902452406900}
   - component: {fileID: 53250902452406903}
   - component: {fileID: 8892924438532986004}
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 5736539456758911742}
   - component: {fileID: 9159196991007154864}
-  - component: {fileID: 4007886169518481232}
+  - component: {fileID: 3527477680047572}
+  - component: {fileID: 3397617485153584046}
+  - component: {fileID: 2454203509360445714}
   m_Layer: 8
   m_Name: rat
   m_TagString: Untagged
@@ -73,42 +74,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &53250902452406900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53250902452406902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf782bd99e23e5b268a4acddb71fb1d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nm: {fileID: 53250902452406903}
-  targetChangeInterval: 5
-  targetTags:
-  - Player
-  toolHolder: {fileID: 53250900893143608}
-  tool: {fileID: 2313542976850580845}
-  firePoint: {fileID: 5005457578388336714}
-  walkRadius: 5
-  losSearchProjectileSize: 0.05
-  pathFndRadius: 1
-  strafeDelay: 0.3
-  fireingRange: 1.5
-  minLosSearchRange: 0
-  preAttackDelay: 0.3
-  destroyable: {fileID: 8892924438532986004}
-  attackSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  voiceSound: {fileID: 0}
-  voiceInterval: 10
-  targets: []
-  target: {fileID: 0}
-  state: 2
-  positioningManager: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!195 &53250902452406903
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -200,27 +165,51 @@ MonoBehaviour:
   damagable: {fileID: 8892924438532986004}
   damageType: 4
   affinity: -50
---- !u!95 &4007886169518481232
-Animator:
-  serializedVersion: 5
+--- !u!114 &3527477680047572
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53250902452406902}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 56813872b99f310eca0e255b0121c481, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cacec081baabf50668b6018205971eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  patrolDuration: 10
+  idleDuration: 5
+--- !u!114 &3397617485153584046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd09c30d6bb643b6fa3b98148ed09af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 53250902452406903}
+  idleMoveRadius: 5
+  patrolWaypoints: []
+--- !u!114 &2454203509360445714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7516de0b61fdefd388efa6cee8654092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetsInView: []
+  viewRadius: 10
+  viewAngle: 120
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +487,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4867641912299673014, guid: ae4e77b0c776c15558efc455f975c8e8,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 1973
+      objectReference: {fileID: 0}
     - target: {fileID: 7396837667174784832, guid: ae4e77b0c776c15558efc455f975c8e8,
         type: 3}
       propertyPath: m_Mesh
@@ -511,15 +505,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4049470359173370804}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2313542976850580845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1741134671565539033, guid: ae4e77b0c776c15558efc455f975c8e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 4049470359173370804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88347c45910d69663b6126b7b7519d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
