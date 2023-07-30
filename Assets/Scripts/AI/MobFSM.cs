@@ -44,13 +44,17 @@ public class MobFSM : MonoBehaviour
 
     void Update() 
     {
+        SelectCommon();
+        SelectState();
+        DoCommon();
+        DoState();
+    }
+
+    void SelectCommon() {
         if (chaseCooldownTimer > 0f)
         {
             chaseCooldownTimer -= Time.deltaTime;
         }
-
-        SelectState();
-        DoState();
     }
 
     void SelectState() 
@@ -96,6 +100,10 @@ public class MobFSM : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    void DoCommon() {
+
     }
 
     void DoState() 

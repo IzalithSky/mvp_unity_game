@@ -32,7 +32,19 @@ public class PerceptionModule : MonoBehaviour
         PruneOldTargets();
     }
 
-    public bool IsTargetInView(GameObject target)
+    public GameObject GetClosestTarget()
+    {
+        if (targetsInView == null || targetsInView.Count == 0)
+        {
+            return null;
+        }
+
+        GameObject closestTarget = targetsInView.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).First();
+
+        return closestTarget;
+    }
+
+    bool IsTargetInView(GameObject target)
     {
         Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
         if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2)
@@ -48,7 +60,7 @@ public class PerceptionModule : MonoBehaviour
         return false;
     }
 
-    public void UpdateTargetsInView()
+    void UpdateTargetsInView()
     {
         Collider[] targetsInRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
@@ -74,7 +86,7 @@ public class PerceptionModule : MonoBehaviour
         }
     }
 
-    public void PruneOldTargets()
+    void PruneOldTargets()
     {
         for (int i = rememberedTargets.Count - 1; i >= 0; i--)
         {
@@ -84,17 +96,5 @@ public class PerceptionModule : MonoBehaviour
                 rememberedTargets.RemoveAt(i);
             }
         }
-    }
-
-    public GameObject GetClosestTarget()
-    {
-        if (targetsInView == null || targetsInView.Count == 0)
-        {
-            return null;
-        }
-
-        GameObject closestTarget = targetsInView.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).First();
-
-        return closestTarget;
     }
 }
