@@ -32,11 +32,14 @@ public class MobFSM : MonoBehaviour
 
     void Start() 
     {
-        pathfindingModule = GetComponent<PathfindingModule>();
         perceptionModule = GetComponent<PerceptionModule>();
-        
-        if (pathfindingModule == null) 
-        {
+        if (!perceptionModule) {
+            Debug.LogError("PerceptionModule is not attached to the same GameObject as MobFSM!");
+            return;
+        }
+
+        pathfindingModule = GetComponent<PathfindingModule>();
+        if (!pathfindingModule) {
             Debug.LogError("PathfindingModule is not attached to the same GameObject as MobFSM!");
             return;
         }
@@ -137,15 +140,7 @@ public class MobFSM : MonoBehaviour
 
     private void ExecuteChaseState() 
     {
-        GameObject target = perceptionModule.GetClosestTarget();
-        if (target) 
-        {
-            pathfindingModule.agent.SetDestination(target.transform.position);
-        } 
-        else 
-        {
-            TransitionToState(State.Patrol);
-        }
+        pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget());
     }
 
     public void TransitionToState(State newState) 

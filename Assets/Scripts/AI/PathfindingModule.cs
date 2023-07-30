@@ -4,21 +4,29 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class PathfindingModule : MonoBehaviour {
+    public float walkSpeed = 3.5f;
+    public float runSpeed = 7.0f;
 
-    public NavMeshAgent agent;
-    
-    // IdleMove
     public float idleMoveRadius = 5.0f;
 
-    // Patrol
-    private Transform[] patrolWaypoints;
-    private int currentWaypointIndex = 0;
+    Transform[] patrolWaypoints;
+    int currentWaypointIndex = 0;
+
+    NavMeshAgent agent;
 
     private void Start() {
+        agent = GetComponent<NavMeshAgent>();
+        if (!agent) {
+            Debug.LogError("NavMeshAgent is not attached to the same GameObject as PathfindingModule!");
+            return;
+        }
+
         patrolWaypoints = WaypointManager.Instance.GetPatrolWaypoints();
     }
     
     public void IdleMove() {
+        agent.speed = walkSpeed;
+
         Vector3 randomDirection = Random.insideUnitSphere * idleMoveRadius;
         randomDirection += transform.position;
 
@@ -29,6 +37,8 @@ public class PathfindingModule : MonoBehaviour {
     }
 
     public void Patrol() {
+        agent.speed = walkSpeed;
+
         if (patrolWaypoints.Length == 0) {
             return;
         }
@@ -41,7 +51,14 @@ public class PathfindingModule : MonoBehaviour {
 
     public void MoveTo(Vector3 destination) {}
 
-    public void ChaseTarget(GameObject target) {}
+    public void ChaseTarget(GameObject target) {
+        agent.speed = runSpeed;
+
+        if (target) 
+        {
+            agent.SetDestination(target.transform.position);
+        } 
+    }
 
     public void SurroundTarget(GameObject target) {}
 
