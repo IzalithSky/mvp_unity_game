@@ -180,6 +180,7 @@ MonoBehaviour:
   currentState: 0
   patrolDuration: 10
   idleDuration: 5
+  chaseDuration: 5
 --- !u!114 &3397617485153584046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 53250902452406903}
   idleMoveRadius: 5
-  patrolWaypoints: []
 --- !u!114 &2454203509360445714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +210,9 @@ MonoBehaviour:
   targetsInView: []
   viewRadius: 10
   viewAngle: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0

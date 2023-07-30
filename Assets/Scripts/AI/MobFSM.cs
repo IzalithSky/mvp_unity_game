@@ -1,9 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MobFSM : MonoBehaviour {
-    public enum State {
+public class MobFSM : MonoBehaviour 
+{
+    public enum State 
+    {
         Idle,
         Patrol,
         Chase,
@@ -14,56 +15,133 @@ public class MobFSM : MonoBehaviour {
         Staggered
     }
 
-
-    public State currentState = State.Idle;
+    public State currentState = State.Patrol;
     PathfindingModule pathfindingModule;
+    PerceptionModule perceptionModule;
 
     public float patrolDuration = 10f;
     public float idleDuration = 5f;
+    public float chaseDuration = 5f;
 
+    private float patrolTimer = 0f;
+    private float idleTimer = 0f;
+    private float chaseTimer = 0f;
 
-    void Start() {
+    public float chaseCooldownDuration = 5f;
+    private float chaseCooldownTimer = 0f;
+
+    void Start() 
+    {
         pathfindingModule = GetComponent<PathfindingModule>();
-        if (pathfindingModule == null) {
+        perceptionModule = GetComponent<PerceptionModule>();
+        
+        if (pathfindingModule == null) 
+        {
             Debug.LogError("PathfindingModule is not attached to the same GameObject as MobFSM!");
             return;
         }
-
-        StartCoroutine(BehaviorLoop());
     }
 
-    private System.Collections.IEnumerator BehaviorLoop() {
-        while (true) {
-            TransitionToState(State.Patrol);
-            yield return new WaitForSeconds(patrolDuration);
+    void Update() 
+    {
+        if (chaseCooldownTimer > 0f)
+        {
+            chaseCooldownTimer -= Time.deltaTime;
+        }
 
-            TransitionToState(State.Idle);
-            yield return new WaitForSeconds(idleDuration);
+        SelectState();
+        DoState();
+    }
+
+    void SelectState() 
+    {
+        switch (currentState) 
+        {
+            case State.Patrol:
+                patrolTimer += Time.deltaTime;
+
+                if (patrolTimer >= patrolDuration)
+                {
+                    TransitionToState(State.Idle);
+                    patrolTimer = 0;
+                }
+                else if (perceptionModule.GetClosestTarget() && chaseCooldownTimer <= 0f)
+                {
+                    TransitionToState(State.Chase);
+                }
+                break;
+            
+            case State.Idle:
+                idleTimer += Time.deltaTime;
+
+                if (idleTimer >= idleDuration)
+                {
+                    TransitionToState(State.Patrol);
+                    idleTimer = 0;
+                }
+                else if (perceptionModule.GetClosestTarget() && chaseCooldownTimer <= 0f)
+                {
+                    TransitionToState(State.Chase);
+                }
+                break;
+            
+            case State.Chase:
+                chaseTimer += Time.deltaTime;
+
+                if (chaseTimer >= chaseDuration)
+                {
+                    TransitionToState(State.Patrol);
+                    chaseCooldownTimer = chaseCooldownDuration;
+                    chaseTimer = 0;
+                }
+                break;
         }
     }
 
-    private void Update() {
-        switch (currentState) {
+    void DoState() 
+    {
+        switch (currentState) 
+        {
             case State.Idle:
                 ExecuteIdleState();
                 break;
             case State.Patrol:
                 ExecutePatrolState();
                 break;
+            case State.Chase:
+                ExecuteChaseState();
+                break;
         }
     }
 
-    private void ExecuteIdleState() {
-        if (Random.Range(0f, 1f) < 0.02f) {
+    private void ExecuteIdleState() 
+    {
+        if (Random.Range(0f, 1f) < 0.02f) 
+        {
             pathfindingModule.IdleMove();
         }
     }
 
-    private void ExecutePatrolState() {
+    private void ExecutePatrolState() 
+    {
         pathfindingModule.Patrol();
     }
 
-    public void TransitionToState(State newState) {
+    private void ExecuteChaseState() 
+    {
+        GameObject target = perceptionModule.GetClosestTarget();
+        if (target) 
+        {
+            pathfindingModule.agent.SetDestination(target.transform.position);
+        } 
+        else 
+        {
+            TransitionToState(State.Patrol);
+        }
+    }
+
+    public void TransitionToState(State newState) 
+    {
         currentState = newState;
     }
 }
