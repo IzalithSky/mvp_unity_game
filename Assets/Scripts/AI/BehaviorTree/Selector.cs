@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 
 namespace BehaviorTree {
-    public class Selector : Node {
+    public class Selector : CompositeNode {
         public Selector() : base() {}
         public Selector(List<Node> children) : base(children) {}
         
-        public override NodeState Evaluate() {
-            foreach (Node child in children) {
+        protected override void OnStart() {}
+        
+        protected override NodeState OnEvaluate() {
+            foreach (Node child in GetChildren()) {
                 switch (child.Evaluate()) {
-                    case NodeState.FAILURE:
-                        continue;
                     case NodeState.SUCCESS:
-                        state = NodeState.SUCCESS;
+                        state = NodeState.SUCCESS; 
                         return state;
                     case NodeState.RUNNING:
                         state = NodeState.RUNNING;
                         return state;
-                    default:
+                    case NodeState.FAILURE:
                         continue;
                 }
             }
@@ -24,5 +24,7 @@ namespace BehaviorTree {
             state = NodeState.FAILURE;
             return state;
         }
+
+        protected override void OnStop() {}
     }
 }

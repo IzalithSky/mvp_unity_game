@@ -1,30 +1,29 @@
 using System.Collections.Generic;
 
 namespace BehaviorTree {
-    public class Sequence : Node {
+    public class Sequence : CompositeNode {
         public Sequence() : base() {}
         public Sequence(List<Node> children) : base(children) {}
 
-        public override NodeState Evaluate() {
-            bool anyChildIsRunning = false;
-            foreach (Node child in children) {
+        protected override void OnStart() {}
+        
+        protected override NodeState OnEvaluate() {
+            foreach (Node child in GetChildren()) {
                 switch (child.Evaluate()) {
                     case NodeState.FAILURE:
                         state = NodeState.FAILURE;
                         return state;
+                    case NodeState.RUNNING:
+                        state = NodeState.RUNNING;
+                        return state;
                     case NodeState.SUCCESS:
                         continue;
-                    case NodeState.RUNNING:
-                        anyChildIsRunning = true;
-                        continue;
-                    default:
-                        state = NodeState.SUCCESS;
-                        return state;
                 }
             }
-
-            state = anyChildIsRunning ? NodeState.RUNNING : NodeState.SUCCESS;
+            state = NodeState.SUCCESS;
             return state;
         }
+
+        protected override void OnStop() {}
     }
 }

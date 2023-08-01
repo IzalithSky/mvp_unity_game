@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 9159196991007154864}
   - component: {fileID: 3397617485153584046}
   - component: {fileID: 2454203509360445714}
-  - component: {fileID: 2031641588156170645}
+  - component: {fileID: 379745030980343883}
   m_Layer: 8
   m_Name: rat
   m_TagString: Untagged
@@ -200,7 +200,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   memoryDuration: 5
---- !u!114 &2031641588156170645
+--- !u!114 &379745030980343883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,17 +209,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 53250902452406902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa8f865a9d08a2465affc6618e93de34, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e12f09bb2cd0cf5f8d7a09665694648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolTimer: 0
-  idleTimer: 0
-  chaseTimer: 0
-  chaseCooldownTimer: 0
-  patrolDuration: 10
-  idleDuration: 5
-  chaseDuration: 5
-  chaseCooldownDuration: 5
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0

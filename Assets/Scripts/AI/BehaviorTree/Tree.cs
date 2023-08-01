@@ -4,16 +4,24 @@ namespace BehaviorTree {
     public abstract class Tree : MonoBehaviour {
         private Node root = null;
 
-        protected void Start() {
-            root = SetupTree();
+        public Node GetRoot() {
+            return root;
         }
 
-        protected void Update() {
+        void Start() {
+            root = SetupTree();
+            OnStart();
+        }
+
+        void Update() {
             if (root != null) {
                 root.Evaluate();
             }
+            OnUpdate();
         }
 
         protected abstract Node SetupTree();
+        protected abstract void OnUpdate();
+        protected abstract void OnStart();
     }
 }

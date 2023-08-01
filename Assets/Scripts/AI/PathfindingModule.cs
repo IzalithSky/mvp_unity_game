@@ -11,6 +11,7 @@ public class PathfindingModule : MonoBehaviour {
 
     Transform[] patrolWaypoints;
     int currentWaypointIndex = 0;
+    bool isAtWaypoint = false;
 
     NavMeshAgent agent;
 
@@ -43,9 +44,14 @@ public class PathfindingModule : MonoBehaviour {
             return;
         }
 
-        agent.SetDestination(patrolWaypoints[currentWaypointIndex].position);
-        if (Vector3.Distance(transform.position, patrolWaypoints[currentWaypointIndex].position) < 1f) {
+        if (!agent.hasPath && !isAtWaypoint) {
+            agent.SetDestination(patrolWaypoints[currentWaypointIndex].position);
+        } else if (agent.remainingDistance <= agent.stoppingDistance && !isAtWaypoint) {
+            isAtWaypoint = true;
             currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Length;
+            agent.SetDestination(patrolWaypoints[currentWaypointIndex].position); // Start moving to the next waypoint immediately
+        } else if (agent.remainingDistance > agent.stoppingDistance) {
+            isAtWaypoint = false; // reset the flag when the agent starts moving
         }
     }
 
