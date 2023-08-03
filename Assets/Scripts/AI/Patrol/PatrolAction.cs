@@ -9,9 +9,11 @@ public class PatrolAction : Node {
     }
 
     protected override void OnStart() {}
+
     protected override NodeState OnEvaluate() {
         pathfindingModule.Patrol();
         return NodeState.RUNNING;
     }
+
     protected override void OnStop() {}
 }

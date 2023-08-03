@@ -8770,6 +8770,16 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 379745030980343883, guid: 6d26d6ad351606cfab26a6386d050642,
+        type: 3}
+      propertyPath: idleDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 379745030980343883, guid: 6d26d6ad351606cfab26a6386d050642,
+        type: 3}
+      propertyPath: patrolDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2454203509360445714, guid: 6d26d6ad351606cfab26a6386d050642,
         type: 3}
       propertyPath: viewRadius
@@ -8788,7 +8798,7 @@ PrefabInstance:
     - target: {fileID: 8917071537868916226, guid: 6d26d6ad351606cfab26a6386d050642,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 2066
+      value: 2075
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

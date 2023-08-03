@@ -5,9 +5,11 @@ namespace BehaviorTree {
         private List<Node> children = new List<Node>();
 
         public CompositeNode() : base() {}
-        public CompositeNode(List<Node> children) : base(children) {}
+        public CompositeNode(List<Node> children) {
+            this.children = children;
+        }
 
-        public Node GetChildren() {
+        public List<Node> GetChildren() {
             return children;
         }
     }

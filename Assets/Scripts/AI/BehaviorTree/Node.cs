@@ -6,7 +6,7 @@ namespace BehaviorTree {
     }
 
     public abstract class Node {
-        private NodeState state = NodeState.RUNNING;
+        protected NodeState state = NodeState.RUNNING;
         private bool started = false;
 
         public Node() {}
@@ -30,6 +30,8 @@ namespace BehaviorTree {
             if (state == NodeState.SUCCESS || state == NodeState.FAILURE) {
                 started = false;
             }
+
+            return state;
         }
 
         protected abstract void OnStart();
