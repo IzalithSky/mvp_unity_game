@@ -3,7 +3,7 @@ using BehaviorTree;
 
 public class Timer : Node {
     PathfindingModule pathfindingModule;
-    float time;
+    float time = 0;
     float duration = 3;
 
     public Timer(float duration) : base() {

@@ -1,19 +1,19 @@
 using UnityEngine;
 using BehaviorTree;
 
-public class IdleAction : Node {
+public class ChaseAction : Node {
+    PerceptionModule perceptionModule;
     PathfindingModule pathfindingModule;
 
-    public IdleAction(PathfindingModule pathfindingModule) : base() {
+    public ChaseAction(PerceptionModule perceptionModule, PathfindingModule pathfindingModule) : base() {
+        this.perceptionModule = perceptionModule;
         this.pathfindingModule = pathfindingModule;
     }
 
     protected override void OnStart() {}
 
     protected override NodeState OnEvaluate() {
-        if (Random.Range(0f, 1f) < 0.02f) {
-            pathfindingModule.IdleMove();
-        }
+        pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget());
         return NodeState.RUNNING;
     }
 
