@@ -206,7 +206,11 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 640
+  targetTags:
+  - Player
+  - PScanner
+  - EScanner
   memoryDuration: 5
 --- !u!114 &379745030980343883
 MonoBehaviour:
@@ -220,10 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e12f09bb2cd0cf5f8d7a09665694648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleDuration: 3
-  giveUpTimeout: 3
+  idleDuration: 10
+  giveUpTimeout: 35
   preAttackDelay: 0.5
-  attackRange: 1
+  attackRange: 2
   combatRange: 5
 --- !u!1 &2870841685311453067
 GameObject:

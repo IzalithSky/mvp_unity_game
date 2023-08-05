@@ -75,9 +75,7 @@ public class PerceptionModule : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(fromPosition, losSearchProjectileSize, direction, out hit, Mathf.Infinity, transparentMask)) {
             Debug.DrawRay(fromPosition, hit.point - fromPosition, Color.cyan);
-            if (targetTags.Contains(hit.collider.tag)) {
-                return true;
-            }
+            return true;
         }
         
         return false;
@@ -89,20 +87,15 @@ public class PerceptionModule : MonoBehaviour
 
         foreach (Collider target in targetsInRadius)
         {
-            if (IsTargetInView(target.gameObject))
-            {
-                if (!targetsInView.Contains(target.gameObject))
-                {
+            if (targetTags.Contains(target.tag) && IsTargetInView(target.gameObject)) {
+                if (!targetsInView.Contains(target.gameObject)) {
                     targetsInView.Add(target.gameObject);
                 }
 
-                var rememberedTarget = rememberedTargets.FirstOrDefault(rt => rt.target == target.gameObject);
-                if (rememberedTarget != null)
-                {
+                TargetMemory rememberedTarget = rememberedTargets.FirstOrDefault(rt => rt.target == target.gameObject);
+                if (rememberedTarget != null) {
                     rememberedTarget.lastSeenTime = Time.time;
-                }
-                else
-                {
+                } else {
                     rememberedTargets.Add(new TargetMemory { target = target.gameObject, lastSeenTime = Time.time });
                 }
             }
@@ -111,10 +104,8 @@ public class PerceptionModule : MonoBehaviour
 
     void PruneOldTargets()
     {
-        for (int i = rememberedTargets.Count - 1; i >= 0; i--)
-        {
-            if (Time.time - rememberedTargets[i].lastSeenTime > memoryDuration)
-            {
+        for (int i = rememberedTargets.Count - 1; i >= 0; i--) {
+            if (Time.time - rememberedTargets[i].lastSeenTime > memoryDuration) {
                 targetsInView.Remove(rememberedTargets[i].target);
                 rememberedTargets.RemoveAt(i);
             }
