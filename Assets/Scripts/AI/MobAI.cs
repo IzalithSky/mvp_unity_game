@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviorTree;
+using UnityEngine.AI;
 
 public class MobAI : BehaviorTree.Tree {
     public float idleDuration = 3f;
@@ -80,6 +81,10 @@ public class MobAI : BehaviorTree.Tree {
         });
     }
 
+    public NavMeshAgent GetAgent() {
+        return pathfindingModule.GetAgent();
+    }
+
     protected override void OnUpdate() {}
 
     protected override void OnStart() {}
@@ -91,5 +96,9 @@ public class MobAI : BehaviorTree.Tree {
 
         idleTimer = new Timer(idleDuration);
         giveUpTimer = new Timer(giveUpTimeout);
+    }
+
+    public GameObject GetTarget() {
+        return perceptionModule.GetClosestTarget();
     }
 }

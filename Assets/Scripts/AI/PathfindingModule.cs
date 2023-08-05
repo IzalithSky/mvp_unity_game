@@ -111,6 +111,10 @@ public class PathfindingModule : MonoBehaviour {
         } 
     }
 
+    public NavMeshAgent GetAgent() {
+        return agent;
+    }
+
     public void SurroundTarget(GameObject target) {}
 
     public void Flee(Vector3 threatPosition) {}
