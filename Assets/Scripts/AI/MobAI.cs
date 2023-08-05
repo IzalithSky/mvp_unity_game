@@ -5,7 +5,6 @@ using BehaviorTree;
 
 public class MobAI : BehaviorTree.Tree {
     public float idleDuration = 3f;
-    public float patrolDuration = 3f;
     public float giveUpTimeout = 3f;
     
     PerceptionModule perceptionModule;
@@ -14,7 +13,6 @@ public class MobAI : BehaviorTree.Tree {
     public bool isTimeToPatrol {get; private set;}
     public bool isPatroling {get; private set;}
 
-    Timer patrolTimer;
     Timer idleTimer;
     Timer giveUpTimer;
 
@@ -23,16 +21,24 @@ public class MobAI : BehaviorTree.Tree {
         return new Selector(new List<Node> {
             
             new Sequence(new List<Node> {
-                new ChaseCondition(perceptionModule),
+
                 giveUpTimer,
-                new DebugNode("Chasing target"),
-                new ChaseAction(perceptionModule, pathfindingModule),
-            }),
-            
-            new Sequence(new List<Node> {
-                patrolTimer,
-                new DebugNode("Patrolling"),
-                new PatrolAction(pathfindingModule),
+                
+                new Selector(new List<Node> {
+                
+                    new Sequence(new List<Node> {
+                        new ChaseCondition(perceptionModule),
+                        new DebugNode("Chasing target"),
+                        new ChaseAction(perceptionModule, pathfindingModule),
+                    }),
+                    
+                    new Sequence(new List<Node> {
+                        new DebugNode("Patrolling"),
+                        new PatrolAction(pathfindingModule),
+                    }),
+                
+                }),
+
             }),
             
             new Sequence(new List<Node> {
@@ -41,20 +47,15 @@ public class MobAI : BehaviorTree.Tree {
                 new IdleAction(pathfindingModule),
             }),
 
+            new Sequence(new List<Node> {
+                new DebugNode("Resetting"),
+                new Action(() => {idleTimer.Reset(); giveUpTimer.Reset();}),
+            }),
+        
         });
     }
 
-    protected override void OnUpdate() {
-        if (idleTimer.GetState() == NodeState.FAILURE) {
-            idleTimer.Reset();
-            if (patrolTimer.GetState() == NodeState.FAILURE) {
-                patrolTimer.Reset();
-            }
-            if (giveUpTimer.GetState() == NodeState.FAILURE) {
-                giveUpTimer.Reset();
-            }
-        }
-    }
+    protected override void OnUpdate() {}
 
     protected override void OnStart() {}
 
@@ -62,7 +63,6 @@ public class MobAI : BehaviorTree.Tree {
         perceptionModule = GetComponent<PerceptionModule>();
         pathfindingModule = GetComponent<PathfindingModule>();
 
-        patrolTimer = new Timer(patrolDuration);
         idleTimer = new Timer(idleDuration);
         giveUpTimer = new Timer(giveUpTimeout);
     }
