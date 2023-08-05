@@ -1,10 +1,10 @@
 using System;
 
 namespace BehaviorTree {
-    public class Action : Node {
+    public class ActionInstant : Node {
         private readonly System.Action predicate;
 
-        public Action(System.Action predicate) {
+        public ActionInstant(System.Action predicate) {
             this.predicate = predicate;
         }
 
@@ -12,7 +12,7 @@ namespace BehaviorTree {
 
         protected override NodeState OnEvaluate() {
             predicate.Invoke();
-            return NodeState.RUNNING;
+            return NodeState.SUCCESS;
         }
 
         protected override void OnStop() {}

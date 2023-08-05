@@ -179,7 +179,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3.5
   runSpeed: 7
+  pathFindRadius: 5
   idleMoveRadius: 5
+  dodgeMoveRadius: 3
+  dodgeDelay: 0.3
+  idleDelay: 2
+  toolHolder: {fileID: 53250900893143608}
+  tool: {fileID: 2313542976850580845}
+  firePoint: {fileID: 53250900893143608}
 --- !u!114 &2454203509360445714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7516de0b61fdefd388efa6cee8654092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetsInView: []
+  lookPoint: {fileID: 5005457578388336714}
+  losSearchProjectileSize: 0.01
   viewRadius: 10
   autoDetectRadius: 3
   viewAngle: 120
@@ -212,6 +220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e12f09bb2cd0cf5f8d7a09665694648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleDuration: 3
+  giveUpTimeout: 3
+  preAttackDelay: 0.5
+  attackRange: 1
+  combatRange: 5
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,3 +520,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4049470359173370804}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2313542976850580845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1741134671565539033, guid: ae4e77b0c776c15558efc455f975c8e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4049470359173370804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88347c45910d69663b6126b7b7519d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

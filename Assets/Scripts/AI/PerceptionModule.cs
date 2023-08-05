@@ -4,12 +4,16 @@ using System.Linq;
 
 public class PerceptionModule : MonoBehaviour
 {
-    public List<GameObject> targetsInView;
+    public Transform lookPoint;
+    public float losSearchProjectileSize = 0.01f;
     public float viewRadius = 10.0f;
     public float autoDetectRadius = 3.0f;
     public float viewAngle = 120.0f;
     public LayerMask targetMask;
+    public List<string> targetTags = new List<string> { "Player" };
     public float memoryDuration = 5f;
+    
+    List<GameObject> targetsInView = new List<GameObject>();
 
     class TargetMemory
     {
@@ -34,7 +38,7 @@ public class PerceptionModule : MonoBehaviour
 
     public GameObject GetClosestTarget()
     {
-        if (targetsInView == null || targetsInView.Count == 0)
+        if (targetsInView.Count == 0)
         {
             return null;
         }
@@ -47,16 +51,35 @@ public class PerceptionModule : MonoBehaviour
     bool IsTargetInView(GameObject target)
     {
         Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
-        if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2)
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            if (distanceToTarget <= autoDetectRadius) {
-                return true;
-            } 
-            if (distanceToTarget <= viewRadius) {
-                return Physics.Raycast(transform.position, directionToTarget, distanceToTarget, transparentMask);
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        if (distanceToTarget <= autoDetectRadius) {
+            return true;
+        }
+        if (distanceToTarget <= viewRadius) {
+            if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2) {
+                return HasLineOfSight();
             }
         }
+        return false;
+    }
+
+    bool HasLineOfSight() {
+        if (!GetClosestTarget()) {
+            return false;
+        }
+        return HasLineOfSight(lookPoint.position, GetClosestTarget().transform.position);
+    }
+
+    bool HasLineOfSight(Vector3 fromPosition, Vector3 toPosition) {
+        Vector3 direction = toPosition - fromPosition;
+        RaycastHit hit;
+        if (Physics.SphereCast(fromPosition, losSearchProjectileSize, direction, out hit, Mathf.Infinity, transparentMask)) {
+            Debug.DrawRay(fromPosition, hit.point - fromPosition, Color.cyan);
+            if (targetTags.Contains(hit.collider.tag)) {
+                return true;
+            }
+        }
+        
         return false;
     }
 

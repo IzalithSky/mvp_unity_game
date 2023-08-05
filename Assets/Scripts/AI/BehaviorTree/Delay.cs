@@ -10,7 +10,9 @@ public class Delay : Node {
         this.duration = duration;
     }
 
-    protected override void OnStart() {}
+    protected override void OnStart() {
+        startTime = Time.time;
+    }
 
     protected override NodeState OnEvaluate() {
         if (Time.time - startTime > duration) {
@@ -21,8 +23,4 @@ public class Delay : Node {
     }
 
     protected override void OnStop() {}
-
-    public void Reset() {
-        startTime = Time.time;
-    }
 }
