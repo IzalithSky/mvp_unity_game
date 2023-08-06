@@ -57,7 +57,7 @@ public class PerceptionModule : MonoBehaviour
         }
         if (distanceToTarget <= viewRadius) {
             if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle / 2) {
-                return HasLineOfSight();
+                return HasLineOfSight(lookPoint.position, target.transform.position);
             }
         }
         return false;
