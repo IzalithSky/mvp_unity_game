@@ -184,6 +184,8 @@ MonoBehaviour:
   dodgeMoveRadius: 3
   dodgeDelay: 0.3
   idleDelay: 2
+  zigzagFrequency: 2
+  zigzagAmplitude: 2
   toolHolder: {fileID: 53250900893143608}
   tool: {fileID: 2313542976850580845}
   firePoint: {fileID: 53250900893143608}
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookPoint: {fileID: 5005457578388336714}
   losSearchProjectileSize: 0.01
-  viewRadius: 10
+  viewRadius: 35
   autoDetectRadius: 3
   viewAngle: 120
   targetMask:
@@ -211,7 +213,7 @@ MonoBehaviour:
   - Player
   - PScanner
   - EScanner
-  memoryDuration: 5
+  memoryDuration: 3
 --- !u!114 &379745030980343883
 MonoBehaviour:
   m_ObjectHideFlags: 0

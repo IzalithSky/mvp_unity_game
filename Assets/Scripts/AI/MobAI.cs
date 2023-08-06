@@ -11,6 +11,7 @@ public class MobAI : BehaviorTree.Tree {
     public float attackRange = 1f;
     public float combatRange = 5f;
     
+    Destroyable destroyable;
     PerceptionModule perceptionModule;
     PathfindingModule pathfindingModule;
     Tool tool;
@@ -30,6 +31,12 @@ public class MobAI : BehaviorTree.Tree {
                 giveUpTimer,
                 
                 new Selector(new List<Node> {
+                    
+                    new Sequence(new List<Node> {
+                        new Condition(() => destroyable.isStaggered),
+                        new DebugNode("Staggered"),
+                        new Action(() => pathfindingModule.Stop()),
+                    }),
 
                     new Sequence(new List<Node> {
                         new Condition(() => !tool.IsReady()),
@@ -56,6 +63,7 @@ public class MobAI : BehaviorTree.Tree {
                         new Condition(() => perceptionModule.GetClosestTarget() != null),
                         new DebugNode("Chasing target"),
                         new Action(() => pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget())),
+                        // new Action(() => pathfindingModule.ApproachTargetUnpredictably(perceptionModule.GetClosestTarget())),
                     }),
                     
                     new Sequence(new List<Node> {
@@ -90,6 +98,7 @@ public class MobAI : BehaviorTree.Tree {
     protected override void OnStart() {}
 
     void Awake() {
+        destroyable = GetComponent<Destroyable>();
         perceptionModule = GetComponent<PerceptionModule>();
         pathfindingModule = GetComponent<PathfindingModule>();
         tool = GetComponentInChildren<Tool>();

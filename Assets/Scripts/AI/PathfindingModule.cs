@@ -12,6 +12,10 @@ public class PathfindingModule : MonoBehaviour {
     public float dodgeMoveRadius = 3.0f;
     public float dodgeDelay = 0.3f;
     public float idleDelay = 2.0f;
+    public float baseZigzagFrequency = 2.0f;
+    public float baseZigzagAmplitude = 2.0f;
+    public float zigZagDelay = 0.3f;
+    public float zigZagAmplitude = 0.5f;
 
     public Transform toolHolder;
     public Tool tool;
@@ -22,6 +26,8 @@ public class PathfindingModule : MonoBehaviour {
     bool isAtWaypoint = false;
     float strafeStartTime = 0;
     bool isStrafeReady = false;
+    float zigZagStartTime = 0;
+    bool isZigZagReady = false;
 
     NavMeshAgent agent;
 
@@ -47,7 +53,33 @@ public class PathfindingModule : MonoBehaviour {
         toolHolder.LookAt(t);
         firePoint.LookAt(t);
     }
-    
+
+    public void ApproachTargetUnpredictably(GameObject target) {
+        if (target == null) return;
+
+        agent.speed = runSpeed;
+
+        if (!isZigZagReady) {
+            if (Time.time - zigZagStartTime >= zigZagDelay) {
+                isZigZagReady = true;
+            }
+        }
+
+        if (isZigZagReady) {
+            zigZagStartTime = Time.time;
+            isZigZagReady = false;
+
+            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
+            Vector3 zigZagDirection = Quaternion.Euler(0, 45 * Mathf.Sin(Time.time), 0) * directionToTarget;
+            Vector3 targetPosition = transform.position + zigZagDirection * zigZagAmplitude;
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(targetPosition, out hit, pathFindRadius, NavMesh.AllAreas)) {
+                agent.SetDestination(hit.position);
+            }
+        }
+    }
+
     public void DodgeMove() {
         agent.speed = runSpeed;
         DoStrafing(dodgeDelay, dodgeMoveRadius);
@@ -109,6 +141,10 @@ public class PathfindingModule : MonoBehaviour {
         {
             agent.SetDestination(target.transform.position);
         } 
+    }
+
+    public void Stop() {
+        agent.SetDestination(transform.position);
     }
 
     public NavMeshAgent GetAgent() {
