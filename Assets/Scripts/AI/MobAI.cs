@@ -10,6 +10,8 @@ public class MobAI : BehaviorTree.Tree {
     public float preAttackDelay = 0.5f;
     public float attackRange = 1f;
     public float combatRange = 5f;
+    public float moveDuration = 1f;
+    public float dodgeMoveDuration = 1f;
     
     Destroyable destroyable;
     PerceptionModule perceptionModule;
@@ -21,6 +23,8 @@ public class MobAI : BehaviorTree.Tree {
 
     Timer idleTimer;
     Timer giveUpTimer;
+
+    bool dodgeOrMove = false;
 
 
     protected override Node SetupTree() {
@@ -60,10 +64,29 @@ public class MobAI : BehaviorTree.Tree {
                     }),
                 
                     new Sequence(new List<Node> {
+                        
                         new Condition(() => perceptionModule.GetClosestTarget() != null),
-                        new DebugNode("Chasing target"),
-                        new Action(() => pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget())),
-                        // new Action(() => pathfindingModule.ApproachTargetUnpredictably(perceptionModule.GetClosestTarget())),
+                        
+                        new Selector(new List<Node> {
+                            
+                            new Sequence(new List<Node> {
+                                new Condition(() => dodgeOrMove),
+                                new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
+                                new DebugNode("Move Dodging"),
+                                new ActionInstant(() => pathfindingModule.DodgeMove()),
+                                new Delay(dodgeMoveDuration),
+                                new ActionInstant(() => {dodgeOrMove = false;}),
+                            }),
+                        
+                            new Sequence(new List<Node> {
+                                new Condition(() => !dodgeOrMove),
+                                new ActionInstant(() => pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget())),
+                                new Delay(moveDuration),
+                                new DebugNode("Chasing target"),
+                                new ActionInstant(() => {dodgeOrMove = true;}),
+                            }),
+                        
+                        }),
                     }),
                     
                     new Sequence(new List<Node> {
