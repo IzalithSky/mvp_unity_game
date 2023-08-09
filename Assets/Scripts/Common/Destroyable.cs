@@ -7,6 +7,7 @@ public class Destroyable : Damageable
     public int staggerDamageThreshold = 100;
     public float staggerDuration = 1f;
     public bool isStaggered = false;
+    public float criticalHealthRatio = 0.25f;
     
     int staggerDamage = 0;
 
@@ -29,5 +30,9 @@ public class Destroyable : Damageable
 
     public override void Die() {
         Destroy(gameObject);
+    }
+
+    public bool IsHealthCritical() {
+        return hp <= maxHp * criticalHealthRatio;
     }
 }

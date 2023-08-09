@@ -10,8 +10,9 @@ public class MobAI : BehaviorTree.Tree {
     public float preAttackDelay = 0.5f;
     public float attackRange = 1f;
     public float combatRange = 5f;
-    public float moveDuration = 1f;
-    public float dodgeMoveDuration = 1f;
+    public float dodgeApproachRange = 15f;
+    public float fleeingRange = 35f;
+
     
     Destroyable destroyable;
     PerceptionModule perceptionModule;
@@ -23,8 +24,6 @@ public class MobAI : BehaviorTree.Tree {
 
     Timer idleTimer;
     Timer giveUpTimer;
-
-    bool dodgeOrMove = false;
 
 
     protected override Node SetupTree() {
@@ -40,6 +39,16 @@ public class MobAI : BehaviorTree.Tree {
                         new Condition(() => destroyable.isStaggered),
                         new DebugNode("Staggered"),
                         new Action(() => pathfindingModule.Stop()),
+                    }),
+
+                    new Sequence(new List<Node> {
+                        new Condition(() => destroyable.IsHealthCritical()),
+                        new Condition(() => perceptionModule.GetRememberedPlayerTarget() != null),
+                        new Condition(() => Vector3.Distance(
+                            perceptionModule.GetRememberedPlayerTarget().transform.position, 
+                            transform.position) <= fleeingRange),
+                        new DebugNode("Fleeing"),
+                        new Action(() => pathfindingModule.Flee(perceptionModule.GetRememberedPlayerTarget().transform.position)),
                     }),
 
                     new Sequence(new List<Node> {
@@ -64,29 +73,22 @@ public class MobAI : BehaviorTree.Tree {
                     }),
                 
                     new Sequence(new List<Node> {
-                        
                         new Condition(() => perceptionModule.GetClosestTarget() != null),
-                        
-                        new Selector(new List<Node> {
-                            
-                            new Sequence(new List<Node> {
-                                new Condition(() => dodgeOrMove),
-                                new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
-                                new DebugNode("Move Dodging"),
-                                new ActionInstant(() => pathfindingModule.DodgeMove()),
-                                new Delay(dodgeMoveDuration),
-                                new ActionInstant(() => {dodgeOrMove = false;}),
-                            }),
-                        
-                            new Sequence(new List<Node> {
-                                new Condition(() => !dodgeOrMove),
-                                new ActionInstant(() => pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget())),
-                                new Delay(moveDuration),
-                                new DebugNode("Chasing target"),
-                                new ActionInstant(() => {dodgeOrMove = true;}),
-                            }),
-                        
-                        }),
+                        new Condition(() => Vector3.Distance(
+                            perceptionModule.GetClosestTarget().transform.position, 
+                            transform.position) <= dodgeApproachRange),
+                        new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
+                        new DebugNode("Move Dodging"),
+                        new ActionInstant(() => pathfindingModule.ApproachDodgeMove(perceptionModule.GetClosestTarget())),
+                    }),
+
+                    new Sequence(new List<Node> {
+                        new Condition(() => perceptionModule.GetClosestTarget() != null),
+                        new Condition(() => Vector3.Distance(
+                            perceptionModule.GetClosestTarget().transform.position, 
+                            transform.position) > dodgeApproachRange),
+                        new DebugNode("Chasing target"),
+                        new ActionInstant(() => pathfindingModule.ChaseTarget(perceptionModule.GetClosestTarget())),
                     }),
                     
                     new Sequence(new List<Node> {

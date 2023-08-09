@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3767250313219177553}
   - component: {fileID: 1704043252377685905}
   - component: {fileID: 5197751791597414422}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: indicator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6731247731717181292}
   - component: {fileID: 7520611918636007652}
   - component: {fileID: 2533754315370306630}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: indicator0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8206222959052371429}
   - component: {fileID: 2917269233970082118}
   - component: {fileID: 1663318795852354363}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: model
   m_TagString: PScanner
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6258234022589182478}
   - component: {fileID: 8513395665687141473}
   - component: {fileID: 277614194664436491}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: arrowPScanner
   m_TagString: PScanner
   m_Icon: {fileID: 0}
@@ -430,6 +430,7 @@ MonoBehaviour:
   staggerDamageThreshold: 100
   staggerDuration: 1
   isStaggered: 0
+  criticalHealthRatio: 0.25
 --- !u!114 &8513395665687141473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: markerPScanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 344922204200621862, guid: fb82057631b490ed2bbfe39c5d7ccdce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3288297792516471262, guid: fb82057631b490ed2bbfe39c5d7ccdce,
         type: 3}

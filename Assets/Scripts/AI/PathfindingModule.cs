@@ -12,10 +12,7 @@ public class PathfindingModule : MonoBehaviour {
     public float dodgeMoveRadius = 3.0f;
     public float dodgeDelay = 0.3f;
     public float idleDelay = 2.0f;
-    public float baseZigzagFrequency = 2.0f;
-    public float baseZigzagAmplitude = 2.0f;
-    public float zigZagDelay = 0.3f;
-    public float zigZagAmplitude = 0.5f;
+    public float fleeDistance = 10f;
 
     public Transform toolHolder;
     public Tool tool;
@@ -26,8 +23,6 @@ public class PathfindingModule : MonoBehaviour {
     bool isAtWaypoint = false;
     float strafeStartTime = 0;
     bool isStrafeReady = false;
-    float zigZagStartTime = 0;
-    bool isZigZagReady = false;
 
     NavMeshAgent agent;
 
@@ -54,30 +49,26 @@ public class PathfindingModule : MonoBehaviour {
         firePoint.LookAt(t);
     }
 
-    public void ApproachTargetUnpredictably(GameObject target) {
-        if (target == null) return;
-
+    public void Flee(Vector3 threatPosition) {
         agent.speed = runSpeed;
 
-        if (!isZigZagReady) {
-            if (Time.time - zigZagStartTime >= zigZagDelay) {
-                isZigZagReady = true;
-            }
-        }
+        Vector3 fleeDirection = (transform.position - threatPosition).normalized;
+        Vector3 fleeTarget = transform.position + fleeDirection * fleeDistance;
 
-        if (isZigZagReady) {
-            zigZagStartTime = Time.time;
-            isZigZagReady = false;
-
-            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
-            Vector3 zigZagDirection = Quaternion.Euler(0, 45 * Mathf.Sin(Time.time), 0) * directionToTarget;
-            Vector3 targetPosition = transform.position + zigZagDirection * zigZagAmplitude;
-
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(targetPosition, out hit, pathFindRadius, NavMesh.AllAreas)) {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(fleeTarget, out hit, pathFindRadius * 100f, NavMesh.AllAreas)) {
+            agent.SetDestination(hit.position);
+        } else {
+            Vector3 rndPos = transform.position + Random.insideUnitSphere * fleeDistance;
+            if (NavMesh.SamplePosition(rndPos, out hit, pathFindRadius, NavMesh.AllAreas)) {
                 agent.SetDestination(hit.position);
             }
         }
+    }
+
+    public void ApproachDodgeMove(GameObject target) {
+        agent.speed = runSpeed;
+        DoStrafing(target, dodgeDelay, dodgeMoveRadius);
     }
 
     public void DodgeMove() {
@@ -91,6 +82,10 @@ public class PathfindingModule : MonoBehaviour {
     }
 
     void DoStrafing(float delay, float moveRadius) {
+        DoStrafing(null, delay, moveRadius);
+    }
+
+    void DoStrafing(GameObject target, float delay, float moveRadius) {
         if (!isStrafeReady) {
             if (Time.time - strafeStartTime >= delay) {
                 isStrafeReady = true;
@@ -101,16 +96,25 @@ public class PathfindingModule : MonoBehaviour {
             strafeStartTime = Time.time;
             isStrafeReady = false;
 
-            Vector3 rndPos = transform.position 
-				+ Random.insideUnitSphere * moveRadius;
-				
+            Vector3 rndPos;
+            if (target != null) {
+                Vector3 toTarget = (target.transform.position - transform.position).normalized;
+                Vector3 rightDirection = Vector3.Cross(Vector3.up, toTarget);
+
+                rndPos = transform.position + 
+                    toTarget * Random.Range(0, moveRadius) + 
+                    rightDirection * Random.Range(-moveRadius, moveRadius);
+            } else {
+                rndPos = transform.position + Random.insideUnitSphere * moveRadius;
+            }
+
             NavMeshHit hit;
             if (NavMesh.SamplePosition(
-					rndPos, 
-					out hit, 
-					pathFindRadius, 
-					NavMesh.AllAreas)) {
-						
+                rndPos, 
+                out hit, 
+                pathFindRadius, 
+                NavMesh.AllAreas)) {
+
                 agent.SetDestination(hit.position);
             }
         }
@@ -150,8 +154,4 @@ public class PathfindingModule : MonoBehaviour {
     public NavMeshAgent GetAgent() {
         return agent;
     }
-
-    public void SurroundTarget(GameObject target) {}
-
-    public void Flee(Vector3 threatPosition) {}
 }

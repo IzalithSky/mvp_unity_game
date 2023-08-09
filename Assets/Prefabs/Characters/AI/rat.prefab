@@ -118,6 +118,7 @@ MonoBehaviour:
   staggerDamageThreshold: 1
   staggerDuration: 1
   isStaggered: 0
+  criticalHealthRatio: 0.25
 --- !u!114 &1068506614669222836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,13 +180,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3.5
   runSpeed: 7
-  pathFindRadius: 5
+  pathFindRadius: 1
   idleMoveRadius: 5
   dodgeMoveRadius: 3
   dodgeDelay: 0.3
   idleDelay: 2
-  zigzagFrequency: 2
-  zigzagAmplitude: 2
+  fleeDistance: 35
   toolHolder: {fileID: 53250900893143608}
   tool: {fileID: 2313542976850580845}
   firePoint: {fileID: 53250900893143608}
@@ -208,7 +208,7 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 16896
   targetTags:
   - Player
   - PScanner
@@ -231,6 +231,8 @@ MonoBehaviour:
   preAttackDelay: 0.5
   attackRange: 2
   combatRange: 5
+  dodgeApproachRange: 15
+  fleeingRange: 35
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0

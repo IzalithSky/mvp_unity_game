@@ -36,6 +36,14 @@ public class PerceptionModule : MonoBehaviour
         PruneOldTargets();
     }
 
+    public GameObject GetRememberedPlayerTarget()
+    {
+        TargetMemory playerMemory = rememberedTargets.FirstOrDefault(rt => 
+            rt.target != null && rt.target.tag == "Player");
+        
+        return playerMemory?.target;
+    }
+
     public GameObject GetClosestTarget()
     {
         if (targetsInView.Count == 0)
@@ -43,9 +51,12 @@ public class PerceptionModule : MonoBehaviour
             return null;
         }
 
-        GameObject closestTarget = targetsInView.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).First();
+        TargetMemory closestTargetMemory = rememberedTargets
+            .Where(t => t.target != null)
+            .OrderBy(t => Vector3.Distance(transform.position, t.target.transform.position))
+            .FirstOrDefault();
 
-        return closestTarget;
+        return closestTargetMemory?.target;
     }
 
     bool IsTargetInView(GameObject target)
@@ -75,7 +86,9 @@ public class PerceptionModule : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(fromPosition, losSearchProjectileSize, direction, out hit, Mathf.Infinity, transparentMask)) {
             Debug.DrawRay(fromPosition, hit.point - fromPosition, Color.cyan);
-            return true;
+            if (targetTags.Contains(hit.collider.tag)) {
+                return true;
+            }
         }
         
         return false;
@@ -105,7 +118,7 @@ public class PerceptionModule : MonoBehaviour
     void PruneOldTargets()
     {
         for (int i = rememberedTargets.Count - 1; i >= 0; i--) {
-            if (Time.time - rememberedTargets[i].lastSeenTime > memoryDuration) {
+            if (Time.time - rememberedTargets[i].lastSeenTime > memoryDuration || rememberedTargets[i].target == null) {
                 targetsInView.Remove(rememberedTargets[i].target);
                 rememberedTargets.RemoveAt(i);
             }
