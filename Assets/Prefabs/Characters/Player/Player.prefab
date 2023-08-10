@@ -1352,9 +1352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a010b1fbe939b14d98244583bedd5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limitFps: 0
+  limitFps: 1
   vSync: 0
-  fpsCap: 60
+  fpsCap: 240
 --- !u!114 &1002835781404635735
 MonoBehaviour:
   m_ObjectHideFlags: 0

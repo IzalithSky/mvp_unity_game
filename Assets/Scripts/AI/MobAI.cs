@@ -53,9 +53,11 @@ public class MobAI : BehaviorTree.Tree {
 
                     new Sequence(new List<Node> {
                         new Condition(() => !tool.IsReady()),
+                        new Condition(() => perceptionModule.GetClosestTarget() != null),
                         new Condition(() => Vector3.Distance(
                             perceptionModule.GetClosestTarget().transform.position, 
                             transform.position) <= combatRange),
+                        new Condition(() => perceptionModule.CanSee(perceptionModule.GetClosestTarget().transform.position)),
                         new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
                         new DebugNode("Dodging"),
                         new ActionInstant(() => pathfindingModule.DodgeMove()),
@@ -66,6 +68,7 @@ public class MobAI : BehaviorTree.Tree {
                         new Condition(() => Vector3.Distance(
                             perceptionModule.GetClosestTarget().transform.position, 
                             transform.position) <= attackRange),
+                        new Condition(() => perceptionModule.CanSee(perceptionModule.GetClosestTarget().transform.position)),
                         new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
                         new Delay(preAttackDelay),
                         new DebugNode("Attacking target"),
@@ -77,6 +80,7 @@ public class MobAI : BehaviorTree.Tree {
                         new Condition(() => Vector3.Distance(
                             perceptionModule.GetClosestTarget().transform.position, 
                             transform.position) <= dodgeApproachRange),
+                        new Condition(() => perceptionModule.CanSee(perceptionModule.GetClosestTarget().transform.position)),
                         new ActionInstant(() => pathfindingModule.Face(perceptionModule.GetClosestTarget().transform)),
                         new DebugNode("Move Dodging"),
                         new ActionInstant(() => pathfindingModule.ApproachDodgeMove(perceptionModule.GetClosestTarget())),

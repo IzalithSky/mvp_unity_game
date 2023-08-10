@@ -58,8 +58,8 @@ public class InputListener : MonoBehaviour
         playerControls.Movement.Walk.canceled += ctx => {inputHorizontal = 0f; inputVertical = 0f;};
 
         playerControls.Movement.Look.performed += ctx => {
-            cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontal * Time.deltaTime; 
-            cameraVertical = ctx.ReadValue<Vector2>().y * sensVertical * Time.deltaTime;};
+            cameraHorizontal = ctx.ReadValue<Vector2>().x * sensHorizontal; 
+            cameraVertical = ctx.ReadValue<Vector2>().y * sensVertical;};
         playerControls.Movement.Look.canceled += ctx => {cameraHorizontal = 0f; cameraVertical = 0f;};
 
         playerControls.Movement.LookController.performed += ctx => {

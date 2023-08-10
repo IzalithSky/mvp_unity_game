@@ -74,6 +74,10 @@ public class PerceptionModule : MonoBehaviour
         return false;
     }
 
+    public bool CanSee(Vector3 position) {
+        return HasLineOfSight(lookPoint.position, position);
+    }
+
     bool HasLineOfSight() {
         if (!GetClosestTarget()) {
             return false;

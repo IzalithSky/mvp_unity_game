@@ -20,6 +20,8 @@ public class GraphicsSettings : MonoBehaviour
 
         if (vSync) {
             QualitySettings.vSyncCount = 1;
+        } else {
+            QualitySettings.vSyncCount = 0;
         }
     }
 }
