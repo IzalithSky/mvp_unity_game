@@ -46,8 +46,8 @@ GameObject:
   - component: {fileID: 1068506614669222836}
   - component: {fileID: 5736539456758911742}
   - component: {fileID: 9159196991007154864}
-  - component: {fileID: 3397617485153584046}
   - component: {fileID: 2454203509360445714}
+  - component: {fileID: 3397617485153584046}
   - component: {fileID: 379745030980343883}
   m_Layer: 8
   m_Name: rat
@@ -166,29 +166,6 @@ MonoBehaviour:
   damagable: {fileID: 8892924438532986004}
   damageType: 4
   affinity: -50
---- !u!114 &3397617485153584046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53250902452406902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd09c30d6bb643b6fa3b98148ed09af2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 3.5
-  runSpeed: 7
-  pathFindRadius: 1
-  idleMoveRadius: 5
-  dodgeMoveRadius: 3
-  dodgeDelay: 0.3
-  idleDelay: 2
-  fleeDistance: 35
-  toolHolder: {fileID: 53250900893143608}
-  tool: {fileID: 2313542976850580845}
-  firePoint: {fileID: 53250900893143608}
 --- !u!114 &2454203509360445714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +191,29 @@ MonoBehaviour:
   - PScanner
   - EScanner
   memoryDuration: 3
+--- !u!114 &3397617485153584046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd09c30d6bb643b6fa3b98148ed09af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 3.5
+  runSpeed: 7
+  pathFindRadius: 1
+  idleMoveRadius: 5
+  dodgeMoveRadius: 3
+  dodgeDelay: 0.3
+  idleDelay: 2
+  fleeDistance: 35
+  toolHolder: {fileID: 53250900893143608}
+  tool: {fileID: 2313542976850580845}
+  firePoint: {fileID: 53250900893143608}
 --- !u!114 &379745030980343883
 MonoBehaviour:
   m_ObjectHideFlags: 0

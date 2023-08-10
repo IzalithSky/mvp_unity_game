@@ -43,6 +43,9 @@ GameObject:
   - component: {fileID: 53250902452406901}
   - component: {fileID: 53250902452406903}
   - component: {fileID: 5497297868393756751}
+  - component: {fileID: 2835896943896046874}
+  - component: {fileID: 7350778300448431062}
+  - component: {fileID: 2610933886360919261}
   m_Layer: 8
   m_Name: stompdude
   m_TagString: Untagged
@@ -103,6 +106,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statuses: []
+--- !u!114 &2835896943896046874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd09c30d6bb643b6fa3b98148ed09af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 3.5
+  runSpeed: 5
+  pathFindRadius: 1
+  idleMoveRadius: 5
+  dodgeMoveRadius: 3
+  dodgeDelay: 0.3
+  idleDelay: 2
+  fleeDistance: 10
+  toolHolder: {fileID: 53250900893143608}
+  tool: {fileID: 9164364396735851516}
+  firePoint: {fileID: 5005457578388336714}
+--- !u!114 &7350778300448431062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7516de0b61fdefd388efa6cee8654092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookPoint: {fileID: 5005457578388336714}
+  losSearchProjectileSize: 0.01
+  viewRadius: 35
+  autoDetectRadius: 3
+  viewAngle: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 16896
+  targetTags:
+  - Player
+  - EScanner
+  - PScanner
+  memoryDuration: 5
+--- !u!114 &2610933886360919261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53250902452406902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e12f09bb2cd0cf5f8d7a09665694648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleDuration: 15
+  giveUpTimeout: 45
+  preAttackDelay: 0.5
+  attackRange: 3
+  combatRange: 5
+  dodgeApproachRange: 15
+  fleeingRange: 35
 --- !u!1 &2870841685311453067
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,3 +427,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1781882157747999488}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9164364396735851516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7463828787101202684, guid: 0a144f59f416869f3bcead8fc940a0dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1781882157747999488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c9a5963e8780c288444863a66bf568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -36,13 +36,13 @@ public class MobAI : BehaviorTree.Tree {
                 new Selector(new List<Node> {
                     
                     new Sequence(new List<Node> {
-                        new Condition(() => destroyable.isStaggered),
+                        new Condition(() => destroyable != null && destroyable.isStaggered),
                         new DebugNode("Staggered"),
                         new Action(() => pathfindingModule.Stop()),
                     }),
 
                     new Sequence(new List<Node> {
-                        new Condition(() => destroyable.IsHealthCritical()),
+                        new Condition(() => destroyable != null && destroyable.IsHealthCritical()),
                         new Condition(() => perceptionModule.GetRememberedPlayerTarget() != null),
                         new Condition(() => Vector3.Distance(
                             perceptionModule.GetRememberedPlayerTarget().transform.position, 

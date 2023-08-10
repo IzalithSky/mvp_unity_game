@@ -123,7 +123,7 @@ public class PathfindingModule : MonoBehaviour {
     public void Patrol() {
         agent.speed = walkSpeed;
 
-        if (patrolWaypoints.Length == 0) {
+        if (patrolWaypoints == null || patrolWaypoints.Length == 0) {
             return;
         }
 
