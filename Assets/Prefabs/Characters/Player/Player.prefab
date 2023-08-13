@@ -275,10 +275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18e76eab0f7da7a4a6df846c057d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 8
-  walkSpeed: 4
-  airSpeed: 2
-  climbingSpeed: 4
+  runSpeed: 3.6
+  walkSpeed: 1.7
+  airSpeed: 1
+  climbingSpeed: 1.2
   jumpDelay: 0.2
   frictionCoefficient: 35
   jumpForce: 8

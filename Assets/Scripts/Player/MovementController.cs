@@ -31,11 +31,11 @@ public class MovementController : MonoBehaviour {
     CapsuleCollider cc;
     InputListener il;
     public bool grounded = false;
-    public bool accelerating = false;
-    public bool isSteppingUp = false;
-    public bool isJumping = false;
-    public bool isClimbing = false;
-    public bool canBeGrounded = true;
+    bool accelerating = false;
+    bool isSteppingUp = false;
+    bool isJumping = false;
+    bool isClimbing = false;
+    bool canBeGrounded = true;
     public bool isCrouching = false;
     float jtime = 0f;
     float defaultHeight;
@@ -44,8 +44,8 @@ public class MovementController : MonoBehaviour {
     float targetYScale;
     Vector3 originalCameraHolderPosition;
     float originalModelScaleY;
-    public float maxspd = 0f;
-    public float currentAccel = 0f;
+    float maxspd = 0f;
+    float currentAccel = 0f;
     Vector3 moveDir = Vector3.zero;
     Vector3 surfaceNormal = Vector3.up;
     int mask;
