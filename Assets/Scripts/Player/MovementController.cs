@@ -302,24 +302,29 @@ public class MovementController : MonoBehaviour {
         rb.AddForce(surfaceAcceleraton, ForceMode.Force);
     }
 
-    private void ApplyFriction()
+    void ApplyFriction()
     {
         Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
-        Vector3 friction = -inPlainVelocity * frictionCoefficient;
-        surfaceAcceleraton += friction;
-
-        Debug.DrawRay(transform.position, -inPlainVelocity * frictionCoefficient, Color.red, 1f);
+        
+        ApplyFrictionInternal(-inPlainVelocity);
     }
 
-    private void ApplyFrictionCounterDrift()
+    void ApplyFrictionCounterDrift()
     {
         Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         Vector3 driftDir = -(inPlainVelocity - moveDir * maxspd);
 
+        ApplyFrictionInternal(driftDir);
+    }
+
+    void ApplyFrictionInternal(Vector3 v) {
+         float requiredFriction = v.magnitude / Time.fixedDeltaTime;
+
         // Apply friction proportional to the direction difference
-        Vector3 friction = driftDir * frictionCoefficient;
+        Vector3 friction = v * frictionCoefficient;
+        friction = friction.normalized * ((friction.magnitude > requiredFriction) ? requiredFriction : friction.magnitude);
         surfaceAcceleraton += friction;
         
-        Debug.DrawRay(transform.position, driftDir * frictionCoefficient, Color.blue, 1f);
+        Debug.DrawRay(transform.position, friction, Color.blue, 1f);       
     }
 }
