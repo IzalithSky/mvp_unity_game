@@ -9,6 +9,7 @@ public class MovementController : MonoBehaviour {
     public float climbingSpeed = 4f;
     public float jumpDelay = 0.2f;
     public float frictionCoefficient = 15f;
+    public float slideFrictionCoefficient = 0f;
     public float jumpForce = 8f;
     public float ladderJumpForce = 2f;
     public float groundingAcceleration = 80f;
@@ -290,38 +291,41 @@ public class MovementController : MonoBehaviour {
         }
 
         if ((grounded || isClimbing) && isJumpReady()) {
-            if (!(crouchSlidesEnabled && isCrouching)) {
-                if (Vector3.zero == moveDir) {
-                    ApplyFriction();
-                } else {
-                    ApplyFrictionCounterDrift();
-                }
+            float coefficient = frictionCoefficient;
+            if (crouchSlidesEnabled && isCrouching) {
+                coefficient = slideFrictionCoefficient;
+            }
+
+            if (Vector3.zero == moveDir) {
+                ApplyFriction(coefficient);
+            } else {
+                ApplyFrictionCounterDrift(coefficient);
             }
         }
 
         rb.AddForce(surfaceAcceleraton, ForceMode.Force);
     }
 
-    void ApplyFriction()
+    void ApplyFriction(float coefficient)
     {
         Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         
-        ApplyFrictionInternal(-inPlainVelocity);
+        ApplyFrictionInternal(-inPlainVelocity, coefficient);
     }
 
-    void ApplyFrictionCounterDrift()
+    void ApplyFrictionCounterDrift(float coefficient)
     {
         Vector3 inPlainVelocity = Vector3.ProjectOnPlane(rb.velocity, surfaceNormal);
         Vector3 driftDir = -(inPlainVelocity - moveDir * maxspd);
 
-        ApplyFrictionInternal(driftDir);
+        ApplyFrictionInternal(driftDir, coefficient);
     }
 
-    void ApplyFrictionInternal(Vector3 v) {
+    void ApplyFrictionInternal(Vector3 v, float coefficient) {
          float requiredFriction = v.magnitude / Time.fixedDeltaTime;
 
         // Apply friction proportional to the direction difference
-        Vector3 friction = v * frictionCoefficient;
+        Vector3 friction = v * coefficient;
         friction = friction.normalized * ((friction.magnitude > requiredFriction) ? requiredFriction : friction.magnitude);
         surfaceAcceleraton += friction;
         
