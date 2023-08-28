@@ -301,7 +301,7 @@ MonoBehaviour:
   lookPoint: {fileID: 0}
   toolName: Jumpgun
   ammoCount: 0
-  usesAmmo: 0
+  usesAmmo: 1
   cameraEffects: {fileID: 0}
   recoilDuration: 0.1
   recoilMagnitude: 2
