@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limitFps: 1
   vSync: 0
-  fpsCap: 240
+  fpsCap: 60
 --- !u!114 &1002835781404635735
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,9 @@ public class PathfindingModule : MonoBehaviour {
     public Tool tool;
     public Transform firePoint;
 
+    public enum PatrolMode { Sequential, Random }
+    public PatrolMode patrolMode = PatrolMode.Sequential; 
+
     Transform[] patrolWaypoints;
     int currentWaypointIndex = 0;
     bool isAtWaypoint = false;
@@ -131,10 +134,21 @@ public class PathfindingModule : MonoBehaviour {
             agent.SetDestination(patrolWaypoints[currentWaypointIndex].position);
         } else if (agent.remainingDistance <= agent.stoppingDistance && !isAtWaypoint) {
             isAtWaypoint = true;
-            currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Length;
-            agent.SetDestination(patrolWaypoints[currentWaypointIndex].position); // Start moving to the next waypoint immediately
+            UpdateWaypointIndex(); // Use a separate method to update the waypoint index based on patrol mode
+            agent.SetDestination(patrolWaypoints[currentWaypointIndex].position);
         } else if (agent.remainingDistance > agent.stoppingDistance) {
-            isAtWaypoint = false; // reset the flag when the agent starts moving
+            isAtWaypoint = false;
+        }
+    }
+
+    void UpdateWaypointIndex() {
+        switch (patrolMode) {
+            case PatrolMode.Sequential:
+                currentWaypointIndex = (currentWaypointIndex + 1) % patrolWaypoints.Length;
+                break;
+            case PatrolMode.Random:
+                currentWaypointIndex = UnityEngine.Random.Range(0, patrolWaypoints.Length);
+                break;
         }
     }
 
