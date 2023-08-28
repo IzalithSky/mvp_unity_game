@@ -3,26 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour {
+    [Header("Speed")]
     public float runSpeed = 8f;
     public float walkSpeed = 4f;
     public float airSpeed = 1f;
     public float climbingSpeed = 4f;
-    public float jumpDelay = 0.2f;
+    [Header("Friction")]
     public float frictionCoefficient = 15f;
     public float slideFrictionCoefficient = 0f;
+    [Header("Acceleration")]
+    public float acceleration = 400f;
+    public float groundingAcceleration = 80f;
+    public float airAcceleration = 20f; 
+    [Header("Jumping")]
+    public float jumpDelay = 0.2f;
     public float jumpForce = 8f;
     public float ladderJumpForce = 2f;
-    public float groundingAcceleration = 80f;
-    public float acceleration = 400f; 
-    public float airAcceleration = 20f; 
+    [Header("Collision")]
     public float groundColliderMultiplier = .75f; 
     public float groundProbeDistance = .05f;
     public float slopeProbeDistance = 1f;
+    [Header("Steps")]
     public float maxStepHeight = 0.5f;
     public float minStepDepth = 0.2f;
     public int stepProbesCount = 3;
+    [Header("Crouching")]
     public float crouchHeight = 0.9f;
     public float crouchSpeed = 0.1f;
+
+    [Header("Interface")]
     public Transform cameraHolder;
     public Transform model;
     public float stairsClimbingAcceleration = 35f;
@@ -38,7 +47,6 @@ public class MovementController : MonoBehaviour {
     bool isClimbing = false;
     bool canBeGrounded = true;
     public bool isCrouching = false;
-    float jtime = 0f;
     float defaultHeight;
     float targetHeight; // The target height for the current state (crouching / standing).
     float targetYOffset; // The target y-offset for the current state.
@@ -51,6 +59,7 @@ public class MovementController : MonoBehaviour {
     Vector3 surfaceNormal = Vector3.up;
     int mask;
     Vector3 surfaceAcceleraton = Vector3.zero;
+    bool isJumpReady = true;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -251,16 +260,17 @@ public class MovementController : MonoBehaviour {
     void AttemptJump() {
         isJumping = false;
 
-        if ((grounded || isClimbing) && isJumpReady()) {
+        if ((grounded || isClimbing) && isJumpReady) {
             if (il.GetIsJumping()) {
-                jtime = Time.time;
+                isJumpReady = false;
                 isJumping = true;
+                Invoke(nameof(ResetJump), jumpDelay);
             }
         }
     }
 
-    bool isJumpReady() {
-        return (Time.time - jtime) > jumpDelay;
+    void ResetJump() {
+        isJumpReady = true;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -286,11 +296,11 @@ public class MovementController : MonoBehaviour {
             surfaceAcceleraton += Vector3.up * stairsClimbingAcceleration;
         }
 
-        if (canBeGrounded && !isSteppingUp && isJumpReady() && !isClimbing) {
+        if (canBeGrounded && !isSteppingUp && isJumpReady && !isClimbing) {
             surfaceAcceleraton += (-surfaceNormal * groundingAcceleration);
         }
 
-        if ((grounded || isClimbing) && isJumpReady()) {
+        if ((grounded || isClimbing) && isJumpReady) {
             float coefficient = frictionCoefficient;
             if (crouchSlidesEnabled && isCrouching) {
                 coefficient = slideFrictionCoefficient;
