@@ -66,8 +66,8 @@ MonoBehaviour:
   - {fileID: 6885628266064106799}
   - {fileID: 1996058974287259537}
   - {fileID: 5140861564093722337}
-  tickRate: 2
-  regenPerTick: 16
+  tickRate: 8
+  regenPerTick: 2
 --- !u!114 &1598142722248078066
 MonoBehaviour:
   m_ObjectHideFlags: 0

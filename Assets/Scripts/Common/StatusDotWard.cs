@@ -10,11 +10,17 @@ public class StatusDotWard : Status
 
     float nextTickTime = 0f;
 
-    public override void Apply()
-    {
-        if (Time.time >= nextTickTime)
-        {            
-            playerHp.HitWard(damagePerTick);
+    StatusHotWard hot;
+
+    public override void Apply() {
+        if (hot == null) {
+            hot = gameObject.GetComponent<StatusHotWard>();
+        }
+
+        if (Time.time >= nextTickTime) {            
+            if (hot == null) {
+                playerHp.HitWard(damagePerTick);
+            }
             nextTickTime = Time.time + (1 / tickRate);
         }
     }
