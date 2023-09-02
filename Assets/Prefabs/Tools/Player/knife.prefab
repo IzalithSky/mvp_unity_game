@@ -58,6 +58,7 @@ MonoBehaviour:
   recoilDuration: 0
   recoilMagnitude: 0
   maxRecoilAngle: 0
+  audioSource: {fileID: 0}
   impactFlash: {fileID: 6032995144665166442, guid: fd5a48fbf7f57e2bfbcfa63943edaf7f,
     type: 3}
   bmark: {fileID: 1058457433421647451, guid: 1468b356b17669b409972fbd7b5dd193, type: 3}
@@ -79,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5495925924238438316}
-  fireAnimationName: Gun2Anim0
+  fireAnimationName: KnifeAttackClip
 --- !u!114 &692147463041459404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +96,7 @@ MonoBehaviour:
   damage: 60
   multiplier: 1
   headMultiplier: 1
-  owner: {fileID: 0}
+  owners: []
   damageType: 1
   damageDropoffStart: 10
   damageDropoffEnd: 20

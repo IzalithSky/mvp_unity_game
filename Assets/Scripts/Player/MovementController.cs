@@ -153,7 +153,7 @@ public class MovementController : MonoBehaviour {
         rb.useGravity = (!grounded && !isClimbing) || (crouchSlidesEnabled && isCrouching);
             
         surfaceNormal = GetSurfaceNormalInPoint(transform.position, cc.bounds.extents.y + slopeProbeDistance);
-        Debug.DrawRay(transform.position, surfaceNormal * 2f, Color.green);
+        Debug.DrawRay(transform.position, surfaceNormal * 10f, Color.green);
 
         Quaternion planeRotation = Quaternion.FromToRotation(Vector3.up, surfaceNormal);
 

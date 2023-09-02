@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class UiController : MonoBehaviour
 {
     public TMP_Text hpText;
-    public Damageable damagable;
+    public TMP_Text wardText;
+    public PlayerHp playerHp;
 
     public TMP_Text toolNameText;
     public TMP_Text ammoCountText;
@@ -50,6 +51,7 @@ public class UiController : MonoBehaviour
         }
 
         UpdateText(hpText, "0");
+        UpdateText(wardText, "0");
         UpdateText(toolNameText, "");
         UpdateText(ammoCountText, "");
         UpdateText(fpsText, "0");
@@ -62,7 +64,8 @@ public class UiController : MonoBehaviour
 
     void Update()
     {
-        UpdateText(hpText, damagable.GetHp().ToString());
+        UpdateText(hpText, playerHp.GetHp().ToString());
+        UpdateText(wardText, playerHp.GetWard().ToString());
 
         if (null != toolHolder.currentTool)
         {

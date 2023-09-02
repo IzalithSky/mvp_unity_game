@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayableScenes/CarmickEmpty.unity
     guid: 03b7a155b1bd454e0a907fe2042b051c
   - enabled: 1
-    path: Assets/Scenes/PlayableScenes/Donjon.unity
-    guid: a465b7d0b80fa043ba822c1654edb3c6
+    path: Assets/Scenes/PlayableScenes/Cruma.unity
+    guid: 9f9ed1a1d39d23758b47c1bd29f384b6
   - enabled: 1
     path: Assets/Scenes/PlayableScenes/Planes.unity
     guid: 163d9406272ed6c9d8aa194ce3219c18
@@ -23,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScenes/WinScene.unity
     guid: f94f169fe105a8ae899974e1ebfe950b
-  - enabled: 1
-    path: Assets/Scenes/PlayableScenes/Cruma.unity
-    guid: 9f9ed1a1d39d23758b47c1bd29f384b6
   m_configObjects: {}

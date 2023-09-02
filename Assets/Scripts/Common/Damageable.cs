@@ -31,6 +31,11 @@ public class Damageable : MonoBehaviour {
             // Search for UiController in the current GameObject and its children
             uiController = GetComponentInChildren<UiController>();
         }
+        
+        StartRoutine();
+    }
+
+    protected virtual void StartRoutine() {
     }
 
     public int GetHp() {

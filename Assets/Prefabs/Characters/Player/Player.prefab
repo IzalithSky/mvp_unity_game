@@ -394,14 +394,14 @@ MonoBehaviour:
   walkSpeed: 1.7
   airSpeed: 1
   climbingSpeed: 1.2
-  jumpDelay: 0.2
   frictionCoefficient: 35
   slideFrictionCoefficient: 0
+  acceleration: 50
+  groundingAcceleration: 80
+  airAcceleration: 20
+  jumpDelay: 0.2
   jumpForce: 8
   ladderJumpForce: 2
-  groundingAcceleration: 80
-  acceleration: 50
-  airAcceleration: 20
   groundColliderMultiplier: 0.5
   groundProbeDistance: 0
   slopeProbeDistance: 0.5
@@ -437,6 +437,8 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   respawn: {fileID: 0}
   sceneLoader: {fileID: 11400000, guid: 62b43e9a99345bfd287cea6275d9ab57, type: 2}
+  maxWard: 100
+  ward: 0
 --- !u!114 &1002835779930137191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 3587479004952736039}
-  damagable: {fileID: 1002835779930137190}
+  wardText: {fileID: 655464588300425402}
+  playerHp: {fileID: 1002835779930137190}
   toolNameText: {fileID: 2817358571476168479}
   ammoCountText: {fileID: 6083798985048447884}
   toolHolder: {fileID: 1002835779975599068}
@@ -2011,6 +2014,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c5b19462138eb709acd2505f6a15686, type: 3}
+--- !u!114 &655464588300425402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 356457570299021575, guid: 0c5b19462138eb709acd2505f6a15686,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002835781482615229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &861080635498456262 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439634857673946491, guid: 0c5b19462138eb709acd2505f6a15686,
