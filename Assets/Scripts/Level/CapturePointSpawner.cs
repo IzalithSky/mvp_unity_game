@@ -81,10 +81,21 @@ public class CapturePointSpawner : MonoBehaviour {
     }
 
     Vector3 GetRandomNavMeshLocation() {
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * navMeshSampleRadius;
-        randomDirection += transform.position;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randomDirection, out navHit, navMeshMaxDistance, -1);
-        return navHit.position;
+        const int maxAttempts = 100; // Adjust as needed.
+        for (int i = 0; i < maxAttempts; i++) {
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * navMeshSampleRadius;
+            randomDirection += transform.position;
+            NavMeshHit navHit;
+            if (NavMesh.SamplePosition(randomDirection, out navHit, navMeshMaxDistance, -1)) {
+                if (!float.IsInfinity(navHit.position.x) && 
+                    !float.IsInfinity(navHit.position.y) && 
+                    !float.IsInfinity(navHit.position.z)) {
+                    return navHit.position;
+                }
+            }
+        }
+
+        Debug.LogError("Could not find a valid NavMesh position after maximum attempts.");
+        return Vector3.zero;
     }
 }
