@@ -1031,6 +1031,8 @@ MonoBehaviour:
   nonLookingTools:
   - Tracker
   - Scanner
+  - Ward
+  - Knife
 --- !u!114 &1002835779975599070
 MonoBehaviour:
   m_ObjectHideFlags: 0

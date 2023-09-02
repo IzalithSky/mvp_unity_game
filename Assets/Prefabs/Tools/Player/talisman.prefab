@@ -53,7 +53,7 @@ MonoBehaviour:
   fireRateRps: 2
   firePoint: {fileID: 0}
   lookPoint: {fileID: 0}
-  toolName: 
+  toolName: Ward
   ammoCount: 0
   usesAmmo: 0
   cameraEffects: {fileID: 0}
@@ -66,6 +66,8 @@ MonoBehaviour:
   - {fileID: 6885628266064106799}
   - {fileID: 1996058974287259537}
   - {fileID: 5140861564093722337}
+  tickRate: 2
+  regenPerTick: 16
 --- !u!114 &1598142722248078066
 MonoBehaviour:
   m_ObjectHideFlags: 0
