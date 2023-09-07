@@ -503,6 +503,7 @@ MonoBehaviour:
   - {fileID: 5455370826462973949, guid: caeeb048339e58c00adcdbb0e8dd2e67, type: 3}
   - {fileID: 5455370826462973949, guid: 7b7182965ff405b2ab425161b8c4c877, type: 3}
   - {fileID: 5455370826462973949, guid: 9c3c341baf3b988c19b66871d04abaf7, type: 3}
+  - {fileID: 1741134671565539047, guid: 9bd22701428bf465b905c021b0f15308, type: 3}
 --- !u!114 &1002835779930137185
 MonoBehaviour:
   m_ObjectHideFlags: 0
