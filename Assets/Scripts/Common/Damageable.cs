@@ -72,6 +72,11 @@ public class Damageable : MonoBehaviour {
                 audioSource.PlayOneShot(hitSound);  // Play the hit sound
             }
         }
+    }
+
+    protected virtual void TakeDamageRaw(int damage) {
+        hp -= damage;
+
         if (!IsAlive()) {
             if (audioSource != null && deathSound != null)  // Check that the AudioSource and AudioClip are not null
             {
@@ -80,10 +85,6 @@ public class Damageable : MonoBehaviour {
 
             Die();
         }
-    }
-
-    protected virtual void TakeDamageRaw(int damage) {
-        hp -= damage;
     }
 
     public void Heal(int amount) {
