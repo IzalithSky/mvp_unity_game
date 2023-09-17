@@ -1,6 +1,5 @@
 outs:
-- md5: c968f28521fff5830a1380bf2460bf4c.dir
-  nfiles: 171
+- md5: 3e310b63fd12083e0d6a38f35c3b64a8.dir
+  nfiles: 227
   path: Art
-  size: 236499073
   hash: md5
