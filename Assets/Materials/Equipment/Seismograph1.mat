@@ -119,7 +119,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 4.2370954, g: 4.2370954, b: 4.2370954, a: 1}
     - _EmissiveColor: {r: 1, g: 1, b: 1, a: 0}
-    - _ScrollSpeed: {r: 0.6, g: 0, b: 0, a: 0}
+    - _ScrollSpeed: {r: 0.2, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
