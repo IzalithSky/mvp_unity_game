@@ -775,6 +775,17 @@
                 },
                 {
                     "name": "",
+                    "id": "471fecc1-cbdf-49c6-b7a8-ada376f95f5b",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9f5eed2e-6a2e-400f-ac9c-bddb49d78a06",
                     "path": "<Keyboard>/b",
                     "interactions": "",
@@ -842,7 +853,7 @@
                 {
                     "name": "",
                     "id": "4cab495b-e971-4fe6-89cc-348f33c6eff0",
-                    "path": "<Keyboard>/o",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
