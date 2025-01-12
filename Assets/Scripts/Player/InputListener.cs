@@ -7,12 +7,12 @@ public class InputListener : MonoBehaviour
     public int toolListLength = 6;
 
     public float sensHorizontal {
-        get => PlayerPrefs.GetFloat(SensHorizontalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensHorizontalKey, 50f);
         set => PlayerPrefs.SetFloat(SensHorizontalKey, value);
     }
 
     public float sensVertical {
-        get => PlayerPrefs.GetFloat(SensVerticalKey, 800f);
+        get => PlayerPrefs.GetFloat(SensVerticalKey, 50f);
         set => PlayerPrefs.SetFloat(SensVerticalKey, value);
     }
 

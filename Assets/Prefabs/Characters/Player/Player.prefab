@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 1002835779930137191}
   - component: {fileID: 1002835779930137184}
   - component: {fileID: 1002835779930137185}
-  - component: {fileID: 3445898335484961839}
   - component: {fileID: 8765557659592045176}
   m_Layer: 9
   m_Name: Player
@@ -284,10 +283,8 @@ MonoBehaviour:
   crouchSpeed: 0.1
   cameraHolder: {fileID: 1002835779700171575}
   model: {fileID: 1002835780192674200}
-  maxStepHeight: 0.3
   stairsClimbingAcceleration: 50
   crouchSlidesEnabled: 0
-  crouchJumpMult: 0.7
   grounded: 0
   accelerating: 0
   bumpingStep: 0
@@ -390,24 +387,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statuses: []
---- !u!114 &3445898335484961839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002835779930137186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29bdadb807dab1919877aa3f271e3cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClips:
-  - {fileID: 8300000, guid: 660f9959cfa372762a9a51ba39ad1e19, type: 3}
-  - {fileID: 8300000, guid: 90211abcb512f0591a6d5539ad3bffc0, type: 3}
-  - {fileID: 8300000, guid: 619dd0fc55c34e326900f3e18e10fafe, type: 3}
-  inputListener: {fileID: 1002835779930137188}
-  audioSource: {fileID: 8765557659592045176}
 --- !u!82 &8765557659592045176
 AudioSource:
   m_ObjectHideFlags: 0
