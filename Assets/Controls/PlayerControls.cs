@@ -730,24 +730,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlayNext"",
-                    ""type"": ""Button"",
-                    ""id"": ""317142da-6614-477f-8cec-05c19ec36b28"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PlayStop"",
-                    ""type"": ""Button"",
-                    ""id"": ""06f076d6-94f7-449c-80db-ead04b2c7022"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -860,28 +842,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""WalkToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4cab495b-e971-4fe6-89cc-348f33c6eff0"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayNext"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2d4bf8fb-6ef7-48e9-bd49-dd187e218b07"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PlayStop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -924,8 +884,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Menus_FoVOut = m_Menus.FindAction("FoVOut", throwIfNotFound: true);
         m_Menus_CrouchToggle = m_Menus.FindAction("CrouchToggle", throwIfNotFound: true);
         m_Menus_WalkToggle = m_Menus.FindAction("WalkToggle", throwIfNotFound: true);
-        m_Menus_PlayNext = m_Menus.FindAction("PlayNext", throwIfNotFound: true);
-        m_Menus_PlayStop = m_Menus.FindAction("PlayStop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1261,8 +1219,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Menus_FoVOut;
     private readonly InputAction m_Menus_CrouchToggle;
     private readonly InputAction m_Menus_WalkToggle;
-    private readonly InputAction m_Menus_PlayNext;
-    private readonly InputAction m_Menus_PlayStop;
     public struct MenusActions
     {
         private @PlayerControls m_Wrapper;
@@ -1273,8 +1229,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @FoVOut => m_Wrapper.m_Menus_FoVOut;
         public InputAction @CrouchToggle => m_Wrapper.m_Menus_CrouchToggle;
         public InputAction @WalkToggle => m_Wrapper.m_Menus_WalkToggle;
-        public InputAction @PlayNext => m_Wrapper.m_Menus_PlayNext;
-        public InputAction @PlayStop => m_Wrapper.m_Menus_PlayStop;
         public InputActionMap Get() { return m_Wrapper.m_Menus; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1302,12 +1256,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @WalkToggle.started += instance.OnWalkToggle;
             @WalkToggle.performed += instance.OnWalkToggle;
             @WalkToggle.canceled += instance.OnWalkToggle;
-            @PlayNext.started += instance.OnPlayNext;
-            @PlayNext.performed += instance.OnPlayNext;
-            @PlayNext.canceled += instance.OnPlayNext;
-            @PlayStop.started += instance.OnPlayStop;
-            @PlayStop.performed += instance.OnPlayStop;
-            @PlayStop.canceled += instance.OnPlayStop;
         }
 
         private void UnregisterCallbacks(IMenusActions instance)
@@ -1330,12 +1278,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @WalkToggle.started -= instance.OnWalkToggle;
             @WalkToggle.performed -= instance.OnWalkToggle;
             @WalkToggle.canceled -= instance.OnWalkToggle;
-            @PlayNext.started -= instance.OnPlayNext;
-            @PlayNext.performed -= instance.OnPlayNext;
-            @PlayNext.canceled -= instance.OnPlayNext;
-            @PlayStop.started -= instance.OnPlayStop;
-            @PlayStop.performed -= instance.OnPlayStop;
-            @PlayStop.canceled -= instance.OnPlayStop;
         }
 
         public void RemoveCallbacks(IMenusActions instance)
@@ -1391,7 +1333,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnFoVOut(InputAction.CallbackContext context);
         void OnCrouchToggle(InputAction.CallbackContext context);
         void OnWalkToggle(InputAction.CallbackContext context);
-        void OnPlayNext(InputAction.CallbackContext context);
-        void OnPlayStop(InputAction.CallbackContext context);
     }
 }

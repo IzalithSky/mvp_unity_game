@@ -708,24 +708,6 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PlayNext",
-                    "type": "Button",
-                    "id": "317142da-6614-477f-8cec-05c19ec36b28",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PlayStop",
-                    "type": "Button",
-                    "id": "06f076d6-94f7-449c-80db-ead04b2c7022",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -836,28 +818,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "WalkToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4cab495b-e971-4fe6-89cc-348f33c6eff0",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayNext",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2d4bf8fb-6ef7-48e9-bd49-dd187e218b07",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PlayStop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
